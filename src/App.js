@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import styled from 'styled-components';
+import { useQuery } from 'react-query';
+import Flight from './components/Flight';
 import './App.css';
 
-function App() {
+const PageTitle = styled.h1`
+  font-family: 'Source Sans Pro', sans-serif;
+`;
+
+const App = () => {
+  const { status, data: result, error, isFetching } = useQuery(
+    '/flights?page=25'
+  );
+
+  if (isFetching) return <h1>Loading...</h1>;
+  if (error) return <h1>Ooops, something went wrong!</h1>;
+
+  console.log(result);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PageTitle>Schipol Traffic Information</PageTitle>
+      <div>
+        {result.flights.map((item) => (
+          <Flight key={item.id} flight={item} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;

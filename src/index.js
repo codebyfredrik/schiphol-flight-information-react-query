@@ -1,12 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import axios from 'axios';
+import { ReactQueryConfigProvider } from 'react-query';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const config = {
+  headers: {
+    Accept: 'application/json',
+    ResourceVersion: 'v4',
+    app_id: process.env.REACT_APP_API_ID,
+    app_key: process.env.REACT_APP_API_KEY,
+  },
+};
+
+// Define a default query function that will recieve query key
+const defaultQueryFn = async (key) => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}${key}`,
+    config
+  );
+  return data;
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ReactQueryConfigProvider config={{ queries: { queryFn: defaultQueryFn } }}>
+      <App />
+    </ReactQueryConfigProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
