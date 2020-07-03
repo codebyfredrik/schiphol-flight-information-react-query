@@ -25,7 +25,14 @@ const defaultQueryFn = async (key) => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReactQueryConfigProvider config={{ queries: { queryFn: defaultQueryFn } }}>
+    <ReactQueryConfigProvider
+      config={{
+        shared: {
+          suspense: true,
+        },
+        queries: { queryFn: defaultQueryFn },
+      }}
+    >
       <App />
     </ReactQueryConfigProvider>
   </React.StrictMode>,

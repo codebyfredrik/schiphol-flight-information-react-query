@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
-import Flight from './components/Flight';
+// import Flight from './components/Flight';
 import './App.css';
+const Flight = React.lazy(() => import('./components/Flight'));
 
 const PageTitle = styled.h1`
   font-family: 'Source Sans Pro', sans-serif;
@@ -10,7 +11,7 @@ const PageTitle = styled.h1`
 
 const App = () => {
   const { status, data: result, error, isFetching } = useQuery(
-    '/flights?page=25'
+    '/flights?page=29'
   );
 
   if (isFetching) return <h1>Loading...</h1>;
@@ -22,9 +23,11 @@ const App = () => {
     <div className="App">
       <PageTitle>Schipol Traffic Information</PageTitle>
       <div>
-        {result.flights.map((item) => (
-          <Flight key={item.id} flight={item} />
-        ))}
+        <Suspense fallback={<h1>Loading flights...</h1>}>
+          {result.flights.map((item) => (
+            <Flight key={item.id} flight={item} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );
