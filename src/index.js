@@ -28,6 +28,7 @@ ReactDOM.render(
     <ReactQueryConfigProvider
       config={{
         queries: { queryFn: defaultQueryFn },
+        cacheTime: 1000 * 60 * 5,
       }}
     >
       <App />

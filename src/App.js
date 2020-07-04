@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useQuery } from 'react-query';
+import { useQuery, usePaginatedQuery } from 'react-query';
 import Flight from './components/Flight';
 
 import './App.css';
@@ -11,22 +11,48 @@ const PageTitle = styled.h1`
 
 const App = () => {
   const [page, setPage] = useState(0);
-  const { status, data: result, error, isFetching } = useQuery(
-    `/flights?page=${page}`
-  );
-
-  if (isFetching) return <h1>Loading...</h1>;
-  if (error) return <h1>Ooops, something went wrong!</h1>;
-
-  console.log(result);
+  const {
+    isLoading,
+    isError,
+    error,
+    resolvedData,
+    latestData,
+    isFetching,
+  } = usePaginatedQuery(`/flights?page=${page}&sort=+scheduleTime`);
 
   return (
     <div className="App">
       <PageTitle>Schipol Traffic Information</PageTitle>
       <div>
-        {result.flights.map((item) => (
-          <Flight key={item.id} flight={item} />
-        ))}
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : isError ? (
+          <div>Error: {error.message}</div>
+        ) : (
+          <div>
+            {resolvedData.flights.map((item) => (
+              <Flight key={item.id} flight={item} />
+            ))}
+          </div>
+        )}
+        <span>Current page: {page + 1}</span>
+        <button
+          onClick={() => setPage((old) => Math.max(old - 1, 0))}
+          disabled={page === 0}
+        >
+          Previous page
+        </button>
+        <button
+          onClick={() =>
+            setPage((old) =>
+              !latestData || !latestData.hasMore ? old : old + 1
+            )
+          }
+          disabled={!latestData || !latestData.hasMore}
+        >
+          Next page
+        </button>
+        {isFetching ? <span>Loading...</span> : null}
       </div>
     </div>
   );
