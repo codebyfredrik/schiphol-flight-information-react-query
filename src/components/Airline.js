@@ -1,13 +1,29 @@
 import React from 'react';
+import axios from 'axios';
 import { useQuery } from 'react-query';
+import dataFetchConfig from './../config/dataFetchConfig';
+import NotApplicable from './NotApplicable';
+
+const defaultQueryFn = async (key) => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}${key}`,
+    dataFetchConfig
+  );
+  return data;
+};
 
 const Airline = ({ prefixICAO }) => {
   const { status, data: result, error, isFetching } = useQuery(
-    `/airlines/${prefixICAO}`
+    `/airlines/${prefixICAO}`,
+    defaultQueryFn,
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
   );
 
   return (
-    <>
+    <div>
       {isFetching ? (
         'Loading...'
       ) : error ? (
@@ -15,9 +31,9 @@ const Airline = ({ prefixICAO }) => {
       ) : result ? (
         <span>{result.publicName}</span>
       ) : (
-        'N/A'
+        <NotApplicable />
       )}
-    </>
+    </div>
   );
 };
 

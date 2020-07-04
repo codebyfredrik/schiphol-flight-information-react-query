@@ -4,9 +4,16 @@ import Airline from './Airline';
 import Destination from './Destination';
 import FlightDirection from './FlightDirection';
 
-const StyledFlight = styled.div`
+const StyledFlight = styled.li`
   display: grid;
-  grid-template-columns: 150px 1.3fr repeat(5, 1fr);
+  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+  grid-template-columns: 0.3fr 0.5fr 0.3fr 0.3fr 0.3fr 0.5fr 0.5fr;
+  list-style-type: none;
+  /* box-shadow: rgba(0, 0, 0, 0.09) -1px 0px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  padding: 0.5rem; */
 `;
 
 const Flight = ({ flight }) => {
