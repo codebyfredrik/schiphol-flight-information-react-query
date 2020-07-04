@@ -27,9 +27,6 @@ ReactDOM.render(
   <React.StrictMode>
     <ReactQueryConfigProvider
       config={{
-        shared: {
-          suspense: true,
-        },
         queries: { queryFn: defaultQueryFn },
       }}
     >
@@ -38,6 +35,20 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// ReactDOM.unstable_createRoot(document.getElementById('root')).render(
+//   <ReactQueryConfigProvider
+//     config={{
+//       queries: { queryFn: defaultQueryFn }
+//     }}
+//   >
+//     <App />
+//   </ReactQueryConfigProvider>
+// );
+
+// ReactDOM.createRoot(
+//   document.getElementById('root')
+// ).render(<App />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
