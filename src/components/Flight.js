@@ -38,7 +38,6 @@ const Flight = ({ flight }) => {
       <span>{scheduleTime}</span>
       <span>{flightName}</span>
       <span>{aircraftType.iataMain}</span>
-      {/* <span>{aircraftRegistration}</span> */}
       <Registration registration={aircraftRegistration} />
       <Airline prefixICAO={prefixICAO} />
     </StyledFlight>
