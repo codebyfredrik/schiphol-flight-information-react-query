@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import dataFetchConfig from './../config/dataFetchConfig';
 import NoData from './NoData';
@@ -12,7 +13,11 @@ const defaultQueryFn = async (key) => {
   return data;
 };
 
-const Airline = ({ prefixICAO }) => {
+const StyledAirline = styled.span`
+  color: #262b2f;
+`;
+
+export const Airline = ({ prefixICAO, className }) => {
   const { status, data: result, error, isFetching } = useQuery(
     `/airlines/${prefixICAO}`,
     defaultQueryFn,
@@ -23,18 +28,19 @@ const Airline = ({ prefixICAO }) => {
   );
 
   return (
-    <div>
+    <>
       {isFetching ? (
-        'Loading...'
+        <StyledAirline>Loading...</StyledAirline>
       ) : error ? (
-        'Error'
+        <StyledAirline>Error</StyledAirline>
       ) : result ? (
-        <span>{result.publicName}</span>
-      ) : (
-        <NoData />
-      )}
-    </div>
+        <StyledAirline className={className}>
+          {/* {result.publicName.length > 28
+            ? `${result.publicName.slice(0, 24)}...`
+            : result.publicName} */}
+          {result.publicName}
+        </StyledAirline>
+      ) : null}
+    </>
   );
 };
-
-export default Airline;

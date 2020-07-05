@@ -21,7 +21,8 @@ export const GlobalStyle = createGlobalStyle`
     /* font-family: 'Source Sans Pro', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgb(250, 250, 250)
+    background-color: rgb(235, 235, 235);
+    /* min-width: 425px; */
   }
 `;
 

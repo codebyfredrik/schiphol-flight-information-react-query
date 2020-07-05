@@ -19,9 +19,9 @@ const defaultQueryFn = async (key, page = 0) => {
 };
 
 const StyledApp = styled.div`
-  max-width: 1300px;
+  max-width: 1000px;
   margin: auto;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 const Title = styled.h1`
@@ -39,11 +39,25 @@ const ListFlights = styled.ul`
 
 const FlexContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media screen and (min-width: 435px) {
+     {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const SkipButton = styled(Button)`
   margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 435px) {
+     {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const App = () => {

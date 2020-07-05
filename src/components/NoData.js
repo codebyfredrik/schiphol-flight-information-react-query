@@ -14,8 +14,8 @@ const StyledNotApplicable = styled.div`
   border-radius: 2px;
   /* padding: 0rem 0.3rem 0rem 0.3rem; */
   padding: 0rem 0.4rem;
-  font-size: 0.8rem;
-  line-height: 1.2rem;
+  font-size: 0.4rem;
+  /* line-height: 0.rem; */
   border: 1px solid rgba(0, 0, 0, 0.1);
   /* margin: auto; */
   text-transform: uppercase;
