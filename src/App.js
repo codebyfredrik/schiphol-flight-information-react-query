@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactQueryDevtools } from 'react-query-devtools';
+import GlobalStyle from './components/GlobalStyle';
 import axios from 'axios';
 import { usePaginatedQuery, queryCache } from 'react-query';
 import dataFetchConfig from './config/dataFetchConfig';
 import Flight from './components/Flight';
 
-import './App.css';
+// import './App.css';
 
 const defaultQueryFn = async (key, page = 0) => {
   const { data } = await axios.get(
@@ -19,16 +20,19 @@ const defaultQueryFn = async (key, page = 0) => {
 const StyledApp = styled.div`
   max-width: 1300px;
   margin: auto;
+  padding: 2rem;
 `;
 
 const PageTitle = styled.h1`
+  margin-top: 1rem;
   font-family: 'Source Sans Pro', sans-serif;
 `;
 
 const ListFlights = styled.ul`
   display: grid;
-  grid-gap: 0.5rem;
+  grid-gap: 0.7rem;
   padding: 0;
+  margin-top: 2rem;
   /* border: 1px solid red; */
 `;
 
@@ -63,6 +67,7 @@ const App = () => {
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} />
+      <GlobalStyle />
       <StyledApp>
         <PageTitle>Schipol Traffic Information</PageTitle>
         <div>

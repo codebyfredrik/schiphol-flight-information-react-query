@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import dataFetchConfig from './../config/dataFetchConfig';
-import NotApplicable from './NotApplicable';
+import NoData from './NoData';
 
 const defaultQueryFn = async (key) => {
   const { data } = await axios.get(
@@ -31,7 +31,7 @@ const Airline = ({ prefixICAO }) => {
       ) : result ? (
         <span>{result.publicName}</span>
       ) : (
-        <NotApplicable />
+        <NoData />
       )}
     </div>
   );
