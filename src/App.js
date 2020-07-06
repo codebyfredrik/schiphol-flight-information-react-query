@@ -82,8 +82,8 @@ const App = () => {
 
   // usePaginatedQuery(`/flights?page=${page}&sort=+scheduleTime`);
 
-  if (!isFetching && !isLoading && !error)
-    console.log('latestData', latestData.flights);
+  // if (!isFetching && !isLoading && !error)
+  //   console.log('latestData', latestData.flights);
 
   return (
     <>
