@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import dataFetchConfig from './../config/dataFetchConfig';
-import NoData from './NoData';
 
 const defaultQueryFn = async (key) => {
   const { data } = await axios.get(
@@ -15,6 +14,7 @@ const defaultQueryFn = async (key) => {
 
 const StyledAirline = styled.span`
   color: #262b2f;
+  font-size: 0.875rem;
 `;
 
 export const Airline = ({ prefixICAO, className }) => {
@@ -34,12 +34,7 @@ export const Airline = ({ prefixICAO, className }) => {
       ) : error ? (
         <StyledAirline>Error</StyledAirline>
       ) : result ? (
-        <StyledAirline className={className}>
-          {/* {result.publicName.length > 28
-            ? `${result.publicName.slice(0, 24)}...`
-            : result.publicName} */}
-          {result.publicName}
-        </StyledAirline>
+        <StyledAirline className={className}>{result.publicName}</StyledAirline>
       ) : null}
     </>
   );

@@ -8,8 +8,6 @@ import dataFetchConfig from './config/dataFetchConfig';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 
-// import './App.css';
-
 const defaultQueryFn = async (key, page = 0) => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}`,
@@ -34,7 +32,6 @@ const ListFlights = styled.ul`
   grid-gap: 1rem;
   padding: 0;
   margin-top: 2rem;
-  /* border: 1px solid red; */
 `;
 
 const FlexContainer = styled.div`
@@ -61,7 +58,7 @@ const SkipButton = styled(Button)`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(39);
   const {
     isLoading,
     isError,
@@ -79,7 +76,7 @@ const App = () => {
       !latestData.flights.length < 20
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
-      console.log('prefetcing');
+      // console.log('prefetcing');
     }
   }, [latestData, page, defaultQueryFn]);
 
@@ -113,7 +110,6 @@ const App = () => {
               Next page
             </SkipButton>
           </div>
-
           <span>Current page: {page + 1}</span>
         </FlexContainer>
         <div>
@@ -124,9 +120,11 @@ const App = () => {
             <div>Error: {error.message}</div>
           ) : (
             <ListFlights>
-              {resolvedData.flights.map((item) => (
-                <Flight key={item.id} flight={item} />
-              ))}
+              {resolvedData.flights
+                .filter((item) => item.flightName === item.mainFlight)
+                .map((item) => (
+                  <Flight key={item.id} flight={item} />
+                ))}
             </ListFlights>
           )}
         </div>

@@ -15,6 +15,7 @@ const defaultQueryFn = async (key, page = 0) => {
 const StyledDestination = styled.span`
   color: #262b2f;
   font-weight: bold;
+  font-size: 0.875rem;
 `;
 
 export const Destination = ({ route, className }) => {

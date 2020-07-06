@@ -3,19 +3,23 @@ import styled from 'styled-components';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
-import Registration from './Registration';
 import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 
 const StyledFlight = styled.li`
-  display: grid;
-  grid-template-columns: 90px 3fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 2px;
   padding: 1.25rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 90px 3fr;
+  grid-template-rows: 1fr;
 
   @media screen and (min-width: 768px) {
      {
@@ -51,10 +55,6 @@ const ActualDepartureTime = styled(Time)`
   @media screen and (min-width: 768px) {
     margin-left: 0.5rem;
   }
-`;
-
-const StyledDestination = styled(Destination)`
-  /* margin-bottom: 0.3rem; */
 `;
 
 const StyledFlightNumber = styled(FlightNumber)`
@@ -116,6 +116,13 @@ const TimeWrapper = styled.div`
   }
 `;
 
+const CodeShare = styled.div`
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+`;
+
 const Flight = ({ flight }) => {
   const {
     flightDirection,
@@ -125,8 +132,8 @@ const Flight = ({ flight }) => {
     actualOffBlockTime,
     prefixICAO,
     flightName,
+    codeshares,
     aircraftType,
-    aircraftRegistration,
     route,
   } = flight;
 
@@ -138,43 +145,47 @@ const Flight = ({ flight }) => {
 
   return (
     <StyledFlight>
-      <LeftContainer>
-        <TimeWrapper>
-          {flightDirection === 'A' ? (
-            <>
-              <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
-              {estimatedTime && <EstimatedArrivalTime time={estimatedTime} />}
-            </>
-          ) : (
-            <>
-              <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
-              {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
-            </>
-          )}
-        </TimeWrapper>
-        <DirectionWrapper>
-          <FlightDirectionTag flightDirection={flightDirection} />
-        </DirectionWrapper>
-      </LeftContainer>
-      <MiddleContainer>
-        <StyledDestination route={route} />
-        <FlightInfo>
-          <StyledFlightNumber flightName={flightName} />
-          <StyledAirline prefixICAO={prefixICAO} />
-        </FlightInfo>
-      </MiddleContainer>
-      <RightContainer>Text</RightContainer>
+      <Container>
+        <LeftContainer>
+          <TimeWrapper>
+            {flightDirection === 'A' ? (
+              <>
+                <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
+                {actualLandingTime ? (
+                  <ActualArrivalTime time={actualTime} />
+                ) : estimatedTime ? (
+                  <EstimatedArrivalTime time={estimatedTime} />
+                ) : null}
+              </>
+            ) : (
+              <>
+                <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
+                {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
+              </>
+            )}
+          </TimeWrapper>
+          <DirectionWrapper>
+            <FlightDirectionTag flightDirection={flightDirection} />
+          </DirectionWrapper>
+        </LeftContainer>
+        <MiddleContainer>
+          <Destination route={route} />
+          <FlightInfo>
+            <StyledFlightNumber flightName={flightName} />
+            <StyledAirline prefixICAO={prefixICAO} />
+          </FlightInfo>
+        </MiddleContainer>
+        <RightContainer>Text</RightContainer>
+      </Container>
+      {codeshares?.codeshares && (
+        <CodeShare>
+          Also known as: {codeshares?.codeshares.join(' / ')}
+        </CodeShare>
+      )}
       {/* <FlexContainer>
         <span>{aircraftType.iataMain}</span>
       </FlexContainer> */}
-      {/* <StyledDestination route={route} /> */}
-
-      {/* <StyledFlightInformation>
-        <StyledFlightNumber flightName={flightName} />
-        <Airline prefixICAO={prefixICAO} />
-      </StyledFlightInformation> */}
       {/* <span>{aircraftType.iataMain}</span> */}
-      {/* <Registration registration={aircraftRegistration} /> */}
     </StyledFlight>
   );
 };
