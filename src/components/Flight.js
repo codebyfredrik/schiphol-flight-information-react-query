@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+// import { useGetFlightStatus } from './../hooks/useGetFlightStatus';
+import { departureStatus } from './../data/departureStatus';
+import { arrivalStatus } from './../data/arrivalStatus';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
 import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
+import { Tag } from './Tag';
 
 const StyledFlight = styled.li`
   display: flex;
@@ -79,7 +83,7 @@ const MiddleContainer = styled.div`
 const RightContainer = styled.div`
   display: none;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   @media screen and (min-width: 768px) {
      {
@@ -123,6 +127,10 @@ const CodeShare = styled.div`
   font-size: 0.875rem;
 `;
 
+const StatusTag = styled(Tag)`
+  margin-right: 0.5rem;
+`;
+
 const Flight = ({ flight }) => {
   const {
     flightDirection,
@@ -130,6 +138,7 @@ const Flight = ({ flight }) => {
     estimatedLandingTime,
     actualLandingTime,
     actualOffBlockTime,
+    publicFlightState,
     prefixICAO,
     flightName,
     codeshares,
@@ -137,11 +146,37 @@ const Flight = ({ flight }) => {
     route,
   } = flight;
 
-  let estimatedTime, actualTime;
+  let estimatedTime, actualTime, flightStatus;
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime.slice(11, 19);
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
   if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
+  if (publicFlightState) console.log(publicFlightState.flightStates);
+
+  // console.log('Flight status', publicFlightState.flightStates);
+  // flightStatus = useGetFlightStatus(
+  //   publicFlightState.flightStates,
+  //   flightDirection
+  // );
+
+  const [status, setStatus] = useState(publicFlightState.flightStates);
+  const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
+  const excludedDepartureStatus = new Set(['WIL', 'SCH']);
+  let publicState = new Set(publicFlightState.flightStates);
+  let tempArray = [];
+
+  if (flightDirection === 'A') {
+    tempArray = new Set(
+      [...publicState].filter((x) => !excludedArrivalStatus.has(x))
+    );
+    // console.log(tempArray);
+  } else {
+    tempArray = new Set(
+      [...publicState].filter((x) => !excludedDepartureStatus.has(x))
+    );
+  }
+
+  console.log('FlightName: ', flightName, Array.from(tempArray));
 
   return (
     <StyledFlight>
@@ -175,7 +210,15 @@ const Flight = ({ flight }) => {
             <StyledAirline prefixICAO={prefixICAO} />
           </FlightInfo>
         </MiddleContainer>
-        <RightContainer>Text</RightContainer>
+        <RightContainer>
+          {/* {flightDirection
+           === 'A'
+            ? actualLandingTime && <Tag label="Landed" />
+            : actualOffBlockTime && <Tag label="Departed" />} */}
+          {Array.from(tempArray).map((item) => (
+            <StatusTag label={item} />
+          ))}
+        </RightContainer>
       </Container>
       {codeshares?.codeshares && (
         <CodeShare>
