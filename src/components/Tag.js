@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 const StyledTag = styled.div`
   display: inline-block;
-  background-color: #262b2f;
+  /* ${(props) => `background-color: ${props.backgroundColor};`} */
+    /* props.backgroundColor ? props.backgroundColor : null}; */
+  /* ${(props) => (props.primary ? 'white' : 'palevioletred')}; */
+  /* background-color: #262b2f; */
   color: #ffffff;
   font-weight: bold;
   padding: 0.1rem 0.3rem;

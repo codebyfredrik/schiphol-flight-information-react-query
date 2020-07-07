@@ -59,13 +59,13 @@ export const arrivalStatus = [
     statusCode: 'CNX',
     status: 'Cancelled',
     description: 'A scheduled flight that will not be operated.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ff0800',
   },
   {
     statusCode: 'TOM',
     status: 'Tomorrow',
     description:
       'When the date of an expected departure exceeds the initial date.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ff0800',
   },
 ];

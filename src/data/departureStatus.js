@@ -11,14 +11,14 @@ export const departureStatus = [
     status: 'Delayed',
     description:
       'The deviation between the expected time of departure and the scheduled time exceeds 10 minutes.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ff0800',
   },
   {
     statusCode: 'WIL',
     status: 'Wait in lounge',
     description:
       'Is a flight state that indicates that the gate for a departing flight at the M pier or H pier is not available yet for boarding. Passengers need to wait in the lounge.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ffd700',
   },
   {
     statusCode: 'GTO',
@@ -54,14 +54,14 @@ export const departureStatus = [
     statusCode: 'CNX',
     status: 'Cancelled',
     description: 'A scheduled flight that will not be operated.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ff0800',
   },
   {
     statusCode: 'GCH',
     status: 'Gate change',
     description:
       'The gate of departure for a scheduled flight changes to another gate.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#ff0800',
   },
   {
     statusCode: 'TOM',

@@ -129,6 +129,7 @@ const CodeShare = styled.div`
 
 const StatusTag = styled(Tag)`
   margin-right: 0.5rem;
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 const Flight = ({ flight }) => {
@@ -146,37 +147,46 @@ const Flight = ({ flight }) => {
     route,
   } = flight;
 
-  let estimatedTime, actualTime, flightStatus;
+  let estimatedTime, actualTime;
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime.slice(11, 19);
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
   if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
-  if (publicFlightState) console.log(publicFlightState.flightStates);
+  // if (publicFlightState) console.log(publicFlightState.flightStates);
 
-  // console.log('Flight status', publicFlightState.flightStates);
-  // flightStatus = useGetFlightStatus(
-  //   publicFlightState.flightStates,
-  //   flightDirection
-  // );
-
-  const [status, setStatus] = useState(publicFlightState.flightStates);
   const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
-  const excludedDepartureStatus = new Set(['WIL', 'SCH']);
+  const excludedDepartureStatus = new Set(['SCH']);
   let publicState = new Set(publicFlightState.flightStates);
   let tempArray = [];
+  let statusResults = [];
 
   if (flightDirection === 'A') {
     tempArray = new Set(
       [...publicState].filter((x) => !excludedArrivalStatus.has(x))
     );
-    // console.log(tempArray);
+    Array.from(tempArray).map((item) => {
+      // console.log('array', item);
+      arrivalStatus.map((status) => {
+        if (status.statusCode === item) {
+          statusResults.push(status);
+        }
+      });
+    });
   } else {
     tempArray = new Set(
       [...publicState].filter((x) => !excludedDepartureStatus.has(x))
     );
+    Array.from(tempArray).map((item) => {
+      // console.log('array', item);
+      departureStatus.map((status) => {
+        if (status.statusCode === item) {
+          statusResults.push(status);
+        }
+      });
+    });
   }
 
-  console.log('FlightName: ', flightName, Array.from(tempArray));
+  // console.log('FlightName: ', flightName, statusResults);
 
   return (
     <StyledFlight>
@@ -211,12 +221,12 @@ const Flight = ({ flight }) => {
           </FlightInfo>
         </MiddleContainer>
         <RightContainer>
-          {/* {flightDirection
-           === 'A'
-            ? actualLandingTime && <Tag label="Landed" />
-            : actualOffBlockTime && <Tag label="Departed" />} */}
-          {Array.from(tempArray).map((item) => (
-            <StatusTag label={item} />
+          {statusResults.slice(0, 1).map((item) => (
+            <StatusTag
+              key={item.statusCode}
+              label={item.status}
+              backgroundColor={item.backgroundColor}
+            />
           ))}
         </RightContainer>
       </Container>

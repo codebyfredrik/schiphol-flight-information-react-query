@@ -58,7 +58,7 @@ const SkipButton = styled(Button)`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(89);
+  const [page, setPage] = useState(41);
   const {
     isLoading,
     isError,
@@ -82,8 +82,8 @@ const App = () => {
 
   // usePaginatedQuery(`/flights?page=${page}&sort=+scheduleTime`);
 
-  if (!isFetching && !isLoading && !error)
-    console.log('latestData', latestData.flights);
+  // if (!isFetching && !isLoading && !error)
+  //   console.log('latestData', latestData.flights);
 
   return (
     <>
