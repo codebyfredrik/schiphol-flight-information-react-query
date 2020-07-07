@@ -36,16 +36,24 @@ const Header = styled.header`
 
 const Title = styled.h1`
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: #ffd700;
+
+  @media screen and (min-width: 520px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const SubTitle = styled.h3`
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: #fff;
+
+  @media screen and (min-width: 520px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Flights = styled.ul`
