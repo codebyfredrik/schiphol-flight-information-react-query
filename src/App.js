@@ -10,7 +10,7 @@ import Flight from './components/Flight';
 
 const defaultQueryFn = async (key, page = 0) => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}`,
+    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}&sort=+scheduleTime`,
     dataFetchConfig
   );
   return data;
@@ -27,7 +27,7 @@ const Title = styled.h1`
   font-family: 'Source Sans Pro', sans-serif;
 `;
 
-const ListFlights = styled.ul`
+const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
   padding: 0;
@@ -58,7 +58,7 @@ const SkipButton = styled(Button)`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(41);
+  const [page, setPage] = useState(65);
   const {
     isLoading,
     isError,
@@ -76,14 +76,11 @@ const App = () => {
       !latestData.flights.length < 20
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
-      // console.log('prefetcing');
     }
   }, [latestData, page, defaultQueryFn]);
 
-  // usePaginatedQuery(`/flights?page=${page}&sort=+scheduleTime`);
-
-  // if (!isFetching && !isLoading && !error)
-  //   console.log('latestData', latestData.flights);
+  if (!isFetching && !isLoading && !error)
+    console.log('latestData', latestData.flights);
 
   return (
     <>
@@ -119,13 +116,13 @@ const App = () => {
           ) : isError ? (
             <div>Error: {error.message}</div>
           ) : (
-            <ListFlights>
+            <Flights>
               {resolvedData.flights
                 .filter((item) => item.flightName === item.mainFlight)
                 .map((item) => (
                   <Flight key={item.id} flight={item} />
                 ))}
-            </ListFlights>
+            </Flights>
           )}
         </div>
       </StyledApp>

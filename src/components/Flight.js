@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-// import { useGetFlightStatus } from './../hooks/useGetFlightStatus';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
 import { Airline } from './Airline';
@@ -34,7 +33,7 @@ const Container = styled.div`
 
 const ScheduleTime = styled(Time)`
   font-weight: bold;
-  text-decoration: ${(props) => (props.estimated ? 'line-through' : '')};
+  text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
 `;
 
 const EstimatedArrivalTime = styled(Time)`
@@ -61,7 +60,7 @@ const ActualDepartureTime = styled(Time)`
   }
 `;
 
-const StyledFlightNumber = styled(FlightNumber)`
+const FlightID = styled(FlightNumber)`
   &::after {
     content: ' ';
     white-space: pre;
@@ -83,7 +82,6 @@ const MiddleContainer = styled.div`
 const RightContainer = styled.div`
   display: none;
   flex-direction: row;
-  /* justify-content: space-between; */
 
   @media screen and (min-width: 768px) {
      {
@@ -92,11 +90,11 @@ const RightContainer = styled.div`
   }
 `;
 
-const FlightInfo = styled.div`
+const FlightInfoWrapper = styled.div`
   display: flex;
 `;
 
-const StyledAirline = styled(Airline)`
+const FlightOperator = styled(Airline)`
   visibility: hidden;
   @media screen and (min-width: 435px) {
      {
@@ -127,7 +125,7 @@ const CodeShare = styled.div`
   font-size: 0.875rem;
 `;
 
-const StatusTag = styled(Tag)`
+const FlightStatus = styled(Tag)`
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
 `;
@@ -165,8 +163,7 @@ const Flight = ({ flight }) => {
       [...publicState].filter((x) => !excludedArrivalStatus.has(x))
     );
     Array.from(tempArray).map((item) => {
-      // console.log('array', item);
-      arrivalStatus.map((status) => {
+      return arrivalStatus.map((status) => {
         if (status.statusCode === item) {
           statusResults.push(status);
         }
@@ -177,8 +174,7 @@ const Flight = ({ flight }) => {
       [...publicState].filter((x) => !excludedDepartureStatus.has(x))
     );
     Array.from(tempArray).map((item) => {
-      // console.log('array', item);
-      departureStatus.map((status) => {
+      return departureStatus.map((status) => {
         if (status.statusCode === item) {
           statusResults.push(status);
         }
@@ -215,14 +211,14 @@ const Flight = ({ flight }) => {
         </LeftContainer>
         <MiddleContainer>
           <Destination route={route} />
-          <FlightInfo>
-            <StyledFlightNumber flightName={flightName} />
-            <StyledAirline prefixICAO={prefixICAO} />
-          </FlightInfo>
+          <FlightInfoWrapper>
+            <FlightID flightName={flightName} />
+            <FlightOperator prefixICAO={prefixICAO} />
+          </FlightInfoWrapper>
         </MiddleContainer>
         <RightContainer>
           {statusResults.slice(0, 1).map((item) => (
-            <StatusTag
+            <FlightStatus
               key={item.statusCode}
               label={item.status}
               backgroundColor={item.backgroundColor}
@@ -238,7 +234,6 @@ const Flight = ({ flight }) => {
       {/* <FlexContainer>
         <span>{aircraftType.iataMain}</span>
       </FlexContainer> */}
-      {/* <span>{aircraftType.iataMain}</span> */}
     </StyledFlight>
   );
 };

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const StyledTime = styled.span`
   display: inline-block;
   color: #262b2f;
-  /* font-size: 0.875rem; */
 `;
 
 export const Time = ({ time, className }) => {
