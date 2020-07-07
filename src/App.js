@@ -22,16 +22,28 @@ const StyledApp = styled.div`
   padding: 1rem;
 `;
 
+const HeaderContainer = styled.div`
+  max-width: 1000px;
+  margin: auto;
+  padding: 1rem;
+`;
+
+const Header = styled.header`
+  background-color: #0b0e10;
+  margin-bottom: 1rem;
+`;
+
 const Title = styled.h1`
-  margin: 1rem 0 2rem 0;
+  margin: 0rem 0 0rem 0;
   font-family: 'Source Sans Pro', sans-serif;
+  color: #ffd700;
 `;
 
 const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
   padding: 0;
-  margin-top: 2rem;
+  margin: 2rem 0;
 `;
 
 const FlexContainer = styled.div`
@@ -91,8 +103,12 @@ const App = () => {
     <>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyle />
+      <Header>
+        <HeaderContainer>
+          <Title>Schipol Airport Traffic Information</Title>
+        </HeaderContainer>
+      </Header>
       <StyledApp>
-        <Title>Schipol Traffic Information</Title>
         <FlexContainer>
           <div>
             <SkipButton
