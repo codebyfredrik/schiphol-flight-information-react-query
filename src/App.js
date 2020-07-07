@@ -25,18 +25,27 @@ const StyledApp = styled.div`
 const HeaderContainer = styled.div`
   max-width: 1000px;
   margin: auto;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 `;
 
 const Header = styled.header`
   background-color: #0b0e10;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ffd700;
 `;
 
 const Title = styled.h1`
-  margin: 0rem 0 0rem 0;
+  margin: 0;
+  font-size: 2.5rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: #ffd700;
+`;
+
+const SubTitle = styled.h3`
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #fff;
 `;
 
 const Flights = styled.ul`
@@ -74,6 +83,19 @@ const PageNumber = styled.span`
   font-weight: bold;
 `;
 
+const Loading = styled.span`
+  display: inline-block;
+  margin: 2rem 0;
+  font-weight: bold;
+`;
+
+const Error = styled.span`
+  display: inline-block;
+  margin: 2rem 0;
+  font-weight: bold;
+  color: #ff0800;
+`;
+
 const App = () => {
   const [page, setPage] = useState(65);
   const {
@@ -105,7 +127,8 @@ const App = () => {
       <GlobalStyle />
       <Header>
         <HeaderContainer>
-          <Title>Schipol Airport Traffic Information</Title>
+          <Title>Amsterdam Airport Schipol</Title>
+          <SubTitle>Flight Information</SubTitle>
         </HeaderContainer>
       </Header>
       <StyledApp>
@@ -135,9 +158,9 @@ const App = () => {
         <div>
           {/* {isFetching ? <span>Loading...</span> : null} */}
           {isLoading ? (
-            <div>Loading...</div>
+            <Loading>Loading flights...</Loading>
           ) : isError ? (
-            <div>Error: {error.message}</div>
+            <Error>Error: {error.message}</Error>
           ) : (
             <Flights>
               {resolvedData.flights
