@@ -30,12 +30,6 @@ const Container = styled.div`
       grid-template-columns: 110px 3.6fr 1.4fr;
     }
   }
-
-  @media screen and (min-width: 768px) {
-     {
-      grid-template-columns: 110px 3.6fr 1.4fr;
-    }
-  }
 `;
 
 const ScheduleTime = styled(Time)`
