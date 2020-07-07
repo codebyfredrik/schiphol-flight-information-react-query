@@ -42,6 +42,7 @@ const FlexContainer = styled.div`
      {
       flex-direction: row;
       justify-content: space-between;
+      align-items: center;
     }
   }
 `;
@@ -55,6 +56,10 @@ const SkipButton = styled(Button)`
       margin-bottom: 0;
     }
   }
+`;
+
+const PageNumber = styled.span`
+  font-weight: bold;
 `;
 
 const App = () => {
@@ -107,7 +112,9 @@ const App = () => {
               Next page
             </SkipButton>
           </div>
-          <span>Current page: {page + 1}</span>
+          <span>
+            Current page: <PageNumber>{page + 1}</PageNumber>
+          </span>
         </FlexContainer>
         <div>
           {/* {isFetching ? <span>Loading...</span> : null} */}

@@ -8,6 +8,7 @@ import { FlightDirectionTag } from './FlightDirectionTag';
 import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
+import { Gate } from './Gate';
 
 const StyledFlight = styled.li`
   display: flex;
@@ -21,12 +22,18 @@ const StyledFlight = styled.li`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 90px 3fr;
+  grid-template-columns: 90px 5fr;
   grid-template-rows: 1fr;
+
+  @media screen and (min-width: 490px) {
+     {
+      grid-template-columns: 110px 3.6fr 1.4fr;
+    }
+  }
 
   @media screen and (min-width: 768px) {
      {
-      grid-template-columns: 130px 3fr 2fr;
+      grid-template-columns: 110px 3.6fr 1.4fr;
     }
   }
 `;
@@ -77,13 +84,24 @@ const MiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  border-left: 1px dashed rgba(0, 0, 0, 0.15);
+  padding-left: 1rem;
+
+  @media screen and (min-width: 768px) {
+     {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const RightContainer = styled.div`
   display: none;
-  flex-direction: row;
+  justify-content: flex-end;
+  border-left: 1px dashed rgba(0, 0, 0, 0.15);
+  padding-left: 1rem;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 490px) {
      {
       display: flex;
     }
@@ -92,15 +110,7 @@ const RightContainer = styled.div`
 
 const FlightInfoWrapper = styled.div`
   display: flex;
-`;
-
-const FlightOperator = styled(Airline)`
-  visibility: hidden;
-  @media screen and (min-width: 435px) {
-     {
-      visibility: visible;
-    }
-  }
+  flex-wrap: wrap;
 `;
 
 const DirectionWrapper = styled.div`
@@ -130,6 +140,19 @@ const FlightStatus = styled(Tag)`
   background-color: ${(props) => props.backgroundColor};
 `;
 
+const FlightStatusWrapper = styled.div`
+  flex: 1 1 0px;
+
+  @media screen and (min-width: 768px) {
+    border-left: 1px dashed rgba(0, 0, 0, 0.15);
+    padding-left: 1rem;
+  }
+`;
+
+const FlightWrapper = styled.div`
+  flex: 1 1 0px;
+`;
+
 const Flight = ({ flight }) => {
   const {
     flightDirection,
@@ -141,8 +164,8 @@ const Flight = ({ flight }) => {
     prefixICAO,
     flightName,
     codeshares,
-    aircraftType,
     route,
+    gate,
   } = flight;
 
   let estimatedTime, actualTime;
@@ -210,30 +233,30 @@ const Flight = ({ flight }) => {
           </DirectionWrapper>
         </LeftContainer>
         <MiddleContainer>
-          <Destination route={route} />
-          <FlightInfoWrapper>
-            <FlightID flightName={flightName} />
-            <FlightOperator prefixICAO={prefixICAO} />
-          </FlightInfoWrapper>
+          <FlightWrapper>
+            <Destination route={route} />
+            <FlightInfoWrapper>
+              <FlightID flightName={flightName} />
+              <Airline prefixICAO={prefixICAO} />
+            </FlightInfoWrapper>
+          </FlightWrapper>
+          <FlightStatusWrapper>
+            {statusResults.slice(0, 1).map((item) => (
+              <FlightStatus
+                key={item.statusCode}
+                label={item.status}
+                backgroundColor={item.backgroundColor}
+              />
+            ))}
+          </FlightStatusWrapper>
         </MiddleContainer>
-        <RightContainer>
-          {statusResults.slice(0, 1).map((item) => (
-            <FlightStatus
-              key={item.statusCode}
-              label={item.status}
-              backgroundColor={item.backgroundColor}
-            />
-          ))}
-        </RightContainer>
+        <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
       </Container>
       {codeshares?.codeshares && (
         <CodeShare>
           Also known as: {codeshares?.codeshares.join(' / ')}
         </CodeShare>
       )}
-      {/* <FlexContainer>
-        <span>{aircraftType.iataMain}</span>
-      </FlexContainer> */}
     </StyledFlight>
   );
 };
