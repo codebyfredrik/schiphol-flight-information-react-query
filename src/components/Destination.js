@@ -12,7 +12,13 @@ const defaultQueryFn = async (key, page = 0) => {
   return data;
 };
 
-const Destination = ({ route }) => {
+const StyledDestination = styled.span`
+  color: #262b2f;
+  font-weight: bold;
+  font-size: 0.875rem;
+`;
+
+export const Destination = ({ route, className }) => {
   const { status, data: result, error, isFetching } = useQuery(
     `/destinations/${route.destinations[0]}`,
     defaultQueryFn,
@@ -25,16 +31,16 @@ const Destination = ({ route }) => {
   return (
     <>
       {isFetching ? (
-        'Loading...'
+        <StyledDestination>Loading...</StyledDestination>
       ) : error ? (
-        'Error'
+        <StyledDestination>Error</StyledDestination>
       ) : result ? (
-        <span>{result.city}</span>
+        <StyledDestination className={className}>
+          {result.city} ({result.iata})
+        </StyledDestination>
       ) : (
-        'N/A'
+        <StyledDestination>No data</StyledDestination>
       )}
     </>
   );
 };
-
-export default Destination;

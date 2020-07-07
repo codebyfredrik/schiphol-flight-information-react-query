@@ -8,20 +8,18 @@ import dataFetchConfig from './config/dataFetchConfig';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 
-// import './App.css';
-
 const defaultQueryFn = async (key, page = 0) => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}`,
+    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}&sort=+scheduleTime`,
     dataFetchConfig
   );
   return data;
 };
 
 const StyledApp = styled.div`
-  max-width: 1300px;
+  max-width: 1000px;
   margin: auto;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 const Title = styled.h1`
@@ -29,25 +27,38 @@ const Title = styled.h1`
   font-family: 'Source Sans Pro', sans-serif;
 `;
 
-const ListFlights = styled.ul`
+const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
   padding: 0;
   margin-top: 2rem;
-  /* border: 1px solid red; */
 `;
 
 const FlexContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media screen and (min-width: 435px) {
+     {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
 
 const SkipButton = styled(Button)`
   margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 435px) {
+     {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const App = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(65);
   const {
     isLoading,
     isError,
@@ -65,11 +76,8 @@ const App = () => {
       !latestData.flights.length < 20
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
-      console.log('prefetcing');
     }
   }, [latestData, page, defaultQueryFn]);
-
-  // usePaginatedQuery(`/flights?page=${page}&sort=+scheduleTime`);
 
   if (!isFetching && !isLoading && !error)
     console.log('latestData', latestData.flights);
@@ -99,7 +107,6 @@ const App = () => {
               Next page
             </SkipButton>
           </div>
-
           <span>Current page: {page + 1}</span>
         </FlexContainer>
         <div>
@@ -109,11 +116,13 @@ const App = () => {
           ) : isError ? (
             <div>Error: {error.message}</div>
           ) : (
-            <ListFlights>
-              {resolvedData.flights.map((item) => (
-                <Flight key={item.id} flight={item} />
-              ))}
-            </ListFlights>
+            <Flights>
+              {resolvedData.flights
+                .filter((item) => item.flightName === item.mainFlight)
+                .map((item) => (
+                  <Flight key={item.id} flight={item} />
+                ))}
+            </Flights>
           )}
         </div>
       </StyledApp>

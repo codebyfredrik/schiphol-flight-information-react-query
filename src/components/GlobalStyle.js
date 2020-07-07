@@ -16,12 +16,11 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: scroll;
   }
   body {
-    /* font-family: 'Roboto', sans-serif; */
-    font-family: 'Inter', sans-serif;
-    /* font-family: 'Source Sans Pro', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Inter', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgb(250, 250, 250)
+    background-color: rgb(235, 235, 235);
   }
 `;
 

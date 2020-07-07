@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { ReactQueryConfigProvider } from 'react-query';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
