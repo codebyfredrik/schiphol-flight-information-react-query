@@ -93,8 +93,12 @@ const SkipButton = styled(Button)`
   }
 `;
 
-const PageNumber = styled.span`
+const CurrentPage = styled.span`
   font-weight: bold;
+`;
+
+const DisplayPage = styled.span`
+  font-size: 0.875rem;
 `;
 
 const Loading = styled.span`
@@ -173,9 +177,9 @@ const App = () => {
               Next page
             </SkipButton>
           </div>
-          <span>
-            Current page: <PageNumber>{page + 1}</PageNumber>
-          </span>
+          <DisplayPage>
+            Current page: <CurrentPage>{page + 1}</CurrentPage>
+          </DisplayPage>
         </FlexContainer>
         <div>
           {/* {isFetching ? <span>Loading...</span> : null} */}
