@@ -112,6 +112,7 @@ const Error = styled.span`
 
 const App = () => {
   const [page, setPage] = useState(0);
+  let filteredResolvedData = null;
   const {
     isLoading,
     isError,
@@ -132,8 +133,15 @@ const App = () => {
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
-  if (!isFetching && !isLoading && !error)
+  if (resolvedData?.flights)
+    filteredResolvedData = resolvedData.flights.filter(
+      (item) => item.flightName === item.mainFlight
+    );
+
+  if (!isFetching && !isLoading && !error) {
     console.log('latestData', latestData.flights);
+    console.log(filteredResolvedData);
+  }
 
   return (
     <>
@@ -177,11 +185,10 @@ const App = () => {
             <Error>Error: {error.message}</Error>
           ) : (
             <Flights>
-              {resolvedData.flights
-                .filter((item) => item.flightName === item.mainFlight)
-                .map((item) => (
-                  <Flight key={item.id} flight={item} />
-                ))}
+              {resolvedData &&
+                resolvedData.flights
+                  .filter((item) => item.flightName === item.mainFlight)
+                  .map((item) => <Flight key={item.id} flight={item} />)}
             </Flights>
           )}
         </div>
