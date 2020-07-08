@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
+import { useGetFlightStatus } from './../hooks/useGetFlightStatus';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
@@ -199,6 +200,11 @@ const Flight = ({ flight }) => {
     });
   }
 
+  // let tempStatus = useGetFlightStatus(
+  //   publicFlightState.flightStates,
+  //   flightDirection
+  // );
+  // console.log('Temp status: ', tempStatus);
   // console.log('FlightName: ', flightName, statusResults);
 
   return (

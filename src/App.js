@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import moment from 'moment';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
 import GlobalStyle from './components/GlobalStyle';
@@ -9,8 +10,9 @@ import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 
 const defaultQueryFn = async (key, page = 0) => {
+  const dateTimeString = moment().format('YYYY-MM-DDThh:mm:ss');
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}&sort=+scheduleTime`,
+    `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
     dataFetchConfig
   );
   return data;
@@ -36,9 +38,13 @@ const Header = styled.header`
 
 const Title = styled.h1`
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: #ffd700;
+
+  @media screen and (min-width: 380px) {
+    font-size: 2rem;
+  }
 
   @media screen and (min-width: 520px) {
     font-size: 2.5rem;
@@ -105,7 +111,7 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(65);
+  const [page, setPage] = useState(0);
   const {
     isLoading,
     isError,
@@ -124,7 +130,7 @@ const App = () => {
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
     }
-  }, [latestData, page, defaultQueryFn]);
+  }, [latestData, page, isFetching, isLoading, error]);
 
   if (!isFetching && !isLoading && !error)
     console.log('latestData', latestData.flights);
