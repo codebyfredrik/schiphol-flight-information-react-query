@@ -9,6 +9,7 @@ import GlobalStyle from './components/GlobalStyle';
 import dataFetchConfig from './config/dataFetchConfig';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
+import { Date } from './components/Date';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
@@ -139,6 +140,9 @@ const Error = styled.span`
 const App = () => {
   const [page, setPage] = useState(0);
   const [theme, setTheme] = useState('light');
+  const [displayDate, setDisplayDate] = useState(true);
+  const [date, setDate] = useState();
+  const [filteredArrayLength, setFilteredArrayLength] = useState(0);
   const themeToggler = () => {
     // console.log(theme);
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -172,8 +176,28 @@ const App = () => {
   if (!isFetching && !isLoading && !error) {
     // console.log('resolvedData', resolvedData);
     // console.log('latestData', latestData.flights);
-    // console.log('filtered', filteredResolvedData);
+    console.log('filtered', filteredResolvedData);
+    // setFilteredArrayLength(filteredResolvedData.length);
   }
+
+  const renderList = () => {
+    let currentDate = null;
+    return resolvedData.flights
+      .filter((item) => item.flightName === item.mainFlight)
+      .map((item, index) => {
+        if (item.scheduleDate !== currentDate) {
+          currentDate = item.scheduleDate;
+          return (
+            <React.Fragment key={item.id}>
+              <Date date={item.scheduleDate} />
+              <Flight flight={item} />
+            </React.Fragment>
+          );
+        } else {
+          return <Flight key={item.id} flight={item} />;
+        }
+      });
+  };
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -220,12 +244,7 @@ const App = () => {
             ) : isError ? (
               <Error>Error: {error.message}</Error>
             ) : (
-              <Flights>
-                {resolvedData &&
-                  resolvedData.flights
-                    .filter((item) => item.flightName === item.mainFlight)
-                    .map((item) => <Flight key={item.id} flight={item} />)}
-              </Flights>
+              <Flights>{renderList()}</Flights>
             )}
           </div>
         </StyledApp>
