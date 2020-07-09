@@ -10,7 +10,7 @@ import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 
 const defaultQueryFn = async (key, page = 0) => {
-  const dateTimeString = moment().format('YYYY-MM-DDThh:mm:ss');
+  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
     dataFetchConfig
@@ -143,8 +143,9 @@ const App = () => {
     );
 
   if (!isFetching && !isLoading && !error) {
+    console.log('resolvedData', resolvedData);
     console.log('latestData', latestData.flights);
-    console.log(filteredResolvedData);
+    console.log('filtered', filteredResolvedData);
   }
 
   return (
