@@ -140,7 +140,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
-    console.log(theme);
+    // console.log(theme);
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   let filteredResolvedData = null;
@@ -170,15 +170,15 @@ const App = () => {
     );
 
   if (!isFetching && !isLoading && !error) {
-    console.log('resolvedData', resolvedData);
-    console.log('latestData', latestData.flights);
-    console.log('filtered', filteredResolvedData);
+    // console.log('resolvedData', resolvedData);
+    // console.log('latestData', latestData.flights);
+    // console.log('filtered', filteredResolvedData);
   }
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
         <Header>
           <HeaderContainer>
