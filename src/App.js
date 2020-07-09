@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import moment from 'moment';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
 import GlobalStyle from './components/GlobalStyle';
@@ -9,8 +10,9 @@ import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 
 const defaultQueryFn = async (key, page = 0) => {
+  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?page=${page}&sort=+scheduleTime`,
+    `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
     dataFetchConfig
   );
   return data;
@@ -36,9 +38,13 @@ const Header = styled.header`
 
 const Title = styled.h1`
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: #ffd700;
+
+  @media screen and (min-width: 380px) {
+    font-size: 2rem;
+  }
 
   @media screen and (min-width: 520px) {
     font-size: 2.5rem;
@@ -87,8 +93,12 @@ const SkipButton = styled(Button)`
   }
 `;
 
-const PageNumber = styled.span`
+const CurrentPage = styled.span`
   font-weight: bold;
+`;
+
+const DisplayPage = styled.span`
+  font-size: 0.875rem;
 `;
 
 const Loading = styled.span`
@@ -105,7 +115,8 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(65);
+  const [page, setPage] = useState(0);
+  let filteredResolvedData = null;
   const {
     isLoading,
     isError,
@@ -124,10 +135,18 @@ const App = () => {
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
     }
-  }, [latestData, page, defaultQueryFn]);
+  }, [latestData, page, isFetching, isLoading, error]);
 
-  if (!isFetching && !isLoading && !error)
+  if (resolvedData?.flights)
+    filteredResolvedData = resolvedData.flights.filter(
+      (item) => item.flightName === item.mainFlight
+    );
+
+  if (!isFetching && !isLoading && !error) {
+    console.log('resolvedData', resolvedData);
     console.log('latestData', latestData.flights);
+    console.log('filtered', filteredResolvedData);
+  }
 
   return (
     <>
@@ -159,9 +178,9 @@ const App = () => {
               Next page
             </SkipButton>
           </div>
-          <span>
-            Current page: <PageNumber>{page + 1}</PageNumber>
-          </span>
+          <DisplayPage>
+            Current page: <CurrentPage>{page + 1}</CurrentPage>
+          </DisplayPage>
         </FlexContainer>
         <div>
           {/* {isFetching ? <span>Loading...</span> : null} */}
@@ -171,11 +190,10 @@ const App = () => {
             <Error>Error: {error.message}</Error>
           ) : (
             <Flights>
-              {resolvedData.flights
-                .filter((item) => item.flightName === item.mainFlight)
-                .map((item) => (
-                  <Flight key={item.id} flight={item} />
-                ))}
+              {resolvedData &&
+                resolvedData.flights
+                  .filter((item) => item.flightName === item.mainFlight)
+                  .map((item) => <Flight key={item.id} flight={item} />)}
             </Flights>
           )}
         </div>
