@@ -4,7 +4,7 @@ export const departureStatus = [
     status: 'Flight Scheduled',
     description:
       'Indicates when a Flight (created by the aircraft operator) is scheduled to take place.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'DEL',
@@ -24,31 +24,31 @@ export const departureStatus = [
     statusCode: 'GTO',
     status: 'Gate open',
     description: 'When the gate is opened/released by the handler.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'BRD',
     status: 'Boarding',
     description: 'The actual boarding of the passengers starts.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'GCL',
     status: 'Gate closing',
     description: 'The actual boarding of the passengers starts.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'GTD',
     status: 'Gate closed',
     description: 'The actual boarding of the passengers starts.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'DEP',
     status: 'Departed',
     description: 'Departing aircraft is taxiing to the runway.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
   {
     statusCode: 'CNX',
@@ -68,6 +68,6 @@ export const departureStatus = [
     status: 'Tomorrow',
     description:
       'When the date of an expected departure exceeds the initial date.',
-    backgroundColor: '#262b2f',
+    backgroundColor: '#1B60DB',
   },
 ];

@@ -20,7 +20,9 @@ export const GlobalStyle = createGlobalStyle`
     /* font-family: 'Inter', sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgb(235, 235, 235);
+    /* background-color: rgb(235, 235, 235); */
+    background-color: ${({ theme }) => theme.body};
+    transition: background-color 150ms ease-in;
   }
 `;
 

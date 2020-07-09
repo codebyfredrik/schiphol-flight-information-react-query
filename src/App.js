@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import axios from 'axios';
 import moment from 'moment';
+import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
 import GlobalStyle from './components/GlobalStyle';
@@ -85,6 +86,25 @@ const FlexContainer = styled.div`
 const SkipButton = styled(Button)`
   margin-right: 1rem;
   margin-bottom: 1rem;
+  color: ${({ theme }) => theme.text};
+  transition-property: color, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in;
+
+  @media screen and (min-width: 435px) {
+     {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+const ThemeButton = styled(Button)`
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.text};
+  transition-property: color, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in;
 
   @media screen and (min-width: 435px) {
      {
@@ -95,10 +115,12 @@ const SkipButton = styled(Button)`
 
 const CurrentPage = styled.span`
   font-weight: bold;
+  color: ${({ theme }) => theme.text};
 `;
 
 const DisplayPage = styled.span`
   font-size: 0.875rem;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Loading = styled.span`
@@ -116,6 +138,11 @@ const Error = styled.span`
 
 const App = () => {
   const [page, setPage] = useState(0);
+  const [theme, setTheme] = useState('light');
+  const themeToggler = () => {
+    console.log(theme);
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
   let filteredResolvedData = null;
   const {
     isLoading,
@@ -149,56 +176,61 @@ const App = () => {
   }
 
   return (
-    <>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <GlobalStyle />
-      <Header>
-        <HeaderContainer>
-          <Title>Amsterdam Airport Schipol</Title>
-          <SubTitle>Flight Information</SubTitle>
-        </HeaderContainer>
-      </Header>
-      <StyledApp>
-        <FlexContainer>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <>
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        <GlobalStyle />
+        <Header>
+          <HeaderContainer>
+            <Title>Amsterdam Airport Schipol</Title>
+            <SubTitle>Flight Information</SubTitle>
+          </HeaderContainer>
+        </Header>
+        <StyledApp>
+          <FlexContainer>
+            <div>
+              <SkipButton
+                onClick={() =>
+                  setPage((prevState) => Math.max(prevState - 1, 0))
+                }
+                disabled={page === 0}
+              >
+                Previous page
+              </SkipButton>
+              <SkipButton
+                onClick={() =>
+                  setPage((prevState) =>
+                    !latestData ? prevState : prevState + 1
+                  )
+                }
+                disabled={!latestData || latestData.flights.length < 20}
+              >
+                Next page
+              </SkipButton>
+              <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
+            </div>
+            <DisplayPage>
+              Current page: <CurrentPage>{page + 1}</CurrentPage>
+            </DisplayPage>
+          </FlexContainer>
           <div>
-            <SkipButton
-              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-              disabled={page === 0}
-            >
-              Previous page
-            </SkipButton>
-            <SkipButton
-              onClick={() =>
-                setPage((prevState) =>
-                  !latestData ? prevState : prevState + 1
-                )
-              }
-              disabled={!latestData || latestData.flights.length < 20}
-            >
-              Next page
-            </SkipButton>
+            {/* {isFetching ? <span>Loading...</span> : null} */}
+            {isLoading ? (
+              <Loading>Loading flights...</Loading>
+            ) : isError ? (
+              <Error>Error: {error.message}</Error>
+            ) : (
+              <Flights>
+                {resolvedData &&
+                  resolvedData.flights
+                    .filter((item) => item.flightName === item.mainFlight)
+                    .map((item) => <Flight key={item.id} flight={item} />)}
+              </Flights>
+            )}
           </div>
-          <DisplayPage>
-            Current page: <CurrentPage>{page + 1}</CurrentPage>
-          </DisplayPage>
-        </FlexContainer>
-        <div>
-          {/* {isFetching ? <span>Loading...</span> : null} */}
-          {isLoading ? (
-            <Loading>Loading flights...</Loading>
-          ) : isError ? (
-            <Error>Error: {error.message}</Error>
-          ) : (
-            <Flights>
-              {resolvedData &&
-                resolvedData.flights
-                  .filter((item) => item.flightName === item.mainFlight)
-                  .map((item) => <Flight key={item.id} flight={item} />)}
-            </Flights>
-          )}
-        </div>
-      </StyledApp>
-    </>
+        </StyledApp>
+      </>
+    </ThemeProvider>
   );
 };
 
