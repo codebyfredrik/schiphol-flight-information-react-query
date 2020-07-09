@@ -15,10 +15,14 @@ const StyledFlight = styled.li`
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: ${({ theme }) => theme.cardBackground};
   border-radius: 2px;
   padding: 1.25rem;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0 1px 1px ${({ theme }) => theme.borderShadow};
+  transition-property: background-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in;
 `;
 
 const Container = styled.div`
@@ -79,8 +83,9 @@ const MiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border-left: 1px dashed rgba(0, 0, 0, 0.15);
+  border-left: 1px dashed ${({ theme }) => theme.borderDashed};
   padding-left: 1rem;
+  transition: border-left 150ms ease-in;
 
   @media screen and (min-width: 768px) {
      {
@@ -93,8 +98,9 @@ const MiddleContainer = styled.div`
 const RightContainer = styled.div`
   display: none;
   justify-content: flex-end;
-  border-left: 1px dashed rgba(0, 0, 0, 0.15);
+  border-left: 1px dashed ${({ theme }) => theme.borderDashed};
   padding-left: 1rem;
+  transition: border-left 150ms ease-in;
 
   @media screen and (min-width: 490px) {
      {
@@ -124,23 +130,30 @@ const TimeWrapper = styled.div`
 `;
 
 const CodeShare = styled.div`
-  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+  border-top: 1px dashed ${({ theme }) => theme.borderDashed};
   padding-top: 1rem;
   margin-top: 1rem;
   font-size: 0.875rem;
+  color: ${({ theme }) => theme.text};
+  transition-property: border-top, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in;
 `;
 
 const FlightStatus = styled(Tag)`
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
+  color: ${({ theme }) => theme.textTag};
+  transition: color 150ms ease-in;
 `;
 
 const FlightStatusWrapper = styled.div`
   flex: 1 1 0px;
 
   @media screen and (min-width: 768px) {
-    border-left: 1px dashed rgba(0, 0, 0, 0.15);
+    border-left: 1px dashed ${({ theme }) => theme.borderDashed};
     padding-left: 1rem;
+    transition: border-left 150ms ease-in;
   }
 `;
 
