@@ -16,7 +16,7 @@ const StyledDestination = styled.span`
   /* color: #262b2f; */
   color: ${({ theme }) => theme.text};
   font-weight: bold;
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   transition: color 150ms ease-in;
 `;
 

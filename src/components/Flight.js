@@ -27,7 +27,7 @@ const StyledFlight = styled.li`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 90px 5fr;
+  grid-template-columns: 86px 5fr;
   grid-template-rows: 1fr;
 
   @media screen and (min-width: 490px) {
@@ -41,12 +41,13 @@ const Container = styled.div`
 const ScheduleTime = styled(Time)`
   font-weight: bold;
   text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
+  /* margin-right: 0.5rem; */
 `;
 
 const EstimatedArrivalTime = styled(Time)`
   font-weight: bold;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
@@ -54,7 +55,7 @@ const EstimatedArrivalTime = styled(Time)`
 const ActualArrivalTime = styled(Time)`
   font-weight: bold;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
@@ -62,7 +63,7 @@ const ActualArrivalTime = styled(Time)`
 const ActualDepartureTime = styled(Time)`
   font-weight: bold;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
@@ -78,6 +79,8 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* border: 1px solid red; */
+  /* padding-right: 1rem; */
 `;
 
 const MiddleContainer = styled.div`
@@ -115,17 +118,22 @@ const FlightInfoWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const DirectionWrapper = styled.div`
+const FlightDirectionWrapper = styled.div`
   display: grid;
   justify-content: flex-start;
   margin-top: 1px;
 `;
 
+// const FlightDirection = styled(FlightDirectionTag)`
+//   margin-right: 1rem;
+// `;
+
 const TimeWrapper = styled.div`
   display: flex;
+  /* flex-wrap: nowrap; */
   flex-direction: column;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 490px) {
     flex-direction: row;
   }
 `;
@@ -242,9 +250,9 @@ const Flight = ({ flight }) => {
               </>
             )}
           </TimeWrapper>
-          <DirectionWrapper>
+          <FlightDirectionWrapper>
             <FlightDirectionTag flightDirection={flightDirection} />
-          </DirectionWrapper>
+          </FlightDirectionWrapper>
         </LeftContainer>
         <MiddleContainer>
           <FlightWrapper>
