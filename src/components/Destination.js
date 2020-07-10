@@ -5,10 +5,16 @@ import dataFetchConfig from './../config/dataFetchConfig';
 import { useQuery } from 'react-query';
 
 const defaultQueryFn = async (key, page = 0) => {
+  // const { data } = await axios.get(
+  //   `${process.env.REACT_APP_API_BASE_URL}${key}`,
+  //   dataFetchConfig
+  // );
+
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}${key}`,
     dataFetchConfig
   );
+
   return data;
 };
 

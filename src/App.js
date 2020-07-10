@@ -13,10 +13,14 @@ import { RowInformation } from './components/RowInformation';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+  // const { data } = await axios.get(
+  //   `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
+  //   dataFetchConfig
+  // );
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
-    dataFetchConfig
+    `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`
   );
+  // console.log(temp);
   return data;
 };
 
@@ -95,6 +99,14 @@ const SkipButton = styled(Button)`
   transition-property: color, background-color;
   transition-duration: 150ms;
   transition-timing-function: ease-in;
+
+  &:disabled {
+    cursor: default;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.bgButton};
+    }
+  }
 
   @media screen and (min-width: 435px) {
      {
