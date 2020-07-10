@@ -143,7 +143,7 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(49);
+  const [page, setPage] = useState(0);
   const [theme, setTheme] = useState('light');
   const [displayDate, setDisplayDate] = useState(true);
   const [date, setDate] = useState();
