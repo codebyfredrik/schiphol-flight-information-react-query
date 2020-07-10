@@ -145,9 +145,9 @@ const Error = styled.span`
 const App = () => {
   const [page, setPage] = useState(0);
   const [theme, setTheme] = useState('light');
-  const [displayDate, setDisplayDate] = useState(true);
-  const [date, setDate] = useState();
-  const [filteredArrayLength, setFilteredArrayLength] = useState(0);
+  // const [displayDate, setDisplayDate] = useState(true);
+  // const [date, setDate] = useState();
+  // const [filteredArrayLength, setFilteredArrayLength] = useState(0);
   const themeToggler = () => {
     // console.log(theme);
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -173,10 +173,10 @@ const App = () => {
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
-  if (resolvedData?.flights)
-    filteredResolvedData = resolvedData.flights.filter(
-      (item) => item.flightName === item.mainFlight
-    );
+  // if (resolvedData?.flights)
+  //   filteredResolvedData = resolvedData.flights.filter(
+  //     (item) => item.flightName === item.mainFlight
+  //   );
 
   if (!isFetching && !isLoading && !error) {
     // console.log('resolvedData', resolvedData);
