@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-export const StyledDate = styled.li`
+export const StyledDate = styled.div`
   list-style-type: none;
   font-weight: bold;
   color: ${({ theme }) => theme.text};
@@ -15,8 +15,11 @@ export const Date = ({ date }) => {
   const tomorrow = moment().add(1, 'day').endOf('day');
   let phrase = '';
 
-  if (rawDate < today) phrase = 'Today, ';
-  if (rawDate < tomorrow) phrase = 'Tomorrow, ';
+  if (rawDate < today) {
+    phrase = 'Today, ';
+  } else if (rawDate < tomorrow) {
+    phrase = 'Tomorrow, ';
+  }
 
   return <StyledDate>{`${phrase}${rawDate.format('D MMMM')}`}</StyledDate>;
 };

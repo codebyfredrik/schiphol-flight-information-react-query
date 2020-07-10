@@ -9,7 +9,7 @@ import GlobalStyle from './components/GlobalStyle';
 import dataFetchConfig from './config/dataFetchConfig';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
-import { Date } from './components/Date';
+import { RowInformation } from './components/RowInformation';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
@@ -68,25 +68,29 @@ const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
   padding: 0;
-  margin: 2rem 0;
+  margin: 3rem 0 2rem 0;
+  /* border: 1px solid green; */
 `;
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  /* margin-bottom: 0rem; */
+  /* border: 1px solid red; */
+  /* width: 100%; */
+  /* flex-direction: column; */
 
   @media screen and (min-width: 435px) {
      {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      /* flex-direction: row; */
+      /* justify-content: space-between; */
+      /* align-items: center; */
     }
   }
 `;
 
 const SkipButton = styled(Button)`
   margin-right: 1rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
@@ -94,14 +98,15 @@ const SkipButton = styled(Button)`
 
   @media screen and (min-width: 435px) {
      {
-      margin-bottom: 0;
+      /* margin-bottom: 0; */
     }
   }
 `;
 
 const ThemeButton = styled(Button)`
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-left: auto;
+  /* margin-inline-start: auto; */
+  /* margin-bottom: 1rem; */
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
@@ -109,7 +114,7 @@ const ThemeButton = styled(Button)`
 
   @media screen and (min-width: 435px) {
      {
-      margin-bottom: 0;
+      /* margin-bottom: 0; */
     }
   }
 `;
@@ -138,7 +143,7 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(49);
   const [theme, setTheme] = useState('light');
   const [displayDate, setDisplayDate] = useState(true);
   const [date, setDate] = useState();
@@ -176,7 +181,7 @@ const App = () => {
   if (!isFetching && !isLoading && !error) {
     // console.log('resolvedData', resolvedData);
     // console.log('latestData', latestData.flights);
-    console.log('filtered', filteredResolvedData);
+    // console.log('filtered', filteredResolvedData);
     // setFilteredArrayLength(filteredResolvedData.length);
   }
 
@@ -189,7 +194,11 @@ const App = () => {
           currentDate = item.scheduleDate;
           return (
             <React.Fragment key={item.id}>
-              <Date date={item.scheduleDate} />
+              <RowInformation
+                date={item.scheduleDate}
+                index={index}
+                page={page}
+              />
               <Flight flight={item} />
             </React.Fragment>
           );
@@ -212,30 +221,28 @@ const App = () => {
         </Header>
         <StyledApp>
           <FlexContainer>
-            <div>
-              <SkipButton
-                onClick={() =>
-                  setPage((prevState) => Math.max(prevState - 1, 0))
-                }
-                disabled={page === 0}
-              >
-                Previous page
-              </SkipButton>
-              <SkipButton
-                onClick={() =>
-                  setPage((prevState) =>
-                    !latestData ? prevState : prevState + 1
-                  )
-                }
-                disabled={!latestData || latestData.flights.length < 20}
-              >
-                Next page
-              </SkipButton>
-              <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
-            </div>
-            <DisplayPage>
+            {/* <div> */}
+            <SkipButton
+              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
+              disabled={page === 0}
+            >
+              Previous page
+            </SkipButton>
+            <SkipButton
+              onClick={() =>
+                setPage((prevState) =>
+                  !latestData ? prevState : prevState + 1
+                )
+              }
+              disabled={!latestData || latestData.flights.length < 20}
+            >
+              Next page
+            </SkipButton>
+            <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
+            {/* </div> */}
+            {/* <DisplayPage>
               Current page: <CurrentPage>{page + 1}</CurrentPage>
-            </DisplayPage>
+            </DisplayPage> */}
           </FlexContainer>
           <div>
             {/* {isFetching ? <span>Loading...</span> : null} */}
