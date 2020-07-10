@@ -8,6 +8,8 @@ export const lightTheme = {
   borderShadow: 'rgba(0,0,0,0.25)',
   borderDashed: 'rgba(0, 0, 0, 0.15)',
   cardBackground: 'rgba(255, 255, 255, 0.5)',
+  pageCounterBg: 'rgba(0, 0, 0, 0.05)',
+  pageCounterText: '#ffd700',
   yellow: '#ffd700',
   white: '#ffffff',
   grey20: 'rgba(0,0,0,0.05)',
@@ -24,4 +26,6 @@ export const darkTheme = {
   borderShadow: '#151617',
   borderDashed: 'rgba(255, 255, 255, 0.15)',
   cardBackground: '#242526',
+  pageCounterBg: '#3A3B3C',
+  pageCounterText: '#ffd700',
 };
