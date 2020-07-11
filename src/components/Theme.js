@@ -7,7 +7,7 @@ export const lightTheme = {
   bgDirectionTag: '#262b2f',
   borderShadow: 'rgba(0,0,0,0.25)',
   borderDashed: 'rgba(0, 0, 0, 0.15)',
-  cardBackground: 'rgba(255, 255, 255, 0.5)',
+  cardBackground: 'rgba(255, 255, 255, 1)',
   pageCounterBg: 'rgba(0, 0, 0, 0.05)',
   pageCounterText: '#ffd700',
   yellow: '#ffd700',

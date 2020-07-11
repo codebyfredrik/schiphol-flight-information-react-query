@@ -140,6 +140,7 @@ const CodeShare = styled.div`
 `;
 
 const FlightStatus = styled(Tag)`
+  flex: 1 1 1rem;
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
   color: ${({ theme }) => theme.textTag};
@@ -147,7 +148,7 @@ const FlightStatus = styled(Tag)`
 `;
 
 const FlightStatusWrapper = styled.div`
-  flex: 1 1 0px;
+  flex: 1 1 1rem;
 
   @media screen and (min-width: 768px) {
     border-left: 1px dashed ${({ theme }) => theme.borderDashed};
