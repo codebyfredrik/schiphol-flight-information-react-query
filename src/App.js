@@ -6,21 +6,15 @@ import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
 import GlobalStyle from './components/GlobalStyle';
-import dataFetchConfig from './config/dataFetchConfig';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
-  // const { data } = await axios.get(
-  //   `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`,
-  //   dataFetchConfig
-  // );
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`
   );
-  // console.log(temp);
   return data;
 };
 
@@ -73,28 +67,14 @@ const Flights = styled.ul`
   grid-gap: 1rem;
   padding: 0;
   margin: 3rem 0 2rem 0;
-  /* border: 1px solid green; */
 `;
 
 const FlexContainer = styled.div`
   display: flex;
-  /* margin-bottom: 0rem; */
-  /* border: 1px solid red; */
-  /* width: 100%; */
-  /* flex-direction: column; */
-
-  @media screen and (min-width: 435px) {
-     {
-      /* flex-direction: row; */
-      /* justify-content: space-between; */
-      /* align-items: center; */
-    }
-  }
 `;
 
 const SkipButton = styled(Button)`
   margin-right: 1rem;
-  /* margin-bottom: 1rem; */
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
@@ -107,38 +87,14 @@ const SkipButton = styled(Button)`
       background-color: ${({ theme }) => theme.bgButton};
     }
   }
-
-  @media screen and (min-width: 435px) {
-     {
-      /* margin-bottom: 0; */
-    }
-  }
 `;
 
 const ThemeButton = styled(Button)`
   margin-left: auto;
-  /* margin-inline-start: auto; */
-  /* margin-bottom: 1rem; */
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
   transition-timing-function: ease-in;
-
-  @media screen and (min-width: 435px) {
-     {
-      /* margin-bottom: 0; */
-    }
-  }
-`;
-
-const CurrentPage = styled.span`
-  font-weight: bold;
-  color: ${({ theme }) => theme.text};
-`;
-
-const DisplayPage = styled.span`
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.text};
 `;
 
 const Loading = styled.span`
@@ -157,14 +113,9 @@ const Error = styled.span`
 const App = () => {
   const [page, setPage] = useState(0);
   const [theme, setTheme] = useState('light');
-  // const [displayDate, setDisplayDate] = useState(true);
-  // const [date, setDate] = useState();
-  // const [filteredArrayLength, setFilteredArrayLength] = useState(0);
   const themeToggler = () => {
-    // console.log(theme);
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
-  let filteredResolvedData = null;
   const {
     isLoading,
     isError,
@@ -184,11 +135,6 @@ const App = () => {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
     }
   }, [latestData, page, isFetching, isLoading, error]);
-
-  // if (resolvedData?.flights)
-  //   filteredResolvedData = resolvedData.flights.filter(
-  //     (item) => item.flightName === item.mainFlight
-  //   );
 
   if (!isFetching && !isLoading && !error) {
     // console.log('resolvedData', resolvedData);
@@ -233,7 +179,6 @@ const App = () => {
         </Header>
         <StyledApp>
           <FlexContainer>
-            {/* <div> */}
             <SkipButton
               onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
               disabled={page === 0}
@@ -251,13 +196,8 @@ const App = () => {
               Next page
             </SkipButton>
             <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
-            {/* </div> */}
-            {/* <DisplayPage>
-              Current page: <CurrentPage>{page + 1}</CurrentPage>
-            </DisplayPage> */}
           </FlexContainer>
           <div>
-            {/* {isFetching ? <span>Loading...</span> : null} */}
             {isLoading ? (
               <Loading>Loading flights...</Loading>
             ) : isError ? (

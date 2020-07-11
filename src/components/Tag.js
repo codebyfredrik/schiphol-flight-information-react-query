@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledTag = styled.div`
+const StyledTag = styled.span`
   display: inline-block;
-  /* color: #ffffff; */
   font-weight: bold;
   padding: 0.1rem 0.3rem;
   border-radius: 4px;
@@ -15,10 +14,8 @@ const StyledTag = styled.div`
 
 export const Tag = ({ label, className }) => {
   return (
-    <div>
-      <StyledTag className={className}>
-        <span>{label}</span>
-      </StyledTag>
-    </div>
+    <StyledTag className={className}>
+      <span>{label}</span>
+    </StyledTag>
   );
 };

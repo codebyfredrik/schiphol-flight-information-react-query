@@ -18,7 +18,6 @@ const StyledFlight = styled.li`
   background-color: ${({ theme }) => theme.cardBackground};
   border-radius: 2px;
   padding: 1.25rem;
-  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
   box-shadow: 0 1px 1px ${({ theme }) => theme.borderShadow};
   transition-property: background-color, box-shadow;
   transition-duration: 150ms;
@@ -32,7 +31,6 @@ const Container = styled.div`
 
   @media screen and (min-width: 490px) {
      {
-      /* grid-template-columns: 110px 3.6fr 1.4fr; */
       grid-template-columns: 110px 3.6fr 1.4fr;
     }
   }
@@ -41,7 +39,6 @@ const Container = styled.div`
 const ScheduleTime = styled(Time)`
   font-weight: bold;
   text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
-  /* margin-right: 0.5rem; */
 `;
 
 const EstimatedArrivalTime = styled(Time)`
@@ -79,8 +76,6 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* border: 1px solid red; */
-  /* padding-right: 1rem; */
 `;
 
 const MiddleContainer = styled.div`
@@ -124,13 +119,8 @@ const FlightDirectionWrapper = styled.div`
   margin-top: 1px;
 `;
 
-// const FlightDirection = styled(FlightDirectionTag)`
-//   margin-right: 1rem;
-// `;
-
 const TimeWrapper = styled.div`
   display: flex;
-  /* flex-wrap: nowrap; */
   flex-direction: column;
 
   @media screen and (min-width: 490px) {
@@ -190,7 +180,6 @@ const Flight = ({ flight }) => {
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime.slice(11, 19);
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
   if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
-  // if (publicFlightState) console.log(publicFlightState.flightStates);
 
   const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
   const excludedDepartureStatus = new Set(['SCH']);
@@ -221,13 +210,6 @@ const Flight = ({ flight }) => {
       });
     });
   }
-
-  // let tempStatus = useGetFlightStatus(
-  //   publicFlightState.flightStates,
-  //   flightDirection
-  // );
-  // console.log('Temp status: ', tempStatus);
-  // console.log('FlightName: ', flightName, statusResults);
 
   return (
     <StyledFlight>

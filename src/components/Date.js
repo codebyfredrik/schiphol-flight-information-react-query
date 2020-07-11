@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 export const StyledDate = styled.div`
-  list-style-type: none;
   font-weight: bold;
   color: ${({ theme }) => theme.text};
   transition: color 150ms ease-in;
