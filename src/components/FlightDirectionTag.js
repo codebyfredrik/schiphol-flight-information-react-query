@@ -9,7 +9,7 @@ const StyledFlightDirectionTag = styled.div`
   font-weight: bold;
   padding: 0.1rem 0.3rem;
   border-radius: 2px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 0.6rem;
   transition: background-color 150ms ease-in;
 `;

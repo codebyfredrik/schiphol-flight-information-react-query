@@ -5,11 +5,6 @@ import { useQuery } from 'react-query';
 import dataFetchConfig from './../config/dataFetchConfig';
 
 const defaultQueryFn = async (key) => {
-  // const { data } = await axios.get(
-  //   `${process.env.REACT_APP_API_BASE_URL}${key}`,
-  //   dataFetchConfig
-  // );
-
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}${key}`,
     dataFetchConfig
@@ -19,7 +14,6 @@ const defaultQueryFn = async (key) => {
 };
 
 const StyledAirline = styled.span`
-  /* color: #262b2f; */
   color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   transition: color 150ms ease-in;
@@ -38,9 +32,9 @@ export const Airline = ({ prefixICAO, className }) => {
   return (
     <>
       {isFetching ? (
-        <StyledAirline>Loading...</StyledAirline>
+        <StyledAirline className={className}>Loading...</StyledAirline>
       ) : error ? (
-        <StyledAirline>Error</StyledAirline>
+        <StyledAirline className={className}>Error</StyledAirline>
       ) : result ? (
         <StyledAirline className={className}>{result.publicName}</StyledAirline>
       ) : null}
