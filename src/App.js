@@ -133,6 +133,7 @@ const App = () => {
       !latestData.flights.length < 20
     ) {
       queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
+      queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
