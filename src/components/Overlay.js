@@ -1,13 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Times } from './icons/Times';
 
 const StyledOverlay = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  /* align-items: flex-start; */
   background-color: rgba(0, 0, 0, 1);
-  /* margin-top: -2rem; */
   right: 0;
   left: 0;
   bottom: 0;
@@ -22,7 +21,6 @@ const Content = styled.div`
   align-items: center;
   width: 50vw;
   height: 82vh;
-  /* border: 1px solid red; */
 
   p:nth-child(3) {
     margin-bottom: 0;
@@ -39,25 +37,31 @@ const Option = styled.p`
   color: #ffffff;
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
+  ${(props) =>
+    props.active === true &&
+    css`
+      background-color: #ffd700;
+      color: #000000;
+      padding: 0.5rem;
+    `}
   transition: color 150ms ease-in;
 
   &:hover {
-    color: #ffd700;
+    ${(props) =>
+      props.active === false &&
+      css`
+        color: #ffd700;
+      `}
     cursor: pointer;
   }
 `;
 
-const Close = styled.div`
+const Close = styled(Times)`
   position: absolute;
-  right: 1rem;
-  top: 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ffffff;
-  transition: color 150ms ease-in;
+  right: 2rem;
+  top: 2rem;
 
   &:hover {
-    color: red;
     cursor: pointer;
   }
 `;
@@ -66,10 +70,16 @@ export const Overlay = ({
   setFlightDirection,
   setOverlayIsVisible,
   setPage,
+  flightDirection,
 }) => {
   return (
     <StyledOverlay>
-      <Close onClick={() => setOverlayIsVisible(false)}>X</Close>
+      <Close
+        height={22}
+        width={22}
+        fillColor="#ffffff"
+        onClick={() => setOverlayIsVisible(false)}
+      />
       <Content>
         <Option
           onClick={() => {
@@ -77,6 +87,7 @@ export const Overlay = ({
             setPage(0);
             setOverlayIsVisible(false);
           }}
+          active={flightDirection === ''}
         >
           Arrival and departures
         </Option>
@@ -86,6 +97,7 @@ export const Overlay = ({
             setPage(0);
             setOverlayIsVisible(false);
           }}
+          active={flightDirection === 'A'}
         >
           Only arrivals
         </Option>
@@ -95,6 +107,7 @@ export const Overlay = ({
             setPage(0);
             setOverlayIsVisible(false);
           }}
+          active={flightDirection === 'D'}
         >
           Only departures
         </Option>

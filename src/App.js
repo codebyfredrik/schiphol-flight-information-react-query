@@ -103,18 +103,10 @@ const SkipButton = styled(Button)`
 
 const ThemeButton = styled(Button)`
   margin-left: auto;
-  color: ${({ theme }) => theme.text};
-  transition-property: color, background-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in;
 `;
 
 const FilterButton = styled(Button)`
   margin-left: 1rem;
-  color: ${({ theme }) => theme.text};
-  transition-property: color, background-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in;
 `;
 
 const Loading = styled.span`
@@ -211,6 +203,7 @@ const App = () => {
             setFlightDirection={setFlightDirection}
             setOverlayIsVisible={setOverlayIsVisible}
             setPage={setPage}
+            flightDirection={flightDirection}
           />
         )}
         <WrapperContainer>
