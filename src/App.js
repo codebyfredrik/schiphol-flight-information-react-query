@@ -13,6 +13,7 @@ import { Overlay } from './components/Overlay';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`
   );
@@ -147,8 +148,11 @@ const App = () => {
       !error &&
       !latestData.flights.length < 20
     ) {
-      queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
-      queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
+      queryCache.prefetchQuery(
+        ['flights', page + 1, flightDirection],
+        defaultQueryFn
+      );
+      // queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
@@ -197,6 +201,7 @@ const App = () => {
           <Overlay
             setFlightDirection={setFlightDirection}
             setOverlayIsVisible={setOverlayIsVisible}
+            setPage={setPage}
           />
         )}
         <WrapperContainer>

@@ -62,14 +62,19 @@ const Close = styled.div`
   }
 `;
 
-export const Overlay = ({ setFlightDirection, setOverlayIsVisible }) => {
+export const Overlay = ({
+  setFlightDirection,
+  setOverlayIsVisible,
+  setPage,
+}) => {
   return (
     <StyledOverlay>
       <Close onClick={() => setOverlayIsVisible(false)}>X</Close>
       <Content>
         <Option
           onClick={() => {
-            setFlightDirection('Arrival and Departures');
+            setFlightDirection('');
+            setPage(0);
             setOverlayIsVisible(false);
           }}
         >
@@ -77,7 +82,8 @@ export const Overlay = ({ setFlightDirection, setOverlayIsVisible }) => {
         </Option>
         <Option
           onClick={() => {
-            setFlightDirection('Only arrivals');
+            setFlightDirection('A');
+            setPage(0);
             setOverlayIsVisible(false);
           }}
         >
@@ -85,7 +91,8 @@ export const Overlay = ({ setFlightDirection, setOverlayIsVisible }) => {
         </Option>
         <Option
           onClick={() => {
-            setFlightDirection('Only departures');
+            setFlightDirection('D');
+            setPage(0);
             setOverlayIsVisible(false);
           }}
         >
