@@ -11,12 +11,18 @@ import Flight from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
 
-const defaultQueryFn = async (key, page = 0) => {
+const defaultQueryFn = async (key, { page = 0, flightDirection = '' }) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+  let url;
+  // console.log('Page', page);
+  // console.log('FlightDirection', flightDirection);
 
-  const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`
-  );
+  if (flightDirection) {
+    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  } else {
+    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  }
+  const { data } = await axios.get(url);
   return data;
 };
 
@@ -139,7 +145,11 @@ const App = () => {
     resolvedData,
     latestData,
     isFetching,
-  } = usePaginatedQuery(['flights', page], defaultQueryFn, {});
+  } = usePaginatedQuery(
+    ['flights', { page, flightDirection }],
+    defaultQueryFn,
+    {}
+  );
 
   useEffect(() => {
     if (
@@ -149,10 +159,9 @@ const App = () => {
       !latestData.flights.length < 20
     ) {
       queryCache.prefetchQuery(
-        ['flights', page + 1, flightDirection],
+        ['flights', { page: page + 1, flightDirection }],
         defaultQueryFn
       );
-      // queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
@@ -211,7 +220,7 @@ const App = () => {
                 onClick={() =>
                   setPage((prevState) => Math.max(prevState - 1, 0))
                 }
-                disabled={page === 0}
+                disabled={page === 0 || isFetching}
               >
                 Previous page
               </SkipButton>
@@ -221,7 +230,9 @@ const App = () => {
                     !latestData ? prevState : prevState + 1
                   )
                 }
-                disabled={!latestData || latestData.flights.length < 20}
+                disabled={
+                  !latestData || latestData.flights.length < 20 || isFetching
+                }
               >
                 Next page
               </SkipButton>
