@@ -9,14 +9,20 @@ import GlobalStyle from './components/GlobalStyle';
 import { Button } from './styles/Styles';
 import Flight from './components/Flight';
 import { RowInformation } from './components/RowInformation';
+import { Overlay } from './components/Overlay';
 
 const defaultQueryFn = async (key, page = 0) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`
   );
   return data;
 };
+
+const WrapperContainer = styled.div`
+  position: relative;
+`;
 
 const StyledApp = styled.div`
   max-width: 1000px;
@@ -97,6 +103,14 @@ const ThemeButton = styled(Button)`
   transition-timing-function: ease-in;
 `;
 
+const FilterButton = styled(Button)`
+  margin-left: 1rem;
+  color: ${({ theme }) => theme.text};
+  transition-property: color, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in;
+`;
+
 const Loading = styled.span`
   display: inline-block;
   margin: 2rem 0;
@@ -112,6 +126,8 @@ const Error = styled.span`
 
 const App = () => {
   const [page, setPage] = useState(0);
+  const [flightDirection, setFlightDirection] = useState('');
+  const [overlayIsVisible, setOverlayIsVisible] = useState(false);
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -132,8 +148,11 @@ const App = () => {
       !error &&
       !latestData.flights.length < 20
     ) {
-      queryCache.prefetchQuery(['flights', page + 1], defaultQueryFn);
-      queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
+      queryCache.prefetchQuery(
+        ['flights', page + 1, flightDirection],
+        defaultQueryFn
+      );
+      // queryCache.prefetchQuery(['flights', page - 1], defaultQueryFn);
     }
   }, [latestData, page, isFetching, isLoading, error]);
 
@@ -178,36 +197,50 @@ const App = () => {
             <SubTitle>Flight Information</SubTitle>
           </HeaderContainer>
         </Header>
-        <StyledApp>
-          <FlexContainer>
-            <SkipButton
-              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-              disabled={page === 0}
-            >
-              Previous page
-            </SkipButton>
-            <SkipButton
-              onClick={() =>
-                setPage((prevState) =>
-                  !latestData ? prevState : prevState + 1
-                )
-              }
-              disabled={!latestData || latestData.flights.length < 20}
-            >
-              Next page
-            </SkipButton>
-            <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
-          </FlexContainer>
-          <div>
-            {isLoading ? (
-              <Loading>Loading flights...</Loading>
-            ) : isError ? (
-              <Error>Error: {error.message}</Error>
-            ) : (
-              <Flights>{renderList()}</Flights>
-            )}
-          </div>
-        </StyledApp>
+        {overlayIsVisible && (
+          <Overlay
+            setFlightDirection={setFlightDirection}
+            setOverlayIsVisible={setOverlayIsVisible}
+            setPage={setPage}
+          />
+        )}
+        <WrapperContainer>
+          <StyledApp>
+            <FlexContainer>
+              <SkipButton
+                onClick={() =>
+                  setPage((prevState) => Math.max(prevState - 1, 0))
+                }
+                disabled={page === 0}
+              >
+                Previous page
+              </SkipButton>
+              <SkipButton
+                onClick={() =>
+                  setPage((prevState) =>
+                    !latestData ? prevState : prevState + 1
+                  )
+                }
+                disabled={!latestData || latestData.flights.length < 20}
+              >
+                Next page
+              </SkipButton>
+              <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
+              <FilterButton onClick={() => setOverlayIsVisible('true')}>
+                Filter
+              </FilterButton>
+            </FlexContainer>
+            <div>
+              {isLoading ? (
+                <Loading>Loading flights...</Loading>
+              ) : isError ? (
+                <Error>Error: {error.message}</Error>
+              ) : (
+                <Flights>{renderList()}</Flights>
+              )}
+            </div>
+          </StyledApp>
+        </WrapperContainer>
       </>
     </ThemeProvider>
   );
