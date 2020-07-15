@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledTag = styled.span`
   display: inline-block;
@@ -18,4 +19,9 @@ export const Tag = ({ label, className }) => {
       <span>{label}</span>
     </StyledTag>
   );
+};
+
+Tag.propTypes = {
+  label: PropTypes.string,
+  className: PropTypes.string,
 };

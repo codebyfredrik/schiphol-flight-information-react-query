@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledTimes = styled.svg`
   display: inline-block;
@@ -26,4 +27,12 @@ export const Times = ({ height, width, fillColor, className, onClick }) => {
       ></path>
     </StyledTimes>
   );
+};
+
+Times.propTypes = {
+  height: PropTypes.number,
+  width: PropTypes.number,
+  fillColor: PropTypes.string,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
 };

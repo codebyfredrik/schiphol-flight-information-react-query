@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FlightDirection } from './FlightDirection';
 
 const StyledFlightDirectionTag = styled.div`
@@ -19,4 +20,9 @@ export const FlightDirectionTag = ({ flightDirection, className }) => {
       <FlightDirection flightDirection={flightDirection} />
     </StyledFlightDirectionTag>
   );
+};
+
+FlightDirectionTag.propTypes = {
+  flightDirection: PropTypes.string,
+  className: PropTypes.string,
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 export const StyledDate = styled.div`
   font-weight: bold;
@@ -21,4 +22,8 @@ export const Date = ({ date }) => {
   }
 
   return <StyledDate>{`${phrase}${rawDate.format('D MMMM')}`}</StyledDate>;
+};
+
+Date.propTypes = {
+  date: PropTypes.string,
 };

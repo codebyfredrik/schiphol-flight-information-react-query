@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
 import { useGetFlightStatus } from './../hooks/useGetFlightStatus';
@@ -264,4 +265,8 @@ export const Flight = ({ flight }) => {
       )}
     </StyledFlight>
   );
+};
+
+Flight.propTypes = {
+  flight: PropTypes.object,
 };
