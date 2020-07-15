@@ -134,7 +134,7 @@ export const Overlay = ({
           }}
           active={flightDirection === 'D'}
         >
-          Dxepartures
+          Departures
         </Option>
       </Content>
     </StyledOverlay>
