@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
@@ -211,6 +211,12 @@ export const Flight = ({ flight }) => {
       });
     });
   }
+
+  const test = useGetFlightStatus(
+    publicFlightState.flightStates,
+    flightDirection
+  );
+  console.log(test);
 
   return (
     <StyledFlight>

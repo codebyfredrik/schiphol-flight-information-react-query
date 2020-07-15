@@ -7,11 +7,10 @@ export const useGetFlightStatus = ({ initialValue, flightDirection }) => {
   const excludedDepartureStatus = new Set(['SCH']);
   let publicState = new Set(initialValue);
   let [statusResults, setStatusResults] = useState();
+  let tempArray = [];
+  let results = [];
 
   useEffect(() => {
-    let tempArray = [];
-    let results = [];
-
     if (flightDirection === 'A') {
       tempArray = new Set(
         [...publicState].filter((x) => !excludedArrivalStatus.has(x))
@@ -35,14 +34,8 @@ export const useGetFlightStatus = ({ initialValue, flightDirection }) => {
         });
       });
     }
-    setStatusResults(results);
-  }, [
-    initialValue,
-    flightDirection,
-    publicState,
-    excludedArrivalStatus,
-    excludedDepartureStatus,
-  ]);
+    // setStatusResults(results);
+  }, [initialValue, flightDirection]);
 
-  return statusResults;
+  return results;
 };
