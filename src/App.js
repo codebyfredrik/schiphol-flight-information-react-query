@@ -82,16 +82,37 @@ const Flights = styled.ul`
 `;
 
 const FlexContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 0.5rem;
   /* border: 1px solid red; */
+
+  @media screen and (min-width: 680px) {
+    grid-template-columns: 9em 9em auto 9em 9em;
+    grid-template-rows: 1fr;
+  }
+`;
+
+const Spacer = styled.div`
+  display: none;
+
+  @media screen and (min-width: 680px) {
+    display: inline-block;
+  }
 `;
 
 const SkipButton = styled(Button)`
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
   transition-timing-function: ease-in;
+
+  /* @media screen and (max-width: 600px) {
+    flex: 1 1 12rem;
+    margin-right: 0;
+  } */
 
   &:disabled {
     cursor: default;
@@ -104,11 +125,19 @@ const SkipButton = styled(Button)`
 `;
 
 const ThemeButton = styled(Button)`
-  margin-left: auto;
+  /* margin-left: auto; */
+
+  /* @media screen and (max-width: 600px) {
+    flex: 1 1 12rem;
+  } */
 `;
 
 const FilterButton = styled(Button)`
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
+
+  /* @media screen and (max-width: 600px) {
+    flex: 1 1 12rem;
+  } */
 `;
 
 const Loading = styled.span`
@@ -232,6 +261,7 @@ const App = () => {
               >
                 Next page
               </SkipButton>
+              <Spacer />
               <ThemeButton onClick={themeToggler}>
                 {theme === 'light' ? 'Dark ' : 'Light '} theme
               </ThemeButton>
