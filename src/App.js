@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import axios from 'axios';
 import moment from 'moment';
+import { useToggle } from './hooks/useToggle';
 import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
@@ -133,7 +134,7 @@ const Error = styled.span`
 const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
-  const [overlayIsVisible, setOverlayIsVisible] = useState(false);
+  const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useState('light');
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -242,9 +243,7 @@ const App = () => {
               <StyledButton onClick={themeToggler}>
                 {theme === 'light' ? 'Dark ' : 'Light '} theme
               </StyledButton>
-              <StyledButton onClick={() => setOverlayIsVisible(true)}>
-                Filter
-              </StyledButton>
+              <StyledButton onClick={setOverlayIsVisible}>Filter</StyledButton>
             </FlexContainer>
             <div>
               {isLoading ? (

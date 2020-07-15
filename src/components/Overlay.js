@@ -95,14 +95,14 @@ export const Overlay = ({
         height={22}
         width={22}
         fillColor="#ffffff"
-        onClick={() => setOverlayIsVisible(false)}
+        onClick={setOverlayIsVisible}
       />
       <Content>
         <Option
           onClick={(e) => {
             setFlightDirection('');
             setPage(0);
-            setOverlayIsVisible(false);
+            setOverlayIsVisible();
             e.stopPropagation();
           }}
           active={flightDirection === ''}
@@ -113,7 +113,7 @@ export const Overlay = ({
           onClick={(e) => {
             setFlightDirection('A');
             setPage(0);
-            setOverlayIsVisible(false);
+            setOverlayIsVisible();
             e.stopPropagation();
           }}
           active={flightDirection === 'A'}
@@ -124,7 +124,7 @@ export const Overlay = ({
           onClick={(e) => {
             setFlightDirection('D');
             setPage(0);
-            setOverlayIsVisible(false);
+            setOverlayIsVisible();
             e.stopPropagation();
           }}
           active={flightDirection === 'D'}
