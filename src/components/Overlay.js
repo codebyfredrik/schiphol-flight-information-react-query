@@ -2,23 +2,23 @@ import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Times } from './icons/Times';
 
-// const Animation = keyframes`
-// 0% {
-//   opacity: 0;
-// }
-// 100% {
-//   opacity: 1;
-// }
-// `;
-
 const Animation = keyframes`
 0% {
-  transform: translateX(-100%);
+  opacity: 0;
 }
 100% {
-  transform: translateX(0);
+  opacity: 1;
 }
 `;
+
+// const Animation = keyframes`
+// 0% {
+//   transform: translateX(-100%);
+// }
+// 100% {
+//   transform: translateX(0);
+// }
+// `;
 
 const StyledOverlay = styled.div`
   position: fixed;
@@ -31,7 +31,7 @@ const StyledOverlay = styled.div`
   top: 0;
   z-index: 1;
   animation-name: ${Animation};
-  animation-duration: 150ms;
+  animation-duration: 250ms;
   animation-timing-function: cubic-bezier(0, 0.52, 0, 1);
 `;
 
