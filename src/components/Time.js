@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledTime = styled.span`
   display: inline-block;
@@ -15,4 +16,9 @@ export const Time = ({ time, className }) => {
       className={className}
     >{`${formattedTime[0]}:${formattedTime[1]}`}</StyledTime>
   );
+};
+
+Time.propTypes = {
+  time: PropTypes.string,
+  className: PropTypes.string,
 };

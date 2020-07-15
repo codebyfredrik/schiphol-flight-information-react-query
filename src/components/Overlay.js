@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 import { Times } from './icons/Times';
 import { useLockBodyScroll } from './../hooks/useLockBodyScroll';
 
@@ -11,15 +12,6 @@ const Animation = keyframes`
   opacity: 1;
 }
 `;
-
-// const Animation = keyframes`
-// 0% {
-//   transform: translateX(-100%);
-// }
-// 100% {
-//   transform: translateX(0);
-// }
-// `;
 
 const StyledOverlay = styled.div`
   position: fixed;
@@ -142,4 +134,12 @@ export const Overlay = ({
       </Content>
     </StyledOverlay>
   );
+};
+
+Overlay.propTypes = {
+  setFlightDirection: PropTypes.func,
+  setOverlayIsVisible: PropTypes.func,
+  setPage: PropTypes.func,
+  overlayIsVisible: PropTypes.bool,
+  flightDirection: PropTypes.string,
 };

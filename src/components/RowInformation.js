@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Date } from './Date';
 
 const StyledRowInformation = styled.li`
@@ -18,4 +19,10 @@ export const RowInformation = ({ date, index, page }) => {
       <Date date={date} />
     </StyledRowInformation>
   );
+};
+
+RowInformation.propTypes = {
+  date: PropTypes.string,
+  index: PropTypes.number,
+  page: PropTypes.number,
 };

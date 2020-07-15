@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 import dataFetchConfig from './../config/dataFetchConfig';
 
@@ -40,4 +41,9 @@ export const Airline = ({ prefixICAO, className }) => {
       ) : null}
     </>
   );
+};
+
+Airline.propTypes = {
+  prefixICAO: PropTypes.string,
+  className: PropTypes.string,
 };

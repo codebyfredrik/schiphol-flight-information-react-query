@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledGate = styled.span`
   display: inline-block;
@@ -25,4 +26,9 @@ export const Gate = ({ gate, className }) => {
       <GateNumber>{gate}</GateNumber>
     </StyledGate>
   );
+};
+
+Gate.propTypes = {
+  gate: PropTypes.string,
+  className: PropTypes.string,
 };
