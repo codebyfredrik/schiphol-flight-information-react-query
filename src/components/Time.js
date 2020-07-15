@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledTime = styled.span`
   display: inline-block;
   color: ${({ theme }) => theme.text};
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const Time = ({ time, className }) => {

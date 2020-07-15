@@ -16,7 +16,7 @@ const defaultQueryFn = async (key, page = 0) => {
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.text};
   font-weight: bold;
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const Destination = ({ route, className }) => {

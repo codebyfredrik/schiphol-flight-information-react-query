@@ -1,6 +1,24 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { Times } from './icons/Times';
+
+// const Animation = keyframes`
+// 0% {
+//   opacity: 0;
+// }
+// 100% {
+//   opacity: 1;
+// }
+// `;
+
+const Animation = keyframes`
+0% {
+  transform: translateX(-100%);
+}
+100% {
+  transform: translateX(0);
+}
+`;
 
 const StyledOverlay = styled.div`
   position: fixed;
@@ -12,6 +30,9 @@ const StyledOverlay = styled.div`
   bottom: 0;
   top: 0;
   z-index: 1;
+  animation-name: ${Animation};
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(0, 0.52, 0, 1);
 `;
 
 const Content = styled.div`
@@ -70,10 +91,11 @@ export const Overlay = ({
   setFlightDirection,
   setOverlayIsVisible,
   setPage,
+  overlayIsVisible,
   flightDirection,
 }) => {
   return (
-    <StyledOverlay>
+    <StyledOverlay open={overlayIsVisible}>
       <Close
         height={22}
         width={22}
@@ -82,34 +104,37 @@ export const Overlay = ({
       />
       <Content>
         <Option
-          onClick={() => {
+          onClick={(e) => {
             setFlightDirection('');
             setPage(0);
             setOverlayIsVisible(false);
+            e.stopPropagation();
           }}
           active={flightDirection === ''}
         >
           Arrival and departures
         </Option>
         <Option
-          onClick={() => {
+          onClick={(e) => {
             setFlightDirection('A');
             setPage(0);
             setOverlayIsVisible(false);
+            e.stopPropagation();
           }}
           active={flightDirection === 'A'}
         >
-          Only arrivals
+          Arrivals
         </Option>
         <Option
-          onClick={() => {
+          onClick={(e) => {
             setFlightDirection('D');
             setPage(0);
             setOverlayIsVisible(false);
+            e.stopPropagation();
           }}
           active={flightDirection === 'D'}
         >
-          Only departures
+          Dxepartures
         </Option>
       </Content>
     </StyledOverlay>

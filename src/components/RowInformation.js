@@ -9,7 +9,7 @@ const StyledRowInformation = styled.li`
   list-style-type: none;
   font-weight: bold;
   color: ${({ theme }) => theme.text};
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const RowInformation = ({ date, index, page }) => {

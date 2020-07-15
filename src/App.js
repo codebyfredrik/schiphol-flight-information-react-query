@@ -45,7 +45,7 @@ const HeaderContainer = styled.div`
 const Header = styled.header`
   background-color: #0b0e10;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #ffd700;
+  border-bottom: 2px solid #ffd700;
 `;
 
 const Title = styled.h1`
@@ -83,6 +83,7 @@ const Flights = styled.ul`
 
 const FlexContainer = styled.div`
   display: flex;
+  /* border: 1px solid red; */
 `;
 
 const SkipButton = styled(Button)`
@@ -94,6 +95,7 @@ const SkipButton = styled(Button)`
 
   &:disabled {
     cursor: default;
+    opacity: 0.5;
 
     &:hover {
       background-color: ${({ theme }) => theme.bgButton};
@@ -203,6 +205,7 @@ const App = () => {
             setFlightDirection={setFlightDirection}
             setOverlayIsVisible={setOverlayIsVisible}
             setPage={setPage}
+            overlayIsVisible={overlayIsVisible}
             flightDirection={flightDirection}
           />
         )}
@@ -229,8 +232,10 @@ const App = () => {
               >
                 Next page
               </SkipButton>
-              <ThemeButton onClick={themeToggler}>Switch Theme</ThemeButton>
-              <FilterButton onClick={() => setOverlayIsVisible('true')}>
+              <ThemeButton onClick={themeToggler}>
+                {theme === 'light' ? 'Dark ' : 'Light '} theme
+              </ThemeButton>
+              <FilterButton onClick={() => setOverlayIsVisible(true)}>
                 Filter
               </FilterButton>
             </FlexContainer>

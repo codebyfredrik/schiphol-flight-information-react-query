@@ -9,7 +9,7 @@ const StyledTag = styled.span`
   text-transform: uppercase;
   font-size: 0.8rem;
   color: ${({ theme }) => theme.textTag};
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const Tag = ({ label, className }) => {

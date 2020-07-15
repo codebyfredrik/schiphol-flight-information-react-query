@@ -11,7 +11,8 @@ export const Button = styled.button`
   font-weight: 600;
   letter-spacing: 1px;
   outline: none;
-  transition: color, background-color 150ms ease-in;
+  transition: color var(--transition-time) ease-in,
+    background-color var(--transition-time) ease-in;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {

@@ -16,7 +16,7 @@ const defaultQueryFn = async (key) => {
 const StyledAirline = styled.span`
   color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const Airline = ({ prefixICAO, className }) => {

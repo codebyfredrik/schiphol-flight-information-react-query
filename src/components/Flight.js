@@ -20,7 +20,7 @@ const StyledFlight = styled.li`
   padding: 1.25rem;
   box-shadow: 0 1px 1px ${({ theme }) => theme.borderShadow};
   transition-property: background-color, box-shadow;
-  transition-duration: 150ms;
+  transition-duration: var(--transition-time);
   transition-timing-function: ease-in;
 `;
 
@@ -84,7 +84,7 @@ const MiddleContainer = styled.div`
   justify-content: flex-start;
   border-left: 1px dashed ${({ theme }) => theme.borderDashed};
   padding-left: 1rem;
-  transition: border-left 150ms ease-in;
+  transition: border-left var(--transition-time) ease-in;
 
   @media screen and (min-width: 768px) {
      {
@@ -99,7 +99,7 @@ const RightContainer = styled.div`
   justify-content: flex-end;
   border-left: 1px dashed ${({ theme }) => theme.borderDashed};
   padding-left: 1rem;
-  transition: border-left 150ms ease-in;
+  transition: border-left var(--transition-time) ease-in;
 
   @media screen and (min-width: 490px) {
      {
@@ -135,7 +135,7 @@ const CodeShare = styled.div`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.text};
   transition-property: border-top, color;
-  transition-duration: 150ms;
+  transition-duration: var(--transition-time);
   transition-timing-function: ease-in;
 `;
 
@@ -144,7 +144,7 @@ const FlightStatus = styled(Tag)`
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
   color: ${({ theme }) => theme.textTag};
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 const FlightStatusWrapper = styled.div`
@@ -153,7 +153,7 @@ const FlightStatusWrapper = styled.div`
   @media screen and (min-width: 768px) {
     border-left: 1px dashed ${({ theme }) => theme.borderDashed};
     padding-left: 1rem;
-    transition: border-left 150ms ease-in;
+    transition: border-left var(--transition-time) ease-in;
   }
 `;
 

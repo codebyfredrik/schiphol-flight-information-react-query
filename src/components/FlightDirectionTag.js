@@ -10,7 +10,7 @@ const StyledFlightDirectionTag = styled.div`
   padding: 0.1rem 0.3rem;
   border-radius: 2px;
   font-size: 0.6rem;
-  transition: background-color 150ms ease-in;
+  transition: background-color var(--transition-time) ease-in;
 `;
 
 export const FlightDirectionTag = ({ flightDirection, className }) => {

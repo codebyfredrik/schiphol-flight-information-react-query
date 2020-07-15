@@ -5,7 +5,7 @@ import moment from 'moment';
 export const StyledDate = styled.div`
   font-weight: bold;
   color: ${({ theme }) => theme.text};
-  transition: color 150ms ease-in;
+  transition: color var(--transition-time) ease-in;
 `;
 
 export const Date = ({ date }) => {

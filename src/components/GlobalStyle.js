@@ -21,8 +21,12 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({ theme }) => theme.body};
-    transition: background-color 150ms ease-in;
+    transition: background-color var(--transition-time) ease-in;
   }
+
+  :root {
+  --transition-time: 100ms;
+}
 `;
 
 export default GlobalStyle;
