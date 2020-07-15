@@ -5,9 +5,9 @@ import moment from 'moment';
 import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
-import GlobalStyle from './components/GlobalStyle';
+import { GlobalStyle } from './components/GlobalStyle';
 import { Button } from './styles/Styles';
-import Flight from './components/Flight';
+import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
 
@@ -86,7 +86,6 @@ const FlexContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 0.5rem;
-  /* border: 1px solid red; */
 
   @media screen and (min-width: 680px) {
     grid-template-columns: 9em 9em auto 9em 9em;
@@ -102,17 +101,11 @@ const Spacer = styled.div`
   }
 `;
 
-const SkipButton = styled(Button)`
-  /* margin-right: 1rem; */
+const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
   transition-timing-function: ease-in;
-
-  /* @media screen and (max-width: 600px) {
-    flex: 1 1 12rem;
-    margin-right: 0;
-  } */
 
   &:disabled {
     cursor: default;
@@ -122,22 +115,6 @@ const SkipButton = styled(Button)`
       background-color: ${({ theme }) => theme.bgButton};
     }
   }
-`;
-
-const ThemeButton = styled(Button)`
-  /* margin-left: auto; */
-
-  /* @media screen and (max-width: 600px) {
-    flex: 1 1 12rem;
-  } */
-`;
-
-const FilterButton = styled(Button)`
-  /* margin-left: 1rem; */
-
-  /* @media screen and (max-width: 600px) {
-    flex: 1 1 12rem;
-  } */
 `;
 
 const Loading = styled.span`
@@ -241,15 +218,15 @@ const App = () => {
         <WrapperContainer>
           <StyledApp>
             <FlexContainer>
-              <SkipButton
+              <StyledButton
                 onClick={() =>
                   setPage((prevState) => Math.max(prevState - 1, 0))
                 }
                 disabled={page === 0 || isFetching}
               >
                 Previous page
-              </SkipButton>
-              <SkipButton
+              </StyledButton>
+              <StyledButton
                 onClick={() =>
                   setPage((prevState) =>
                     !latestData ? prevState : prevState + 1
@@ -260,14 +237,14 @@ const App = () => {
                 }
               >
                 Next page
-              </SkipButton>
+              </StyledButton>
               <Spacer />
-              <ThemeButton onClick={themeToggler}>
+              <StyledButton onClick={themeToggler}>
                 {theme === 'light' ? 'Dark ' : 'Light '} theme
-              </ThemeButton>
-              <FilterButton onClick={() => setOverlayIsVisible(true)}>
+              </StyledButton>
+              <StyledButton onClick={() => setOverlayIsVisible(true)}>
                 Filter
-              </FilterButton>
+              </StyledButton>
             </FlexContainer>
             <div>
               {isLoading ? (

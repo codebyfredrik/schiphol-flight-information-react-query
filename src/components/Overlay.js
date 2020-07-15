@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Times } from './icons/Times';
+import { useLockBodyScroll } from './../hooks/useLockBodyScroll';
 
 const Animation = keyframes`
 0% {
@@ -94,6 +95,8 @@ export const Overlay = ({
   overlayIsVisible,
   flightDirection,
 }) => {
+  useLockBodyScroll();
+
   return (
     <StyledOverlay open={overlayIsVisible}>
       <Close

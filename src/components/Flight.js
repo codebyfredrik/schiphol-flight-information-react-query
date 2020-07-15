@@ -161,7 +161,7 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
-const Flight = ({ flight }) => {
+export const Flight = ({ flight }) => {
   const {
     flightDirection,
     scheduleTime,
@@ -265,5 +265,3 @@ const Flight = ({ flight }) => {
     </StyledFlight>
   );
 };
-
-export default Flight;

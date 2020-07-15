@@ -28,5 +28,3 @@ export const GlobalStyle = createGlobalStyle`
   --transition-time: 100ms;
 }
 `;
-
-export default GlobalStyle;
