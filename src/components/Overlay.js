@@ -107,7 +107,7 @@ export const Overlay = ({
           }}
           active={flightDirection === ''}
         >
-          Arrival and departures
+          Arrivals and departures
         </Option>
         <Option
           onClick={(e) => {
