@@ -16,6 +16,14 @@ In this implemetation the API endpoints are using the following caching strategi
 - /destinations/:id - Cached indefinitely
 - /airlines/:id - Cached indefinitely
 
+The site is designed to be responsive and adapt well to mobiles, tablets and desktops. To be able to work more efficiently with the styling the CSS-in-JS libary Styled Components is used. Some of the benefits of this library are:
+
+- Improved developer experience
+- Automatic critical CSS: styled-components keeps track of which components are rendered on a page and injects their styles and nothing else, fully automatically. Combined with code splitting, this means your users load the least amount of code necessary.
+- No class name bugs: styled-components generates unique class names for styles. No need to worry about duplication, overlap or misspellings.
+- Simple dynamic styling: adapting the styling of a component based on its props or a global theme is simple and intuitive without having to manually manage dozens of classes.
+- Automatic vendor prefixing
+
 ### Technologies used
 
 - JavaScript ES6+
