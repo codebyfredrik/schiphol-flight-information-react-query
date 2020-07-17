@@ -203,7 +203,7 @@ const App = () => {
         <GlobalStyle />
         <Header>
           <HeaderContainer>
-            <Title>Amsterdam Airport Schipol</Title>
+            <Title>Amsterdam Schipol Airport</Title>
             <SubTitle>Flight Information</SubTitle>
           </HeaderContainer>
         </Header>
