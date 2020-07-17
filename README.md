@@ -2,7 +2,7 @@
 
 ### Summary
 
-A web applicaton created with React and React Query to display information about arrival and departure flights at Amsterdam Airport Schipol.
+A site created with React and React Query to display information about arrival and departure flights at Amsterdam Airport Schipol.
 
 ### Implementation details
 
