@@ -15,7 +15,7 @@ TEXT
 - [React Query](https://github.com/tannerlinsley/react-query)
 - Axios
 - CSS
-- Styled Components
+- [Styled Components](https://github.com/styled-components)
 - HTML
 
 ### Where can you see it in action?
