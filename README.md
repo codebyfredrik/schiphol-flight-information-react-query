@@ -14,13 +14,13 @@ One of many features of React Query used in this project is caching. Instead of 
 
 In this implemetation the API endpoints are using the following caching strategies:
 
-- /flights - Not cached since information is updated frequently
-- /destinations/:id - Cached indefinitely
-- /airlines/:id - Cached indefinitely
+- /flights - Flight information is updated frequently -> Not cached
+- /destinations/:id - Destination name rarely change -> Cached indefinitely
+- /airlines/:id - Airline name rarely change -> Cached indefinitely
 
 #### Styled Components
 
-The site is designed to be responsive and adapt well to mobiles, tablets and desktops. To be able to work more efficiently with the styling the CSS-in-JS libary Styled Components is used. Some of the benefits of this library are:
+The site is designed to be responsive and adapt well to mobiles, tablets and desktops. To be able to work more efficiently with styling the CSS-in-JS libary Styled Components is used. Some of the benefits of this library are:
 
 - **Improved developer experience**
 - **Automatic critical CSS:** styled-components keeps track of which components are rendered on a page and injects their styles and nothing else, fully automatically. Combined with code splitting, this means users load the least amount of code necessary.
