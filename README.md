@@ -28,6 +28,8 @@ The site is designed to be responsive and adapt well to mobiles, tablets and des
 - **Simple dynamic styling:** adapting the styling of a component based on its props or a global theme is simple and intuitive without having to manually manage dozens of classes.
 - **Automatic vendor prefixing**
 
+Finally, to be able to handle CORS issues between the frontend and the flight information API, a small [proxy API server](https://github.com/codebyfredrik/schiphol-flight-information-backend) was implemented based on Express JS.
+
 ### Technologies used
 
 - JavaScript ES6+
