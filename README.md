@@ -2,11 +2,19 @@
 
 ### Summary
 
-A site created with React and React Query to display information about arrival and departure flights at Amsterdam Airport Schipol.
+A site created with React and React Query to display information about arrival and departure flights at Amsterdam Schipol Airport.
 
 ### Implementation details
 
-TEXT
+In this project the frontend is consuming real-time data from the official flight information API for Schipol Airport. After some research I decided to implement Reacy Query to handle server state. This library solves many of the challenges that will arise when working with asynchronous API's.
+
+One of many features of React Query used in this project is caching. Instead of refetching the same information over and over again specific information, that rarely change, can be set do be cached in indefinitely or for the entire duration of the user session. By doing so transfer of unneccesary data is prevented and at the same time the number of API requests are kept to a minimum.
+
+In this implemetation the API endpoints are using the following caching strategies:
+
+- /flights - Not cached since information is updated frequently
+- /destinations/:id - Cached indefinitely
+- /airlines/:id - Cached indefinitely
 
 ### Technologies used
 
