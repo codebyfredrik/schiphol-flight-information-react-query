@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
-import { useGetFlightStatus } from './../hooks/useGetFlightStatus';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
