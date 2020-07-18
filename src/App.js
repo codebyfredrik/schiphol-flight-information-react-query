@@ -15,8 +15,6 @@ import { Overlay } from './components/Overlay';
 const defaultQueryFn = async (key, { page = 0, flightDirection = '' }) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   let url;
-  // console.log('Page', page);
-  // console.log('FlightDirection', flightDirection);
 
   if (flightDirection) {
     url = `${process.env.REACT_APP_API_BASE_URL}/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
@@ -165,13 +163,6 @@ const App = () => {
       );
     }
   }, [latestData, page, isFetching, isLoading, error]);
-
-  if (!isFetching && !isLoading && !error) {
-    // console.log('resolvedData', resolvedData);
-    // console.log('latestData', latestData.flights);
-    // console.log('filtered', filteredResolvedData);
-    // setFilteredArrayLength(filteredResolvedData.length);
-  }
 
   const renderList = () => {
     let currentDate = null;
