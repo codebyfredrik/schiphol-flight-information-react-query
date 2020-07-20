@@ -8,7 +8,7 @@ const StyledFlightNumber = styled.span`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const FlightNumber = ({ flightName, className }) => {
+const FlightNumber = ({ flightName, className }) => {
   return (
     <StyledFlightNumber className={className}>{flightName}</StyledFlightNumber>
   );
@@ -18,3 +18,5 @@ FlightNumber.propTypes = {
   flightName: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { FlightNumber };

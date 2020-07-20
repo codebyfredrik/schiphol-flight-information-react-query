@@ -3,12 +3,10 @@ import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
-import dataFetchConfig from './../config/dataFetchConfig';
 
-const defaultQueryFn = async (key) => {
+const query = async (key) => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}${key}`,
-    dataFetchConfig
+    `${process.env.REACT_APP_API_BASE_URL}${key}`
   );
 
   return data;
@@ -20,10 +18,10 @@ const StyledAirline = styled.span`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const Airline = ({ prefixICAO, className }) => {
+const Airline = ({ prefixICAO, className }) => {
   const { status, data: result, error, isFetching } = useQuery(
     `/airlines/${prefixICAO}`,
-    defaultQueryFn,
+    query,
     {
       staleTime: Infinity,
       cacheTime: Infinity,
@@ -47,3 +45,5 @@ Airline.propTypes = {
   prefixICAO: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { Airline };

@@ -1,4 +1,4 @@
-export const lightTheme = {
+const lightTheme = {
   body: 'rgb(235,235,235)',
   bgButton: 'rgba(0, 0, 0, 0.05)',
   bgButtonHover: 'rgba(0, 0, 0, 0.1)',
@@ -16,7 +16,7 @@ export const lightTheme = {
   grey30: 'rgba(0,0,0,0.1)',
 };
 
-export const darkTheme = {
+const darkTheme = {
   body: '#18191A',
   bgButton: '#3A3B3C',
   bgButtonHover: '#272728',
@@ -29,3 +29,5 @@ export const darkTheme = {
   pageCounterBg: '#3A3B3C',
   pageCounterText: '#ffd700',
 };
+
+export { lightTheme, darkTheme };

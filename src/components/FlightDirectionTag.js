@@ -14,7 +14,7 @@ const StyledFlightDirectionTag = styled.div`
   transition: background-color var(--transition-time) ease-in;
 `;
 
-export const FlightDirectionTag = ({ flightDirection, className }) => {
+const FlightDirectionTag = ({ flightDirection, className }) => {
   return (
     <StyledFlightDirectionTag className={className}>
       <FlightDirection flightDirection={flightDirection} />
@@ -26,3 +26,5 @@ FlightDirectionTag.propTypes = {
   flightDirection: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { FlightDirectionTag };

@@ -161,7 +161,7 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
-export const Flight = ({ flight }) => {
+const Flight = ({ flight }) => {
   const {
     flightDirection,
     scheduleTime,
@@ -269,3 +269,5 @@ export const Flight = ({ flight }) => {
 Flight.propTypes = {
   flight: PropTypes.object,
 };
+
+export { Flight };

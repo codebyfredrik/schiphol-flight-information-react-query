@@ -6,7 +6,7 @@ const StyledTimes = styled.svg`
   display: inline-block;
 `;
 
-export const Times = ({ height, width, fillColor, className, onClick }) => {
+const Times = ({ height, width, fillColor, className, onClick }) => {
   return (
     <StyledTimes
       onClick={onClick}
@@ -36,3 +36,5 @@ Times.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
 };
+
+export { Times };

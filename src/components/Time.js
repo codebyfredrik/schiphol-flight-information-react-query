@@ -8,7 +8,7 @@ const StyledTime = styled.span`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const Time = ({ time, className }) => {
+const Time = ({ time, className }) => {
   const formattedTime = time.split(':');
 
   return (
@@ -22,3 +22,5 @@ Time.propTypes = {
   time: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { Time };
