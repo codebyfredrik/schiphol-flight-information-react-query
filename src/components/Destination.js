@@ -31,15 +31,21 @@ const Destination = ({ route, className }) => {
   return (
     <>
       {isFetching ? (
-        <StyledDestination className={className}>Loading...</StyledDestination>
+        <StyledDestination data-testid="loading" className={className}>
+          Loading...
+        </StyledDestination>
       ) : error ? (
-        <StyledDestination className={className}>Error</StyledDestination>
+        <StyledDestination data-testid="error" className={className}>
+          Error
+        </StyledDestination>
       ) : result ? (
-        <StyledDestination className={className}>
+        <StyledDestination data-testid="result" className={className}>
           {result.city} ({result.iata})
         </StyledDestination>
       ) : (
-        <StyledDestination className={className}>No data</StyledDestination>
+        <StyledDestination data-testid="no-data" className={className}>
+          No data
+        </StyledDestination>
       )}
     </>
   );
@@ -50,4 +56,4 @@ Destination.propTypes = {
   className: PropTypes.string,
 };
 
-export { Destination };
+export { Destination, query };
