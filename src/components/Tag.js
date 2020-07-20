@@ -13,7 +13,7 @@ const StyledTag = styled.span`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const Tag = ({ label, className }) => {
+const Tag = ({ label, className }) => {
   return (
     <StyledTag className={className}>
       <span>{label}</span>
@@ -25,3 +25,5 @@ Tag.propTypes = {
   label: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { Tag };

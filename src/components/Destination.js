@@ -2,13 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import dataFetchConfig from './../config/dataFetchConfig';
 import { useQuery } from 'react-query';
 
-const defaultQueryFn = async (key, page = 0) => {
+const query = async (key) => {
   const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}${key}`,
-    dataFetchConfig
+    `${process.env.REACT_APP_API_BASE_URL}${key}`
   );
 
   return data;
@@ -20,10 +18,10 @@ const StyledDestination = styled.span`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const Destination = ({ route, className }) => {
+const Destination = ({ route, className }) => {
   const { status, data: result, error, isFetching } = useQuery(
     `/destinations/${route.destinations[0]}`,
-    defaultQueryFn,
+    query,
     {
       staleTime: Infinity,
       cacheTime: Infinity,
@@ -51,3 +49,5 @@ Destination.propTypes = {
   route: PropTypes.object,
   className: PropTypes.string,
 };
+
+export { Destination };

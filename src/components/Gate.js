@@ -20,7 +20,7 @@ const GateNumber = styled.span`
   font-weight: bold;
 `;
 
-export const Gate = ({ gate, className }) => {
+const Gate = ({ gate, className }) => {
   return (
     <StyledGate className={className}>
       <GateNumber>{gate}</GateNumber>
@@ -32,3 +32,5 @@ Gate.propTypes = {
   gate: PropTypes.string,
   className: PropTypes.string,
 };
+
+export { Gate };

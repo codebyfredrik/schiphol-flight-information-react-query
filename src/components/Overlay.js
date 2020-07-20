@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Times } from './icons/Times';
+import { Times } from './icons/index';
 import { useLockBodyScroll } from './../hooks/useLockBodyScroll';
 
 const Animation = keyframes`
@@ -80,7 +80,7 @@ const Close = styled(Times)`
   }
 `;
 
-export const Overlay = ({
+const Overlay = ({
   setFlightDirection,
   setOverlayIsVisible,
   setPage,
@@ -143,3 +143,5 @@ Overlay.propTypes = {
   overlayIsVisible: PropTypes.bool,
   flightDirection: PropTypes.string,
 };
+
+export { Overlay };

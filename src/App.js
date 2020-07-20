@@ -12,7 +12,7 @@ import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
 
-const defaultQueryFn = async (key, { page = 0, flightDirection = '' }) => {
+const query = async (key, { page = 0, flightDirection = '' }) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   let url;
 
@@ -144,11 +144,7 @@ const App = () => {
     resolvedData,
     latestData,
     isFetching,
-  } = usePaginatedQuery(
-    ['flights', { page, flightDirection }],
-    defaultQueryFn,
-    {}
-  );
+  } = usePaginatedQuery(['flights', { page, flightDirection }], query, {});
 
   useEffect(() => {
     if (
@@ -159,7 +155,7 @@ const App = () => {
     ) {
       queryCache.prefetchQuery(
         ['flights', { page: page + 1, flightDirection }],
-        defaultQueryFn
+        query
       );
     }
   }, [latestData, page, isFetching, isLoading, error]);
@@ -252,4 +248,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };

@@ -7,4 +7,4 @@ const dataFetchConfig = {
   },
 };
 
-export default dataFetchConfig;
+export { dataFetchConfig };

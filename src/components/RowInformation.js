@@ -13,7 +13,7 @@ const StyledRowInformation = styled.li`
   transition: color var(--transition-time) ease-in;
 `;
 
-export const RowInformation = ({ date, index, page }) => {
+const RowInformation = ({ date, index, page }) => {
   return (
     <StyledRowInformation>
       <Date date={date} />
@@ -26,3 +26,5 @@ RowInformation.propTypes = {
   index: PropTypes.number,
   page: PropTypes.number,
 };
+
+export { RowInformation };
