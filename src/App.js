@@ -210,6 +210,7 @@ const App = () => {
                 onClick={() =>
                   setPage((prevState) => Math.max(prevState - 1, 0))
                 }
+                data-testid="previous-page"
                 disabled={page === 0 || isFetching}
               >
                 Previous page
