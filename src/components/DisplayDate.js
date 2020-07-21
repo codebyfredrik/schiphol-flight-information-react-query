@@ -9,7 +9,7 @@ export const StyledDate = styled.div`
   transition: color var(--transition-time) ease-in;
 `;
 
-const Date = ({ date }) => {
+const DisplayDate = ({ date }) => {
   const rawDate = moment(date);
   const today = moment().endOf('day');
   const tomorrow = moment().add(1, 'day').endOf('day');
@@ -24,8 +24,8 @@ const Date = ({ date }) => {
   return <StyledDate>{`${phrase}${rawDate.format('D MMMM')}`}</StyledDate>;
 };
 
-Date.propTypes = {
+DisplayDate.propTypes = {
   date: PropTypes.string,
 };
 
-export { Date };
+export { DisplayDate };

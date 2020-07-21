@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Date } from './Date';
+import { DisplayDate } from './DisplayDate';
 
 const StyledRowInformation = styled.li`
   display: flex;
@@ -16,7 +16,7 @@ const StyledRowInformation = styled.li`
 const RowInformation = ({ date, index, page }) => {
   return (
     <StyledRowInformation>
-      <Date date={date} />
+      <DisplayDate date={date} />
     </StyledRowInformation>
   );
 };
