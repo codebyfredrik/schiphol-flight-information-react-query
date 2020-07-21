@@ -1,29 +1,39 @@
 import React from 'react';
-import {
-  render,
-  cleanup,
-  screen,
-  waitForElement,
-} from '@testing-library/react';
+import { render, screen, waitForElement } from '@testing-library/react';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 import { Destination } from './Destination';
-import axiosMock from 'axios';
 
-afterEach(cleanup);
+const server = setupServer(
+  rest.get(
+    `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ city: 'Geneva', iata: 'GVA' }));
+    }
+  )
+);
+
+// Enable API mocking before tests.
+beforeAll(() => server.listen());
+
+// Reset any runtime request handlers we may add during the tests.
+afterEach(() => server.resetHandlers());
+
+// Disable API mocking after the tests are done.
+afterAll(() => server.close());
 
 describe('Destination', () => {
-  it('Renders <Destination /> component', async () => {
+  it('Renders <Destination /> component correctly', async () => {
     const route = { destinations: ['GVA'] };
     const url = `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`;
-
-    axiosMock.get.mockResolvedValueOnce({
-      data: { result: { city: 'Geneva', iata: 'GVA' } },
-    });
 
     render(<Destination route={route} />);
 
     expect(screen.getByText(/Loading/i)).toHaveTextContent('Loading...');
 
-    expect(axiosMock.get).toHaveBeenCalledTimes(1);
-    expect(axiosMock.get).toHaveBeenCalledWith(url);
+    const resolvedElement = await waitForElement(() =>
+      screen.getByText(/geneva/i)
+    );
+    expect(resolvedElement).toHaveTextContent('Geneva (GVA)');
   });
 });
