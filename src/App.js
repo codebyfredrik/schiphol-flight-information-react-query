@@ -118,13 +118,13 @@ const StyledButton = styled(Button)`
 
 const Loading = styled.span`
   display: inline-block;
-  margin: 2rem 0;
+  margin: 3rem 0;
   font-weight: bold;
 `;
 
 const Error = styled.span`
   display: inline-block;
-  margin: 2rem 0;
+  margin: 3rem 0;
   font-weight: bold;
   color: #ff0800;
 `;
