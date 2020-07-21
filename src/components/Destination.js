@@ -30,19 +30,15 @@ const Destination = ({ route, className }) => {
   return (
     <>
       {isFetching ? (
-        <StyledDestination data-testid="loading" className={className}>
-          Loading...
-        </StyledDestination>
+        <StyledDestination className={className}>Loading...</StyledDestination>
       ) : error ? (
         <StyledDestination className={className}>Error</StyledDestination>
       ) : result ? (
-        <StyledDestination data-testid="resolved" className={className}>
+        <StyledDestination className={className}>
           {result.city} ({result.iata})
         </StyledDestination>
       ) : (
-        <StyledDestination data-testid="nodata" className={className}>
-          No data
-        </StyledDestination>
+        <StyledDestination className={className}>No data</StyledDestination>
       )}
     </>
   );

@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, cleanup, screen } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  screen,
+  waitForElement,
+} from '@testing-library/react';
 import { Destination } from './Destination';
 import axiosMock from 'axios';
 
@@ -16,7 +21,7 @@ describe('Destination', () => {
 
     render(<Destination route={route} />);
 
-    expect(screen.getByTestId('loading')).toHaveTextContent('Loading...');
+    expect(screen.getByText(/Loading/i)).toHaveTextContent('Loading...');
 
     expect(axiosMock.get).toHaveBeenCalledTimes(1);
     expect(axiosMock.get).toHaveBeenCalledWith(url);
