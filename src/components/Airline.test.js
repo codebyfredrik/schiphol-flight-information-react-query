@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen, waitForElement } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { Destination } from './Destination';
+import { Airline } from './Airline';
 
 const server = setupServer(
   rest.get(
-    `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`,
+    `${process.env.REACT_APP_API_BASE_URL}/airlines/KL`,
     (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({ city: 'Geneva', iata: 'GVA' }));
+      return res(ctx.status(200), ctx.json({ publicName: 'KLM' }));
     }
   )
 );
@@ -24,15 +24,15 @@ afterAll(() => server.close());
 
 describe('Destination', () => {
   it('Renders <Destination /> component correctly', async () => {
-    const route = { destinations: ['GVA'] };
+    const prefixICAO = 'KL';
 
-    render(<Destination route={route} />);
+    render(<Airline prefixICAO={prefixICAO} />);
 
     expect(screen.getByText(/Loading/i)).toHaveTextContent('Loading...');
 
     const resolvedElement = await waitForElement(() =>
-      screen.getByText(/geneva/i)
+      screen.getByText(/klm/i)
     );
-    expect(resolvedElement).toHaveTextContent('Geneva (GVA)');
+    expect(resolvedElement).toHaveTextContent('KLM');
   });
 });

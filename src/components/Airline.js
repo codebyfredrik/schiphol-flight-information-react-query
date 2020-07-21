@@ -27,7 +27,7 @@ const Airline = ({ prefixICAO, className }) => {
       cacheTime: Infinity,
     }
   );
-
+  // if (!isFetching && result) console.log(result);
   return (
     <>
       {isFetching ? (
