@@ -1,24 +1,24 @@
 import React from 'react';
-import axios from 'axios';
-import { render, screen } from '@testing-library/react';
-import { Destination, query } from './Destination';
+import { render, cleanup, screen } from '@testing-library/react';
+import { Destination } from './Destination';
+import axiosMock from 'axios';
 
-jest.mock('axios');
+afterEach(cleanup);
 
 describe('Destination', () => {
   it('Renders <Destination /> component', async () => {
-    const data = {
-      city: 'Geneva',
-      country: 'Switzerland',
-      iata: 'GVA',
-      publicName: {
-        dutch: 'Geneve',
-        english: 'Geneva',
-      },
-    };
+    const route = { destinations: ['GVA'] };
+    const url = `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`;
 
-    const object = { destinations: ['GVA'] };
-    render(<Destination route={object} />);
-    expect(axios.get).toHaveBeenCalledTimes(1);
+    axiosMock.get.mockResolvedValueOnce({
+      data: { result: { city: 'Geneva', iata: 'GVA' } },
+    });
+
+    render(<Destination route={route} />);
+
+    expect(screen.getByTestId('loading')).toHaveTextContent('Loading...');
+
+    expect(axiosMock.get).toHaveBeenCalledTimes(1);
+    expect(axiosMock.get).toHaveBeenCalledWith(url);
   });
 });

@@ -8,7 +8,6 @@ const query = async (key) => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_API_BASE_URL}${key}`
   );
-
   return data;
 };
 
@@ -35,15 +34,13 @@ const Destination = ({ route, className }) => {
           Loading...
         </StyledDestination>
       ) : error ? (
-        <StyledDestination data-testid="error" className={className}>
-          Error
-        </StyledDestination>
+        <StyledDestination className={className}>Error</StyledDestination>
       ) : result ? (
-        <StyledDestination data-testid="result" className={className}>
+        <StyledDestination data-testid="resolved" className={className}>
           {result.city} ({result.iata})
         </StyledDestination>
       ) : (
-        <StyledDestination data-testid="no-data" className={className}>
+        <StyledDestination data-testid="nodata" className={className}>
           No data
         </StyledDestination>
       )}
