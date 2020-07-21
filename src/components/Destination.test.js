@@ -25,7 +25,6 @@ afterAll(() => server.close());
 describe('Destination', () => {
   it('Renders <Destination /> component correctly', async () => {
     const route = { destinations: ['GVA'] };
-    const url = `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`;
 
     render(<Destination route={route} />);
 
