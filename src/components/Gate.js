@@ -6,7 +6,7 @@ const StyledGate = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  height: 25px;
   text-decoration: none;
   background-color: #ffd700;
   color: #262b2f;
