@@ -8,9 +8,10 @@ const StyledFlightDirectionTag = styled.div`
   background-color: ${({ theme }) => theme.bgDirectionTag};
   color: #ffd700;
   font-weight: bold;
-  padding: 0.1rem 0.3rem;
+  padding: 3px 5px;
   border-radius: 2px;
-  font-size: 0.6rem;
+  font-size: 10px;
+  line-height: 10px;
   transition: background-color var(--transition-time) ease-in;
 `;
 
