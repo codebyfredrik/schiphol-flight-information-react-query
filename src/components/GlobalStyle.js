@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {
     overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     font-family: 'Roboto', sans-serif;
