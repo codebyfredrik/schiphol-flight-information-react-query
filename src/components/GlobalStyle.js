@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     background-color: ${({ theme }) => theme.body};
     transition: background-color var(--transition-time) ease-in;
   }

@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-const FlightDirection = ({ flightDirection, className }) => {
+const FlightDirection = ({ flightDirection }) => {
   let phrase;
 
   if (flightDirection === 'A') {
@@ -10,12 +9,11 @@ const FlightDirection = ({ flightDirection, className }) => {
     phrase = 'Departure';
   }
 
-  return <span className={className}>{phrase}</span>;
+  return phrase;
 };
 
 FlightDirection.propTypes = {
   flightDirection: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { FlightDirection };
