@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FlightDirection } from './FlightDirection';
 
-const StyledFlightDirectionTag = styled.div`
+const StyledFlightDirectionTag = styled.span`
   display: inline-block;
   background-color: ${({ theme }) => theme.bgDirectionTag};
   color: #ffd700;
