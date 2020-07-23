@@ -6,10 +6,11 @@ const StyledTag = styled.span`
   display: inline-block;
   border-radius: 4px;
   font-weight: bold;
-  padding: 4px 5px;
+  padding: 0px 5px;
   text-transform: uppercase;
   font-size: 12px;
-  line-height: 10px;
+  height: 18px;
+  line-height: 18px;
   color: ${({ theme }) => theme.colors.textTag};
   transition: color var(--transition-time) ease-in;
 `;
