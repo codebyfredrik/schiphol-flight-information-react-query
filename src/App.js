@@ -11,6 +11,7 @@ import { Button } from './styles/Styles';
 import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
+import { bp } from './styles/constants';
 
 const query = async (key, { page = 0, flightDirection = '' }) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
@@ -185,7 +186,10 @@ const App = () => {
 
   return (
     <ThemeProvider
-      theme={{ colors: theme === 'light' ? lightTheme : darkTheme }}
+      theme={{
+        colors: theme === 'light' ? lightTheme : darkTheme,
+        breakpoints: bp,
+      }}
     >
       <>
         <ReactQueryDevtools initialIsOpen={false} />

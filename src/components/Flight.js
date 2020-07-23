@@ -30,7 +30,9 @@ const Container = styled.div`
   grid-template-rows: 1fr;
 
   @media screen and (min-width: 490px) {
-    grid-template-columns: 110px 3.6fr 1.4fr;
+     {
+      grid-template-columns: 110px 3.6fr 1.4fr;
+    }
   }
 `;
 
@@ -131,7 +133,7 @@ const CodeShare = styled.div`
   padding-top: 1rem;
   margin-top: 1rem;
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   transition-property: border-top, color;
   transition-duration: var(--transition-time);
   transition-timing-function: ease-in;
