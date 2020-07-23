@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export const StyledDate = styled.div`
   font-weight: bold;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   transition: color var(--transition-time) ease-in;
 `;
 

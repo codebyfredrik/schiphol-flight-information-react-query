@@ -12,7 +12,7 @@ const query = async (key) => {
 };
 
 const StyledDestination = styled.span`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
   transition: color var(--transition-time) ease-in;
 `;

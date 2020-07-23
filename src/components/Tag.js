@@ -10,7 +10,7 @@ const StyledTag = styled.span`
   text-transform: uppercase;
   font-size: 12px;
   line-height: 10px;
-  color: ${({ theme }) => theme.textTag};
+  color: ${({ theme }) => theme.colors.textTag};
   transition: color var(--transition-time) ease-in;
 `;
 

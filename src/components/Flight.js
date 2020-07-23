@@ -15,10 +15,10 @@ const StyledFlight = styled.li`
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  background-color: ${({ theme }) => theme.cardBackground};
+  background-color: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 2px;
   padding: 1.25rem;
-  box-shadow: 0 1px 1px ${({ theme }) => theme.borderShadow};
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
   transition-property: background-color, box-shadow;
   transition-duration: var(--transition-time);
   transition-timing-function: ease-in;
@@ -80,7 +80,7 @@ const MiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border-left: 1px dashed ${({ theme }) => theme.borderDashed};
+  border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-left: 1rem;
   transition: border-left var(--transition-time) ease-in;
 
@@ -95,7 +95,7 @@ const MiddleContainer = styled.div`
 const RightContainer = styled.div`
   display: none;
   justify-content: flex-end;
-  border-left: 1px dashed ${({ theme }) => theme.borderDashed};
+  border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-left: 1rem;
   transition: border-left var(--transition-time) ease-in;
 
@@ -127,7 +127,7 @@ const TimeWrapper = styled.div`
 `;
 
 const CodeShare = styled.div`
-  border-top: 1px dashed ${({ theme }) => theme.borderDashed};
+  border-top: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-top: 1rem;
   margin-top: 1rem;
   font-size: 0.875rem;
@@ -141,7 +141,7 @@ const FlightStatus = styled(Tag)`
   flex: 1 1 1rem;
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
-  color: ${({ theme }) => theme.textTag};
+  color: ${({ theme }) => theme.colors.textTag};
   transition: color var(--transition-time) ease-in;
 `;
 
@@ -149,7 +149,7 @@ const FlightStatusWrapper = styled.div`
   flex: 1 1 1rem;
 
   @media screen and (min-width: 768px) {
-    border-left: 1px dashed ${({ theme }) => theme.borderDashed};
+    border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-left: 1rem;
     transition: border-left var(--transition-time) ease-in;
   }

@@ -184,7 +184,9 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider
+      theme={{ colors: theme === 'light' ? lightTheme : darkTheme }}
+    >
       <>
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />

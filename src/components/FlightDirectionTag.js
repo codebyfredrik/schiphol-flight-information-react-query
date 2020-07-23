@@ -5,7 +5,7 @@ import { FlightDirection } from './FlightDirection';
 
 const StyledFlightDirectionTag = styled.span`
   display: inline-block;
-  background-color: ${({ theme }) => theme.bgDirectionTag};
+  background-color: ${({ theme }) => theme.colors.bgDirectionTag};
   color: #ffd700;
   font-weight: bold;
   padding: 3px 5px;
