@@ -13,7 +13,7 @@ const query = async (key) => {
 };
 
 const StyledAirline = styled.span`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 0.875rem;
   transition: color var(--transition-time) ease-in;
 `;

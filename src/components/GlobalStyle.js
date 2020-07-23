@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    background-color: ${({ theme }) => theme.body};
+    background-color: ${({ theme }) => theme.colors.body};
     transition: background-color var(--transition-time) ease-in;
   }
 

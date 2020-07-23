@@ -9,11 +9,11 @@ const StyledRowInformation = styled.li`
   align-items: flex-end;
   list-style-type: none;
   font-weight: bold;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   transition: color var(--transition-time) ease-in;
 `;
 
-const RowInformation = ({ date, index, page }) => {
+const RowInformation = ({ date }) => {
   return (
     <StyledRowInformation>
       <DisplayDate date={date} />

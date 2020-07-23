@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const StyledTime = styled.span`
   display: inline-block;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   transition: color var(--transition-time) ease-in;
 `;
 

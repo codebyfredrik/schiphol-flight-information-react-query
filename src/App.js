@@ -11,6 +11,7 @@ import { Button } from './styles/Styles';
 import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
+import { bp } from './styles/constants';
 
 const query = async (key, { page = 0, flightDirection = '' }) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
@@ -169,11 +170,7 @@ const App = () => {
           currentDate = item.scheduleDate;
           return (
             <React.Fragment key={item.id}>
-              <RowInformation
-                date={item.scheduleDate}
-                index={index}
-                page={page}
-              />
+              <RowInformation date={item.scheduleDate} />
               <Flight flight={item} />
             </React.Fragment>
           );
@@ -184,7 +181,12 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider
+      theme={{
+        colors: theme === 'light' ? lightTheme : darkTheme,
+        breakpoints: bp,
+      }}
+    >
       <>
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
