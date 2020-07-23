@@ -13,7 +13,7 @@ const StyledRowInformation = styled.li`
   transition: color var(--transition-time) ease-in;
 `;
 
-const RowInformation = ({ date, index, page }) => {
+const RowInformation = ({ date }) => {
   return (
     <StyledRowInformation>
       <DisplayDate date={date} />

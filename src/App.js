@@ -170,11 +170,7 @@ const App = () => {
           currentDate = item.scheduleDate;
           return (
             <React.Fragment key={item.id}>
-              <RowInformation
-                date={item.scheduleDate}
-                index={index}
-                page={page}
-              />
+              <RowInformation date={item.scheduleDate} />
               <Flight flight={item} />
             </React.Fragment>
           );
