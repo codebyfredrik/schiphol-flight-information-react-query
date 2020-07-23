@@ -96,6 +96,7 @@ const Overlay = ({
         width={22}
         fillColor="#ffffff"
         onClick={setOverlayIsVisible}
+        aria-label="Close"
       />
       <Content>
         <Option
