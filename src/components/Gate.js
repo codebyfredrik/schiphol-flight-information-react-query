@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 
 const StyledGate = styled.span`
   display: inline-block;
-  height: 20px;
-  line-height: 20px;
+  height: 24px;
+  line-height: 24px;
   text-decoration: none;
+  text-transform: uppercase;
   background-color: #ffd700;
   color: #262b2f;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0px 5px;
   border-radius: 4px;
   font-weight: bold;
