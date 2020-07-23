@@ -30,9 +30,7 @@ const Container = styled.div`
   grid-template-rows: 1fr;
 
   @media screen and (min-width: 490px) {
-     {
-      grid-template-columns: 110px 3.6fr 1.4fr;
-    }
+    grid-template-columns: 110px 3.6fr 1.4fr;
   }
 `;
 
