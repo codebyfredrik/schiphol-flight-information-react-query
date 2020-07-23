@@ -41,7 +41,10 @@ const Content = styled.div`
   }
 `;
 
-const Option = styled.p`
+const Option = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
   text-align: center;
   position: relative;
   font-size: 2rem;
@@ -56,7 +59,7 @@ const Option = styled.p`
     css`
       background-color: #ffd700;
       color: #000000;
-      padding: 0.5rem;
+      padding: 1rem;
     `}
   transition: color 150ms ease-in;
 
