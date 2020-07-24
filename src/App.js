@@ -165,7 +165,7 @@ const App = () => {
     let currentDate = null;
     return resolvedData.flights
       .filter((item) => item.flightName === item.mainFlight)
-      .map((item, index) => {
+      .map((item) => {
         if (item.scheduleDate !== currentDate) {
           currentDate = item.scheduleDate;
           return (
@@ -180,13 +180,13 @@ const App = () => {
       });
   };
 
+  const themeObject = {
+    colors: theme === 'light' ? lightTheme : darkTheme,
+    breakpoints: bp,
+  };
+
   return (
-    <ThemeProvider
-      theme={{
-        colors: theme === 'light' ? lightTheme : darkTheme,
-        breakpoints: bp,
-      }}
-    >
+    <ThemeProvider theme={themeObject}>
       <>
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
@@ -209,6 +209,7 @@ const App = () => {
           <StyledApp>
             <FlexContainer>
               <StyledButton
+                type="button"
                 onClick={() =>
                   setPage((prevState) => Math.max(prevState - 1, 0))
                 }
@@ -218,6 +219,7 @@ const App = () => {
                 Previous page
               </StyledButton>
               <StyledButton
+                type="button"
                 onClick={() =>
                   setPage((prevState) =>
                     !latestData ? prevState : prevState + 1
@@ -230,10 +232,12 @@ const App = () => {
                 Next page
               </StyledButton>
               <Spacer />
-              <StyledButton onClick={themeToggler}>
+              <StyledButton type="button" onClick={themeToggler}>
                 {theme === 'light' ? 'Dark ' : 'Light '} theme
               </StyledButton>
-              <StyledButton onClick={setOverlayIsVisible}>Filter</StyledButton>
+              <StyledButton type="button" onClick={setOverlayIsVisible}>
+                Filter
+              </StyledButton>
             </FlexContainer>
             <div>
               {isLoading ? (
