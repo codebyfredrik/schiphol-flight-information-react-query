@@ -102,7 +102,7 @@ const Spacer = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.colors.text};
   transition-property: color, background-color;
   transition-duration: 150ms;
   transition-timing-function: ease-in;
@@ -112,7 +112,7 @@ const StyledButton = styled(Button)`
     opacity: 0.5;
 
     &:hover {
-      background-color: ${({ theme }) => theme.bgButton};
+      background-color: ${({ theme }) => theme.colors.bgButton};
     }
   }
 `;
