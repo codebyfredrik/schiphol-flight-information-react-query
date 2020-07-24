@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  /* height: 2rem; */
   height: var(--min-tap-target-height);
   border: 0px solid rgba(179, 212, 255, 1);
   padding: 0.4rem 0.7rem;

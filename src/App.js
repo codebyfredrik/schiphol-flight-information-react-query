@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import axios from 'axios';
 import moment from 'moment';
 import { useToggle } from './hooks/useToggle';
+import { useStickyState } from './hooks/useStickyState';
 import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { usePaginatedQuery, queryCache } from 'react-query';
@@ -134,9 +135,9 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useStickyState('light', 'theme');
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   };
   const {
     isLoading,
