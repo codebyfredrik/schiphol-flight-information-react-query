@@ -43,6 +43,7 @@ const Content = styled.div`
 
 const Option = styled.button`
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   border: none;
   outline: none;
   text-align: center;
