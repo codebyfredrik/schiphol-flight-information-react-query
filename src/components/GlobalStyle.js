@@ -29,5 +29,10 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
   --transition-time: 100ms;
+  --min-tap-target-height: 48px;
+    
+    @media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
+    --min-tap-target-height: 32px;
+    }
 }
 `;
