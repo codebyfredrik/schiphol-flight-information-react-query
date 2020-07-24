@@ -103,6 +103,7 @@ const Overlay = ({
       />
       <Content>
         <Option
+          type="button"
           onClick={(e) => {
             setFlightDirection('');
             setPage(0);
@@ -114,6 +115,7 @@ const Overlay = ({
           Arrivals and departures
         </Option>
         <Option
+          type="button"
           onClick={(e) => {
             setFlightDirection('A');
             setPage(0);
@@ -125,6 +127,7 @@ const Overlay = ({
           Arrivals
         </Option>
         <Option
+          type="button"
           onClick={(e) => {
             setFlightDirection('D');
             setPage(0);
