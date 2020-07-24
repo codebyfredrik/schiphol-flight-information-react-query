@@ -6,6 +6,7 @@ export const Button = styled.button`
   padding: 0.4rem 0.7rem;
   color: ${({ theme }) => theme.colors.text};
   background-color: ${({ theme }) => theme.colors.bgButton};
+  -webkit-tap-highlight-color: transparent;
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 1px;
