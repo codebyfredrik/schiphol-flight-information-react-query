@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, waitForElement } from '@testing-library/react';
+import { screen, waitForElement } from '@testing-library/react';
+import { renderWithTheme } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { Airline } from './Airline';
@@ -26,7 +27,7 @@ describe('Destination', () => {
   it('Renders <Destination /> component correctly', async () => {
     const prefixICAO = 'KL';
 
-    render(<Airline prefixICAO={prefixICAO} />);
+    renderWithTheme(<Airline prefixICAO={prefixICAO} />);
 
     expect(screen.getByText(/Loading/i)).toHaveTextContent('Loading...');
 
