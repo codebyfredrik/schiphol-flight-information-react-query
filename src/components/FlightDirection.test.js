@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { screen, cleanup } from '@testing-library/react';
+import { renderWithTheme } from './../utils/helpers/index';
 import { FlightDirection } from './FlightDirection';
 
 afterEach(cleanup);
 
 describe('FlightDirection', () => {
   it('Renders <FlightDirection /> component (arrival)', () => {
-    render(<FlightDirection flightDirection="A" />);
+    renderWithTheme(<FlightDirection flightDirection="A" />);
 
     const arrivalElement = screen.getByText(/arrival/i);
 
@@ -14,7 +15,7 @@ describe('FlightDirection', () => {
     expect(arrivalElement).toHaveTextContent('Arrival');
   });
   it('Renders <FlightDirection /> component (departure)', () => {
-    render(<FlightDirection flightDirection="D" />);
+    renderWithTheme(<FlightDirection flightDirection="D" />);
 
     const departureElement = screen.getByText(/departure/i);
 

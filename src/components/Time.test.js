@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { screen, cleanup } from '@testing-library/react';
+import { renderWithTheme } from './../utils/helpers/index';
 import { Time } from './Time';
 
 afterEach(cleanup);
 
 describe('Time', () => {
   test('Renders <Time /> component', () => {
-    render(<Time time="18:35:00" />);
+    renderWithTheme(<Time time="18:35:00" />);
 
     const element = screen.getByText(/18:35/i);
 
