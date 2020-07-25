@@ -19,9 +19,12 @@ const StyledFlight = styled.li`
   border-radius: 2px;
   padding: 1.25rem;
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
-  transition-property: background-color, box-shadow;
-  transition-duration: var(--transition-time);
-  transition-timing-function: ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: background-color, box-shadow;
+    transition-duration: var(--transition-time);
+    transition-timing-function: ease-in;
+  }
 `;
 
 const Container = styled.div`
@@ -84,7 +87,10 @@ const MiddleContainer = styled.div`
   justify-content: flex-start;
   border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-left: 1rem;
-  transition: border-left var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: border-left var(--transition-time) ease-in;
+  }
 
   @media screen and (min-width: 768px) {
      {
@@ -99,7 +105,10 @@ const RightContainer = styled.div`
   justify-content: flex-end;
   border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-left: 1rem;
-  transition: border-left var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: border-left var(--transition-time) ease-in;
+  }
 
   @media screen and (min-width: 490px) {
      {
@@ -134,9 +143,12 @@ const CodeShare = styled.div`
   margin-top: 1rem;
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.text};
-  transition-property: border-top, color;
-  transition-duration: var(--transition-time);
-  transition-timing-function: ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition-property: border-top, color;
+    transition-duration: var(--transition-time);
+    transition-timing-function: ease-in;
+  }
 `;
 
 const FlightStatus = styled(Tag)`
@@ -144,7 +156,10 @@ const FlightStatus = styled(Tag)`
   margin-right: 0.5rem;
   background-color: ${(props) => props.backgroundColor};
   color: ${({ theme }) => theme.colors.textTag};
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const FlightStatusWrapper = styled.div`
@@ -153,7 +168,10 @@ const FlightStatusWrapper = styled.div`
   @media screen and (min-width: 768px) {
     border-left: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-left: 1rem;
-    transition: border-left var(--transition-time) ease-in;
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      transition: border-left var(--transition-time) ease-in;
+    }
   }
 `;
 

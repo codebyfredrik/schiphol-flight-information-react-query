@@ -24,15 +24,20 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     background-color: ${({ theme }) => theme.colors.body};
-    transition: background-color var(--transition-time) ease-in;
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      transition: background-color var(--transition-time) ease-in;
+    }
   }
 
   :root {
-  --transition-time: 100ms;
+  --transition-time: 200ms;
   --min-tap-target-height: 48px;
+  --container-margin: 1.5rem;
     
     @media (min-width: ${(props) => props.theme.breakpoints.desktop}) {
     --min-tap-target-height: 32px;
+    --container-margin: 2rem;
     }
 }
 `;

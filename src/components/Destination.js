@@ -14,7 +14,10 @@ const query = async (key) => {
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const Destination = ({ route, className }) => {

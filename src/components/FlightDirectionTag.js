@@ -13,7 +13,10 @@ const StyledFlightDirectionTag = styled.span`
   font-size: 10px;
   line-height: 16px;
   height: 16px;
-  transition: background-color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: background-color var(--transition-time) ease-in;
+  }
 `;
 
 const FlightDirectionTag = ({ flightDirection, className }) => {

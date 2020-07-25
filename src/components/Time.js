@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 const StyledTime = styled.span`
   display: inline-block;
   color: ${({ theme }) => theme.colors.text};
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const Time = ({ time, className }) => {
