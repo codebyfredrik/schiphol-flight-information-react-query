@@ -23,9 +23,12 @@ const StyledOverlay = styled.div`
   bottom: 0;
   top: 0;
   z-index: 1;
-  animation-name: ${Animation};
-  animation-duration: 250ms;
-  animation-timing-function: cubic-bezier(0, 0.52, 0, 1);
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    animation-name: ${Animation};
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0, 0.52, 0, 1);
+  }
 `;
 
 const Content = styled.div`
@@ -62,7 +65,10 @@ const Option = styled.button`
       color: #000000;
       padding: 1rem;
     `}
-  transition: color 150ms ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color 150ms ease-in;
+  }
 
   &:hover {
     ${(props) =>

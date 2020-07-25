@@ -10,7 +10,10 @@ const StyledRowInformation = styled.li`
   list-style-type: none;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const RowInformation = ({ date }) => {

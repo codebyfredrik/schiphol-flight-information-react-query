@@ -6,7 +6,10 @@ import PropTypes from 'prop-types';
 export const StyledDate = styled.div`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const DisplayDate = ({ date }) => {

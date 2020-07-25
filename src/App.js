@@ -34,7 +34,7 @@ const WrapperContainer = styled.div`
 const StyledApp = styled.div`
   max-width: 1000px;
   margin: auto;
-  padding: 1rem;
+  padding: 0 1rem;
 `;
 
 const HeaderContainer = styled.div`
@@ -45,7 +45,7 @@ const HeaderContainer = styled.div`
 
 const Header = styled.header`
   background-color: #0b0e10;
-  margin-bottom: 2rem;
+  margin-bottom: var(--container-margin);
   border-bottom: 2px solid #ffd700;
 `;
 
@@ -79,7 +79,7 @@ const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
   padding: 0;
-  margin: 3rem 0 2rem 0;
+  margin: var(--container-margin) 0 2rem 0;
 `;
 
 const FlexContainer = styled.div`
@@ -104,9 +104,6 @@ const Spacer = styled.div`
 
 const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
-  transition-property: color, background-color;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in;
 
   &:disabled {
     cursor: default;
@@ -122,6 +119,11 @@ const Loading = styled.span`
   display: inline-block;
   margin: 3rem 0;
   font-weight: bold;
+  color: ${({ theme }) => theme.colors.text};
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const Error = styled.span`

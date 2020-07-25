@@ -12,7 +12,10 @@ const StyledTag = styled.span`
   height: 18px;
   line-height: 18px;
   color: ${({ theme }) => theme.colors.textTag};
-  transition: color var(--transition-time) ease-in;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const Tag = ({ label, className }) => {
