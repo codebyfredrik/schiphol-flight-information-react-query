@@ -14,7 +14,8 @@ const StyledTag = styled.span`
   color: ${({ theme }) => theme.colors.textTag};
 
   @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
+    transition: color var(--transition-time) ease-in,
+      background-color var(--transition-time) ease-in;
   }
 `;
 

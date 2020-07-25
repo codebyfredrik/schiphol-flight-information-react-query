@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { darken } from 'polished';
 import PropTypes from 'prop-types';
 import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
@@ -154,7 +155,11 @@ const CodeShare = styled.div`
 const FlightStatus = styled(Tag)`
   flex: 1 1 1rem;
   margin-right: 0.5rem;
-  background-color: ${(props) => props.backgroundColor};
+  /* background-color: ${(props) => props.backgroundColor}; */
+  background-color: ${(props) =>
+    props.isDarkMode
+      ? darken(0.1, props.backgroundColor)
+      : props.backgroundColor};
   color: ${({ theme }) => theme.colors.textTag};
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -179,7 +184,7 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
-const Flight = ({ flight }) => {
+const Flight = ({ flight, isDarkMode }) => {
   const {
     flightDirection,
     scheduleTime,
@@ -269,6 +274,7 @@ const Flight = ({ flight }) => {
                 key={item.statusCode}
                 label={item.status}
                 backgroundColor={item.backgroundColor}
+                isDarkMode={isDarkMode}
               />
             ))}
           </FlightStatusWrapper>

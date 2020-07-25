@@ -138,6 +138,7 @@ const App = () => {
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');
+  const isDarkMode = theme === 'light' ? false : true;
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   };
@@ -174,11 +175,11 @@ const App = () => {
           return (
             <React.Fragment key={item.id}>
               <RowInformation date={item.scheduleDate} />
-              <Flight flight={item} />
+              <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />
             </React.Fragment>
           );
         } else {
-          return <Flight key={item.id} flight={item} />;
+          return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
   };

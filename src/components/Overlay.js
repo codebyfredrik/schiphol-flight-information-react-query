@@ -55,13 +55,13 @@ const Option = styled.button`
   font-weight: 900;
   margin-bottom: 2rem;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #b0b3b8;
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
   ${(props) =>
     props.active === true &&
     css`
-      background-color: #ffd700;
+      background-color: ${({ theme }) => theme.colors.yellow};
       color: #000000;
       padding: 1rem;
     `}

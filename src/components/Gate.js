@@ -8,7 +8,7 @@ const StyledGate = styled.span`
   line-height: 24px;
   text-decoration: none;
   text-transform: uppercase;
-  background-color: #ffd700;
+  background-color: ${({ theme }) => theme.colors.yellow};
   color: #262b2f;
   font-size: 16px;
   padding: 0px 5px;
