@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import { DisplayDate } from './DisplayDate';
 
 const StyledRowInformation = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  color: ${({ theme }) => theme.colors.text};
   list-style-type: none;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;

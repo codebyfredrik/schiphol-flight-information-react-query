@@ -4,8 +4,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 export const StyledDate = styled.div`
-  font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
+  font-weight: bold;
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
