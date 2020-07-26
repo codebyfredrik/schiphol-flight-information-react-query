@@ -8,12 +8,16 @@ const StyledGate = styled.span`
   line-height: 24px;
   text-decoration: none;
   text-transform: uppercase;
-  background-color: #ffd700;
+  background-color: ${({ theme }) => theme.colors.yellow};
   color: #262b2f;
   font-size: 16px;
   padding: 0px 5px;
   border-radius: 4px;
   font-weight: bold;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: background-color var(--transition-time) ease-in;
+  }
 `;
 
 const Gate = ({ gate, className }) => {
