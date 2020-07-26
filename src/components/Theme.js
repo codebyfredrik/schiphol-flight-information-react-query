@@ -16,6 +16,7 @@ const lightTheme = {
   white: '#ffffff',
   grey20: 'rgba(0,0,0,0.05)',
   grey30: 'rgba(0,0,0,0.1)',
+  subTitle: '#ffffff',
 };
 
 const darkTheme = {
@@ -31,6 +32,7 @@ const darkTheme = {
   cardBackground: '#242526',
   pageCounterBg: '#3A3B3C',
   pageCounterText: '#ffd700',
+  subTitle: '#B0B3B8',
 };
 
 export { lightTheme, darkTheme };

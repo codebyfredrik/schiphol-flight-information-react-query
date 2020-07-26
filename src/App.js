@@ -46,14 +46,14 @@ const HeaderContainer = styled.div`
 const Header = styled.header`
   background-color: #0b0e10;
   margin-bottom: var(--container-margin);
-  border-bottom: 2px solid #ffd700;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
 `;
 
 const Title = styled.h1`
   margin: 0;
   font-size: 1.5rem;
   font-family: 'Source Sans Pro', sans-serif;
-  color: #ffd700;
+  color: ${({ theme }) => theme.colors.yellow};
 
   @media screen and (min-width: 380px) {
     font-size: 2rem;
@@ -62,16 +62,24 @@ const Title = styled.h1`
   @media screen and (min-width: 520px) {
     font-size: 2.5rem;
   }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
+  }
 `;
 
 const SubTitle = styled.h3`
   margin: 0;
   font-size: 1rem;
   font-family: 'Source Sans Pro', sans-serif;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.subTitle};
 
   @media screen and (min-width: 520px) {
     font-size: 1.5rem;
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
   }
 `;
 
@@ -117,7 +125,7 @@ const StyledButton = styled(Button)`
 
 const Loading = styled.span`
   display: inline-block;
-  margin: 3rem 0;
+  margin: var(--container-margin) 0 3rem 0;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
 
@@ -128,7 +136,7 @@ const Loading = styled.span`
 
 const Error = styled.span`
   display: inline-block;
-  margin: 3rem 0;
+  margin: var(--container-margin) 0 3rem 0;
   font-weight: bold;
   color: #ff0800;
 `;
