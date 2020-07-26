@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { screen, cleanup } from '@testing-library/react';
+import { renderWithTheme } from './../utils/helpers/index';
 import { Gate } from './Gate';
 
 afterEach(cleanup);
 
 describe('Gate', () => {
   test('Renders <Gate /> component', () => {
-    render(<Gate gate="D59" />);
+    renderWithTheme(<Gate gate="D59" />);
 
     const element = screen.getByText(/d59/i);
 
