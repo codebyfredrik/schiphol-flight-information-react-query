@@ -74,7 +74,7 @@ const Option = styled.button`
     ${(props) =>
       props.active === false &&
       css`
-        color: #ffd700;
+        color: ${({ theme }) => theme.colors.yellow};
       `}
     cursor: pointer;
   }
