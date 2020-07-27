@@ -1,13 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+import axios from './../helpers/axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 
 const query = async (key) => {
-  const { data } = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}${key}`
-  );
+  const { data } = await axios.get(key);
   return data;
 };
 
@@ -21,7 +19,7 @@ const StyledDestination = styled.span`
 `;
 
 const Destination = ({ route, className }) => {
-  const { status, data: result, error, isFetching } = useQuery(
+  const { data: result, error, isFetching } = useQuery(
     `/destinations/${route.destinations[0]}`,
     query,
     {

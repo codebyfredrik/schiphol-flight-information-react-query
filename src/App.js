@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import axios from 'axios';
+import axios from './helpers/axios';
 import moment from 'moment';
 import { useToggle } from './hooks/useToggle';
 import { useStickyState } from './hooks/useStickyState';
@@ -19,9 +19,9 @@ const query = async (key, { page = 0, flightDirection = '' }) => {
   let url;
 
   if (flightDirection) {
-    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+    url = `/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
   } else {
-    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+    url = `/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
   }
   const { data } = await axios.get(url);
   return data;
@@ -142,8 +142,7 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(270);
-  // const [apiLastPage, setApiLastPage] = useState();
+  const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');
@@ -152,18 +151,19 @@ const App = () => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   };
   const {
-    isLoading,
     isError,
+    isFetching,
+    isLoading,
+    isSuccess,
     error,
     resolvedData,
-    latestData,
-    isFetching,
   } = usePaginatedQuery(['flights', { page, flightDirection }], query, {});
+
   if (resolvedData) {
-    console.log(
-      `Frontend Page Fetched: ${page + 1}`,
-      `API Last Page: ${resolvedData.lastPage}`
-    );
+    /* Logging for troubleshooting */
+    // console.log(`Frontend Page Fetched: ${page}`);
+    // console.log(`API Last Page: ${resolvedData.lastPage - 1}`);
+    // console.log(` `);
   }
 
   useEffect(() => {
@@ -171,16 +171,18 @@ const App = () => {
       !isFetching &&
       !isLoading &&
       !error &&
+      isSuccess &&
       resolvedData &&
-      page + 1 < resolvedData.lastPage
+      page + 1 < resolvedData.lastPage - 1
     ) {
       queryCache.prefetchQuery(
         ['flights', { page: page + 1, flightDirection }],
         query
       );
-      console.log('Cache fetching data');
+      /* Logging for troubleshooting */
+      // console.log(`Cache Page Fetched: ${page + 1}`);
     }
-  }, [resolvedData, page, isFetching, isLoading, error]);
+  }, [resolvedData, isSuccess, page, isFetching, isLoading, error]);
 
   const renderList = () => {
     let currentDate = null;
@@ -243,13 +245,13 @@ const App = () => {
                 type="button"
                 onClick={() =>
                   setPage((prevState) => {
-                    return page + 1 === +resolvedData.lastPage
+                    return isSuccess && page === +resolvedData.lastPage - 1
                       ? prevState
                       : prevState + 1;
                   })
                 }
                 disabled={
-                  (resolvedData && page + 1 === +resolvedData.lastPage) ||
+                  (isSuccess && page === +resolvedData.lastPage - 1) ||
                   isFetching
                 }
               >
