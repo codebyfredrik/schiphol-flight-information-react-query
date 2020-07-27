@@ -19,7 +19,7 @@ const StyledDestination = styled.span`
 `;
 
 const Destination = ({ route, className }) => {
-  const { data: result, error, isFetching } = useQuery(
+  const { data: result, error, isLoading, isSuccess } = useQuery(
     `/destinations/${route.destinations[0]}`,
     query,
     {
@@ -30,11 +30,11 @@ const Destination = ({ route, className }) => {
 
   return (
     <>
-      {isFetching ? (
+      {isLoading ? (
         <StyledDestination className={className}>Loading...</StyledDestination>
       ) : error ? (
         <StyledDestination className={className}>Error</StyledDestination>
-      ) : result ? (
+      ) : isSuccess ? (
         <StyledDestination className={className}>
           {result.city} ({result.iata})
         </StyledDestination>

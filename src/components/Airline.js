@@ -20,7 +20,7 @@ const StyledAirline = styled.span`
 `;
 
 const Airline = ({ prefixICAO, className }) => {
-  const { data: result, error, isFetching } = useQuery(
+  const { data: result, error, isSuccess, isLoading } = useQuery(
     `/airlines/${prefixICAO}`,
     query,
     {
@@ -31,11 +31,11 @@ const Airline = ({ prefixICAO, className }) => {
 
   return (
     <>
-      {isFetching ? (
+      {isLoading ? (
         <StyledAirline className={className}>Loading...</StyledAirline>
       ) : error ? (
         <StyledAirline className={className}>Error</StyledAirline>
-      ) : result ? (
+      ) : isSuccess ? (
         <StyledAirline className={className}>{result.publicName}</StyledAirline>
       ) : null}
     </>
