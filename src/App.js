@@ -186,7 +186,8 @@ const App = () => {
 
   const renderList = () => {
     let currentDate = null;
-    return resolvedData.data.flights
+
+    const result = resolvedData.data.flights
       .filter((item) => item.flightName === item.mainFlight)
       .map((item) => {
         if (item.scheduleDate !== currentDate) {
@@ -201,6 +202,10 @@ const App = () => {
           return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
+    console.log(result);
+    if (result.length !== 0) {
+      return result;
+    }
   };
 
   const themeObject = {
