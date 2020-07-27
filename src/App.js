@@ -142,7 +142,8 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(275);
+  const [page, setPage] = useState(270);
+  // const [apiLastPage, setApiLastPage] = useState();
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');
@@ -158,24 +159,32 @@ const App = () => {
     latestData,
     isFetching,
   } = usePaginatedQuery(['flights', { page, flightDirection }], query, {});
+  if (resolvedData) {
+    console.log(
+      `Frontend Page Fetched: ${page + 1}`,
+      `API Last Page: ${resolvedData.lastPage}`
+    );
+  }
 
   useEffect(() => {
     if (
       !isFetching &&
       !isLoading &&
       !error &&
-      !latestData.flights.length < 20
+      resolvedData &&
+      page + 1 < resolvedData.lastPage
     ) {
       queryCache.prefetchQuery(
         ['flights', { page: page + 1, flightDirection }],
         query
       );
+      console.log('Cache fetching data');
     }
-  }, [latestData, page, isFetching, isLoading, error]);
+  }, [resolvedData, page, isFetching, isLoading, error]);
 
   const renderList = () => {
     let currentDate = null;
-    return resolvedData.flights
+    return resolvedData.data.flights
       .filter((item) => item.flightName === item.mainFlight)
       .map((item) => {
         if (item.scheduleDate !== currentDate) {
@@ -233,12 +242,15 @@ const App = () => {
               <StyledButton
                 type="button"
                 onClick={() =>
-                  setPage((prevState) =>
-                    !latestData ? prevState : prevState + 1
-                  )
+                  setPage((prevState) => {
+                    return page + 1 === +resolvedData.lastPage
+                      ? prevState
+                      : prevState + 1;
+                  })
                 }
                 disabled={
-                  !latestData || latestData.flights.length < 20 || isFetching
+                  (resolvedData && page + 1 === +resolvedData.lastPage) ||
+                  isFetching
                 }
               >
                 Next page
