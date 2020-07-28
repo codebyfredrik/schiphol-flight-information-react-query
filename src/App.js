@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import axios from './helpers/axios';
-import moment from 'moment';
 import { useToggle } from './hooks/useToggle';
 import { useStickyState } from './hooks/useStickyState';
 import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
-import { usePaginatedQuery, queryCache } from 'react-query';
+import { useFlights } from './hooks/useFlights';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Button } from './styles/Styles';
 import { Flight } from './components/Flight';
@@ -128,19 +126,6 @@ const Error = styled.span`
   color: #ff0800;
 `;
 
-const query = async (key, { page = 0, flightDirection = '' }) => {
-  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
-  let url;
-
-  if (flightDirection) {
-    url = `/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  } else {
-    url = `/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  }
-  const { data } = await axios.get(url);
-  return data;
-};
-
 const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
@@ -150,6 +135,7 @@ const App = () => {
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   };
+
   const {
     isError,
     isFetching,
@@ -157,7 +143,7 @@ const App = () => {
     isSuccess,
     error,
     resolvedData,
-  } = usePaginatedQuery(['flights', { page, flightDirection }], query, {});
+  } = useFlights(page, flightDirection);
 
   if (resolvedData) {
     /* Logging for troubleshooting */
@@ -165,24 +151,6 @@ const App = () => {
     // console.log(`API Last Page: ${resolvedData.lastPage - 1}`);
     // console.log(` `);
   }
-
-  useEffect(() => {
-    if (
-      !isFetching &&
-      !isLoading &&
-      !error &&
-      isSuccess &&
-      resolvedData &&
-      page + 1 < resolvedData.lastPage - 1
-    ) {
-      queryCache.prefetchQuery(
-        ['flights', { page: page + 1, flightDirection }],
-        query
-      );
-      /* Logging for troubleshooting */
-      // console.log(`Cache Page Fetched: ${page + 1}`);
-    }
-  }, [resolvedData, isSuccess, page, isFetching, isLoading, error]);
 
   const renderList = () => {
     let currentDate = null;
@@ -202,7 +170,7 @@ const App = () => {
           return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
-    console.log(result);
+    // console.log(result);
     if (result.length !== 0) {
       return result;
     }

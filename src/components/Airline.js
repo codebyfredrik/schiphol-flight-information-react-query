@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from './../helpers/axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useQuery } from 'react-query';
+import { useAirline } from './../hooks/useAirline';
 
 const StyledAirline = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -13,21 +12,8 @@ const StyledAirline = styled.span`
   }
 `;
 
-const query = async (key) => {
-  const { data } = await axios.get(key);
-
-  return data;
-};
-
 const Airline = ({ prefixICAO, className }) => {
-  const { data: result, error, isSuccess, isLoading } = useQuery(
-    `/airlines/${prefixICAO}`,
-    query,
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-    }
-  );
+  const { result, error, isSuccess, isLoading } = useAirline(prefixICAO);
 
   return (
     <>

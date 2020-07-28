@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from './../helpers/axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useQuery } from 'react-query';
+import { useDestination } from './../hooks/useDestination';
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -13,20 +12,8 @@ const StyledDestination = styled.span`
   }
 `;
 
-const query = async (key) => {
-  const { data } = await axios.get(key);
-  return data;
-};
-
 const Destination = ({ route, className }) => {
-  const { data: result, error, isLoading, isSuccess } = useQuery(
-    `/destinations/${route.destinations[0]}`,
-    query,
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-    }
-  );
+  const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
     <>
@@ -50,4 +37,4 @@ Destination.propTypes = {
   className: PropTypes.string,
 };
 
-export { Destination, query };
+export { Destination };
