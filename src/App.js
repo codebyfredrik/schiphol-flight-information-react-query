@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import axios from 'axios';
+import axios from './helpers/axios';
 import moment from 'moment';
 import { useToggle } from './hooks/useToggle';
 import { useStickyState } from './hooks/useStickyState';
@@ -13,19 +13,6 @@ import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
 import { bp } from './styles/constants';
-
-const query = async (key, { page = 0, flightDirection = '' }) => {
-  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
-  let url;
-
-  if (flightDirection) {
-    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  } else {
-    url = `${process.env.REACT_APP_API_BASE_URL}/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  }
-  const { data } = await axios.get(url);
-  return data;
-};
 
 const WrapperContainer = styled.div`
   position: relative;
@@ -141,8 +128,21 @@ const Error = styled.span`
   color: #ff0800;
 `;
 
+const query = async (key, { page = 0, flightDirection = '' }) => {
+  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+  let url;
+
+  if (flightDirection) {
+    url = `/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  } else {
+    url = `/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  }
+  const { data } = await axios.get(url);
+  return data;
+};
+
 const App = () => {
-  const [page, setPage] = useState(275);
+  const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');
@@ -151,31 +151,43 @@ const App = () => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   };
   const {
-    isLoading,
     isError,
+    isFetching,
+    isLoading,
+    isSuccess,
     error,
     resolvedData,
-    latestData,
-    isFetching,
   } = usePaginatedQuery(['flights', { page, flightDirection }], query, {});
+
+  if (resolvedData) {
+    /* Logging for troubleshooting */
+    // console.log(`Frontend Page Fetched: ${page}`);
+    // console.log(`API Last Page: ${resolvedData.lastPage - 1}`);
+    // console.log(` `);
+  }
 
   useEffect(() => {
     if (
       !isFetching &&
       !isLoading &&
       !error &&
-      !latestData.flights.length < 20
+      isSuccess &&
+      resolvedData &&
+      page + 1 < resolvedData.lastPage - 1
     ) {
       queryCache.prefetchQuery(
         ['flights', { page: page + 1, flightDirection }],
         query
       );
+      /* Logging for troubleshooting */
+      // console.log(`Cache Page Fetched: ${page + 1}`);
     }
-  }, [latestData, page, isFetching, isLoading, error]);
+  }, [resolvedData, isSuccess, page, isFetching, isLoading, error]);
 
   const renderList = () => {
     let currentDate = null;
-    return resolvedData.flights
+
+    const result = resolvedData.data.flights
       .filter((item) => item.flightName === item.mainFlight)
       .map((item) => {
         if (item.scheduleDate !== currentDate) {
@@ -190,6 +202,10 @@ const App = () => {
           return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
+    console.log(result);
+    if (result.length !== 0) {
+      return result;
+    }
   };
 
   const themeObject = {
@@ -233,12 +249,15 @@ const App = () => {
               <StyledButton
                 type="button"
                 onClick={() =>
-                  setPage((prevState) =>
-                    !latestData ? prevState : prevState + 1
-                  )
+                  setPage((prevState) => {
+                    return isSuccess && page === +resolvedData.lastPage - 1
+                      ? prevState
+                      : prevState + 1;
+                  })
                 }
                 disabled={
-                  !latestData || latestData.flights.length < 20 || isFetching
+                  (isSuccess && page === +resolvedData.lastPage - 1) ||
+                  isFetching
                 }
               >
                 Next page
