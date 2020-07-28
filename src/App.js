@@ -202,7 +202,7 @@ const App = () => {
           return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
-    console.log(result);
+    // console.log(result);
     if (result.length !== 0) {
       return result;
     }
