@@ -4,11 +4,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 
-const query = async (key) => {
-  const { data } = await axios.get(key);
-  return data;
-};
-
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
@@ -17,6 +12,11 @@ const StyledDestination = styled.span`
     transition: color var(--transition-time) ease-in;
   }
 `;
+
+const query = async (key) => {
+  const { data } = await axios.get(key);
+  return data;
+};
 
 const Destination = ({ route, className }) => {
   const { data: result, error, isLoading, isSuccess } = useQuery(

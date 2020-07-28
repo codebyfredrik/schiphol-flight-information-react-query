@@ -4,12 +4,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-query';
 
-const query = async (key) => {
-  const { data } = await axios.get(key);
-
-  return data;
-};
-
 const StyledAirline = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-size: 0.875rem;
@@ -18,6 +12,12 @@ const StyledAirline = styled.span`
     transition: color var(--transition-time) ease-in;
   }
 `;
+
+const query = async (key) => {
+  const { data } = await axios.get(key);
+
+  return data;
+};
 
 const Airline = ({ prefixICAO, className }) => {
   const { data: result, error, isSuccess, isLoading } = useQuery(

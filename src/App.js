@@ -14,19 +14,6 @@ import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
 import { bp } from './styles/constants';
 
-const query = async (key, { page = 0, flightDirection = '' }) => {
-  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
-  let url;
-
-  if (flightDirection) {
-    url = `/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  } else {
-    url = `/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
-  }
-  const { data } = await axios.get(url);
-  return data;
-};
-
 const WrapperContainer = styled.div`
   position: relative;
 `;
@@ -141,8 +128,21 @@ const Error = styled.span`
   color: #ff0800;
 `;
 
+const query = async (key, { page = 0, flightDirection = '' }) => {
+  const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
+  let url;
+
+  if (flightDirection) {
+    url = `/${key}?flightDirection=${flightDirection}&fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  } else {
+    url = `/${key}?fromDateTime=${dateTimeString}&page=${page}&searchDateTimeField=scheduleDateTime&sort=+scheduleDate,+scheduleTime`;
+  }
+  const { data } = await axios.get(url);
+  return data;
+};
+
 const App = () => {
-  const [page, setPage] = useState(270);
+  const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');

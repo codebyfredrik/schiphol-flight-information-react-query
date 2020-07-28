@@ -155,7 +155,6 @@ const CodeShare = styled.div`
 const FlightStatus = styled(Tag)`
   flex: 1 1 1rem;
   margin-right: 0.5rem;
-  /* background-color: ${(props) => props.backgroundColor}; */
   background-color: ${(props) =>
     props.isDarkMode
       ? darken(0.1, props.backgroundColor)
