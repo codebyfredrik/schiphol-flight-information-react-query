@@ -142,7 +142,7 @@ const Error = styled.span`
 `;
 
 const App = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(270);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const [theme, setTheme] = useStickyState('light', 'theme');
