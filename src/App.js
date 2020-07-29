@@ -130,7 +130,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
-  const { themeToggler, isDarkMode } = useDarkMode('dark');
+  const { darkModeToggler, isDarkMode } = useDarkMode('dark');
 
   const {
     isError,
@@ -227,7 +227,7 @@ const App = () => {
                 Next page
               </StyledButton>
               <Spacer />
-              <StyledButton type="button" onClick={themeToggler}>
+              <StyledButton type="button" onClick={darkModeToggler}>
                 {isDarkMode ? 'Light ' : 'Dark '} theme
               </StyledButton>
               <StyledButton type="button" onClick={setOverlayIsVisible}>
