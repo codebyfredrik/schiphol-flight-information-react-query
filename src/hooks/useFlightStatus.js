@@ -7,16 +7,12 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
   const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
   const excludedDepartureStatus = new Set(['SCH']);
 
-  // console.log(publicState);
   useEffect(() => {
     let tempArray = [];
     let statusResults = [];
     let publicState = new Set(publicFlightState.flightStates);
-    // console.log(publicState);
-    // console.log('useFlightStatus');
-    if (flightDirection === 'A') {
-      // console.log('Arrival', publicState);
 
+    if (flightDirection === 'A') {
       tempArray = new Set(
         [...publicState].filter((x) => !excludedArrivalStatus.has(x))
       );
@@ -29,10 +25,7 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
         });
       });
       setFlightStatus(statusResults);
-      // console.log('useEffect Arrival', flightStatus);
     } else {
-      // console.log('Departure', publicState);
-
       tempArray = new Set(
         [...publicState].filter((x) => !excludedDepartureStatus.has(x))
       );
@@ -45,10 +38,8 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
         });
       });
       setFlightStatus(statusResults);
-      // console.log('useEffect Departure', flightStatus);
     }
   }, []);
-  console.log(flightStatus);
   return { flightStatus };
 };
 
