@@ -1,4 +1,7 @@
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { darken } from 'polished';
+import { bp } from '../styles/constants';
 
 const lightTheme = {
   body: 'rgb(235,235,235)',
@@ -35,4 +38,13 @@ const darkTheme = {
   subTitle: '#B0B3B8',
 };
 
-export { lightTheme, darkTheme };
+const Theme = ({ isDarkMode, children }) => {
+  const themeObject = {
+    colors: isDarkMode ? darkTheme : lightTheme,
+    breakpoints: bp,
+  };
+
+  return <ThemeProvider theme={themeObject}>{children}</ThemeProvider>;
+};
+
+export { Theme };

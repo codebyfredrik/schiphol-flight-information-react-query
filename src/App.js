@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { useToggle } from './hooks/useToggle';
 import { useDarkMode } from './hooks/useDarkMode';
-import { lightTheme, darkTheme } from './components/Theme';
+import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { useFlights } from './hooks/useFlights';
 import { GlobalStyle } from './components/GlobalStyle';
@@ -10,7 +10,6 @@ import { Button } from './styles/Styles';
 import { Flight } from './components/Flight';
 import { RowInformation } from './components/RowInformation';
 import { Overlay } from './components/Overlay';
-import { bp } from './styles/constants';
 
 const WrapperContainer = styled.div`
   position: relative;
@@ -172,13 +171,8 @@ const App = () => {
     }
   };
 
-  const themeObject = {
-    colors: isDarkMode ? darkTheme : lightTheme,
-    breakpoints: bp,
-  };
-
   return (
-    <ThemeProvider theme={themeObject}>
+    <Theme isDarkMode={isDarkMode}>
       <>
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
@@ -246,7 +240,7 @@ const App = () => {
           </StyledApp>
         </WrapperContainer>
       </>
-    </ThemeProvider>
+    </Theme>
   );
 };
 
