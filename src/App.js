@@ -130,7 +130,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
-  const { themeToggler, isDarkMode } = useDarkMode();
+  const { themeToggler, isDarkMode } = useDarkMode('dark');
 
   const {
     isError,

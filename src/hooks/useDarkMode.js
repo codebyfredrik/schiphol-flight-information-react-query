@@ -6,7 +6,7 @@ const useDarkMode = () => {
   const isDarkMode = theme === 'light' ? false : true;
   const themeToggler = useCallback(() => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
-  }, [theme, setTheme]);
+  });
 
   return { themeToggler, isDarkMode };
 };
