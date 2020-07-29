@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { darken } from 'polished';
 import PropTypes from 'prop-types';
-import { departureStatus } from './../data/departureStatus';
-import { arrivalStatus } from './../data/arrivalStatus';
+// import { departureStatus } from './../data/departureStatus';
+// import { arrivalStatus } from './../data/arrivalStatus';
+import { useFlightStatus } from './../hooks/useFlightStatus';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
@@ -204,35 +205,36 @@ const Flight = ({ flight, isDarkMode }) => {
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
   if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
 
-  const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
-  const excludedDepartureStatus = new Set(['SCH']);
-  let publicState = new Set(publicFlightState.flightStates);
-  let tempArray = [];
-  let statusResults = [];
+  const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
+  // const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
+  // const excludedDepartureStatus = new Set(['SCH']);
+  // let publicState = new Set(publicFlightState.flightStates);
+  // let tempArray = [];
+  // let statusResults = [];
 
-  if (flightDirection === 'A') {
-    tempArray = new Set(
-      [...publicState].filter((x) => !excludedArrivalStatus.has(x))
-    );
-    Array.from(tempArray).map((item) => {
-      return arrivalStatus.map((status) => {
-        if (status.statusCode === item) {
-          statusResults.push(status);
-        }
-      });
-    });
-  } else {
-    tempArray = new Set(
-      [...publicState].filter((x) => !excludedDepartureStatus.has(x))
-    );
-    Array.from(tempArray).map((item) => {
-      return departureStatus.map((status) => {
-        if (status.statusCode === item) {
-          statusResults.push(status);
-        }
-      });
-    });
-  }
+  // if (flightDirection === 'A') {
+  //   tempArray = new Set(
+  //     [...publicState].filter((x) => !excludedArrivalStatus.has(x))
+  //   );
+  //   Array.from(tempArray).map((item) => {
+  //     return arrivalStatus.map((status) => {
+  //       if (status.statusCode === item) {
+  //         statusResults.push(status);
+  //       }
+  //     });
+  //   });
+  // } else {
+  //   tempArray = new Set(
+  //     [...publicState].filter((x) => !excludedDepartureStatus.has(x))
+  //   );
+  //   Array.from(tempArray).map((item) => {
+  //     return departureStatus.map((status) => {
+  //       if (status.statusCode === item) {
+  //         statusResults.push(status);
+  //       }
+  //     });
+  //   });
+  // }
 
   return (
     <StyledFlight>
@@ -268,14 +270,17 @@ const Flight = ({ flight, isDarkMode }) => {
             </FlightInfoWrapper>
           </FlightWrapper>
           <FlightStatusWrapper>
-            {statusResults.slice(0, 1).map((item) => (
-              <FlightStatus
-                key={item.statusCode}
-                label={item.status}
-                backgroundColor={item.backgroundColor}
-                isDarkMode={isDarkMode}
-              />
-            ))}
+            {flightStatus &&
+              flightStatus
+                .slice(0, 1)
+                .map((item) => (
+                  <FlightStatus
+                    key={item.statusCode}
+                    label={item.status}
+                    backgroundColor={item.backgroundColor}
+                    isDarkMode={isDarkMode}
+                  />
+                ))}
           </FlightStatusWrapper>
         </MiddleContainer>
         <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
