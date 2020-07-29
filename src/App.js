@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useToggle } from './hooks/useToggle';
-import { useStickyState } from './hooks/useStickyState';
+import { useDarkMode } from './hooks/useDarkMode';
 import { lightTheme, darkTheme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { useFlights } from './hooks/useFlights';
@@ -130,11 +130,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
-  const [theme, setTheme] = useStickyState('light', 'theme');
-  const isDarkMode = theme === 'light' ? false : true;
-  const themeToggler = () => {
-    theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
-  };
+  const { themeToggler, isDarkMode } = useDarkMode();
 
   const {
     isError,
@@ -177,7 +173,7 @@ const App = () => {
   };
 
   const themeObject = {
-    colors: theme === 'light' ? lightTheme : darkTheme,
+    colors: isDarkMode ? darkTheme : lightTheme,
     breakpoints: bp,
   };
 
@@ -232,7 +228,7 @@ const App = () => {
               </StyledButton>
               <Spacer />
               <StyledButton type="button" onClick={themeToggler}>
-                {theme === 'light' ? 'Dark ' : 'Light '} theme
+                {isDarkMode ? 'Light ' : 'Dark '} theme
               </StyledButton>
               <StyledButton type="button" onClick={setOverlayIsVisible}>
                 Filter
