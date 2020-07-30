@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const useGetTime = (timestamp) => {
-  const [time, setTime] = useState(null);
+  let time = null;
 
-  useEffect(() => {
-    if (timestamp) {
-      const temp = moment(timestamp).format('HH:mm');
-      setTime(temp);
-    }
-  }, [timestamp]);
+  if (timestamp) {
+    time = moment(timestamp).format('HH:mm');
+  }
 
   return time;
 };

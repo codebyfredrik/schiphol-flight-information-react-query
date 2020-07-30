@@ -13,17 +13,9 @@ const StyledTime = styled.span`
 `;
 
 const Time = ({ time, className }) => {
-  const formattedTime = time.split(':');
-  // console.log(time);
-  // const formattedTime = useGetTime(time);
-  // console.log(formattedTime);
+  const formattedTime = useGetTime(time);
 
-  return (
-    <StyledTime
-      className={className}
-    >{`${formattedTime[0]}:${formattedTime[1]}`}</StyledTime>
-  );
-  // return <StyledTime className={className}>{formattedTime}</StyledTime>;
+  return <StyledTime className={className}>{formattedTime}</StyledTime>;
 };
 
 Time.propTypes = {
