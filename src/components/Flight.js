@@ -10,7 +10,6 @@ import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
-import { useGetTime } from './../hooks/useGetTime';
 
 const StyledFlight = styled.li`
   display: flex;
@@ -186,7 +185,6 @@ const FlightWrapper = styled.div`
 const Flight = ({ flight, isDarkMode }) => {
   const {
     flightDirection,
-    scheduleTime,
     scheduleDateTime,
     estimatedLandingTime,
     actualLandingTime,
@@ -199,19 +197,12 @@ const Flight = ({ flight, isDarkMode }) => {
     gate,
   } = flight;
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
-  let estimatedTime, actualTime;
-  console.log(flight);
-  // console.log(scheduleDateTime);
-  // const time = useGetTime(scheduleDateTime);
-  // console.log('Converted time: ', time);
+  let estimatedTime = null,
+    actualTime = null;
 
-  if (estimatedLandingTime) estimatedTime = estimatedLandingTime.slice(11, 19);
-  if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
-  if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
-
-  // if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
-  // if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
-  // if (actualLandingTime) actualTime = actualLandingTime;
+  if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
+  if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
+  if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
     <StyledFlight>
@@ -220,7 +211,10 @@ const Flight = ({ flight, isDarkMode }) => {
           <TimeWrapper>
             {flightDirection === 'A' ? (
               <>
-                <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
+                <ScheduleTime
+                  time={scheduleDateTime}
+                  estimated={estimatedTime}
+                />
                 {actualLandingTime ? (
                   <ActualArrivalTime time={actualTime} />
                 ) : estimatedTime ? (
@@ -229,7 +223,10 @@ const Flight = ({ flight, isDarkMode }) => {
               </>
             ) : (
               <>
-                <ScheduleTime time={scheduleTime} estimated={estimatedTime} />
+                <ScheduleTime
+                  time={scheduleDateTime}
+                  estimated={estimatedTime}
+                />
                 {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
               </>
             )}
