@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { useFormatTime } from '../hooks/useFormatTime';
 import PropTypes from 'prop-types';
 
 export const StyledDate = styled.div`
@@ -13,18 +14,18 @@ export const StyledDate = styled.div`
 `;
 
 const DisplayDate = ({ date }) => {
-  const rawDate = moment(date);
+  const { momentTimestamp, formattedTimestamp } = useFormatTime(date, 'D MMMM');
   const today = moment().endOf('day');
   const tomorrow = moment().add(1, 'day').endOf('day');
   let phrase = '';
 
-  if (rawDate < today) {
+  if (momentTimestamp < today) {
     phrase = 'Today, ';
-  } else if (rawDate < tomorrow) {
+  } else if (momentTimestamp < tomorrow) {
     phrase = 'Tomorrow, ';
   }
 
-  return <StyledDate>{`${phrase}${rawDate.format('D MMMM')}`}</StyledDate>;
+  return <StyledDate>{`${phrase}${formattedTimestamp}`}</StyledDate>;
 };
 
 DisplayDate.propTypes = {
