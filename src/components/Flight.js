@@ -244,15 +244,14 @@ const Flight = ({ flight, isDarkMode }) => {
             </FlightInfoWrapper>
           </FlightWrapper>
           <FlightStatusWrapper>
-            {flightStatus &&
-              flightStatus.map((item) => (
-                <FlightStatus
-                  key={item.statusCode}
-                  label={item.status}
-                  backgroundColor={item.backgroundColor}
-                  isDarkMode={isDarkMode}
-                />
-              ))}
+            {flightStatus.map((item) => (
+              <FlightStatus
+                key={item.statusCode}
+                label={item.status}
+                backgroundColor={item.backgroundColor}
+                isDarkMode={isDarkMode}
+              />
+            ))}
           </FlightStatusWrapper>
         </MiddleContainer>
         <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
