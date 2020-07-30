@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useGetTime } from './../hooks/useGetTime';
 
 const StyledTime = styled.span`
   display: inline-block;
@@ -13,12 +14,16 @@ const StyledTime = styled.span`
 
 const Time = ({ time, className }) => {
   const formattedTime = time.split(':');
+  // console.log(time);
+  // const formattedTime = useGetTime(time);
+  // console.log(formattedTime);
 
   return (
     <StyledTime
       className={className}
     >{`${formattedTime[0]}:${formattedTime[1]}`}</StyledTime>
   );
+  // return <StyledTime className={className}>{formattedTime}</StyledTime>;
 };
 
 Time.propTypes = {

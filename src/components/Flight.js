@@ -10,6 +10,7 @@ import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
+import { useGetTime } from './../hooks/useGetTime';
 
 const StyledFlight = styled.li`
   display: flex;
@@ -186,6 +187,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const {
     flightDirection,
     scheduleTime,
+    scheduleDateTime,
     estimatedLandingTime,
     actualLandingTime,
     actualOffBlockTime,
@@ -198,10 +200,18 @@ const Flight = ({ flight, isDarkMode }) => {
   } = flight;
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
   let estimatedTime, actualTime;
+  console.log(flight);
+  // console.log(scheduleDateTime);
+  // const time = useGetTime(scheduleDateTime);
+  // console.log('Converted time: ', time);
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime.slice(11, 19);
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime.slice(11, 19);
   if (actualLandingTime) actualTime = actualLandingTime.slice(11, 19);
+
+  // if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
+  // if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
+  // if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
     <StyledFlight>
