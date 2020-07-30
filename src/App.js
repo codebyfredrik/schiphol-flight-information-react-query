@@ -194,6 +194,13 @@ const App = () => {
         <WrapperContainer>
           <StyledApp>
             <FlexContainer>
+              <StyledButton type="button" onClick={toggleDarkMode}>
+                {isDarkMode ? 'Light ' : 'Dark '} theme
+              </StyledButton>
+              <StyledButton type="button" onClick={setOverlayIsVisible}>
+                Filter
+              </StyledButton>
+              <Spacer />
               <StyledButton
                 type="button"
                 onClick={() =>
@@ -219,13 +226,6 @@ const App = () => {
                 }
               >
                 Next page
-              </StyledButton>
-              <Spacer />
-              <StyledButton type="button" onClick={toggleDarkMode}>
-                {isDarkMode ? 'Light ' : 'Dark '} theme
-              </StyledButton>
-              <StyledButton type="button" onClick={setOverlayIsVisible}>
-                Filter
               </StyledButton>
             </FlexContainer>
             <div>
