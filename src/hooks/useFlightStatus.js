@@ -3,7 +3,7 @@ import { departureStatus } from './../data/departureStatus';
 import { arrivalStatus } from './../data/arrivalStatus';
 
 const useFlightStatus = (publicFlightState, flightDirection) => {
-  const [flightStatus, setFlightStatus] = useState();
+  const [flightStatus, setFlightStatus] = useState(null);
 
   useEffect(() => {
     let tempArray = [];
@@ -24,8 +24,8 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
           }
         });
       });
-      setFlightStatus(statusResults);
-    } else {
+      setFlightStatus(statusResults.slice(0, 1));
+    } else if (flightDirection === 'D') {
       tempArray = new Set(
         [...publicState].filter((x) => !excludedDepartureStatus.has(x))
       );
@@ -37,9 +37,10 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
           }
         });
       });
-      setFlightStatus(statusResults);
+      setFlightStatus(statusResults.slice(0, 1));
     }
   }, [flightDirection, publicFlightState.flightStates]);
+
   return { flightStatus };
 };
 
