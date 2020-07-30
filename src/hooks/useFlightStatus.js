@@ -4,12 +4,12 @@ import { arrivalStatus } from './../data/arrivalStatus';
 
 const useFlightStatus = (publicFlightState, flightDirection) => {
   const [flightStatus, setFlightStatus] = useState();
-  const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
-  const excludedDepartureStatus = new Set(['SCH']);
 
   useEffect(() => {
     let tempArray = [];
     let statusResults = [];
+    const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
+    const excludedDepartureStatus = new Set(['SCH']);
     let publicState = new Set(publicFlightState.flightStates);
 
     if (flightDirection === 'A') {
@@ -39,7 +39,7 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
       });
       setFlightStatus(statusResults);
     }
-  }, []);
+  }, [flightDirection, publicFlightState.flightStates]);
   return { flightStatus };
 };
 
