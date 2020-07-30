@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useGetTime } from './../hooks/useGetTime';
+import { useFormatTime } from '../hooks/useFormatTime';
 
 const StyledTime = styled.span`
   display: inline-block;
@@ -13,9 +13,9 @@ const StyledTime = styled.span`
 `;
 
 const Time = ({ time, className }) => {
-  const formattedTime = useGetTime(time);
+  const { formattedTimestamp } = useFormatTime(time, 'HH:mm');
 
-  return <StyledTime className={className}>{formattedTime}</StyledTime>;
+  return <StyledTime className={className}>{formattedTimestamp}</StyledTime>;
 };
 
 Time.propTypes = {
