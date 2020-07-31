@@ -27,7 +27,8 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #0b0e10;
+  /* background-color: #0b0e10; */
+  background-color: #210e71;
   margin-bottom: var(--container-margin);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
 `;
@@ -35,15 +36,18 @@ const Header = styled.header`
 const Title = styled.h1`
   margin: 0;
   font-size: 1.5rem;
+  line-height: 1.5rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.yellow};
 
   @media screen and (min-width: 380px) {
     font-size: 2rem;
+    line-height: 2rem;
   }
 
   @media screen and (min-width: 520px) {
     font-size: 2.5rem;
+    line-height: 2.5rem;
   }
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -53,12 +57,16 @@ const Title = styled.h1`
 
 const SubTitle = styled.h3`
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.5rem;
+  line-height: 0.5rem;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 
   @media screen and (min-width: 520px) {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
   }
 
   @media screen and (prefers-reduced-motion: no-preference) {

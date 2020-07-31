@@ -47,4 +47,4 @@ const Theme = ({ isDarkMode, children }) => {
   return <ThemeProvider theme={themeObject}>{children}</ThemeProvider>;
 };
 
-export { Theme };
+export { Theme, lightTheme };
