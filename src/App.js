@@ -107,6 +107,7 @@ const Spacer = styled.div`
 
 const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.borderButton};
 
   &:disabled {
     cursor: default;
