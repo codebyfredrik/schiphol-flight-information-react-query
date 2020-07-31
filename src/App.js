@@ -59,7 +59,6 @@ const SubTitle = styled.h3`
   font-size: 0.5rem;
   line-height: 0.5rem;
   margin-top: 0.25rem;
-  text-transform: uppercase;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 
@@ -75,6 +74,7 @@ const SubTitle = styled.h3`
 
 const Heading = styled.h3`
   color: ${({ theme }) => theme.colors.pageHeading};
+  text-transform: uppercase;
 `;
 
 const Flights = styled.ul`
