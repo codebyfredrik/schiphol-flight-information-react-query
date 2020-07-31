@@ -27,9 +27,7 @@ const useRenderFlights = (resolvedData, isDarkMode) => {
     }
   };
 
-  const test = renderFlights();
-
-  return test;
+  return { renderFlights };
 };
 
 export { useRenderFlights };

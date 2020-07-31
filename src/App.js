@@ -138,9 +138,8 @@ const App = () => {
     error,
     resolvedData,
   } = useFlights(page, flightDirection);
-  const { test } = useRenderFlights(resolvedData, isDarkMode);
 
-  console.log(typeof test);
+  const { renderFlights } = useRenderFlights(resolvedData, isDarkMode);
 
   if (resolvedData) {
     /* Logging for troubleshooting */
@@ -148,30 +147,6 @@ const App = () => {
     // console.log(`API Last Page: ${resolvedData.lastPage - 1}`);
     // console.log(` `);
   }
-
-  // const renderList = () => {
-  //   let currentDate = null;
-
-  //   const result = resolvedData.data.flights
-  //     .filter((item) => item.flightName === item.mainFlight)
-  //     .map((item) => {
-  //       if (item.scheduleDate !== currentDate) {
-  //         currentDate = item.scheduleDate;
-  //         return (
-  //           <React.Fragment key={item.id}>
-  //             <RowInformation date={item.scheduleDate} />
-  //             <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />
-  //           </React.Fragment>
-  //         );
-  //       } else {
-  //         return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
-  //       }
-  //     });
-  //   // console.log(result);
-  //   if (result.length !== 0) {
-  //     return result;
-  //   }
-  // };
 
   return (
     <Theme isDarkMode={isDarkMode}>
@@ -236,7 +211,7 @@ const App = () => {
               ) : isError ? (
                 <Error>Error: {error.message}</Error>
               ) : (
-                <Flights>{test}</Flights>
+                <Flights>{renderFlights()}</Flights>
               )}
             </div>
           </StyledApp>
