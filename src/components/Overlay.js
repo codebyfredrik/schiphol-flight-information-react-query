@@ -17,7 +17,7 @@ const StyledOverlay = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: #210e71;
   right: 0;
   left: 0;
   bottom: 0;
@@ -55,14 +55,14 @@ const Option = styled.button`
   font-weight: 900;
   margin-bottom: 2rem;
   text-transform: uppercase;
-  color: #b0b3b8;
+  color: ${({ theme }) => theme.colors.subTitle};
   text-decoration: none;
   font-family: 'Source Sans Pro', sans-serif;
   ${(props) =>
     props.active === true &&
     css`
       background-color: ${({ theme }) => theme.colors.yellow};
-      color: #000000;
+      color: #210e71;
       padding: 1rem;
     `}
 

@@ -27,7 +27,6 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = styled.header`
-  /* background-color: #0b0e10; */
   background-color: #210e71;
   margin-bottom: var(--container-margin);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
@@ -74,6 +73,10 @@ const SubTitle = styled.h3`
   }
 `;
 
+const Heading = styled.h3`
+  color: ${({ theme }) => theme.colors.pageHeading};
+`;
+
 const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
@@ -86,6 +89,7 @@ const FlexContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 0.5rem;
+  margin: 1.5rem 0 2rem 0;
 
   @media screen and (min-width: 680px) {
     grid-template-columns: 9em 9em auto 9em 9em;
@@ -178,6 +182,15 @@ const App = () => {
         )}
         <WrapperContainer>
           <StyledApp>
+            <div>
+              <Heading>
+                {flightDirection === 'A'
+                  ? 'Arrival flights'
+                  : flightDirection === 'D'
+                  ? 'Departure flights'
+                  : 'Arrival and departure flights'}
+              </Heading>
+            </div>
             <FlexContainer>
               <StyledButton type="button" onClick={toggleDarkMode}>
                 {isDarkMode ? 'Light ' : 'Dark '} theme

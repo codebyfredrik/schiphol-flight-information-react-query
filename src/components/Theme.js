@@ -20,6 +20,7 @@ const lightTheme = {
   grey20: 'rgba(0,0,0,0.05)',
   grey30: 'rgba(0,0,0,0.1)',
   subTitle: '#ffffff',
+  pageHeading: '#210e71',
 };
 
 const darkTheme = {
@@ -36,6 +37,7 @@ const darkTheme = {
   pageCounterBg: '#3A3B3C',
   pageCounterText: '#ffd700',
   subTitle: '#B0B3B8',
+  pageHeading: '#B0B3B8',
 };
 
 const Theme = ({ isDarkMode, children }) => {
