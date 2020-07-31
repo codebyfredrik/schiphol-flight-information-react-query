@@ -14,7 +14,7 @@ export const StyledDate = styled.div`
 `;
 
 const DisplayDate = ({ date }) => {
-  const { momentTimestamp, formattedTimestamp } = useFormatTime(date, 'D MMMM');
+  const { momentTimestamp, formattedTimestamp } = useFormatTime(date, 'MMMM D');
   const today = moment().endOf('day');
   const tomorrow = moment().add(1, 'day').endOf('day');
   let phrase = '';
