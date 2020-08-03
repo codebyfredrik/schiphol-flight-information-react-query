@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { DisplayDate } from './DisplayDate';
+import { UpdateIndicator } from './../components/UpdateIndicator';
 
 const StyledRowInformation = styled.li`
+  display: flex;
+  justify-content: space-between;
   color: ${({ theme }) => theme.colors.text};
   list-style-type: none;
   font-weight: bold;
@@ -13,10 +16,15 @@ const StyledRowInformation = styled.li`
   }
 `;
 
-const RowInformation = ({ date }) => {
+const Update = styled(UpdateIndicator)`
+  margin-left: 5px;
+`;
+
+const RowInformation = ({ date, isFetching }) => {
   return (
     <StyledRowInformation>
       <DisplayDate date={date} />
+      {isFetching && <Update />}
     </StyledRowInformation>
   );
 };

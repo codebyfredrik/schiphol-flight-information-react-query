@@ -21,7 +21,7 @@ const Dot = styled.span`
   margin-right: 0.15em;
   font-size: 2em;
   opacity: 1;
-  background-color: ${({ theme }) => theme.colors.pageHeading};
+  background-color: ${({ theme }) => theme.colors.text};
   animation: ${showHideDot} 1s ease-in-out infinite;
 
   &.one {
