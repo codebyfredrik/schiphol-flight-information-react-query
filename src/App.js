@@ -9,6 +9,7 @@ import { GlobalStyle } from './components/GlobalStyle';
 import { Button } from './styles/Styles';
 import { useRenderFlights } from './hooks/useRenderFlights';
 import { Overlay } from './components/Overlay';
+import { UpdateIndicator } from './components/UpdateIndicator';
 
 const WrapperContainer = styled.div`
   position: relative;
@@ -75,6 +76,10 @@ const SubTitle = styled.h3`
 const Heading = styled.h3`
   color: ${({ theme }) => theme.colors.pageHeading};
   text-transform: uppercase;
+`;
+
+const Update = styled(UpdateIndicator)`
+  margin-left: 5px;
 `;
 
 const Flights = styled.ul`
@@ -190,6 +195,7 @@ const App = () => {
                   : flightDirection === 'D'
                   ? 'Departure flights'
                   : 'Arrival and departure flights'}
+                {isFetching && <Update />}
               </Heading>
             </div>
             <FlexContainer>
