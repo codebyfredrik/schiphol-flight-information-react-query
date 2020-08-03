@@ -4,6 +4,20 @@ import PropTypes from 'prop-types';
 
 const StyledTimes = styled.svg`
   display: inline-block;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  path {
+    @media screen and (prefers-reduced-motion: no-preference) {
+      transition: fill 150ms ease-in;
+    }
+
+    &:hover {
+      fill: #ff002b;
+    }
+  }
 `;
 
 const Times = ({ height, width, fillColor, className, onClick }) => {

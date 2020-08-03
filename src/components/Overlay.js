@@ -84,10 +84,6 @@ const Close = styled(Times)`
   position: absolute;
   right: 2rem;
   top: 2rem;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Overlay = ({
