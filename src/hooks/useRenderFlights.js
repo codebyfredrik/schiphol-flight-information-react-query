@@ -2,7 +2,7 @@ import React from 'react';
 import { Flight } from './../components/Flight';
 import { RowInformation } from './../components/RowInformation';
 
-const useRenderFlights = (resolvedData, isDarkMode) => {
+const useRenderFlights = (resolvedData, isDarkMode, isFetching) => {
   const renderFlights = () => {
     let currentDate = null;
 
@@ -13,7 +13,10 @@ const useRenderFlights = (resolvedData, isDarkMode) => {
           currentDate = item.scheduleDate;
           return (
             <React.Fragment key={item.id}>
-              <RowInformation date={item.scheduleDate} />
+              <RowInformation
+                date={item.scheduleDate}
+                isFetching={isFetching}
+              />
               <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />
             </React.Fragment>
           );
