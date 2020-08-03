@@ -3,6 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Times } from './icons/index';
 import { useLockBodyScroll } from './../hooks/useLockBodyScroll';
+import { useKeyPress } from './../hooks/useKeyPress';
 
 const Animation = keyframes`
 0% {
@@ -94,6 +95,9 @@ const Overlay = ({
   flightDirection,
 }) => {
   useLockBodyScroll();
+  useKeyPress('Escape', () => {
+    setOverlayIsVisible();
+  });
 
   return (
     <StyledOverlay open={overlayIsVisible}>
