@@ -26,7 +26,7 @@ const StyledOverlay = styled.div`
 
   @media screen and (prefers-reduced-motion: no-preference) {
     animation-name: ${Animation};
-    animation-duration: 250ms;
+    animation-duration: 100ms;
     animation-timing-function: cubic-bezier(0, 0.52, 0, 1);
   }
 `;
