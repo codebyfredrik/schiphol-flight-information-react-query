@@ -56,8 +56,8 @@ const Title = styled.h1`
 
 const SubTitle = styled.h3`
   margin: 0;
-  font-size: 0.5rem;
-  line-height: 0.5rem;
+  font-size: 1rem;
+  line-height: 1rem;
   margin-top: 0.25rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
