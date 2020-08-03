@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { darken } from 'polished';
 import PropTypes from 'prop-types';
 import { useFlightStatus } from './../hooks/useFlightStatus';
@@ -11,7 +12,7 @@ import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
 
-const StyledFlight = styled.li`
+const StyledFlight = styled(motion.li)`
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -205,7 +206,26 @@ const Flight = ({ flight, isDarkMode }) => {
   if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
-    <StyledFlight>
+    <StyledFlight
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {
+          // scale: 1.03,
+          // x: -5,
+          opacity: 0,
+        },
+        visible: {
+          // scale: 1,
+          // x: 0,
+          opacity: 1,
+          transition: {
+            // duration: 0.6,
+            delay: 0.1,
+          },
+        },
+      }}
+    >
       <Container>
         <LeftContainer>
           <TimeWrapper>
