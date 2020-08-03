@@ -220,7 +220,7 @@ const Flight = ({ flight, isDarkMode }) => {
           // x: 0,
           opacity: 1,
           transition: {
-            // duration: 0.6,
+            // duration: 0.4,
             delay: 0.1,
           },
         },
