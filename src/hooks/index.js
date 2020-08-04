@@ -4,7 +4,6 @@ export { useDestination } from './useDestination';
 export { useFlights } from './useFlights';
 export { useFlightStatus } from './useFlightStatus';
 export { useFormatTime } from './useFormatTime';
-export { useFormatTime } from './useFormatTime';
 export { useLockBodyScroll } from './useLockBodyScroll';
 export { useRenderFlights } from './useRenderFlights';
 export { useStickyState } from './useStickyState';
