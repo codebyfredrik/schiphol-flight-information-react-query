@@ -24,3 +24,8 @@ export const Button = styled.button`
     }
   }
 `;
+
+export const Heading = styled.h3`
+  color: ${({ theme }) => theme.colors.pageHeading};
+  text-transform: uppercase;
+`;

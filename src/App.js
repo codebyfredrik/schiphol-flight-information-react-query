@@ -6,7 +6,11 @@ import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Overlay } from './components/Overlay';
-import { FlightsView } from './views/FlightsView';
+import {
+  FlightsView,
+  FlightDepartureView,
+  FlightArrivalView,
+} from './views/index';
 
 const StyledApp = styled.div`
   max-width: 1000px;
@@ -94,7 +98,7 @@ const App = () => {
         )}
         <StyledApp>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <FlightsView
                 page={page}
                 setPage={setPage}
@@ -103,6 +107,12 @@ const App = () => {
                 toggleDarkMode={toggleDarkMode}
                 setOverlayIsVisible={setOverlayIsVisible}
               />
+            </Route>
+            <Route exact path="/departure/:date/flights/:id">
+              <FlightDepartureView />
+            </Route>
+            <Route exact path="/arrival/:date/flights/:id">
+              <FlightArrivalView />
             </Route>
           </Switch>
         </StyledApp>
