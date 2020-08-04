@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   height: var(--min-tap-target-height);
-  /* border: 0px solid rgba(179, 212, 255, 1); */
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
   padding: 0.4rem 0.7rem;
   color: ${({ theme }) => theme.colors.text};
