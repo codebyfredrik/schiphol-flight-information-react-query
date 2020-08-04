@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
-import PropTypes from 'prop-types';
-import { useFlightStatus } from './../hooks/useFlightStatus';
+import { useFlightStatus } from './../hooks/index';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
