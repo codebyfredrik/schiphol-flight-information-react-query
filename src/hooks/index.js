@@ -8,3 +8,4 @@ export { useLockBodyScroll } from './useLockBodyScroll';
 export { useRenderFlights } from './useRenderFlights';
 export { useStickyState } from './useStickyState';
 export { useToggle } from './useToggle';
+export { useKeyPress } from './useKeyPress';
