@@ -213,7 +213,7 @@ const Flight = ({ flight, isDarkMode }) => {
     gate,
   } = flight;
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
-  const text = useFlightDirection(flightDirection);
+  let text = useFlightDirection(flightDirection);
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
@@ -224,7 +224,7 @@ const Flight = ({ flight, isDarkMode }) => {
 
   return (
     <StyledLink
-      to={`/${text.toLowerCase()}/${formattedTimestamp}/flights/${id}`}
+      to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`}
     >
       <StyledFlight
         initial="hidden"

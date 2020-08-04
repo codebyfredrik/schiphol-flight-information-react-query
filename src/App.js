@@ -108,10 +108,10 @@ const App = () => {
                 setOverlayIsVisible={setOverlayIsVisible}
               />
             </Route>
-            <Route exact path="/departure/:date/flights/:id">
+            <Route exact path="/departures/:date/flights/:id">
               <FlightDepartureView />
             </Route>
-            <Route exact path="/arrival/:date/flights/:id">
+            <Route exact path="/arrivals/:date/flights/:id">
               <FlightArrivalView />
             </Route>
           </Switch>
