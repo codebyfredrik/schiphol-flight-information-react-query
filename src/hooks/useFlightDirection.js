@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const FlightDirection = ({ flightDirection }) => {
+const useFlightDirection = (flightDirection) => {
   let phrase;
 
   if (flightDirection === 'A') {
@@ -12,8 +12,8 @@ const FlightDirection = ({ flightDirection }) => {
   return phrase;
 };
 
-FlightDirection.propTypes = {
+useFlightDirection.propTypes = {
   flightDirection: PropTypes.string,
 };
 
-export { FlightDirection };
+export { useFlightDirection };
