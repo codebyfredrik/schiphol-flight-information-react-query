@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useToggle } from './hooks/useToggle';
-import { useDarkMode } from './hooks/useDarkMode';
+import {
+  useToggle,
+  useDarkMode,
+  useFlights,
+  useRenderFlights,
+} from './hooks/index';
 import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
-import { useFlights } from './hooks/useFlights';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Button } from './styles/Styles';
-import { useRenderFlights } from './hooks/useRenderFlights';
 import { Overlay } from './components/Overlay';
 
 const WrapperContainer = styled.div`

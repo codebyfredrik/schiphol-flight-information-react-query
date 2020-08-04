@@ -1,9 +1,8 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import { useLockBodyScroll, useKeyPress } from './../hooks/index';
 import { Times } from './icons/index';
-import { useLockBodyScroll } from './../hooks/useLockBodyScroll';
-import { useKeyPress } from './../hooks/useKeyPress';
 
 const Animation = keyframes`
 0% {

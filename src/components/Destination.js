@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useDestination } from './../hooks/useDestination';
+import { useDestination } from './../hooks/index';
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};

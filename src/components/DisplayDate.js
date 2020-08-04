@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { useFormatTime } from '../hooks/useFormatTime';
+import { useFormatTime } from './../hooks/index';
 import PropTypes from 'prop-types';
 
 export const StyledDate = styled.div`

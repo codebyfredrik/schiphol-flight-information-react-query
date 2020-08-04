@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useFormatTime } from '../hooks/useFormatTime';
+import { useFormatTime } from './../hooks/index';
 
 const StyledTime = styled.span`
   display: inline-block;
