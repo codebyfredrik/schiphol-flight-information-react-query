@@ -120,7 +120,6 @@ const StyledButton = styled(Button)`
 
 const Loading = styled.span`
   display: inline-block;
-  margin: var(--container-margin) 0 3rem 0;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
 
@@ -131,7 +130,6 @@ const Loading = styled.span`
 
 const Error = styled.span`
   display: inline-block;
-  margin: var(--container-margin) 0 3rem 0;
   font-weight: bold;
   color: #ff0800;
 `;
