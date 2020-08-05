@@ -10,12 +10,15 @@ import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
 
 const StyledCity = styled(City)`
-  display: block;
+  display: inline-block;
   font-size: 3.6rem;
   margin-top: 1rem;
-  padding: 0;
+  padding: 0.5rem 2rem;
+  border-radius: 2px;
   font-weight: 900;
   color: #210e71;
+  background: ${({ theme }) => theme.colors.yellow};
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
 `;
 
 const FlightInformationArrival = styled.div`
