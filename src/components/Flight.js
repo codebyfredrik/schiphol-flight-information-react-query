@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { query } from './../helpers/query';
+import { queryCache } from 'react-query';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
@@ -197,6 +199,11 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
+// const fetchFlight = async (flightId) => {
+//   const { data } = await axios.get(`/flights/${flightId}`);
+//   return data;
+// };
+
 const Flight = ({ flight, isDarkMode }) => {
   const {
     id,
@@ -227,6 +234,9 @@ const Flight = ({ flight, isDarkMode }) => {
       to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`}
     >
       <StyledFlight
+        onMouseEnter={() => {
+          queryCache.prefetchQuery(`/flights/${id}`, query);
+        }}
         initial="hidden"
         animate="visible"
         variants={{
