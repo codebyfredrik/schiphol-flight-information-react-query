@@ -5,11 +5,12 @@ import { useFlight } from '../hooks/index';
 import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
 
-const StyledCity = styled.span`
+const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  font-weight: 600;
-  margin: 1rem 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
 `;
 
 const FlightArrivalView = () => {
@@ -26,11 +27,7 @@ const FlightArrivalView = () => {
           flightName={flight.flightName}
         />
       )}
-      {flight?.route && (
-        <StyledCity>
-          <City route={flight.route} />
-        </StyledCity>
-      )}
+      {flight?.route && <StyledCity route={flight.route} />}
     </>
   );
 };

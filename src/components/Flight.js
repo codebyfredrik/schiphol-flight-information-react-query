@@ -170,16 +170,13 @@ const CodeShare = styled.div`
 
 const FlightStatus = styled(Tag)`
   flex: 1 1 1rem;
-  margin-right: 0.5rem;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
   background-color: ${(props) =>
     props.isDarkMode
       ? darken(0.1, props.backgroundColor)
       : props.backgroundColor};
-  color: ${({ theme }) => theme.colors.textTag};
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
 `;
 
 const FlightStatusWrapper = styled.div`
@@ -198,11 +195,6 @@ const FlightStatusWrapper = styled.div`
 const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
-
-// const fetchFlight = async (flightId) => {
-//   const { data } = await axios.get(`/flights/${flightId}`);
-//   return data;
-// };
 
 const Flight = ({ flight, isDarkMode }) => {
   const {
@@ -317,4 +309,4 @@ Flight.propTypes = {
   flight: PropTypes.object,
 };
 
-export { Flight };
+export { Flight, FlightStatus };

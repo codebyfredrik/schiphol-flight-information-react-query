@@ -1,10 +1,14 @@
+import React from 'react';
+import styled from 'styled-components';
 import { useDestination } from '../hooks/useDestination';
 
-const City = ({ route }) => {
+const StyledCity = styled.span``;
+
+const City = ({ route, className }) => {
   const { result } = useDestination(route);
 
   if (result) {
-    return result.city;
+    return <StyledCity className={className}>{result.city}</StyledCity>;
   }
 
   return null;
