@@ -7,12 +7,15 @@ import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
 import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
+import { ArrivalTime } from './../components/ArrivalTime';
 
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  margin: 0;
+  margin-top: 1rem;
   padding: 0;
+  font-weight: 900;
+  color: #210e71;
 `;
 
 const FlightInformationArrival = styled.div`
@@ -44,7 +47,7 @@ const FlexItem = styled.div`
 const Title = styled.h2`
   font-size: 1.75rem;
   font-weight: 600;
-  margin: 1rem 0 1.5rem 0;
+  margin: 1.5rem 0 1.5rem 0;
 `;
 
 const Heading = styled.span`
@@ -66,10 +69,6 @@ const ArrivalItem = styled.span`
   font-weight: 900;
 `;
 
-const BaggageBelt = styled(ArrivalItem)``;
-
-const Terminal = styled(ArrivalItem)``;
-
 const StyledDateTime = styled(DateTime)`
   display: block;
   font-size: 1.125rem;
@@ -84,7 +83,7 @@ const FlightArrivalView = () => {
 
   return (
     <>
-      {flight && (
+      {flight?.prefixICAO && flight?.flightName && (
         <FlightFrom
           prefixICAO={flight.prefixICAO}
           flightName={flight.flightName}
@@ -96,29 +95,32 @@ const FlightArrivalView = () => {
         <FlightInformationArrival>
           <FlexItem>
             <Heading>Date</Heading>
-            {flight && (
+            {flight?.scheduleDateTime && (
               <StyledDateTime date={flight.scheduleDateTime} format="MMM D" />
             )}
           </FlexItem>
           <FlexItem>
             <Heading>Arrival time</Heading>
+            <ArrivalTime />
           </FlexItem>
           <FlexItem>
             <Heading>Flight number</Heading>
-            {flight && <StyledFlightNumber flightName={flight.flightName} />}
+            {flight?.flightName && (
+              <StyledFlightNumber flightName={flight.flightName} />
+            )}
           </FlexItem>
           <FlexItem>
             <Heading>Gate</Heading>
-            {flight && <Gate gate={flight.gate} />}
+            {flight?.gate && <Gate gate={flight.gate} />}
           </FlexItem>
           <FlexItem>
             <Heading>Terminal</Heading>
-            {flight && <Terminal>{flight.terminal}</Terminal>}
+            {flight?.terminal && <ArrivalItem>{flight.terminal}</ArrivalItem>}
           </FlexItem>
           <FlexItem>
             <Heading>Baggage belt</Heading>
-            {flight && (
-              <BaggageBelt>{flight.baggageClaim.belts[0]}</BaggageBelt>
+            {flight?.baggageClaim?.belts.length > 0 && (
+              <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
             )}
           </FlexItem>
         </FlightInformationArrival>

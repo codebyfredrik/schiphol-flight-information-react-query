@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Time } from './../components/Time';
 
 export const Button = styled.button`
   height: var(--min-tap-target-height);
@@ -28,4 +29,9 @@ export const Button = styled.button`
 export const Heading = styled.h3`
   color: ${({ theme }) => theme.colors.pageHeading};
   text-transform: uppercase;
+`;
+
+export const ScheduleTime = styled(Time)`
+  font-weight: bold;
+  text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
 `;
