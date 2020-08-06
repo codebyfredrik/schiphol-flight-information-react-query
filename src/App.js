@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { useToggle, useDarkMode } from './hooks/index';
 import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
@@ -71,6 +71,10 @@ const SubTitle = styled.h3`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const App = () => {
   const [page, setPage] = useState(0);
   const [flightDirection, setFlightDirection] = useState('');
@@ -84,8 +88,10 @@ const App = () => {
         <GlobalStyle />
         <Header>
           <HeaderContainer>
-            <Title>Amsterdam Schipol Airport</Title>
-            <SubTitle>Flight Information</SubTitle>
+            <StyledLink to="/">
+              <Title>Amsterdam Schipol Airport</Title>
+              <SubTitle>Flight Information</SubTitle>
+            </StyledLink>
           </HeaderContainer>
         </Header>
         {overlayIsVisible && (

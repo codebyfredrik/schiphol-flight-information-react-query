@@ -13,19 +13,16 @@ const StyledCity = styled(City)`
   display: inline-block;
   font-size: 3.6rem;
   margin-top: 1rem;
-  /* padding: 0.5rem 2rem; */
   border-radius: 2px;
   font-weight: 900;
   color: #210e71;
-  /* box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow}; */
-  background: linear-gradient(to right, #073590, #0d49c0);
+  background: linear-gradient(to right, #0d49c0, #073590);
   background-size: 100%;
   background-repeat: repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
-  /* background: ${({ theme }) => theme.colors.yellow}; */
 `;
 
 const FlightInformationArrival = styled.div`
@@ -33,8 +30,8 @@ const FlightInformationArrival = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
 
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(6, 1fr);
+  @media screen and (min-width: 950px) {
+    grid-template-columns: repeat(7, minmax(90px, 1fr));
   }
 `;
 
@@ -43,7 +40,7 @@ const FlexItem = styled.div`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 950px) {
     border-bottom: 0;
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-bottom: 0rem;
@@ -90,7 +87,6 @@ const FlightArrivalView = () => {
   const { result: flight } = useFlight(id);
 
   console.log(flight);
-
   return (
     <>
       {flight?.prefixICAO && flight?.flightName && (
@@ -100,6 +96,7 @@ const FlightArrivalView = () => {
         />
       )}
       {flight?.route && <StyledCity route={flight.route} />}
+      {/* <FlightDirectionTag flightDirection={flightDirection} /> */}
       <div>
         <Title>Flight information</Title>
         <FlightInformationArrival>
@@ -130,7 +127,11 @@ const FlightArrivalView = () => {
             {flight?.gate && <Gate gate={flight.gate} />}
           </FlexItem>
           <FlexItem>
-            <Heading>Terminal</Heading>
+            <Heading>Pier</Heading>
+            {flight?.pier && <ArrivalItem>{flight?.pier}</ArrivalItem>}
+          </FlexItem>
+          <FlexItem>
+            <Heading>Arrivals</Heading>
             {flight?.terminal && <ArrivalItem>{flight.terminal}</ArrivalItem>}
           </FlexItem>
           <FlexItem>
