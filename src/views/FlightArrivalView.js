@@ -104,7 +104,13 @@ const FlightArrivalView = () => {
           </FlexItem>
           <FlexItem>
             <Heading>Arrival time</Heading>
-            <ArrivalTime />
+            {flight && (
+              <ArrivalTime
+                scheduleDateTime={flight.scheduleDateTime}
+                estimatedLandingTime={flight.estimatedLandingTime}
+                actualLandingTime={flight.actualLandingTime}
+              />
+            )}
           </FlexItem>
           <FlexItem>
             <Heading>Flight number</Heading>
