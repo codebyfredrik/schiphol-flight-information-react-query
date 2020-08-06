@@ -58,6 +58,7 @@ const SubTitle = styled.h3`
   font-size: 1rem;
   line-height: 1rem;
   margin-top: 0.25rem;
+  letter-spacing: 0.25rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 
@@ -116,10 +117,16 @@ const App = () => {
               />
             </Route>
             <Route exact path="/departures/:date/flights/:id">
-              <FlightDepartureView />
+              <FlightDepartureView
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
             </Route>
             <Route exact path="/arrivals/:date/flights/:id">
-              <FlightArrivalView />
+              <FlightArrivalView
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
             </Route>
           </Switch>
         </StyledApp>

@@ -8,11 +8,12 @@ import { City } from './../components/City';
 import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
+import { FlightStatus } from './../components/FlightStatus';
 
 const StyledCity = styled(City)`
-  display: inline-block;
+  display: block;
   font-size: 3.6rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
   border-radius: 2px;
   font-weight: 900;
   color: #210e71;
@@ -84,7 +85,13 @@ const StyledDateTime = styled(DateTime)`
   font-weight: 900;
 `;
 
-const FlightArrivalView = () => {
+const StyledFlightStatus = styled(FlightStatus)`
+  font-size: 16px;
+  height: 22px;
+  line-height: 22px;
+`;
+
+const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight } = useFlight(id);
 
@@ -98,7 +105,13 @@ const FlightArrivalView = () => {
         />
       )}
       {flight?.route && <StyledCity route={flight.route} />}
-      {/* <FlightDirectionTag flightDirection={flightDirection} /> */}
+      {flight?.publicFlightState && flight?.flightDirection && (
+        <StyledFlightStatus
+          publicFlightState={flight.publicFlightState}
+          flightDirection={flight.flightDirection}
+          isDarkMode={isDarkMode}
+        />
+      )}
       <div>
         <Title>Flight information</Title>
         <FlightInformationArrival>
@@ -126,28 +139,44 @@ const FlightArrivalView = () => {
           </FlexItem>
           <FlexItem>
             <Heading>Gate</Heading>
-            {flight?.gate && <Gate gate={flight.gate} />}
+            {flight?.gate ? (
+              <Gate gate={flight.gate} />
+            ) : (
+              <ArrivalItem>N/A</ArrivalItem>
+            )}
           </FlexItem>
           <FlexItem>
             <Heading>Pier</Heading>
-            {flight?.pier && <ArrivalItem>{flight?.pier}</ArrivalItem>}
+            {flight?.pier ? (
+              <ArrivalItem>{flight?.pier}</ArrivalItem>
+            ) : (
+              <ArrivalItem>N/A</ArrivalItem>
+            )}
           </FlexItem>
           <FlexItem>
             <Heading>Arrivals</Heading>
-            {flight?.terminal && <ArrivalItem>{flight.terminal}</ArrivalItem>}
+            {flight?.terminal ? (
+              <ArrivalItem>{flight.terminal}</ArrivalItem>
+            ) : (
+              <ArrivalItem>N/A</ArrivalItem>
+            )}
           </FlexItem>
           <FlexItem>
             <Heading>Baggage belt</Heading>
-            {flight?.baggageClaim?.belts.length > 0 && (
+            {flight?.baggageClaim?.belts.length > 0 ? (
               <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
+            ) : (
+              <ArrivalItem>N/A</ArrivalItem>
             )}
           </FlexItem>
           <FlexItem>
             <Heading>Schengen</Heading>
-            {flight?.route.eu && flight?.route.eu === 'S' ? (
+            {flight?.route.eu === 'S' ? (
               <ArrivalItem>Yes</ArrivalItem>
-            ) : (
+            ) : flight?.route.eu !== 'S' ? (
               <ArrivalItem>No</ArrivalItem>
+            ) : (
+              <ArrivalItem>N/A</ArrivalItem>
             )}
           </FlexItem>
         </FlightInformationArrival>
