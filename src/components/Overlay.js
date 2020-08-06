@@ -17,7 +17,8 @@ const StyledOverlay = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  background-color: #210e71;
+  /* background-color: #210e71; */
+  background: linear-gradient(to right, #073590, #0d49c0);
   right: 0;
   left: 0;
   bottom: 0;
@@ -62,7 +63,10 @@ const Option = styled.button`
     props.active === true &&
     css`
       background-color: ${({ theme }) => theme.colors.yellow};
-      color: #210e71;
+      box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
+      border-radius: 4px;
+      /* color: #210e71; */
+      color: #073590;
       padding: 1rem;
     `}
 

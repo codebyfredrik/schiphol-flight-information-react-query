@@ -25,7 +25,8 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #210e71;
+  /* background-color: #210e71; */
+  background: linear-gradient(to right, #073590, #0d49c0);
   margin-bottom: var(--container-margin);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
 `;

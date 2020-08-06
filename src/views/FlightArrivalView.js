@@ -13,12 +13,19 @@ const StyledCity = styled(City)`
   display: inline-block;
   font-size: 3.6rem;
   margin-top: 1rem;
-  padding: 0.5rem 2rem;
+  /* padding: 0.5rem 2rem; */
   border-radius: 2px;
   font-weight: 900;
   color: #210e71;
-  background: ${({ theme }) => theme.colors.yellow};
-  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
+  /* box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow}; */
+  background: linear-gradient(to right, #073590, #0d49c0);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  /* background: ${({ theme }) => theme.colors.yellow}; */
 `;
 
 const FlightInformationArrival = styled.div`
