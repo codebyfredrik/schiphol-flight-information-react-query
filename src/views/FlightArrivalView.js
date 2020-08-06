@@ -30,8 +30,9 @@ const FlightInformationArrival = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
 
-  @media screen and (min-width: 950px) {
-    grid-template-columns: repeat(7, minmax(90px, 1fr));
+  @media screen and (min-width: 1080px) {
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-rows: auto;
   }
 `;
 
@@ -40,11 +41,12 @@ const FlexItem = styled.div`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
 
-  @media screen and (min-width: 950px) {
+  @media screen and (min-width: 1080px) {
     border-bottom: 0;
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-bottom: 0rem;
 
+    &:nth-last-of-type(4),
     &:nth-last-of-type(1) {
       border-right: 0;
     }
@@ -138,6 +140,14 @@ const FlightArrivalView = () => {
             <Heading>Baggage belt</Heading>
             {flight?.baggageClaim?.belts.length > 0 && (
               <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
+            )}
+          </FlexItem>
+          <FlexItem>
+            <Heading>Schengen</Heading>
+            {flight?.route.eu && flight?.route.eu === 'S' ? (
+              <ArrivalItem>Yes</ArrivalItem>
+            ) : (
+              <ArrivalItem>No</ArrivalItem>
             )}
           </FlexItem>
         </FlightInformationArrival>
