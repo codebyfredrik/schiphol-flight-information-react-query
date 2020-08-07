@@ -9,16 +9,16 @@ import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
 import { FlightStatus } from './../components/FlightStatus';
-import { Content, ContentHeader } from './../styles/Styles';
+import { Content } from './../styles/Styles';
 
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
   font-weight: 900;
   color: #210e71;
-  background: linear-gradient(to right, #0d49c0, #073590);
-  background-size: 40%;
-  background-repeat: repeat;
+  background: linear-gradient(to bottom, #0d49c0, #073590);
+  background-size: cover;
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -57,12 +57,14 @@ const Title = styled.h2`
   font-size: 1.75rem;
   font-weight: 600;
   margin: 1.5rem 0 1.5rem 0;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Heading = styled.span`
   display: block;
   font-size: 0.875rem;
   margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const StyledFlightNumber = styled(FlightNumber)`
@@ -89,10 +91,19 @@ const StyledFlightStatus = styled(FlightStatus)`
   font-size: 16px;
   height: 22px;
   line-height: 22px;
+  color: ${(props) => (props.isDarkMode ? '#B0B3B8' : 'white')};
 `;
 
 const StyledFlightFrom = styled(FlightFrom)`
   margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const ContentHeader = styled.div`
+  background-color: ${({ theme }) => theme.colors.contentHeading};
+  padding: 2rem 0;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {

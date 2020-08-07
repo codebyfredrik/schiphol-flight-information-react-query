@@ -18,8 +18,8 @@ const StyledCity = styled(City)`
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
-  background-size: 1%;
-  background-repeat: repeat;
+  background-size: cover
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -89,10 +89,11 @@ const StyledDateTime = styled(DateTime)`
 `;
 
 const StyledFlightStatus = styled(FlightStatus)`
-  margin-top: 1.3rem;
+  margin-top: 1rem;
   font-size: 16px;
   height: 22px;
   line-height: 22px;
+  color: ${(props) => (props.isDarkMode ? '#B0B3B8' : 'white')};
 `;
 
 const StyledFlightFrom = styled(FlightFrom)`
