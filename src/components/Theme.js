@@ -4,7 +4,8 @@ import { darken } from 'polished';
 import { bp } from '../styles/constants';
 
 const lightTheme = {
-  body: 'rgb(235,235,235)',
+  body: 'rgb(240,240,240)',
+  contentHeading: 'white',
   bgButton: 'rgba(0, 0, 0, 0.05)',
   bgButtonHover: 'rgba(0, 0, 0, 0.1)',
   borderButton: 'rgba(0, 0, 0, 0.05)',
@@ -26,6 +27,7 @@ const lightTheme = {
 
 const darkTheme = {
   body: '#18191A',
+  contentHeading: 'black',
   bgButton: '#3A3B3C',
   bgButtonHover: '#272728',
   borderButton: 'rgba(255, 255, 255, 0.05)',
