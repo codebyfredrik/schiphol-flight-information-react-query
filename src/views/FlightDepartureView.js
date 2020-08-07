@@ -105,7 +105,7 @@ const ContentHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.contentHeading};
   padding: 2rem 0;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
-  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadowDarkBg};
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
