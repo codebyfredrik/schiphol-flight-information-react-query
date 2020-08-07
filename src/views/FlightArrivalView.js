@@ -17,7 +17,7 @@ const StyledCity = styled(City)`
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to right, #0d49c0, #073590);
-  background-size: 100%;
+  background-size: 50%;
   background-repeat: repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
