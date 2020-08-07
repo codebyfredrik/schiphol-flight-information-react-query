@@ -119,6 +119,7 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
             <StyledFlightFrom
               prefixICAO={flight.prefixICAO}
               flightName={flight.flightName}
+              direction="from"
             />
           )}
           {flight?.route && <StyledCity route={flight.route} />}

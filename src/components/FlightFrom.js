@@ -6,7 +6,7 @@ const StyledFlightFrom = styled.span`
   display: block;
 `;
 
-const FlightFrom = ({ prefixICAO, flightName, className }) => {
+const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {
   const { result: airline } = useAirline(prefixICAO);
 
   return (
@@ -14,7 +14,7 @@ const FlightFrom = ({ prefixICAO, flightName, className }) => {
       {airline && (
         <StyledFlightFrom
           className={className}
-        >{`${airline.publicName} (${flightName}) flight from`}</StyledFlightFrom>
+        >{`${airline.publicName} (${flightName}) flight ${direction}`}</StyledFlightFrom>
       )}
     </>
   );
