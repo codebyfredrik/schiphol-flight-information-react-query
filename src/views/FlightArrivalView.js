@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
 import { Gate } from './../components/index';
 import { FlightFrom } from './../components/FlightFrom';
@@ -10,6 +10,7 @@ import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
+import { ArrowRight } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -102,8 +103,30 @@ const StyledFlightFrom = styled(FlightFrom)`
 const ContentHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.contentHeading};
   padding: 2rem 0;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
-  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadowDarkBg};
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const StyledLink = styled(Link)`
+  position: relative;
+  text-decoration: none;
+  color: #0d49c0;
+  transition: text-decoration 150s ease-in;
+
+  &:hover {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.yellow};
+  }
+`;
+
+const StyledArrowRight = styled(ArrowRight)`
+  position: absolute;
+  top: 3px;
+  margin-left: 5px;
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
@@ -115,13 +138,16 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
     <>
       <ContentHeader>
         <Content>
-          {flight?.prefixICAO && flight?.flightName && (
-            <StyledFlightFrom
-              prefixICAO={flight.prefixICAO}
-              flightName={flight.flightName}
-              direction="from"
-            />
-          )}
+          <FlexContainer>
+            {flight?.prefixICAO && flight?.flightName && (
+              <StyledFlightFrom
+                prefixICAO={flight.prefixICAO}
+                flightName={flight.flightName}
+                direction="from"
+              />
+            )}
+            <StyledLink to="/">All flights</StyledLink>
+          </FlexContainer>
           {flight?.route && <StyledCity route={flight.route} />}
           {flight?.publicFlightState && flight?.flightDirection && (
             <StyledFlightStatus
