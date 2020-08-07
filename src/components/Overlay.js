@@ -18,7 +18,7 @@ const StyledOverlay = styled.div`
   display: flex;
   justify-content: center;
   /* background-color: #210e71; */
-  background: linear-gradient(to right, #073590, #0d49c0);
+  background: linear-gradient(45deg, #073590, #0d49c0);
   right: 0;
   left: 0;
   bottom: 0;

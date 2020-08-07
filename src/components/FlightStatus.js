@@ -24,6 +24,7 @@ const FlightStatus = ({
 
   return flightStatus.map((item) => (
     <StyledFlightStatus
+      key={item.status}
       className={className}
       backgroundColor={item.backgroundColor}
       isDarkMode={isDarkMode}

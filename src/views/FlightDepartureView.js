@@ -7,7 +7,7 @@ import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
 import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
-import { ArrivalTime } from './../components/ArrivalTime';
+import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
 
@@ -146,13 +146,12 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
             </FlexItem>
             <FlexItem>
               <Heading>Departure time</Heading>
-              {/* {flight && (
-                <ArrivalTime
+              {flight && (
+                <DepartureTime
                   scheduleDateTime={flight.scheduleDateTime}
-                  estimatedLandingTime={flight.estimatedLandingTime}
-                  actualLandingTime={flight.actualLandingTime}
+                  actualOffBlockTime={flight.actualOffBlockTime}
                 />
-              )} */}
+              )}
             </FlexItem>
             <FlexItem>
               <Heading>Flight number</Heading>
