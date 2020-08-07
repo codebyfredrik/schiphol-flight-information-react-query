@@ -13,9 +13,9 @@ import {
 } from './views/index';
 
 const StyledApp = styled.div`
-  max-width: 1000px;
+  /* max-width: 1000px;
   margin: auto;
-  padding: 0 1rem;
+  padding: 0 1rem; */
 `;
 
 const HeaderContainer = styled.div`
@@ -27,7 +27,7 @@ const HeaderContainer = styled.div`
 const Header = styled.header`
   /* background-color: #210e71; */
   background: linear-gradient(to right, #073590, #0d49c0);
-  margin-bottom: var(--container-margin);
+  /* margin-bottom: var(--container-margin); */
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
 `;
 

@@ -9,12 +9,11 @@ import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
 import { FlightStatus } from './../components/FlightStatus';
+import { Content, ContentHeader } from './../styles/Styles';
 
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  margin: 1rem 0;
-  border-radius: 2px;
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to right, #0d49c0, #073590);
@@ -86,9 +85,14 @@ const StyledDateTime = styled(DateTime)`
 `;
 
 const StyledFlightStatus = styled(FlightStatus)`
+  margin-top: 1rem;
   font-size: 16px;
   height: 22px;
   line-height: 22px;
+`;
+
+const StyledFlightFrom = styled(FlightFrom)`
+  margin-bottom: 1rem;
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
@@ -98,89 +102,95 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   console.log(flight);
   return (
     <>
-      {flight?.prefixICAO && flight?.flightName && (
-        <FlightFrom
-          prefixICAO={flight.prefixICAO}
-          flightName={flight.flightName}
-        />
-      )}
-      {flight?.route && <StyledCity route={flight.route} />}
-      {flight?.publicFlightState && flight?.flightDirection && (
-        <StyledFlightStatus
-          publicFlightState={flight.publicFlightState}
-          flightDirection={flight.flightDirection}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      <div>
-        <Title>Flight information</Title>
-        <FlightInformationArrival>
-          <FlexItem>
-            <Heading>Date</Heading>
-            {flight?.scheduleDateTime && (
-              <StyledDateTime date={flight.scheduleDateTime} format="MMM D" />
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Arrival time</Heading>
-            {flight && (
-              <ArrivalTime
-                scheduleDateTime={flight.scheduleDateTime}
-                estimatedLandingTime={flight.estimatedLandingTime}
-                actualLandingTime={flight.actualLandingTime}
-              />
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Flight number</Heading>
-            {flight?.flightName && (
-              <StyledFlightNumber flightName={flight.flightName} />
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Gate</Heading>
-            {flight?.gate ? (
-              <Gate gate={flight.gate} />
-            ) : (
-              <ArrivalItem>N/A</ArrivalItem>
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Pier</Heading>
-            {flight?.pier ? (
-              <ArrivalItem>{flight?.pier}</ArrivalItem>
-            ) : (
-              <ArrivalItem>N/A</ArrivalItem>
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Arrivals</Heading>
-            {flight?.terminal ? (
-              <ArrivalItem>{flight.terminal}</ArrivalItem>
-            ) : (
-              <ArrivalItem>N/A</ArrivalItem>
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Baggage belt</Heading>
-            {flight?.baggageClaim?.belts.length > 0 ? (
-              <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
-            ) : (
-              <ArrivalItem>N/A</ArrivalItem>
-            )}
-          </FlexItem>
-          <FlexItem>
-            <Heading>Schengen</Heading>
-            {flight?.route.eu === 'S' ? (
-              <ArrivalItem>Yes</ArrivalItem>
-            ) : flight?.route.eu !== 'S' ? (
-              <ArrivalItem>No</ArrivalItem>
-            ) : (
-              <ArrivalItem>N/A</ArrivalItem>
-            )}
-          </FlexItem>
-        </FlightInformationArrival>
-      </div>
+      <ContentHeader>
+        <Content>
+          {flight?.prefixICAO && flight?.flightName && (
+            <StyledFlightFrom
+              prefixICAO={flight.prefixICAO}
+              flightName={flight.flightName}
+            />
+          )}
+          {flight?.route && <StyledCity route={flight.route} />}
+          {flight?.publicFlightState && flight?.flightDirection && (
+            <StyledFlightStatus
+              publicFlightState={flight.publicFlightState}
+              flightDirection={flight.flightDirection}
+              isDarkMode={isDarkMode}
+            />
+          )}
+        </Content>
+      </ContentHeader>
+      <Content>
+        <div>
+          <Title>Flight information</Title>
+          <FlightInformationArrival>
+            <FlexItem>
+              <Heading>Date</Heading>
+              {flight?.scheduleDateTime && (
+                <StyledDateTime date={flight.scheduleDateTime} format="MMM D" />
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Arrival time</Heading>
+              {flight && (
+                <ArrivalTime
+                  scheduleDateTime={flight.scheduleDateTime}
+                  estimatedLandingTime={flight.estimatedLandingTime}
+                  actualLandingTime={flight.actualLandingTime}
+                />
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Flight number</Heading>
+              {flight?.flightName && (
+                <StyledFlightNumber flightName={flight.flightName} />
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Gate</Heading>
+              {flight?.gate ? (
+                <Gate gate={flight.gate} />
+              ) : (
+                <ArrivalItem>N/A</ArrivalItem>
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Pier</Heading>
+              {flight?.pier ? (
+                <ArrivalItem>{flight?.pier}</ArrivalItem>
+              ) : (
+                <ArrivalItem>N/A</ArrivalItem>
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Arrivals</Heading>
+              {flight?.terminal ? (
+                <ArrivalItem>{flight.terminal}</ArrivalItem>
+              ) : (
+                <ArrivalItem>N/A</ArrivalItem>
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Baggage belt</Heading>
+              {flight?.baggageClaim?.belts.length > 0 ? (
+                <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
+              ) : (
+                <ArrivalItem>N/A</ArrivalItem>
+              )}
+            </FlexItem>
+            <FlexItem>
+              <Heading>Schengen</Heading>
+              {flight?.route.eu === 'S' ? (
+                <ArrivalItem>Yes</ArrivalItem>
+              ) : flight?.route.eu !== 'S' ? (
+                <ArrivalItem>No</ArrivalItem>
+              ) : (
+                <ArrivalItem>N/A</ArrivalItem>
+              )}
+            </FlexItem>
+          </FlightInformationArrival>
+        </div>
+      </Content>
     </>
   );
 };
