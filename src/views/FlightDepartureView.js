@@ -112,31 +112,20 @@ const ContentHeader = styled.div`
 const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  /* border: 1px solid green; */
 `;
 
 const StyledLink = styled(Link)`
-display: inline-block;
-  /* position: relative; */
+  display: inline-block;
+  position: relative;
   text-decoration: none;
   color: #0d49c0;
-  transition: all 150ms ease-in;
-  /* padding: 0; */
-  margin: 0; 
-  padding: 0;
   cursor: pointer;
-  border: 1px solid blue;
-
-  &:hover {
-    /* color: ${({ theme }) => theme.colors.yellow}; */
-    color: #ffd700;
-    border-color: #ffd700;
-    /* text-decoration: underline; */
-  }
 `;
 
 const StyledArrowRight = styled(ArrowRight)`
   position: absolute;
-  top: 3px;
+  top: 2px;
   margin-left: 5px;
 `;
 
@@ -157,7 +146,12 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 direction="to"
               />
             )}
-            <StyledLink to="/">All flights</StyledLink>
+            <div>
+              <StyledLink to="/">
+                All flights{' '}
+                <StyledArrowRight height={15} width={15} fillColor="#0d49c0" />
+              </StyledLink>
+            </div>
           </FlexContainer>
           {flight?.route && <StyledCity route={flight.route} />}
           {flight?.publicFlightState && flight?.flightDirection && (
