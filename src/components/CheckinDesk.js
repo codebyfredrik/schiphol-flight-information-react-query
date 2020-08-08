@@ -25,9 +25,7 @@ const consecutive = (array) => {
 const CheckinDesk = ({ checkinLocations }) => {
   const { checkinAllocations } = checkinLocations;
   const { rows: rows } = checkinAllocations[0];
-  let temp = null;
   let isInSequence = null;
-  // let test = [1, 2, 3, 4, 5, 6, 7];
 
   isInSequence = consecutive(rows.rows);
 
@@ -41,14 +39,6 @@ const CheckinDesk = ({ checkinLocations }) => {
       }`}</span>
     );
   }
-
-  // return rows.rows.map((item, index) => {
-  //   return index !== rows.rows.length ? (
-  //     <span>{item.position}, </span>
-  //   ) : (
-  //     <span>{item.position}</span>
-  //   );
-  // });
 
   return (
     <div>
