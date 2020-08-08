@@ -116,15 +116,7 @@ const StyledLink = styled(Link)`
   position: relative;
   text-decoration: none;
   color: #0d49c0;
-  /* transition: all 150ms ease-in; */
-  /* padding: 2px 0; */
   cursor: pointer;
-  /* border-bottom: 1px solid transparent; */
-
-  &:hover {
-    /* color: ${({ theme }) => theme.colors.yellow};
-    border-color: ${({ theme }) => theme.colors.yellow}; */
-  }
 `;
 
 const StyledArrowRight = styled(ArrowRight)`
