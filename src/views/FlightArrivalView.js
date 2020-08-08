@@ -32,7 +32,7 @@ const FlightInformationArrival = styled.div`
   grid-gap: 1rem;
 
   @media screen and (min-width: 1080px) {
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
     grid-template-rows: auto;
   }
 `;
@@ -47,7 +47,7 @@ const FlexItem = styled.div`
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-bottom: 0rem;
 
-    &:nth-last-of-type(4),
+    &:nth-last-of-type(2),
     &:nth-last-of-type(1) {
       border-right: 0;
     }

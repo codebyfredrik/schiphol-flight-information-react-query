@@ -33,7 +33,7 @@ const FlightInformationArrival = styled.div`
   grid-gap: 1rem;
 
   @media screen and (min-width: 1080px) {
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
     grid-template-rows: auto;
   }
 `;
@@ -48,7 +48,7 @@ const FlexItem = styled.div`
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
     padding-bottom: 0rem;
 
-    &:nth-last-of-type(4),
+    &:nth-last-of-type(2),
     &:nth-last-of-type(1) {
       border-right: 0;
     }
@@ -115,14 +115,22 @@ const FlexContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  position: relative;
+display: inline-block;
+  /* position: relative; */
   text-decoration: none;
   color: #0d49c0;
-  transition: text-decoration 150s ease-in;
+  transition: all 150ms ease-in;
+  /* padding: 0; */
+  margin: 0; 
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid blue;
 
   &:hover {
-    text-decoration: underline;
-    color: ${({ theme }) => theme.colors.yellow};
+    /* color: ${({ theme }) => theme.colors.yellow}; */
+    color: #ffd700;
+    border-color: #ffd700;
+    /* text-decoration: underline; */
   }
 `;
 
