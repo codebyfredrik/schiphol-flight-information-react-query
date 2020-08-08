@@ -11,6 +11,7 @@ import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
 import { ArrowRight } from './../components/icons/index';
+import { CheckinDesk } from './../components/CheckinDesk';
 
 const StyledCity = styled(City)`
   display: block;
@@ -117,7 +118,7 @@ const FlexContainer = styled.div`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  position: relative;
+  /* position: relative; */
   text-decoration: none;
   color: #0d49c0;
   cursor: pointer;
@@ -125,8 +126,9 @@ const StyledLink = styled(Link)`
 
 const StyledArrowRight = styled(ArrowRight)`
   position: absolute;
-  top: 2px;
-  margin-left: 5px;
+  /* top: 2px; */
+  /* margin-left: 5px; */
+  padding-right: 5px;
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
@@ -146,12 +148,7 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 direction="to"
               />
             )}
-            <div>
-              <StyledLink to="/">
-                All flights{' '}
-                <StyledArrowRight height={15} width={15} fillColor="#0d49c0" />
-              </StyledLink>
-            </div>
+            <StyledLink to="/">All flights</StyledLink>
           </FlexContainer>
           {flight?.route && <StyledCity route={flight.route} />}
           {flight?.publicFlightState && flight?.flightDirection && (
@@ -214,8 +211,10 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
             </FlexItem>
             <FlexItem>
               <Heading>Check-in desk</Heading>
-              {flight?.baggageClaim?.belts.length > 0 ? (
-                <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
+              {flight?.checkinAllocations ? (
+                <ArrivalItem>
+                  <CheckinDesk checkinLocations={flight.checkinAllocations} />
+                </ArrivalItem>
               ) : (
                 <ArrivalItem>N/A</ArrivalItem>
               )}

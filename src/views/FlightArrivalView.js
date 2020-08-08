@@ -113,7 +113,7 @@ const FlexContainer = styled.div`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  position: relative;
+  /* position: relative; */
   text-decoration: none;
   color: #0d49c0;
   cursor: pointer;
@@ -142,12 +142,7 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                 direction="from"
               />
             )}
-            <div>
-              <StyledLink to="/">
-                All flights{' '}
-                <StyledArrowRight height={15} width={15} fillColor="#0d49c0" />
-              </StyledLink>
-            </div>
+            <StyledLink to="/">All flights</StyledLink>
           </FlexContainer>
           {flight?.route && <StyledCity route={flight.route} />}
           {flight?.publicFlightState && flight?.flightDirection && (
