@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useAirline } from './../hooks/useAirline';
 
 const StyledFlightFrom = styled.span`
-  display: block;
+  display: inline-block;
   font-size: 1rem;
 `;
 

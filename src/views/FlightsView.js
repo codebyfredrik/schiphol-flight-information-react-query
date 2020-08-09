@@ -4,11 +4,6 @@ import { useFlights, useRenderFlights } from '../hooks/index';
 import { Button } from './../styles/Styles';
 import { Content } from './../styles/Styles';
 
-const Heading = styled.h3`
-  color: ${({ theme }) => theme.colors.pageHeading};
-  text-transform: uppercase;
-`;
-
 const Flights = styled.ul`
   display: grid;
   grid-gap: 1rem;
@@ -21,7 +16,6 @@ const FlexContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 0.5rem;
-  /* margin: 1.5rem 0 0 0; */
 
   @media screen and (min-width: 680px) {
     grid-template-columns: 9em 9em auto 9em 9em;
@@ -104,13 +98,6 @@ const FlightsView = ({
   return (
     <>
       <StyledContent>
-        {/* <Heading>
-            {flightDirection === 'A'
-              ? 'Arrival flights'
-              : flightDirection === 'D'
-              ? 'Departure flights'
-              : 'Arrival and departure flights'}
-          </Heading> */}
         <FlexContainer>
           <StyledButton type="button" onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme

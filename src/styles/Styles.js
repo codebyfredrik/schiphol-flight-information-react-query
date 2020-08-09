@@ -40,7 +40,6 @@ export const Content = styled.div`
   max-width: 1000px;
   margin: auto;
   padding: 0 1rem;
-  /* border: 1px solid red; */
 `;
 
 export const ContentHeader = styled.div`

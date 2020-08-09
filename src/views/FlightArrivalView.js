@@ -162,11 +162,8 @@ const StyledLinkSolid = styled(LinkSolid)`
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
-  const { result: flight, error, isLoading, isSuccess, isFetching } = useFlight(
-    id
-  );
+  const { result: flight, isLoading } = useFlight(id);
 
-  // console.log(flight);
   return (
     <>
       {isLoading ? (

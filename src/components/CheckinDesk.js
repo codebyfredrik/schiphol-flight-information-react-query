@@ -16,14 +16,12 @@ const consecutive = (array) => {
     }
     i++;
   }
-  // console.log(isInSequence);
   return { isInSequence };
 };
 
 const CheckinDesk = ({ checkinLocations }) => {
   const { checkinAllocations } = checkinLocations;
   const { rows } = checkinAllocations[0];
-  // let isInSequence = null;
 
   const { isInSequence } = consecutive(rows.rows);
 

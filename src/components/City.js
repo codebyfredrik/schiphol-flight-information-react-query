@@ -7,9 +7,7 @@ const StyledCity = styled.span`
 `;
 
 const City = ({ route, className }) => {
-  const { result, error, isLoading, isSuccess, isFetching } = useDestination(
-    route
-  );
+  const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
     <>
@@ -25,9 +23,5 @@ const City = ({ route, className }) => {
     </>
   );
 };
-
-// City.defaultProps = {
-//   name: "Guest"
-// };
 
 export { City };

@@ -101,7 +101,6 @@ const StyledFlightStatus = styled(FlightStatus)`
 `;
 
 const StyledFlightFrom = styled(FlightFrom)`
-  /* border: 1px solid green; */
   flex: 1 1 1rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.colors.text};
@@ -110,7 +109,6 @@ const StyledFlightFrom = styled(FlightFrom)`
 const ContentHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.contentHeading};
   padding: 2rem 0;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadowDarkBg};
 `;
 
@@ -165,13 +163,8 @@ const StyledLinkSolid = styled(LinkSolid)`
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
-  const { result: flight, error, isLoading, isSuccess, isFetching } = useFlight(
-    id
-  );
-  // const data = queryCache.getQueryData(`/flights/${id}`);
+  const { result: flight, isLoading } = useFlight(id);
 
-  console.log('React-Query Data', flight);
-  // console.log(flight);
   return (
     <>
       {isLoading ? (
@@ -205,7 +198,6 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                   isDarkMode={isDarkMode}
                 />
               )}
-              {/* to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`} */}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
                   <StyledButton
