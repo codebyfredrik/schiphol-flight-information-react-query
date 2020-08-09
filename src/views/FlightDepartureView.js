@@ -12,6 +12,7 @@ import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
 import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
+import { queryCache } from 'react-query';
 
 const StyledCity = styled(City)`
   display: block;
@@ -128,8 +129,10 @@ const WrapperLastUpdated = styled.div`
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
-  const { result: flight } = useFlight(id);
+  const { result: flight, error, isLoading, isSuccess } = useFlight(id);
+  const data = queryCache.getQueryData(`/flights/${id}`);
 
+  console.log('data', data);
   console.log(flight);
   return (
     <>

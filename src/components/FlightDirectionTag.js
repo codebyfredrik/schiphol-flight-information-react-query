@@ -15,7 +15,10 @@ const StyledFlightDirectionTag = styled.span`
   height: 16px;
 
   @media screen and (prefers-reduced-motion: no-preference) {
-    transition: background-color var(--transition-time) ease-in;
+    transition-property: background-color, color;
+    transition-duration: var(--transition-time);
+    transition-timing-function: ease-in;
+    /* transition: background-color var(--transition-time) ease-in; */
   }
 `;
 

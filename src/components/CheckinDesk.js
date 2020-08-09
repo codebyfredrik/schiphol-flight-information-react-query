@@ -23,10 +23,10 @@ const consecutive = (array) => {
 
 const CheckinDesk = ({ checkinLocations }) => {
   const { checkinAllocations } = checkinLocations;
-  const { rows: rows } = checkinAllocations[0];
+  const { rows } = checkinAllocations[0];
   let isInSequence = null;
 
-  isInSequence = consecutive(rows.rows);
+  isInSequence = consecutive(rows);
 
   // console.log('Rows.rows', rows.rows);
   // console.log('isInSequence', isInSequence);

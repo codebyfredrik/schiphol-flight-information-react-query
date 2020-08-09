@@ -65,6 +65,7 @@ const Error = styled.span`
   display: inline-block;
   font-weight: bold;
   color: #ff0800;
+  margin-top: var(--container-margin);
 `;
 
 const StyledContent = styled(Content)`

@@ -7,13 +7,29 @@ const StyledCity = styled.span`
 `;
 
 const City = ({ route, className }) => {
-  const { result } = useDestination(route);
+  const { result, error, isLoading, isSuccess } = useDestination(route);
+  console.log('isLoading', isLoading);
+  // if (result) {
+  //   return <StyledCity className={className}>{result.city}</StyledCity>;
+  // }
 
-  if (result) {
-    return <StyledCity className={className}>{result.city}</StyledCity>;
-  }
-
-  return null;
+  return (
+    <>
+      {isLoading ? (
+        <StyledCity className={className}>Loading...</StyledCity>
+      ) : error ? (
+        <StyledCity className={className}>Error</StyledCity>
+      ) : isSuccess ? (
+        <StyledCity className={className}>{result.city}</StyledCity>
+      ) : (
+        <StyledCity className={className}>No data</StyledCity>
+      )}
+    </>
+  );
 };
+
+// City.defaultProps = {
+//   name: "Guest"
+// };
 
 export { City };
