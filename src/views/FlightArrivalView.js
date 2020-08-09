@@ -13,7 +13,7 @@ import { Content } from './../styles/Styles';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
-import { Redo } from './../components/icons/index';
+import { Redo, LinkSolid } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -156,6 +156,10 @@ const StyledRedo = styled(Redo)`
   margin-right: 5px;
 `;
 
+const StyledLinkSolid = styled(LinkSolid)`
+  margin-right: 5px;
+`;
+
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, error, isLoading, isSuccess, isFetching } = useFlight(
@@ -181,7 +185,10 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                     direction="from"
                   />
                 )}
-                <StyledLink to="/">All flights</StyledLink>
+                <StyledLink to="/">
+                  <StyledLinkSolid height={12} width={12} fillColor="#0d49c0" />
+                  <span>All flights</span>
+                </StyledLink>
               </FlexContainer>
               {flight?.route && <StyledCity route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (

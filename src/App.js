@@ -54,6 +54,7 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h3`
+  display: inline-block;
   margin: 0;
   font-size: 1rem;
   line-height: 1rem;
