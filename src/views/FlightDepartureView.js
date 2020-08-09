@@ -14,6 +14,7 @@ import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
+import { Redo } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -154,6 +155,10 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledRedo = styled(Redo)`
+  margin-right: 5px;
+`;
+
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, error, isLoading, isSuccess, isFetching } = useFlight(
@@ -201,6 +206,7 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
+                    <StyledRedo height={12} width={12} fillColor="#0d49c0" />
                     <LastUpdated timestamp={flight.lastUpdatedAt} />
                   </StyledButton>
                 )}
