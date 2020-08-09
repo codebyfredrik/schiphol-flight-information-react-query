@@ -6,11 +6,8 @@ const consecutive = (array) => {
     isInSequence;
   while (i < array.length) {
     d = array[i - 1].position - array[i - 2].position;
-    console.log(typeof array[i - 1].position);
-    if (
-      Math.abs(d) === 1 &&
-      d === +array[i].position - +array[i - 1].position
-    ) {
+    console.log(array[i - 1].position);
+    if (Math.abs(d) === 1 && d === array[i].position - array[i - 1].position) {
       console.log('Abs', Math.abs(d));
       isInSequence = true;
     } else {
@@ -26,10 +23,10 @@ const CheckinDesk = ({ checkinLocations }) => {
   const { rows } = checkinAllocations[0];
   let isInSequence = null;
 
-  isInSequence = consecutive(rows);
+  isInSequence = consecutive(rows.rows);
 
-  // console.log('Rows.rows', rows.rows);
-  // console.log('isInSequence', isInSequence);
+  console.log('Rows.rows', rows.rows);
+  console.log('isInSequence', isInSequence);
 
   if (isInSequence) {
     return (

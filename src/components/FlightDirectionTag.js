@@ -18,7 +18,6 @@ const StyledFlightDirectionTag = styled.span`
     transition-property: background-color, color;
     transition-duration: var(--transition-time);
     transition-timing-function: ease-in;
-    /* transition: background-color var(--transition-time) ease-in; */
   }
 `;
 

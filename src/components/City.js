@@ -8,10 +8,6 @@ const StyledCity = styled.span`
 
 const City = ({ route, className }) => {
   const { result, error, isLoading, isSuccess } = useDestination(route);
-  console.log('isLoading', isLoading);
-  // if (result) {
-  //   return <StyledCity className={className}>{result.city}</StyledCity>;
-  // }
 
   return (
     <>
