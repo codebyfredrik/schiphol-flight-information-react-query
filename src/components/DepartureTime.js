@@ -11,10 +11,7 @@ const StyledDepartureTime = styled.div`
 
 const ActualDepartureTime = styled(Time)`
   font-weight: bold;
-
-  @media screen and (min-width: 490px) {
-    margin-left: 0.5rem;
-  }
+  margin-left: 0.5rem;
 `;
 
 const DepartureTime = ({ scheduleDateTime, actualOffBlockTime, className }) => {

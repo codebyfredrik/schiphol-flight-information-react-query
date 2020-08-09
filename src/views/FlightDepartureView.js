@@ -10,8 +10,8 @@ import { DateTime } from '../components/DateTime';
 import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
-import { ArrowRight } from './../components/icons/index';
 import { CheckinDesk } from './../components/CheckinDesk';
+import { LastUpdated } from './../components/LastUpdated';
 
 const StyledCity = styled(City)`
   display: block;
@@ -58,7 +58,6 @@ const FlexItem = styled.div`
 
 const Title = styled.h2`
   font-size: 1.75rem;
-  font-weight: 600;
   margin: 1.5rem 0 1.5rem 0;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -113,22 +112,18 @@ const ContentHeader = styled.div`
 const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid green; */
 `;
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  /* position: relative; */
   text-decoration: none;
   color: #0d49c0;
   cursor: pointer;
 `;
 
-const StyledArrowRight = styled(ArrowRight)`
-  position: absolute;
-  /* top: 2px; */
-  /* margin-left: 5px; */
-  padding-right: 5px;
+const WrapperLastUpdated = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
@@ -158,6 +153,11 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
               isDarkMode={isDarkMode}
             />
           )}
+          <WrapperLastUpdated>
+            {flight?.lastUpdatedAt && (
+              <LastUpdated timestamp={flight.lastUpdatedAt} />
+            )}
+          </WrapperLastUpdated>
         </Content>
       </ContentHeader>
       <Content>

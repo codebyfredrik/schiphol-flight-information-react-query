@@ -10,7 +10,7 @@ import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from './../components/ArrivalTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
-import { ArrowRight } from './../components/icons/index';
+import { LastUpdated } from './../components/LastUpdated';
 
 const StyledCity = styled(City)`
   display: block;
@@ -113,16 +113,14 @@ const FlexContainer = styled.div`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  /* position: relative; */
   text-decoration: none;
   color: #0d49c0;
   cursor: pointer;
 `;
 
-const StyledArrowRight = styled(ArrowRight)`
-  position: absolute;
-  top: 2px;
-  margin-left: 5px;
+const WrapperLastUpdated = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
@@ -152,6 +150,11 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
               isDarkMode={isDarkMode}
             />
           )}
+          <WrapperLastUpdated>
+            {flight?.lastUpdatedAt && (
+              <LastUpdated timestamp={flight.lastUpdatedAt} />
+            )}
+          </WrapperLastUpdated>
         </Content>
       </ContentHeader>
       <Content>

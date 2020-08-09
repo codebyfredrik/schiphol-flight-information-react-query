@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const consecutive = (array) => {
   let i = 2,
@@ -29,8 +28,8 @@ const CheckinDesk = ({ checkinLocations }) => {
 
   isInSequence = consecutive(rows.rows);
 
-  console.log(rows.rows);
-  console.log(isInSequence);
+  // console.log('Rows.rows', rows.rows);
+  // console.log('isInSequence', isInSequence);
 
   if (isInSequence) {
     return (
@@ -44,9 +43,9 @@ const CheckinDesk = ({ checkinLocations }) => {
     <div>
       {rows.rows.map((item, index) => {
         if (index < rows.rows.length - 1) {
-          return <span>{item.position}, </span>;
+          return <span key={item.position}>{item.position}, </span>;
         } else {
-          return <span>{item.position}</span>;
+          return <span key={item.position}>{item.position}</span>;
         }
       })}
     </div>
