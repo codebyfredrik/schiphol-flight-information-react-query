@@ -3,27 +3,29 @@ import React from 'react';
 const consecutive = (array) => {
   let i = 2,
     d,
-    isInSequence;
+    isInSequence = null;
   while (i < array.length) {
     d = array[i - 1].position - array[i - 2].position;
-    console.log(array[i - 1].position);
+    console.log('d', d);
     if (Math.abs(d) === 1 && d === array[i].position - array[i - 1].position) {
       console.log('Abs', Math.abs(d));
       isInSequence = true;
     } else {
+      console.log('isInSequence', isInSequence);
       isInSequence = false;
     }
     i++;
   }
-  return isInSequence;
+  // console.log(isInSequence);
+  return { isInSequence };
 };
 
 const CheckinDesk = ({ checkinLocations }) => {
   const { checkinAllocations } = checkinLocations;
   const { rows } = checkinAllocations[0];
-  let isInSequence = null;
+  // let isInSequence = null;
 
-  isInSequence = consecutive(rows.rows);
+  const { isInSequence } = consecutive(rows.rows);
 
   console.log('Rows.rows', rows.rows);
   console.log('isInSequence', isInSequence);

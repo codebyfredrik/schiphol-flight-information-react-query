@@ -11,6 +11,8 @@ import { ArrivalTime } from './../components/ArrivalTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
 import { LastUpdated } from './../components/LastUpdated';
+import { queryCache } from 'react-query';
+import { query } from './../helpers/query';
 
 const StyledCity = styled(City)`
   display: block;
@@ -113,6 +115,7 @@ const FlexContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+  font-size: 1rem;
   text-align: right;
   flex: 1 1 1rem;
   margin-bottom: 1rem;
@@ -135,6 +138,16 @@ const Loading = styled.span`
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
+  }
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -175,7 +188,13 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
               )}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
-                  <LastUpdated timestamp={flight.lastUpdatedAt} />
+                  <StyledButton
+                    onClick={() => {
+                      queryCache.prefetchQuery(`/flights/${id}`, query);
+                    }}
+                  >
+                    <LastUpdated timestamp={flight.lastUpdatedAt} />
+                  </StyledButton>
                 )}
               </WrapperLastUpdated>
             </Content>

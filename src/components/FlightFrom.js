@@ -4,6 +4,7 @@ import { useAirline } from './../hooks/useAirline';
 
 const StyledFlightFrom = styled.span`
   display: block;
+  font-size: 1rem;
 `;
 
 const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {
@@ -11,10 +12,14 @@ const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {
 
   return (
     <>
-      {airline && (
+      {airline ? (
         <StyledFlightFrom
           className={className}
         >{`${airline.publicName} (${flightName}) flight ${direction}`}</StyledFlightFrom>
+      ) : (
+        <StyledFlightFrom
+          className={className}
+        >{`Flight ${direction}`}</StyledFlightFrom>
       )}
     </>
   );

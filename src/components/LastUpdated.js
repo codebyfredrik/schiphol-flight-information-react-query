@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { useFormatTime } from './../hooks/index';
 
 const StyledLastUpdated = styled.span`
-  color: ${({ theme }) => theme.colors.text};
+  display: inline-block;
+  font-size: 1rem;
+  color: #0d49c0;
 `;
 
 const LastUpdated = ({ timestamp, className }) => {

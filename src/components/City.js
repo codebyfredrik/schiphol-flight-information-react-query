@@ -7,7 +7,9 @@ const StyledCity = styled.span`
 `;
 
 const City = ({ route, className }) => {
-  const { result, error, isLoading, isSuccess } = useDestination(route);
+  const { result, error, isLoading, isSuccess, isFetching } = useDestination(
+    route
+  );
 
   return (
     <>

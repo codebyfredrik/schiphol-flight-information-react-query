@@ -13,6 +13,7 @@ import { Content } from './../styles/Styles';
 import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
+import { query } from './../helpers/query';
 
 const StyledCity = styled(City)`
   display: block;
@@ -117,8 +118,8 @@ const FlexContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+  font-size: 1rem;
   text-align: right;
-  /* border: 1px solid red; */
   flex: 1 1 1rem;
   margin-bottom: 1rem;
   display: inline-block;
@@ -140,6 +141,16 @@ const Loading = styled.span`
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
+  }
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -182,9 +193,16 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                   isDarkMode={isDarkMode}
                 />
               )}
+              {/* to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`} */}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
-                  <LastUpdated timestamp={flight.lastUpdatedAt} />
+                  <StyledButton
+                    onClick={() => {
+                      queryCache.prefetchQuery(`/flights/${id}`, query);
+                    }}
+                  >
+                    <LastUpdated timestamp={flight.lastUpdatedAt} />
+                  </StyledButton>
                 )}
               </WrapperLastUpdated>
             </Content>

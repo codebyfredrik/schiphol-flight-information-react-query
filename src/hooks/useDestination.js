@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { query } from './../helpers/query';
 
 const useDestination = (route) => {
-  const { data: result, error, isLoading, isSuccess } = useQuery(
+  const { data: result, error, isLoading, isSuccess, isFetching } = useQuery(
     `/destinations/${route.destinations[0]}`,
     query,
     {
