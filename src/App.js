@@ -74,6 +74,7 @@ const SubTitle = styled.h3`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const App = () => {

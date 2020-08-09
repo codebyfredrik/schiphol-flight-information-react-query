@@ -39,6 +39,7 @@ const StyledFlight = styled(motion.li)`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: green;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     cursor: pointer;
