@@ -117,6 +117,7 @@ const FlexContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
+  -webkit-tap-highlight-color: transparent;
   font-size: 1rem;
   text-align: right;
   flex: 1 1 1rem;
@@ -147,6 +148,7 @@ const StyledButton = styled.button`
   border: none;
   outline: none;
   background: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     cursor: pointer;
