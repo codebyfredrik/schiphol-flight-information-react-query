@@ -32,6 +32,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
+  display: inline-block;
   margin: 0;
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -91,8 +92,12 @@ const App = () => {
         <GlobalStyle />
         <Header>
           <HeaderContainer>
+            <div>
+              <StyledLink to="/">
+                <Title>Amsterdam Schipol Airport</Title>
+              </StyledLink>
+            </div>
             <StyledLink to="/">
-              <Title>Amsterdam Schipol Airport</Title>
               <SubTitle>Flight Information</SubTitle>
             </StyledLink>
           </HeaderContainer>
