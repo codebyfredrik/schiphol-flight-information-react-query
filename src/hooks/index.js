@@ -10,3 +10,4 @@ export { useStickyState } from './useStickyState';
 export { useToggle } from './useToggle';
 export { useKeyPress } from './useKeyPress';
 export { useFlightDirection } from './useFlightDirection';
+export { useFlight } from './useFlight';

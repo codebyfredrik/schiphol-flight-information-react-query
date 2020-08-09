@@ -4,7 +4,8 @@ import { darken } from 'polished';
 import { bp } from '../styles/constants';
 
 const lightTheme = {
-  body: 'rgb(235,235,235)',
+  body: 'rgb(240,240,240)',
+  contentHeading: 'white',
   bgButton: 'rgba(0, 0, 0, 0.05)',
   bgButtonHover: 'rgba(0, 0, 0, 0.1)',
   borderButton: 'rgba(0, 0, 0, 0.05)',
@@ -14,6 +15,7 @@ const lightTheme = {
   bgDirectionTag: '#262b2f',
   borderShadow: 'rgba(0,0,0,0.25)',
   borderDashed: 'rgba(0, 0, 0, 0.15)',
+  borderShadowDarkBg: 'rgba(0,0,0,0.25)',
   cardBackground: 'rgba(255, 255, 255, 0.5)',
   pageCounterBg: 'rgba(0, 0, 0, 0.05)',
   pageCounterText: '#ffd700',
@@ -26,6 +28,7 @@ const lightTheme = {
 
 const darkTheme = {
   body: '#18191A',
+  contentHeading: 'black',
   bgButton: '#3A3B3C',
   bgButtonHover: '#272728',
   borderButton: 'rgba(255, 255, 255, 0.05)',
@@ -35,6 +38,7 @@ const darkTheme = {
   bgDirectionTag: '#151617',
   borderShadow: '#151617',
   borderDashed: 'rgba(255, 255, 255, 0.15)',
+  borderShadowDarkBg: 'rgba(255,255,255,0.25)',
   cardBackground: '#242526',
   pageCounterBg: '#3A3B3C',
   pageCounterText: '#ffd700',

@@ -1,9 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { query } from './../helpers/query';
+import { queryCache } from 'react-query';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { darken } from 'polished';
-import { useFlightStatus } from './../hooks/index';
+import {
+  useFlightStatus,
+  useFlightDirection,
+  useFormatTime,
+} from './../hooks/index';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
 import { FlightDirectionTag } from './FlightDirectionTag';
@@ -11,6 +18,7 @@ import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
+import { ScheduleTime } from './../styles/Styles';
 
 const StyledFlight = styled(motion.li)`
   display: flex;
@@ -28,6 +36,16 @@ const StyledFlight = styled(motion.li)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: green;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 86px 5fr;
@@ -38,11 +56,6 @@ const Container = styled.div`
       grid-template-columns: 110px 3.6fr 1.4fr;
     }
   }
-`;
-
-const ScheduleTime = styled(Time)`
-  font-weight: bold;
-  text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
 `;
 
 const EstimatedArrivalTime = styled(Time)`
@@ -154,16 +167,13 @@ const CodeShare = styled.div`
 
 const FlightStatus = styled(Tag)`
   flex: 1 1 1rem;
-  margin-right: 0.5rem;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
   background-color: ${(props) =>
     props.isDarkMode
       ? darken(0.1, props.backgroundColor)
       : props.backgroundColor};
-  color: ${({ theme }) => theme.colors.textTag};
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
 `;
 
 const FlightStatusWrapper = styled.div`
@@ -185,6 +195,7 @@ const FlightWrapper = styled.div`
 
 const Flight = ({ flight, isDarkMode }) => {
   const {
+    id,
     flightDirection,
     scheduleDateTime,
     estimatedLandingTime,
@@ -198,6 +209,8 @@ const Flight = ({ flight, isDarkMode }) => {
     gate,
   } = flight;
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
+  let text = useFlightDirection(flightDirection);
+  const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
 
@@ -206,77 +219,86 @@ const Flight = ({ flight, isDarkMode }) => {
   if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
-    <StyledFlight
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {
-          opacity: 0,
-        },
-        visible: {
-          opacity: 1,
-          transition: {
-            delay: 0.1,
-          },
-        },
-      }}
+    <StyledLink
+      to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`}
     >
-      <Container>
-        <LeftContainer>
-          <TimeWrapper>
-            {flightDirection === 'A' ? (
-              <>
-                <ScheduleTime
-                  time={scheduleDateTime}
-                  estimated={estimatedTime}
+      <StyledFlight
+        onMouseEnter={() => {
+          queryCache.prefetchQuery(`/flights/${id}`, query);
+        }}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {
+            opacity: 0,
+          },
+          visible: {
+            opacity: 1,
+            transition: {
+              delay: 0.1,
+            },
+          },
+        }}
+      >
+        <Container>
+          <LeftContainer>
+            <TimeWrapper>
+              {flightDirection === 'A' ? (
+                <>
+                  <ScheduleTime
+                    time={scheduleDateTime}
+                    estimated={estimatedTime}
+                  />
+                  {actualLandingTime ? (
+                    <ActualArrivalTime time={actualTime} />
+                  ) : estimatedTime ? (
+                    <EstimatedArrivalTime time={estimatedTime} />
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <ScheduleTime
+                    time={scheduleDateTime}
+                    estimated={estimatedTime}
+                  />
+                  {estimatedTime && (
+                    <ActualDepartureTime time={estimatedTime} />
+                  )}
+                </>
+              )}
+            </TimeWrapper>
+            <FlightDirectionWrapper>
+              <FlightDirectionTag flightDirection={flightDirection} />
+            </FlightDirectionWrapper>
+          </LeftContainer>
+          <MiddleContainer>
+            <FlightWrapper>
+              <Destination route={route} />
+              <FlightInfoWrapper>
+                <FlightID flightName={flightName} />
+                <Airline prefixICAO={prefixICAO} />
+              </FlightInfoWrapper>
+            </FlightWrapper>
+            <FlightStatusWrapper>
+              {flightStatus.map((item) => (
+                <FlightStatus
+                  key={item.statusCode}
+                  label={item.status}
+                  backgroundColor={item.backgroundColor}
+                  isDarkMode={isDarkMode}
                 />
-                {actualLandingTime ? (
-                  <ActualArrivalTime time={actualTime} />
-                ) : estimatedTime ? (
-                  <EstimatedArrivalTime time={estimatedTime} />
-                ) : null}
-              </>
-            ) : (
-              <>
-                <ScheduleTime
-                  time={scheduleDateTime}
-                  estimated={estimatedTime}
-                />
-                {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
-              </>
-            )}
-          </TimeWrapper>
-          <FlightDirectionWrapper>
-            <FlightDirectionTag flightDirection={flightDirection} />
-          </FlightDirectionWrapper>
-        </LeftContainer>
-        <MiddleContainer>
-          <FlightWrapper>
-            <Destination route={route} />
-            <FlightInfoWrapper>
-              <FlightID flightName={flightName} />
-              <Airline prefixICAO={prefixICAO} />
-            </FlightInfoWrapper>
-          </FlightWrapper>
-          <FlightStatusWrapper>
-            {flightStatus.map((item) => (
-              <FlightStatus
-                key={item.statusCode}
-                label={item.status}
-                backgroundColor={item.backgroundColor}
-                isDarkMode={isDarkMode}
-              />
-            ))}
-          </FlightStatusWrapper>
-        </MiddleContainer>
-        <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
-      </Container>
-      {codeshares?.codeshares && (
-        <CodeShare>
-          Also known as: {codeshares?.codeshares.join(' / ')}
-        </CodeShare>
-      )}
-    </StyledFlight>
+              ))}
+            </FlightStatusWrapper>
+          </MiddleContainer>
+          <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
+        </Container>
+        {codeshares?.codeshares && (
+          <CodeShare>
+            Also known as: {codeshares?.codeshares.join(' / ')}
+          </CodeShare>
+        )}
+      </StyledFlight>
+    </StyledLink>
   );
 };
 
@@ -284,4 +306,4 @@ Flight.propTypes = {
   flight: PropTypes.object,
 };
 
-export { Flight };
+export { Flight, FlightStatus };

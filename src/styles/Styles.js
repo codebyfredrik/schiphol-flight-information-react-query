@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Time } from './../components/Time';
 
 export const Button = styled.button`
   height: var(--min-tap-target-height);
@@ -23,4 +24,26 @@ export const Button = styled.button`
       cursor: pointer;
     }
   }
+`;
+
+export const Heading = styled.h3`
+  color: ${({ theme }) => theme.colors.pageHeading};
+  text-transform: uppercase;
+`;
+
+export const ScheduleTime = styled(Time)`
+  font-weight: bold;
+  text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
+`;
+
+export const Content = styled.div`
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 1rem;
+`;
+
+export const ContentHeader = styled.div`
+  background-color: white;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;

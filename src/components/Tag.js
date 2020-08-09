@@ -8,9 +8,6 @@ const StyledTag = styled.span`
   font-weight: bold;
   padding: 0px 5px;
   text-transform: uppercase;
-  font-size: 12px;
-  height: 18px;
-  line-height: 18px;
   color: ${({ theme }) => theme.colors.textTag};
 
   @media screen and (prefers-reduced-motion: no-preference) {

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { useToggle, useDarkMode } from './hooks/index';
 import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Overlay } from './components/Overlay';
-import { FlightsView } from './views/FlightsView';
-
-const StyledApp = styled.div`
-  max-width: 1000px;
-  margin: auto;
-  padding: 0 1rem;
-`;
+import {
+  FlightsView,
+  FlightDepartureView,
+  FlightArrivalView,
+} from './views/index';
 
 const HeaderContainer = styled.div`
   max-width: 1000px;
@@ -21,12 +19,12 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #210e71;
-  margin-bottom: var(--container-margin);
+  background: linear-gradient(to right, #073590, #0d49c0);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
 `;
 
 const Title = styled.h1`
+  display: inline-block;
   margin: 0;
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -49,10 +47,12 @@ const Title = styled.h1`
 `;
 
 const SubTitle = styled.h3`
+  display: inline-block;
   margin: 0;
   font-size: 1rem;
   line-height: 1rem;
   margin-top: 0.25rem;
+  letter-spacing: 0.25rem;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 
@@ -64,6 +64,11 @@ const SubTitle = styled.h3`
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const App = () => {
@@ -79,8 +84,14 @@ const App = () => {
         <GlobalStyle />
         <Header>
           <HeaderContainer>
-            <Title>Amsterdam Schipol Airport</Title>
-            <SubTitle>Flight Information</SubTitle>
+            <div>
+              <StyledLink to="/">
+                <Title>Amsterdam Schipol Airport</Title>
+              </StyledLink>
+            </div>
+            <StyledLink to="/">
+              <SubTitle>Flight Information</SubTitle>
+            </StyledLink>
           </HeaderContainer>
         </Header>
         {overlayIsVisible && (
@@ -92,9 +103,9 @@ const App = () => {
             flightDirection={flightDirection}
           />
         )}
-        <StyledApp>
+        <div>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <FlightsView
                 page={page}
                 setPage={setPage}
@@ -104,8 +115,20 @@ const App = () => {
                 setOverlayIsVisible={setOverlayIsVisible}
               />
             </Route>
+            <Route exact path="/departures/:date/flights/:id">
+              <FlightDepartureView
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
+            </Route>
+            <Route exact path="/arrivals/:date/flights/:id">
+              <FlightArrivalView
+                isDarkMode={isDarkMode}
+                toggleDarkMode={toggleDarkMode}
+              />
+            </Route>
           </Switch>
-        </StyledApp>
+        </div>
       </>
     </Theme>
   );
