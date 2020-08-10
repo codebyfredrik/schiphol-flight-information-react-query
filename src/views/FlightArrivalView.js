@@ -40,7 +40,7 @@ const FlightInformationArrival = styled.div`
   }
 `;
 
-const FlexItem = styled.div`
+const Item = styled.div`
   display: inline-block;
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
@@ -77,7 +77,7 @@ const StyledFlightNumber = styled(FlightNumber)`
   font-weight: 900;
 `;
 
-const ArrivalItem = styled.span`
+const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 1.125rem;
@@ -101,7 +101,6 @@ const StyledFlightStatus = styled(FlightStatus)`
 const StyledFlightFrom = styled(FlightFrom)`
   flex: 1 1 1rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.text};
 `;
 
 const ContentHeader = styled.div`
@@ -185,7 +184,12 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                   />
                 )}
                 <StyledLink to="/">
-                  <StyledLinkSolid height={12} width={12} fillColor="#0d49c0" />
+                  <StyledLinkSolid
+                    height={12}
+                    width={12}
+                    fillColor="#0d49c0"
+                    aria-label="Display all flights"
+                  />
                   <span>All flights</span>
                 </StyledLink>
               </FlexContainer>
@@ -204,7 +208,12 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
-                    <StyledRedo height={12} width={12} fillColor="#0d49c0" />
+                    <StyledRedo
+                      height={12}
+                      width={12}
+                      fillColor="#0d49c0"
+                      aria-label="Update flight information"
+                    />
                     <LastUpdated timestamp={flight.lastUpdatedAt} />
                   </StyledButton>
                 )}
@@ -215,7 +224,7 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
             <div>
               <Title>Flight information</Title>
               <FlightInformationArrival>
-                <FlexItem>
+                <Item>
                   <Heading>Date</Heading>
                   {flight?.scheduleDateTime && (
                     <StyledDateTime
@@ -223,8 +232,8 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                       format="MMM D"
                     />
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Arrival time</Heading>
                   {flight && (
                     <ArrivalTime
@@ -233,55 +242,55 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                       actualLandingTime={flight.actualLandingTime}
                     />
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Flight number</Heading>
                   {flight?.flightName && (
                     <StyledFlightNumber flightName={flight.flightName} />
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Gate</Heading>
                   {flight?.gate ? (
                     <Gate gate={flight.gate} />
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Pier</Heading>
                   {flight?.pier ? (
-                    <ArrivalItem>{flight?.pier}</ArrivalItem>
+                    <Text>{flight?.pier}</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Arrivals</Heading>
                   {flight?.terminal ? (
-                    <ArrivalItem>{flight.terminal}</ArrivalItem>
+                    <Text>{flight.terminal}</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Baggage belt</Heading>
                   {flight?.baggageClaim?.belts.length > 0 ? (
-                    <ArrivalItem>{flight.baggageClaim.belts[0]}</ArrivalItem>
+                    <Text>{flight.baggageClaim.belts[0]}</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Schengen</Heading>
                   {flight?.route.eu === 'S' ? (
-                    <ArrivalItem>Yes</ArrivalItem>
+                    <Text>Yes</Text>
                   ) : flight?.route.eu !== 'S' ? (
-                    <ArrivalItem>No</ArrivalItem>
+                    <Text>No</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
+                </Item>
               </FlightInformationArrival>
             </div>
           </Content>

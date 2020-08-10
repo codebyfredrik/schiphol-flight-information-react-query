@@ -9,12 +9,7 @@ const StyledArrivalTime = styled.div`
   font-weight: 900;
 `;
 
-const EstimatedArrivalTime = styled(Time)`
-  font-weight: bold;
-  margin-left: 0.5rem;
-`;
-
-const ActualArrivalTime = styled(Time)`
+const StyledTime = styled(Time)`
   font-weight: bold;
   margin-left: 0.5rem;
 `;
@@ -36,9 +31,9 @@ const ArrivalTime = ({
       <>
         <ScheduleTime time={scheduleDateTime} estimated={estimatedTime} />
         {actualLandingTime ? (
-          <ActualArrivalTime time={actualTime} />
+          <StyledTime time={actualTime} />
         ) : estimatedTime ? (
-          <EstimatedArrivalTime time={estimatedTime} />
+          <StyledTime time={estimatedTime} />
         ) : null}
       </>
     </StyledArrivalTime>

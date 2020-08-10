@@ -4,7 +4,6 @@ import { useAirline } from './../hooks/useAirline';
 
 const StyledFlightFrom = styled.span`
   display: inline-block;
-  font-size: 1rem;
 `;
 
 const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {

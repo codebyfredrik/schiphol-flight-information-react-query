@@ -9,20 +9,20 @@ const StyledDepartureTime = styled.div`
   font-weight: 900;
 `;
 
-const ActualDepartureTime = styled(Time)`
+const ActualTime = styled(Time)`
   font-weight: bold;
   margin-left: 0.5rem;
 `;
 
 const DepartureTime = ({ scheduleDateTime, actualOffBlockTime, className }) => {
-  let estimatedTime = null;
+  // let actualTime = null;
 
-  if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
+  // if (actualOffBlockTime) actualTime = actualOffBlockTime;
 
   return (
     <StyledDepartureTime className={className}>
-      <ScheduleTime time={scheduleDateTime} estimated={estimatedTime} />
-      {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
+      <ScheduleTime time={scheduleDateTime} estimated={actualOffBlockTime} />
+      {actualOffBlockTime && <ActualTime time={actualOffBlockTime} />}
     </StyledDepartureTime>
   );
 };
