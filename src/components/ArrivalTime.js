@@ -10,7 +10,6 @@ const StyledArrivalTime = styled.div`
 `;
 
 const StyledTime = styled(Time)`
-  /* font-weight: bold; */
   margin-left: 0.5rem;
 `;
 

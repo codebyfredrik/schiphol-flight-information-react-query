@@ -59,24 +59,18 @@ const Container = styled.div`
 `;
 
 const EstimatedArrivalTime = styled(Time)`
-  /* font-weight: bold; */
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
 const ActualArrivalTime = styled(Time)`
-  /* font-weight: bold; */
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
 const ActualDepartureTime = styled(Time)`
-  /* font-weight: bold; */
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
