@@ -4,6 +4,7 @@ import { useAirline } from './../hooks/useAirline';
 
 const StyledFlightFrom = styled.span`
   display: inline-block;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {

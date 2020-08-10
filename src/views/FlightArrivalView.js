@@ -103,13 +103,13 @@ const StyledFlightFrom = styled(FlightFrom)`
   margin-bottom: 1rem;
 `;
 
-const ContentHeader = styled.div`
+const HeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.contentHeading};
   padding: 2rem 0;
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadowDarkBg};
 `;
 
-const FlexContainer = styled.div`
+const HeaderInformation = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -173,9 +173,9 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
         </Content>
       ) : (
         <>
-          <ContentHeader>
+          <HeaderContainer>
             <Content>
-              <FlexContainer>
+              <HeaderInformation>
                 {flight?.prefixICAO && flight?.flightName && (
                   <StyledFlightFrom
                     prefixICAO={flight.prefixICAO}
@@ -192,7 +192,7 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                   />
                   <span>All flights</span>
                 </StyledLink>
-              </FlexContainer>
+              </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
                 <StyledFlightStatus
@@ -219,34 +219,40 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                 )}
               </WrapperLastUpdated>
             </Content>
-          </ContentHeader>
+          </HeaderContainer>
           <Content>
             <div>
               <Title>Flight information</Title>
               <FlightInformationArrival>
                 <Item>
                   <Heading>Date</Heading>
-                  {flight?.scheduleDateTime && (
+                  {flight?.scheduleDateTime ? (
                     <StyledDateTime
                       date={flight.scheduleDateTime}
                       format="MMM D"
                     />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
                 </Item>
                 <Item>
                   <Heading>Arrival time</Heading>
-                  {flight && (
+                  {flight ? (
                     <ArrivalTime
                       scheduleDateTime={flight.scheduleDateTime}
                       estimatedLandingTime={flight.estimatedLandingTime}
                       actualLandingTime={flight.actualLandingTime}
                     />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
                 </Item>
                 <Item>
                   <Heading>Flight number</Heading>
-                  {flight?.flightName && (
+                  {flight?.flightName ? (
                     <StyledFlightNumber flightName={flight.flightName} />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
                 </Item>
                 <Item>
