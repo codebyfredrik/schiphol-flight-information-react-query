@@ -19,6 +19,7 @@ import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
 import { ScheduleTime } from './../styles/Styles';
+import { ArrowRight } from './../components/icons/index';
 
 const StyledFlight = styled(motion.li)`
   display: flex;
@@ -38,7 +39,7 @@ const StyledFlight = styled(motion.li)`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: green;
+  /* color: green; */
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
@@ -188,6 +189,29 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
+const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
+`;
+
+const FlightLink = styled(Link)`
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1rem;
+  text-align: right;
+  flex: 1 1 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #0d49c0;
+  cursor: pointer;
+`;
+
+const LinkText = styled.span`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+  }
+`;
+
 const Flight = ({ flight, isDarkMode }) => {
   const {
     id,
@@ -285,7 +309,18 @@ const Flight = ({ flight, isDarkMode }) => {
               ))}
             </FlightStatusWrapper>
           </MiddleContainer>
-          <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
+          <RightContainer>
+            {gate && <Gate gate={gate} />}
+            <FlightLink to="/">
+              <LinkText>Details</LinkText>
+              <StyledArrowRight
+                height={12}
+                width={12}
+                fillColor="#0d49c0"
+                aria-label="Display flight details"
+              />
+            </FlightLink>
+          </RightContainer>
         </Container>
         {codeshares?.codeshares && (
           <CodeShare>
