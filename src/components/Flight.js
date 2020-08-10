@@ -59,7 +59,7 @@ const Container = styled.div`
 `;
 
 const EstimatedArrivalTime = styled(Time)`
-  font-weight: bold;
+  /* font-weight: bold; */
 
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
@@ -67,7 +67,7 @@ const EstimatedArrivalTime = styled(Time)`
 `;
 
 const ActualArrivalTime = styled(Time)`
-  font-weight: bold;
+  /* font-weight: bold; */
 
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
@@ -75,7 +75,7 @@ const ActualArrivalTime = styled(Time)`
 `;
 
 const ActualDepartureTime = styled(Time)`
-  font-weight: bold;
+  /* font-weight: bold; */
 
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
@@ -145,6 +145,7 @@ const FlightDirectionWrapper = styled.div`
 const TimeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  font-weight: 900;
 
   @media screen and (min-width: 490px) {
     flex-direction: row;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Time } from './../components/Time';
-import { ScheduleTime } from './../styles/Styles';
+import { ScheduleTime } from './../styles/index';
 
 const StyledDepartureTime = styled.div`
   display: inline-block;
@@ -10,7 +10,6 @@ const StyledDepartureTime = styled.div`
 `;
 
 const ActualTime = styled(Time)`
-  font-weight: bold;
   margin-left: 0.5rem;
 `;
 

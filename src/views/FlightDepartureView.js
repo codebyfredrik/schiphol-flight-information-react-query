@@ -103,7 +103,6 @@ const StyledFlightStatus = styled(FlightStatus)`
 const StyledFlightFrom = styled(FlightFrom)`
   flex: 1 1 1rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.text};
 `;
 
 const HeaderContainer = styled.div`
