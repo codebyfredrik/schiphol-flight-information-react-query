@@ -73,6 +73,7 @@ const FlightsView = ({
   isDarkMode,
   toggleDarkMode,
   setOverlayIsVisible,
+  ...restProps
 }) => {
   const {
     isError,
@@ -97,7 +98,7 @@ const FlightsView = ({
 
   return (
     <>
-      <StyledContent>
+      <StyledContent {...restProps}>
         <FlexContainer>
           <StyledButton type="button" onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme

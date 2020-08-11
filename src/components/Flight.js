@@ -193,16 +193,11 @@ const StyledArrowRight = styled(ArrowRight)`
   margin-left: 5px;
 `;
 
-const FlightLink = styled(Link)`
-  -webkit-tap-highlight-color: transparent;
-  font-size: 1rem;
+const LinkWrapper = styled.div`
   text-align: right;
-  flex: 1 1 1rem;
-  margin-bottom: 1rem;
   display: inline-block;
-  text-decoration: none;
+  flex: 1 1 1rem;
   color: #0d49c0;
-  cursor: pointer;
 `;
 
 const LinkText = styled.span`
@@ -311,9 +306,7 @@ const Flight = ({ flight, isDarkMode }) => {
           </MiddleContainer>
           <RightContainer>
             {gate && <Gate gate={gate} />}
-            <FlightLink
-              to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`}
-            >
+            <LinkWrapper>
               <LinkText>Details</LinkText>
               <StyledArrowRight
                 height={12}
@@ -321,7 +314,7 @@ const Flight = ({ flight, isDarkMode }) => {
                 fillColor="#0d49c0"
                 aria-label="Display flight details"
               />
-            </FlightLink>
+            </LinkWrapper>
           </RightContainer>
         </Container>
         {codeshares?.codeshares && (
