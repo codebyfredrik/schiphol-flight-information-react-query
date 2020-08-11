@@ -11,15 +11,12 @@ const StyledFlightNumber = styled.span`
   }
 `;
 
-const FlightNumber = ({ flightName, className }) => {
-  return (
-    <StyledFlightNumber className={className}>{flightName}</StyledFlightNumber>
-  );
+const FlightNumber = ({ flightName, ...restProps }) => {
+  return <StyledFlightNumber {...restProps}>{flightName}</StyledFlightNumber>;
 };
 
 FlightNumber.propTypes = {
   flightName: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { FlightNumber };

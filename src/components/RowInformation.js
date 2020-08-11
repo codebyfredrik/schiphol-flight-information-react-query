@@ -20,9 +20,9 @@ const Update = styled(UpdateIndicator)`
   margin-left: 5px;
 `;
 
-const RowInformation = ({ date, isFetching }) => {
+const RowInformation = ({ date, isFetching, ...restProps }) => {
   return (
-    <StyledRowInformation>
+    <StyledRowInformation {...restProps}>
       <DisplayDate date={date} />
       {isFetching && <Update />}
     </StyledRowInformation>
@@ -31,8 +31,6 @@ const RowInformation = ({ date, isFetching }) => {
 
 RowInformation.propTypes = {
   date: PropTypes.string,
-  index: PropTypes.number,
-  page: PropTypes.number,
 };
 
 export { RowInformation };

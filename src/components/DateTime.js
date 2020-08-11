@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
 import PropTypes from 'prop-types';
 
-export const StyledDateTime = styled.span`
+const StyledDateTime = styled.span`
   color: ${({ theme }) => theme.colors.text};
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -11,13 +11,11 @@ export const StyledDateTime = styled.span`
   }
 `;
 
-const DateTime = ({ date, format, className }) => {
+const DateTime = ({ date, format, ...restProps }) => {
   const { formattedTimestamp } = useFormatTime(date, format);
 
   return (
-    <StyledDateTime
-      className={className}
-    >{`${formattedTimestamp}`}</StyledDateTime>
+    <StyledDateTime {...restProps}>{`${formattedTimestamp}`}</StyledDateTime>
   );
 };
 

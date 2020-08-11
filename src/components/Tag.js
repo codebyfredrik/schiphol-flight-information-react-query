@@ -16,13 +16,12 @@ const StyledTag = styled.span`
   }
 `;
 
-const Tag = ({ label, className }) => {
-  return <StyledTag className={className}>{label}</StyledTag>;
+const Tag = ({ label, ...restProps }) => {
+  return <StyledTag {...restProps}>{label}</StyledTag>;
 };
 
 Tag.propTypes = {
   label: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Tag };

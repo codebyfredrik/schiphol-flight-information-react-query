@@ -35,9 +35,9 @@ const Dot = styled.span`
   }
 `;
 
-const UpdateIndicator = ({ className }) => {
+const UpdateIndicator = ({ ...restProps }) => {
   return (
-    <StyledUpdateIndicator className={className}>
+    <StyledUpdateIndicator {...restProps}>
       <Dot className="one" />
       <Dot className="two" />
       <Dot className="three" />

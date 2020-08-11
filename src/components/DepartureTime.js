@@ -13,13 +13,17 @@ const ActualTime = styled(Time)`
   margin-left: 0.5rem;
 `;
 
-const DepartureTime = ({ scheduleDateTime, actualOffBlockTime, className }) => {
+const DepartureTime = ({
+  scheduleDateTime,
+  actualOffBlockTime,
+  ...restProps
+}) => {
   // let actualTime = null;
 
   // if (actualOffBlockTime) actualTime = actualOffBlockTime;
 
   return (
-    <StyledDepartureTime className={className}>
+    <StyledDepartureTime {...restProps}>
       <ScheduleTime time={scheduleDateTime} estimated={actualOffBlockTime} />
       {actualOffBlockTime && <ActualTime time={actualOffBlockTime} />}
     </StyledDepartureTime>

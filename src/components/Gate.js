@@ -20,13 +20,12 @@ const StyledGate = styled.span`
   }
 `;
 
-const Gate = ({ gate, className }) => {
-  return <StyledGate className={className}>{gate}</StyledGate>;
+const Gate = ({ gate, ...restProps }) => {
+  return <StyledGate {...restProps}>{gate}</StyledGate>;
 };
 
 Gate.propTypes = {
   gate: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Gate };

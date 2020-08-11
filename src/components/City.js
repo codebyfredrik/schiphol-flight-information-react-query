@@ -6,19 +6,19 @@ const StyledCity = styled.span`
   display: inline-block;
 `;
 
-const City = ({ route, className }) => {
+const City = ({ route, ...restProps }) => {
   const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
     <>
       {isLoading ? (
-        <StyledCity className={className}>Loading...</StyledCity>
+        <StyledCity {...restProps}>Loading...</StyledCity>
       ) : error ? (
-        <StyledCity className={className}>Error</StyledCity>
+        <StyledCity {...restProps}>Error</StyledCity>
       ) : isSuccess ? (
-        <StyledCity className={className}>{result.city}</StyledCity>
+        <StyledCity {...restProps}>{result.city}</StyledCity>
       ) : (
-        <StyledCity className={className}>No data</StyledCity>
+        <StyledCity {...restProps}>No data</StyledCity>
       )}
     </>
   );

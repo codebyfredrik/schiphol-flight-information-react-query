@@ -17,7 +17,7 @@ const ArrivalTime = ({
   scheduleDateTime,
   estimatedLandingTime,
   actualLandingTime,
-  className,
+  ...restProps
 }) => {
   let estimatedTime = null;
   let actualTime = null;
@@ -26,7 +26,7 @@ const ArrivalTime = ({
   if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
-    <StyledArrivalTime className={className}>
+    <StyledArrivalTime {...restProps}>
       <>
         <ScheduleTime time={scheduleDateTime} estimated={estimatedTime} />
         {actualLandingTime ? (

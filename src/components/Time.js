@@ -12,15 +12,14 @@ const StyledTime = styled.span`
   }
 `;
 
-const Time = ({ time, className }) => {
+const Time = ({ time, ...restProps }) => {
   const { formattedTimestamp } = useFormatTime(time, 'HH:mm');
 
-  return <StyledTime className={className}>{formattedTimestamp}</StyledTime>;
+  return <StyledTime {...restProps}>{formattedTimestamp}</StyledTime>;
 };
 
 Time.propTypes = {
   time: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Time };

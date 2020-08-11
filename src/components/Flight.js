@@ -232,7 +232,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
-
+  const onMouseEnter = () => console.log('hej');
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
@@ -311,7 +311,9 @@ const Flight = ({ flight, isDarkMode }) => {
           </MiddleContainer>
           <RightContainer>
             {gate && <Gate gate={gate} />}
-            <FlightLink to="/">
+            <FlightLink
+              to={`/${text.toLowerCase()}s/${formattedTimestamp}/flights/${id}`}
+            >
               <LinkText>Details</LinkText>
               <StyledArrowRight
                 height={12}
