@@ -14,7 +14,7 @@ import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
-import { Redo, LinkSolid } from './../components/icons/index';
+import { Redo, LinkSolid, ArrowRight } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -158,8 +158,8 @@ const StyledRedo = styled(Redo)`
   margin-right: 5px;
 `;
 
-const StyledLinkSolid = styled(LinkSolid)`
-  margin-right: 5px;
+const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
@@ -187,8 +187,12 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                   <span>Error</span>
                 )}
                 <StyledLink to="/">
-                  <StyledLinkSolid height={12} width={12} fillColor="#0d49c0" />
                   <span>All flights</span>
+                  <StyledArrowRight
+                    height={12}
+                    width={12}
+                    fillColor="#0d49c0"
+                  />
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}

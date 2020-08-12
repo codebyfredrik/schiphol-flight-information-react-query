@@ -30,7 +30,6 @@ const Airline = ({ prefixICAO, ...restProps }) => {
 
 Airline.propTypes = {
   prefixICAO: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Airline };

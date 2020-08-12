@@ -13,7 +13,7 @@ import { Content } from './../styles/Styles';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
-import { Redo, LinkSolid } from './../components/icons/index';
+import { Redo, ArrowRight } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -157,8 +157,8 @@ const StyledRedo = styled(Redo)`
   margin-right: 5px;
 `;
 
-const StyledLinkSolid = styled(LinkSolid)`
-  margin-right: 5px;
+const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
@@ -184,13 +184,13 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                   />
                 )}
                 <StyledLink to="/">
-                  <StyledLinkSolid
+                  <span>All flights</span>
+                  <StyledArrowRight
                     height={12}
                     width={12}
                     fillColor="#0d49c0"
                     aria-label="Display all flights"
                   />
-                  <span>All flights</span>
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
