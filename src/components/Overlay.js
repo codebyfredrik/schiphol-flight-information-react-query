@@ -53,7 +53,7 @@ const Option = styled.button`
   text-align: center;
   position: relative;
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 600;
   margin-bottom: 2rem;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subTitle};
