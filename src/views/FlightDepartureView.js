@@ -20,7 +20,6 @@ import { AircraftDetails } from './../components/AircraftDetails';
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  /* line-height: 3.6rem; */
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
