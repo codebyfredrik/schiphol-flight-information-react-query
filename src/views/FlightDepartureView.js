@@ -14,12 +14,12 @@ import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
-import { Redo, LinkSolid, ArrowRight } from './../components/icons/index';
+import { Redo, ArrowRight } from './../components/icons/index';
+import { AircraftDetails } from './../components/AircraftDetails';
 
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  line-height: 4.1rem;
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
@@ -130,6 +130,7 @@ const StyledLink = styled(Link)`
 const WrapperLastUpdated = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-top: 1rem;
 `;
 
 const Loading = styled.span`
@@ -299,6 +300,12 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 </Item>
               </FlightInformationArrival>
             </div>
+            {flight?.aircraftType && flight?.aircraftRegistration && (
+              <AircraftDetails
+                aircraftRegistration={flight.aircraftRegistration}
+                aircraftType={flight.aircraftType.iataSub}
+              />
+            )}
           </Content>
         </>
       )}
