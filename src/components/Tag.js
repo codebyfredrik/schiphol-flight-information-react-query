@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const StyledTag = styled.span`
   display: inline-block;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 0px 5px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textTag};
@@ -16,13 +16,12 @@ const StyledTag = styled.span`
   }
 `;
 
-const Tag = ({ label, className }) => {
-  return <StyledTag className={className}>{label}</StyledTag>;
+const Tag = ({ label, ...restProps }) => {
+  return <StyledTag {...restProps}>{label}</StyledTag>;
 };
 
 Tag.propTypes = {
   label: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Tag };

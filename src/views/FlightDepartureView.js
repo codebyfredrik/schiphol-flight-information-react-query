@@ -14,7 +14,7 @@ import { CheckinDesk } from './../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
-import { Redo, LinkSolid } from './../components/icons/index';
+import { Redo, LinkSolid, ArrowRight } from './../components/icons/index';
 
 const StyledCity = styled(City)`
   display: block;
@@ -42,7 +42,7 @@ const FlightInformationArrival = styled.div`
   }
 `;
 
-const FlexItem = styled.div`
+const Item = styled.div`
   display: inline-block;
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
@@ -79,7 +79,7 @@ const StyledFlightNumber = styled(FlightNumber)`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-const ArrivalItem = styled.span`
+const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 1.125rem;
@@ -103,16 +103,15 @@ const StyledFlightStatus = styled(FlightStatus)`
 const StyledFlightFrom = styled(FlightFrom)`
   flex: 1 1 1rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.text};
 `;
 
-const ContentHeader = styled.div`
+const HeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.contentHeading};
   padding: 2rem 0;
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadowDarkBg};
 `;
 
-const FlexContainer = styled.div`
+const HeaderInformation = styled.div`
   display: flex;
 `;
 
@@ -159,8 +158,8 @@ const StyledRedo = styled(Redo)`
   margin-right: 5px;
 `;
 
-const StyledLinkSolid = styled(LinkSolid)`
-  margin-right: 5px;
+const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
@@ -175,9 +174,9 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
         </Content>
       ) : (
         <>
-          <ContentHeader>
+          <HeaderContainer>
             <Content>
-              <FlexContainer>
+              <HeaderInformation>
                 {flight?.prefixICAO && flight?.flightName ? (
                   <StyledFlightFrom
                     prefixICAO={flight.prefixICAO}
@@ -188,10 +187,14 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                   <span>Error</span>
                 )}
                 <StyledLink to="/">
-                  <StyledLinkSolid height={12} width={12} fillColor="#0d49c0" />
                   <span>All flights</span>
+                  <StyledArrowRight
+                    height={12}
+                    width={12}
+                    fillColor="#0d49c0"
+                  />
                 </StyledLink>
-              </FlexContainer>
+              </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
                 <StyledFlightStatus
@@ -213,81 +216,87 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 )}
               </WrapperLastUpdated>
             </Content>
-          </ContentHeader>
+          </HeaderContainer>
           <Content>
             <div>
               <Title>Flight information</Title>
               <FlightInformationArrival>
-                <FlexItem>
+                <Item>
                   <Heading>Date</Heading>
-                  {flight?.scheduleDateTime && (
+                  {flight?.scheduleDateTime ? (
                     <StyledDateTime
                       date={flight.scheduleDateTime}
                       format="MMM D"
                     />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Departure time</Heading>
-                  {flight && (
+                  {flight ? (
                     <DepartureTime
                       scheduleDateTime={flight.scheduleDateTime}
                       actualOffBlockTime={flight.actualOffBlockTime}
                     />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Flight number</Heading>
-                  {flight?.flightName && (
+                  {flight?.flightName ? (
                     <StyledFlightNumber flightName={flight.flightName} />
+                  ) : (
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Gate</Heading>
                   {flight?.gate ? (
                     <Gate gate={flight.gate} />
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Pier</Heading>
                   {flight?.pier ? (
-                    <ArrivalItem>{flight?.pier}</ArrivalItem>
+                    <Text>{flight?.pier}</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Departures</Heading>
                   {flight?.terminal ? (
-                    <ArrivalItem>{flight.terminal}</ArrivalItem>
+                    <Text>{flight.terminal}</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Check-in desk</Heading>
                   {flight?.checkinAllocations ? (
-                    <ArrivalItem>
+                    <Text>
                       <CheckinDesk
                         checkinLocations={flight.checkinAllocations}
                       />
-                    </ArrivalItem>
+                    </Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
-                <FlexItem>
+                </Item>
+                <Item>
                   <Heading>Schengen</Heading>
                   {flight?.route.eu === 'S' ? (
-                    <ArrivalItem>Yes</ArrivalItem>
+                    <Text>Yes</Text>
                   ) : flight?.route.eu !== 'S' ? (
-                    <ArrivalItem>No</ArrivalItem>
+                    <Text>No</Text>
                   ) : (
-                    <ArrivalItem>N/A</ArrivalItem>
+                    <Text>N/A</Text>
                   )}
-                </FlexItem>
+                </Item>
               </FlightInformationArrival>
             </div>
           </Content>

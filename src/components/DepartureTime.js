@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Time } from './../components/Time';
-import { ScheduleTime } from './../styles/Styles';
+import { ScheduleTime } from './../styles/index';
 
 const StyledDepartureTime = styled.div`
   display: inline-block;
@@ -9,20 +9,23 @@ const StyledDepartureTime = styled.div`
   font-weight: 900;
 `;
 
-const ActualDepartureTime = styled(Time)`
-  font-weight: bold;
+const ActualTime = styled(Time)`
   margin-left: 0.5rem;
 `;
 
-const DepartureTime = ({ scheduleDateTime, actualOffBlockTime, className }) => {
-  let estimatedTime = null;
+const DepartureTime = ({
+  scheduleDateTime,
+  actualOffBlockTime,
+  ...restProps
+}) => {
+  // let actualTime = null;
 
-  if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
+  // if (actualOffBlockTime) actualTime = actualOffBlockTime;
 
   return (
-    <StyledDepartureTime className={className}>
-      <ScheduleTime time={scheduleDateTime} estimated={estimatedTime} />
-      {estimatedTime && <ActualDepartureTime time={estimatedTime} />}
+    <StyledDepartureTime {...restProps}>
+      <ScheduleTime time={scheduleDateTime} estimated={actualOffBlockTime} />
+      {actualOffBlockTime && <ActualTime time={actualOffBlockTime} />}
     </StyledDepartureTime>
   );
 };

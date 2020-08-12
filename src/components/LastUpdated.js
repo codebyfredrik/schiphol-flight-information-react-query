@@ -8,11 +8,12 @@ const StyledLastUpdated = styled.span`
   color: #0d49c0;
 `;
 
-const LastUpdated = ({ timestamp, className }) => {
+const LastUpdated = ({ timestamp, ...restProps }) => {
   const { formattedTimestamp } = useFormatTime(timestamp, 'HH:mm');
+
   return (
     <StyledLastUpdated
-      className={className}
+      {...restProps}
     >{`Last updated ${formattedTimestamp}`}</StyledLastUpdated>
   );
 };

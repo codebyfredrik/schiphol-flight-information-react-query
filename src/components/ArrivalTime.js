@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Time } from './../components/Time';
-import { ScheduleTime } from './../styles/Styles';
+import { ScheduleTime } from './../styles/index';
 
 const StyledArrivalTime = styled.div`
   display: inline-block;
@@ -9,13 +9,7 @@ const StyledArrivalTime = styled.div`
   font-weight: 900;
 `;
 
-const EstimatedArrivalTime = styled(Time)`
-  font-weight: bold;
-  margin-left: 0.5rem;
-`;
-
-const ActualArrivalTime = styled(Time)`
-  font-weight: bold;
+const StyledTime = styled(Time)`
   margin-left: 0.5rem;
 `;
 
@@ -23,7 +17,7 @@ const ArrivalTime = ({
   scheduleDateTime,
   estimatedLandingTime,
   actualLandingTime,
-  className,
+  ...restProps
 }) => {
   let estimatedTime = null;
   let actualTime = null;
@@ -32,13 +26,13 @@ const ArrivalTime = ({
   if (actualLandingTime) actualTime = actualLandingTime;
 
   return (
-    <StyledArrivalTime className={className}>
+    <StyledArrivalTime {...restProps}>
       <>
         <ScheduleTime time={scheduleDateTime} estimated={estimatedTime} />
         {actualLandingTime ? (
-          <ActualArrivalTime time={actualTime} />
+          <StyledTime time={actualTime} />
         ) : estimatedTime ? (
-          <EstimatedArrivalTime time={estimatedTime} />
+          <StyledTime time={estimatedTime} />
         ) : null}
       </>
     </StyledArrivalTime>

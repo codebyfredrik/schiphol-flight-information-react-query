@@ -13,7 +13,7 @@ export const StyledDate = styled.div`
   }
 `;
 
-const DisplayDate = ({ date }) => {
+const DisplayDate = ({ date, ...restProps }) => {
   const { momentTimestamp, formattedTimestamp } = useFormatTime(date, 'MMMM D');
   const today = moment().endOf('day');
   const tomorrow = moment().add(1, 'day').endOf('day');
@@ -25,7 +25,9 @@ const DisplayDate = ({ date }) => {
     phrase = 'Tomorrow, ';
   }
 
-  return <StyledDate>{`${phrase}${formattedTimestamp}`}</StyledDate>;
+  return (
+    <StyledDate {...restProps}>{`${phrase}${formattedTimestamp}`}</StyledDate>
+  );
 };
 
 DisplayDate.propTypes = {

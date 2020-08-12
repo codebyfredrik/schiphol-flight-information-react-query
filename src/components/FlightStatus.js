@@ -18,17 +18,17 @@ const FlightStatus = ({
   publicFlightState,
   flightDirection,
   isDarkMode,
-  className,
+  ...restProps
 }) => {
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
 
   return flightStatus.map((item) => (
     <StyledFlightStatus
       key={item.status}
-      className={className}
       backgroundColor={item.backgroundColor}
       isDarkMode={isDarkMode}
       label={item.status}
+      {...restProps}
     />
   ));
 };

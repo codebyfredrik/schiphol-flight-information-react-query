@@ -20,11 +20,9 @@ const StyledArrowRight = styled.svg`
   }
 `;
 
-const ArrowRight = ({ height, width, fillColor, className, onClick }) => {
+const ArrowRight = ({ height, width, fillColor, ...restProps }) => {
   return (
     <StyledArrowRight
-      onClick={onClick}
-      className={className}
       aria-hidden="true"
       height={height}
       width={width}
@@ -34,6 +32,7 @@ const ArrowRight = ({ height, width, fillColor, className, onClick }) => {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
+      {...restProps}
     >
       <path
         fill={fillColor}

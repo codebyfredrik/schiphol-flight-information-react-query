@@ -18,6 +18,7 @@ const Title = styled.h1`
   margin: 0;
   font-size: 1.5rem;
   line-height: 1.5rem;
+  font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.yellow};
 
@@ -43,6 +44,7 @@ const SubTitle = styled.h3`
   line-height: 1rem;
   margin-top: 0.25rem;
   letter-spacing: 0.25rem;
+  font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 

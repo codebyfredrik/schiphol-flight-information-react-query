@@ -19,6 +19,7 @@ import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
 import { ScheduleTime } from './../styles/Styles';
+import { ArrowRight } from './../components/icons/index';
 
 const StyledFlight = styled(motion.li)`
   display: flex;
@@ -38,7 +39,7 @@ const StyledFlight = styled(motion.li)`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: green;
+  /* color: green; */
   -webkit-tap-highlight-color: transparent;
 
   &:hover {
@@ -59,24 +60,18 @@ const Container = styled.div`
 `;
 
 const EstimatedArrivalTime = styled(Time)`
-  font-weight: bold;
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
 const ActualArrivalTime = styled(Time)`
-  font-weight: bold;
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
 const ActualDepartureTime = styled(Time)`
-  font-weight: bold;
-
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
@@ -145,6 +140,7 @@ const FlightDirectionWrapper = styled.div`
 const TimeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  font-weight: 900;
 
   @media screen and (min-width: 490px) {
     flex-direction: row;
@@ -193,6 +189,24 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
+const StyledArrowRight = styled(ArrowRight)`
+  margin-left: 5px;
+`;
+
+const LinkWrapper = styled.div`
+  text-align: right;
+  display: inline-block;
+  flex: 1 1 1rem;
+  color: #0d49c0;
+`;
+
+const LinkText = styled.span`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+  }
+`;
+
 const Flight = ({ flight, isDarkMode }) => {
   const {
     id,
@@ -213,7 +227,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
-
+  const onMouseEnter = () => console.log('hej');
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
@@ -290,7 +304,18 @@ const Flight = ({ flight, isDarkMode }) => {
               ))}
             </FlightStatusWrapper>
           </MiddleContainer>
-          <RightContainer>{gate && <Gate gate={gate} />}</RightContainer>
+          <RightContainer>
+            {gate && <Gate gate={gate} />}
+            <LinkWrapper>
+              <LinkText>Details</LinkText>
+              <StyledArrowRight
+                height={12}
+                width={12}
+                fillColor="#0d49c0"
+                aria-label="Display flight details"
+              />
+            </LinkWrapper>
+          </RightContainer>
         </Container>
         {codeshares?.codeshares && (
           <CodeShare>

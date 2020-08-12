@@ -21,19 +21,16 @@ const StyledFlightDirectionTag = styled.span`
   }
 `;
 
-const FlightDirectionTag = ({ flightDirection, className }) => {
+const FlightDirectionTag = ({ flightDirection, ...restProps }) => {
   const text = useFlightDirection(flightDirection);
 
   return (
-    <StyledFlightDirectionTag className={className}>
-      {text}
-    </StyledFlightDirectionTag>
+    <StyledFlightDirectionTag {...restProps}>{text}</StyledFlightDirectionTag>
   );
 };
 
 FlightDirectionTag.propTypes = {
   flightDirection: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { FlightDirectionTag };

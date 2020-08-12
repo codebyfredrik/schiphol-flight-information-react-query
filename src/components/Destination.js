@@ -5,28 +5,28 @@ import { useDestination } from './../hooks/index';
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
+  font-weight: 600;
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
   }
 `;
 
-const Destination = ({ route, className }) => {
+const Destination = ({ route, ...restProps }) => {
   const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
     <>
       {isLoading ? (
-        <StyledDestination className={className}>Loading...</StyledDestination>
+        <StyledDestination {...restProps}>Loading...</StyledDestination>
       ) : error ? (
-        <StyledDestination className={className}>Error</StyledDestination>
+        <StyledDestination {...restProps}>Error</StyledDestination>
       ) : isSuccess ? (
-        <StyledDestination className={className}>
+        <StyledDestination {...restProps}>
           {result.city} ({result.iata})
         </StyledDestination>
       ) : (
-        <StyledDestination className={className}>No data</StyledDestination>
+        <StyledDestination {...restProps}>No data</StyledDestination>
       )}
     </>
   );
@@ -34,7 +34,6 @@ const Destination = ({ route, className }) => {
 
 Destination.propTypes = {
   route: PropTypes.object,
-  className: PropTypes.string,
 };
 
 export { Destination };

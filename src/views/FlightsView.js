@@ -73,6 +73,7 @@ const FlightsView = ({
   isDarkMode,
   toggleDarkMode,
   setOverlayIsVisible,
+  ...restProps
 }) => {
   const {
     isError,
@@ -97,7 +98,7 @@ const FlightsView = ({
 
   return (
     <>
-      <StyledContent>
+      <StyledContent {...restProps}>
         <FlexContainer>
           <StyledButton type="button" onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme
@@ -112,7 +113,7 @@ const FlightsView = ({
             data-testid="previous-page"
             disabled={page === 0 || isFetching}
           >
-            Previous page
+            Earlier flights
           </StyledButton>
           <StyledButton
             type="button"
@@ -127,7 +128,7 @@ const FlightsView = ({
               (isSuccess && page === +resolvedData.lastPage - 1) || isFetching
             }
           >
-            Next page
+            Later flights
           </StyledButton>
         </FlexContainer>
         {isLoading ? (

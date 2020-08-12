@@ -12,17 +12,17 @@ const StyledAirline = styled.span`
   }
 `;
 
-const Airline = ({ prefixICAO, className }) => {
+const Airline = ({ prefixICAO, ...restProps }) => {
   const { result, error, isSuccess, isLoading } = useAirline(prefixICAO);
 
   return (
     <>
       {isLoading ? (
-        <StyledAirline className={className}>Loading...</StyledAirline>
+        <StyledAirline {...restProps}>Loading...</StyledAirline>
       ) : error ? (
-        <StyledAirline className={className}>Error</StyledAirline>
+        <StyledAirline {...restProps}>Error</StyledAirline>
       ) : isSuccess ? (
-        <StyledAirline className={className}>{result.publicName}</StyledAirline>
+        <StyledAirline {...restProps}>{result.publicName}</StyledAirline>
       ) : null}
     </>
   );
@@ -30,7 +30,6 @@ const Airline = ({ prefixICAO, className }) => {
 
 Airline.propTypes = {
   prefixICAO: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export { Airline };

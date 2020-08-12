@@ -4,21 +4,21 @@ import { useAirline } from './../hooks/useAirline';
 
 const StyledFlightFrom = styled.span`
   display: inline-block;
-  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
-const FlightFrom = ({ prefixICAO, flightName, direction, className }) => {
+const FlightFrom = ({ prefixICAO, flightName, direction, ...restProps }) => {
   const { result: airline } = useAirline(prefixICAO);
 
   return (
     <>
       {airline ? (
         <StyledFlightFrom
-          className={className}
+          {...restProps}
         >{`${airline.publicName} (${flightName}) flight ${direction}`}</StyledFlightFrom>
       ) : (
         <StyledFlightFrom
-          className={className}
+          {...restProps}
         >{`Flight ${direction}`}</StyledFlightFrom>
       )}
     </>
