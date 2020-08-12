@@ -33,6 +33,7 @@ const Heading = styled.h3`
 
 const ScheduleTime = styled(Time)`
   text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
+  font-weight: ${(props) => (props.estimated ? 'normal' : null)};
 `;
 
 const Content = styled.div`

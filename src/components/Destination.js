@@ -5,7 +5,7 @@ import { useDestination } from './../hooks/index';
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
+  font-weight: 600;
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in;
