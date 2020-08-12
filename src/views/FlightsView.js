@@ -113,7 +113,7 @@ const FlightsView = ({
             data-testid="previous-page"
             disabled={page === 0 || isFetching}
           >
-            Previous page
+            Earlier flights
           </StyledButton>
           <StyledButton
             type="button"
@@ -128,7 +128,7 @@ const FlightsView = ({
               (isSuccess && page === +resolvedData.lastPage - 1) || isFetching
             }
           >
-            Next page
+            Later flights
           </StyledButton>
         </FlexContainer>
         {isLoading ? (
