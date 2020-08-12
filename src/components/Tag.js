@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const StyledTag = styled.span`
   display: inline-block;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 0px 5px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.textTag};

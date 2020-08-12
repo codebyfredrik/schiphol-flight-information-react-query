@@ -18,7 +18,8 @@ import { Redo, ArrowRight } from './../components/icons/index';
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  font-weight: 900;
+  font-weight: 600; */
+  font-family: 'Source Sans Pro', sans-serif;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
   background-size: cover;
@@ -27,6 +28,10 @@ const StyledCity = styled(City)`
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
+`;
+
+const StyledArrivalTime = styled(ArrivalTime)`
+  font-weight: 500;
 `;
 
 const FlightInformationArrival = styled.div`
@@ -59,7 +64,7 @@ const Item = styled.div`
 
 const Title = styled.h2`
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 1.5rem 0 1.5rem 0;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -74,20 +79,20 @@ const Heading = styled.span`
 const StyledFlightNumber = styled(FlightNumber)`
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const StyledDateTime = styled(DateTime)`
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const StyledFlightStatus = styled(FlightStatus)`
@@ -238,7 +243,7 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                 <Item>
                   <Heading>Arrival time</Heading>
                   {flight ? (
-                    <ArrivalTime
+                    <StyledArrivalTime
                       scheduleDateTime={flight.scheduleDateTime}
                       estimatedLandingTime={flight.estimatedLandingTime}
                       actualLandingTime={flight.actualLandingTime}
