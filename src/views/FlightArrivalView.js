@@ -14,6 +14,7 @@ import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
 import { Redo, ArrowRight } from './../components/icons/index';
+import { AircraftDetails } from './../components/AircraftDetails';
 
 const StyledCity = styled(City)`
   display: block;
@@ -134,6 +135,7 @@ const StyledLink = styled(Link)`
 const WrapperLastUpdated = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-top: 1rem;
 `;
 
 const Loading = styled.span`
@@ -169,7 +171,7 @@ const StyledArrowRight = styled(ArrowRight)`
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
-
+  console.log(flight);
   return (
     <>
       {isLoading ? (
@@ -304,6 +306,12 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
                 </Item>
               </FlightInformationArrival>
             </div>
+            {flight?.aircraftType && flight?.aircraftRegistration && (
+              <AircraftDetails
+                aircraftRegistration={flight.aircraftRegistration}
+                aircraftType={flight.aircraftType.iataSub}
+              />
+            )}
           </Content>
         </>
       )}

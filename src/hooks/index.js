@@ -11,3 +11,4 @@ export { useToggle } from './useToggle';
 export { useKeyPress } from './useKeyPress';
 export { useFlightDirection } from './useFlightDirection';
 export { useFlight } from './useFlight';
+export { useAircraft } from './useAircraft';
