@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useAircraft } from './../hooks/index';
 
 const StyledAircraftDetails = styled.div`
-  width: 50%;
   background-color: ${({ theme }) => theme.colors.cardBackground};
   padding: 1.25rem;
   margin: 2rem 0;
