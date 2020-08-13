@@ -171,10 +171,10 @@ const StyledArrowRight = styled(ArrowRight)`
 `;
 
 const FlightDetails = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17em, 1fr));
+  grid-gap: 1rem;
   margin: 2rem 0;
-  flex-wrap: wrap;
-  gap: 1rem;
 `;
 
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
