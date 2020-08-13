@@ -48,4 +48,37 @@ const ContentHeader = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
-export { ContentHeader, Content, ScheduleTime, Heading, Button };
+const Box = styled.div`
+  background-color: ${({ theme }) => theme.colors.cardBackground};
+  flex: 1 1 20rem;
+  padding: 1.25rem;
+  /* margin: 2rem 0; */
+  border-radius: 4px;
+`;
+
+const Text = styled.span`
+  color: ${({ theme }) => theme.colors.text};
+  display: inline-block;
+`;
+
+const HeadingDetails = styled.h3`
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const SubHeading = styled.h4`
+  color: ${({ theme }) => theme.colors.text};
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+`;
+
+export {
+  ContentHeader,
+  Content,
+  ScheduleTime,
+  Heading,
+  Button,
+  Box,
+  Text,
+  HeadingDetails,
+  SubHeading,
+};

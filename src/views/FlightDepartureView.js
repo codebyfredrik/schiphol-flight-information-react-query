@@ -16,6 +16,7 @@ import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
 import { Redo, ArrowRight } from './../components/icons/index';
 import { AircraftDetails } from './../components/AircraftDetails';
+import { BoardingDetails } from './../components/BoardingDetails';
 
 const StyledCity = styled(City)`
   display: block;
@@ -163,10 +164,17 @@ const StyledArrowRight = styled(ArrowRight)`
   margin-left: 5px;
 `;
 
+const FlightDetails = styled.div`
+  display: flex;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
-
+  console.log(flight);
   return (
     <>
       {isLoading ? (
@@ -300,12 +308,19 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 </Item>
               </FlightInformationArrival>
             </div>
-            {flight?.aircraftType && flight?.aircraftRegistration && (
-              <AircraftDetails
-                aircraftRegistration={flight.aircraftRegistration}
-                aircraftType={flight.aircraftType.iataSub}
+            <FlightDetails>
+              <BoardingDetails
+                expectedTimeBoarding={flight.expectedTimeBoarding}
+                expectedTimeGateClosing={flight.expectedTimeGateClosing}
+                expectedTimeGateOpen={flight.expectedTimeGateOpen}
               />
-            )}
+              {flight?.aircraftType && flight?.aircraftRegistration && (
+                <AircraftDetails
+                  aircraftRegistration={flight.aircraftRegistration}
+                  aircraftType={flight.aircraftType.iataSub}
+                />
+              )}
+            </FlightDetails>
           </Content>
         </>
       )}
