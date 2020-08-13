@@ -51,6 +51,12 @@ const Item = styled.div`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
 
+  &:nth-last-of-type(2),
+  &:nth-last-of-type(1) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
   @media screen and (min-width: 1080px) {
     border-bottom: 0;
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
@@ -166,6 +172,10 @@ const StyledRedo = styled(Redo)`
 
 const StyledArrowRight = styled(ArrowRight)`
   margin-left: 5px;
+`;
+
+const FlightDetails = styled.div`
+  margin: 2rem 0;
 `;
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
@@ -307,10 +317,12 @@ const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
               </FlightInformationArrival>
             </div>
             {flight?.aircraftType && flight?.aircraftRegistration && (
-              <AircraftDetails
-                aircraftRegistration={flight.aircraftRegistration}
-                aircraftType={flight.aircraftType.iataSub}
-              />
+              <FlightDetails>
+                <AircraftDetails
+                  aircraftRegistration={flight.aircraftRegistration}
+                  aircraftType={flight.aircraftType.iataSub}
+                />
+              </FlightDetails>
             )}
           </Content>
         </>

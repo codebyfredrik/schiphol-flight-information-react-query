@@ -51,6 +51,7 @@ const Item = styled.div`
   &:nth-last-of-type(2),
   &:nth-last-of-type(1) {
     border-bottom: 0;
+    padding-bottom: 0;
   }
 
   @media screen and (min-width: 1080px) {
