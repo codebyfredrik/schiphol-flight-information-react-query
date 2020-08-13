@@ -48,6 +48,11 @@ const Item = styled.div`
   border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
   padding-bottom: 1rem;
 
+  &:nth-last-of-type(2),
+  &:nth-last-of-type(1) {
+    border-bottom: 0;
+  }
+
   @media screen and (min-width: 1080px) {
     border-bottom: 0;
     border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
@@ -76,7 +81,7 @@ const Heading = styled.span`
 const StyledFlightNumber = styled(FlightNumber)`
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -84,13 +89,13 @@ const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const StyledDateTime = styled(DateTime)`
   display: block;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const StyledFlightStatus = styled(FlightStatus)`
@@ -244,10 +249,12 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
                 <Item>
                   <Heading>Departure time</Heading>
                   {flight ? (
-                    <DepartureTime
-                      scheduleDateTime={flight.scheduleDateTime}
-                      actualOffBlockTime={flight.actualOffBlockTime}
-                    />
+                    <Text>
+                      <DepartureTime
+                        scheduleDateTime={flight.scheduleDateTime}
+                        actualOffBlockTime={flight.actualOffBlockTime}
+                      />
+                    </Text>
                   ) : (
                     <Text>N/A</Text>
                   )}
@@ -309,11 +316,15 @@ const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
               </FlightInformationArrival>
             </div>
             <FlightDetails>
-              <BoardingDetails
-                expectedTimeBoarding={flight.expectedTimeBoarding}
-                expectedTimeGateClosing={flight.expectedTimeGateClosing}
-                expectedTimeGateOpen={flight.expectedTimeGateOpen}
-              />
+              {flight?.expectedTimeBoarding &&
+                flight?.expectedTimeGateClosing &&
+                flight?.expectedTimeGateOpen && (
+                  <BoardingDetails
+                    expectedTimeBoarding={flight.expectedTimeBoarding}
+                    expectedTimeGateClosing={flight.expectedTimeGateClosing}
+                    expectedTimeGateOpen={flight.expectedTimeGateOpen}
+                  />
+                )}
               {flight?.aircraftType && flight?.aircraftRegistration && (
                 <AircraftDetails
                   aircraftRegistration={flight.aircraftRegistration}

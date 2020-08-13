@@ -50,15 +50,16 @@ const ContentHeader = styled.div`
 
 const Box = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBackground};
-  flex: 1 1 20rem;
+  flex: 1 1 17rem;
   padding: 1.25rem;
-  /* margin: 2rem 0; */
   border-radius: 4px;
+  box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
 `;
 
 const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: inline-block;
+  font-size: 1.125rem;
 `;
 
 const HeadingDetails = styled.h3`

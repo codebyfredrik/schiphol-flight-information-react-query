@@ -6,7 +6,6 @@ import { ScheduleTime } from './../styles/index';
 const StyledDepartureTime = styled.div`
   display: inline-block;
   font-size: 1.125rem;
-  font-weight: 900;
 `;
 
 const ActualTime = styled(Time)`
