@@ -1,14 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Box, Text, SubHeading, HeadingDetails } from '../styles/index';
-import { Time } from './../components/Time';
+import { Time } from './Time';
+
+interface IBoardingDetailsProps {
+  expectedTimeBoarding: string;
+  expectedTimeGateClosing: string;
+  expectedTimeGateOpen: string;
+}
 
 const BoardingDetails = ({
   expectedTimeBoarding,
   expectedTimeGateClosing,
   expectedTimeGateOpen,
   ...restProps
-}) => {
+}: IBoardingDetailsProps): JSX.Element => {
   console.log('expectedTimeBoarding', expectedTimeBoarding);
   console.log('expectedTimeGateClosing', expectedTimeGateClosing);
   console.log('expectedTimeGateOpen', expectedTimeGateOpen);

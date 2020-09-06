@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useFormatTime } from './../hooks/index';
+import { useFormatTime } from '../hooks/index';
+
+interface ILastUpdatedProps {
+  timestamp: string;
+}
 
 const StyledLastUpdated = styled.span`
   display: inline-block;
@@ -8,7 +12,10 @@ const StyledLastUpdated = styled.span`
   color: #0d49c0;
 `;
 
-const LastUpdated = ({ timestamp, ...restProps }) => {
+const LastUpdated = ({
+  timestamp,
+  ...restProps
+}: ILastUpdatedProps): JSX.Element => {
   const { formattedTimestamp } = useFormatTime(timestamp, 'HH:mm');
 
   return (
