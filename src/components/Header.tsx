@@ -63,7 +63,7 @@ const StyledLink = styled(Link)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <StyledHeader>
       <Content>

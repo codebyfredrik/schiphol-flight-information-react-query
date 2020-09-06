@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+
+interface IGateProps {
+  gate: string;
+}
 
 const StyledGate = styled.span`
   display: inline-block;
@@ -20,12 +24,12 @@ const StyledGate = styled.span`
   }
 `;
 
-const Gate = ({ gate, ...restProps }) => {
+const Gate = ({ gate, ...restProps }: IGateProps): JSX.Element => {
   return <StyledGate {...restProps}>{gate}</StyledGate>;
 };
 
-Gate.propTypes = {
-  gate: PropTypes.string,
-};
+// Gate.propTypes = {
+//   gate: PropTypes.string,
+// };
 
 export { Gate };

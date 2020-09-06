@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
-import { Gate } from './../components/index';
+import { Gate } from './../components/Gate';
 import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
 import { FlightNumber } from './../components/FlightNumber';

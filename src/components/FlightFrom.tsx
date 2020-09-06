@@ -1,13 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAirline } from './../hooks/useAirline';
+import { useAirline } from '../hooks/useAirline';
+
+interface IFlightFromProps {
+  prefixICAO: string;
+  flightName: string;
+  direction: string;
+}
 
 const StyledFlightFrom = styled.span`
   display: inline-block;
   color: ${({ theme }) => theme.colors.text};
 `;
 
-const FlightFrom = ({ prefixICAO, flightName, direction, ...restProps }) => {
+const FlightFrom = ({
+  prefixICAO,
+  flightName,
+  direction,
+  ...restProps
+}: IFlightFromProps): JSX.Element => {
   const { result: airline } = useAirline(prefixICAO);
 
   return (

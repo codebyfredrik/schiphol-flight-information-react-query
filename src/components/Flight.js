@@ -53,9 +53,7 @@ const Container = styled.div`
   grid-template-rows: 1fr;
 
   @media screen and (min-width: 490px) {
-     {
-      grid-template-columns: 110px 3.6fr 1.4fr;
-    }
+    grid-template-columns: 110px 3.6fr 1.4fr;
   }
 `;
 
@@ -102,10 +100,8 @@ const MiddleContainer = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-     {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -120,9 +116,7 @@ const RightContainer = styled.div`
   }
 
   @media screen and (min-width: 490px) {
-     {
-      display: flex;
-    }
+    display: flex;
   }
 `;
 
@@ -227,7 +221,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
-  const onMouseEnter = () => console.log('hej');
+  // const onMouseEnter = () => console.log('hej');
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;

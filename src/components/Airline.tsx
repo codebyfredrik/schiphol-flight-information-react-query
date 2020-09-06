@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useAirline } from './../hooks/index';
+import { useAirline } from '../hooks/index';
+
+interface IAirlineProps {
+  prefixICAO: string;
+}
 
 const StyledAirline = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -12,7 +15,7 @@ const StyledAirline = styled.span`
   }
 `;
 
-const Airline = ({ prefixICAO, ...restProps }) => {
+const Airline = ({ prefixICAO, ...restProps }: IAirlineProps): JSX.Element => {
   const { result, error, isSuccess, isLoading } = useAirline(prefixICAO);
 
   return (
@@ -26,10 +29,6 @@ const Airline = ({ prefixICAO, ...restProps }) => {
       ) : null}
     </>
   );
-};
-
-Airline.propTypes = {
-  prefixICAO: PropTypes.string,
 };
 
 export { Airline };
