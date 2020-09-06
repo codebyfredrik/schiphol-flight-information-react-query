@@ -2,11 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDestination } from '../hooks/useDestination';
 
+interface ICityProps {
+  route: {
+    destinations: string[];
+    eu: string;
+    visa: boolean;
+  };
+}
+
 const StyledCity = styled.span`
   display: inline-block;
 `;
 
-const City = ({ route, ...restProps }) => {
+const City = ({ route, ...restProps }: ICityProps): JSX.Element => {
   const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (

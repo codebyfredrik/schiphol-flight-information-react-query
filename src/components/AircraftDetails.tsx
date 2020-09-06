@@ -2,11 +2,16 @@ import React from 'react';
 import { useAircraft } from './../hooks/index';
 import { Box, Text, SubHeading, HeadingDetails } from './../styles/index';
 
+interface IAircraftDetailsProps {
+  aircraftRegistration: string;
+  aircraftType: string;
+}
+
 const AircraftDetails = ({
   aircraftRegistration,
   aircraftType,
   ...restProps
-}) => {
+}: IAircraftDetailsProps): JSX.Element => {
   const { result: aircraft, isLoading } = useAircraft(aircraftType);
 
   return (
