@@ -8,14 +8,15 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.text};
   background-color: ${({ theme }) => theme.colors.bgButton};
   -webkit-tap-highlight-color: transparent;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 600;
   letter-spacing: 1px;
   outline: none;
 
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in,
-      background-color var(--transition-time) ease-in;
+      background-color var(--transition-time) ease-in,
+      box-shadow var(--transition-time) ease-in;
   }
 
   @media (hover: hover) and (pointer: fine) {
