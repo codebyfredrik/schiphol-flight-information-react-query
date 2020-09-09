@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Time } from './../components/Time';
-import { ScheduleTime } from './../styles/index';
+import { Time } from './Time';
+import { ScheduleTime } from '../styles/index';
+
+interface IArrivalTimeProps {
+  scheduleDateTime: string;
+  estimatedLandingTime: string;
+  actualLandingTime: string;
+}
 
 const StyledArrivalTime = styled.div`
   display: inline-block;
@@ -18,9 +24,9 @@ const ArrivalTime = ({
   estimatedLandingTime,
   actualLandingTime,
   ...restProps
-}) => {
-  let estimatedTime = null;
-  let actualTime = null;
+}: IArrivalTimeProps): JSX.Element => {
+  let estimatedTime: string | null = null;
+  let actualTime: string | null = null;
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualLandingTime) actualTime = actualLandingTime;
