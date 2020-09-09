@@ -1,7 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useDestination } from './../hooks/index';
+import { useDestination } from '../hooks/index';
+
+interface IDestinationProps {
+  route: {
+    destinations: string[];
+    eu: string;
+    visa: boolean;
+  };
+}
+
+interface IDestination {
+  city: string;
+  country: string;
+  iata: string;
+  publicname: {
+    dutch: string;
+    english: string;
+  };
+}
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -12,8 +29,21 @@ const StyledDestination = styled.span`
   }
 `;
 
-const Destination = ({ route, ...restProps }) => {
-  const { result, error, isLoading, isSuccess } = useDestination(route);
+const Destination = ({
+  route,
+  ...restProps
+}: IDestinationProps): JSX.Element => {
+  const {
+    result,
+    error,
+    isLoading,
+    isSuccess,
+  }: {
+    result: IDestination;
+    error: Error | null;
+    isLoading: boolean;
+    isSuccess: boolean;
+  } = useDestination(route);
 
   return (
     <>
@@ -30,10 +60,6 @@ const Destination = ({ route, ...restProps }) => {
       )}
     </>
   );
-};
-
-Destination.propTypes = {
-  route: PropTypes.object,
 };
 
 export { Destination };
