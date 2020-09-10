@@ -1,9 +1,14 @@
 import { useCallback } from 'react';
-import { useStickyState } from './../hooks/useStickyState';
+import { useStickyState } from './useStickyState';
 
-const useDarkMode = () => {
+interface IDarkMode {
+  toggleDarkMode: any;
+  isDarkMode: boolean;
+}
+
+const useDarkMode = (): IDarkMode => {
   const [theme, setTheme] = useStickyState('light', 'theme');
-  const isDarkMode = theme === 'light' ? false : true;
+  const isDarkMode: boolean = theme === 'light' ? false : true;
   const toggleDarkMode = useCallback(() => {
     theme === 'light' ? setTheme('dark', 'theme') : setTheme('light', 'theme');
   }, [theme, setTheme]);
