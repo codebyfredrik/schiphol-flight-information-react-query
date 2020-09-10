@@ -15,11 +15,6 @@ const StyledArrivalTime = styled.div`
   font-weight: 900;
 `;
 
-// const ScheduleTime = styled(Time)`
-//   text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
-//   font-weight: ${(props) => (props.estimated ? 'normal' : null)};
-// `;
-
 const StyledTime = styled(Time)`
   margin-left: 0.5rem;
 `;
