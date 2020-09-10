@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Time } from './../components/Time';
+import { Time, ITimeProps } from '../components/Time';
 
 const Button = styled.button`
   height: var(--min-tap-target-height);
@@ -32,7 +32,7 @@ const Heading = styled.h3`
   text-transform: uppercase;
 `;
 
-const ScheduleTime = styled(Time)`
+const ScheduleTime = styled(Time)<ITimeProps>`
   text-decoration: ${(props) => (props.estimated ? 'line-through' : null)};
   font-weight: ${(props) => (props.estimated ? 'normal' : null)};
 `;

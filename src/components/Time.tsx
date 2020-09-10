@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useFormatTime } from './../hooks/index';
+import { useFormatTime } from '../hooks/index';
+
+export interface ITimeProps {
+  time?: string | null;
+  estimated?: string | null;
+}
 
 const StyledTime = styled.span`
   display: inline-block;
@@ -12,14 +16,13 @@ const StyledTime = styled.span`
   }
 `;
 
-const Time = ({ time, ...restProps }) => {
-  const { formattedTimestamp } = useFormatTime(time, 'HH:mm');
+const Time = ({ time, ...restProps }: ITimeProps): JSX.Element => {
+  const { formattedTimestamp }: { formattedTimestamp: any } = useFormatTime(
+    time,
+    'HH:mm'
+  );
 
   return <StyledTime {...restProps}>{formattedTimestamp}</StyledTime>;
-};
-
-Time.propTypes = {
-  time: PropTypes.string,
 };
 
 export { Time };
