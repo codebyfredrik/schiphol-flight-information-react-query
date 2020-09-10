@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+
+export interface ITagProps {
+  label: string;
+}
 
 const StyledTag = styled.span`
   display: inline-block;
@@ -16,12 +19,8 @@ const StyledTag = styled.span`
   }
 `;
 
-const Tag = ({ label, ...restProps }) => {
+const Tag = ({ label, ...restProps }: ITagProps): JSX.Element => {
   return <StyledTag {...restProps}>{label}</StyledTag>;
-};
-
-Tag.propTypes = {
-  label: PropTypes.string,
 };
 
 export { Tag };

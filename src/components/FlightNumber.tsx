@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+
+interface IFlightNumberProps {
+  flightName: string;
+}
 
 const StyledFlightNumber = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -11,12 +14,11 @@ const StyledFlightNumber = styled.span`
   }
 `;
 
-const FlightNumber = ({ flightName, ...restProps }) => {
+const FlightNumber = ({
+  flightName,
+  ...restProps
+}: IFlightNumberProps): JSX.Element => {
   return <StyledFlightNumber {...restProps}>{flightName}</StyledFlightNumber>;
-};
-
-FlightNumber.propTypes = {
-  flightName: PropTypes.string,
 };
 
 export { FlightNumber };
