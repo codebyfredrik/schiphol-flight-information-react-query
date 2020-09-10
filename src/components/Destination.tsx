@@ -10,8 +10,6 @@ export interface IDestinationProps {
   };
 }
 
-interface IDestination {}
-
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
   font-weight: 600;
