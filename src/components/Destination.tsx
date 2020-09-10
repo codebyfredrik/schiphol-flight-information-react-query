@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDestination } from '../hooks/index';
 
-interface IDestinationProps {
+export interface IDestinationProps {
   route: {
     destinations: string[];
     eu: string;
@@ -10,15 +10,7 @@ interface IDestinationProps {
   };
 }
 
-interface IDestination {
-  city: string;
-  country: string;
-  iata: string;
-  publicname: {
-    dutch: string;
-    english: string;
-  };
-}
+interface IDestination {}
 
 const StyledDestination = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -33,17 +25,8 @@ const Destination = ({
   route,
   ...restProps
 }: IDestinationProps): JSX.Element => {
-  const {
-    result,
-    error,
-    isLoading,
-    isSuccess,
-  }: {
-    result: IDestination;
-    error: Error | null;
-    isLoading: boolean;
-    isSuccess: boolean;
-  } = useDestination(route);
+  console.log(route);
+  const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
     <>
