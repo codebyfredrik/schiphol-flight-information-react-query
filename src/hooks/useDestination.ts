@@ -1,6 +1,12 @@
 import { useQuery } from 'react-query';
 import { query } from '../helpers/query';
 
+interface IDestinationProps {
+  destinations: string[];
+  eu: string;
+  visa: boolean;
+}
+
 export interface IDestination {
   result: {
     city: string;
@@ -15,12 +21,6 @@ export interface IDestination {
   isLoading: boolean;
   isSuccess: boolean;
   isFetching: boolean;
-}
-
-interface IDestinationProps {
-  destinations: string[];
-  eu: string;
-  visa: boolean;
 }
 
 const useDestination = (route: IDestinationProps): IDestination => {

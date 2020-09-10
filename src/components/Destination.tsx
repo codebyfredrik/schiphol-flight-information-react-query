@@ -23,7 +23,6 @@ const Destination = ({
   route,
   ...restProps
 }: IDestinationProps): JSX.Element => {
-  console.log(route);
   const { result, error, isLoading, isSuccess } = useDestination(route);
 
   return (
