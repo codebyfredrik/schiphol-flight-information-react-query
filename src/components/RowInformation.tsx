@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { DisplayDate } from './DisplayDate';
-import { UpdateIndicator } from './../components/UpdateIndicator';
+import { UpdateIndicator } from './UpdateIndicator';
+
+interface IRowInformationProps {
+  date: string;
+  isFetching: boolean;
+}
 
 const StyledRowInformation = styled.li`
   display: flex;
@@ -20,17 +24,17 @@ const Update = styled(UpdateIndicator)`
   margin-left: 5px;
 `;
 
-const RowInformation = ({ date, isFetching, ...restProps }) => {
+const RowInformation = ({
+  date,
+  isFetching,
+  ...restProps
+}: IRowInformationProps): JSX.Element => {
   return (
     <StyledRowInformation {...restProps}>
       <DisplayDate date={date} />
       {isFetching && <Update />}
     </StyledRowInformation>
   );
-};
-
-RowInformation.propTypes = {
-  date: PropTypes.string,
 };
 
 export { RowInformation };

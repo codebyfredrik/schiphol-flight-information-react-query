@@ -35,7 +35,7 @@ const Dot = styled.span`
   }
 `;
 
-const UpdateIndicator = ({ ...restProps }) => {
+const UpdateIndicator = ({ ...restProps }): JSX.Element => {
   return (
     <StyledUpdateIndicator {...restProps}>
       <Dot className="one" />
