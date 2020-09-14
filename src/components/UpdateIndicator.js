@@ -6,10 +6,10 @@ const StyledUpdateIndicator = styled.div`
 `;
 
 const showHideDot = keyframes`
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  60% { opacity: 1; }
-  100% { opacity: 0; }
+  0% { opacity: 0; transform: scale(0) }
+  50% { opacity: 1; transform: scale(1.4) }
+  60% { opacity: 1; transform: scale(1.4) }
+  100% { opacity: 0; transform: scale(0)}
 `;
 
 const Dot = styled.span`
