@@ -18,6 +18,7 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
         if (status.statusCode === item) {
           flightStatus.push(status);
         }
+        return status;
       });
     });
   } else if (flightDirection === 'D') {
@@ -30,6 +31,7 @@ const useFlightStatus = (publicFlightState, flightDirection) => {
         if (status.statusCode === item) {
           flightStatus.push(status);
         }
+        return status;
       });
     });
   }
