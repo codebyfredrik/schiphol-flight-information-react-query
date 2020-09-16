@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useFlightDirection } from './../hooks/index';
+import { useFlightDirection } from '../hooks/index';
+
+interface IFlightDirectionTagProps {
+  flightDirection: string;
+}
 
 const StyledFlightDirectionTag = styled.span`
   display: inline-block;
@@ -21,16 +24,15 @@ const StyledFlightDirectionTag = styled.span`
   }
 `;
 
-const FlightDirectionTag = ({ flightDirection, ...restProps }) => {
+const FlightDirectionTag = ({
+  flightDirection,
+  ...restProps
+}: IFlightDirectionTagProps): JSX.Element => {
   const text = useFlightDirection(flightDirection);
 
   return (
     <StyledFlightDirectionTag {...restProps}>{text}</StyledFlightDirectionTag>
   );
-};
-
-FlightDirectionTag.propTypes = {
-  flightDirection: PropTypes.string,
 };
 
 export { FlightDirectionTag };
