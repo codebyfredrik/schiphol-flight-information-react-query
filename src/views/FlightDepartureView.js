@@ -180,7 +180,8 @@ const FlightDetails = styled.div`
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
-  console.log(flight);
+  // console.log(flight);
+  // console.log(flight.checkinAllocations);
   return (
     <>
       {isLoading ? (
