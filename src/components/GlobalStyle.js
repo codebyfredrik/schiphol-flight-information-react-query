@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-  --transition-time: 100ms;
+  --transition-time: 0ms;
   --min-tap-target-height: 48px;
   --container-margin: 1.5rem;
     

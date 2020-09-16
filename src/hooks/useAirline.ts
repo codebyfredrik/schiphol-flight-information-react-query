@@ -8,7 +8,7 @@ interface IAirline {
     nvlss: number;
     publicName: string;
   };
-  error: Error | null;
+  error: any;
   isLoading: boolean;
   isSuccess: boolean;
 }

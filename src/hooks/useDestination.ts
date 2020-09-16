@@ -17,7 +17,7 @@ export interface IDestination {
       english: string;
     };
   };
-  error: Error | null;
+  error: any;
   isLoading: boolean;
   isSuccess: boolean;
   isFetching: boolean;

@@ -13,10 +13,10 @@ import {
 } from './views/index';
 
 const App = () => {
-  const [page, setPage] = useState(0);
-  const [flightDirection, setFlightDirection] = useState('');
+  const [page, setPage] = useState<number>(0);
+  const [flightDirection, setFlightDirection] = useState<string>('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
-  const { toggleDarkMode, isDarkMode } = useDarkMode('dark');
+  const { toggleDarkMode, isDarkMode } = useDarkMode();
 
   return (
     <Theme isDarkMode={isDarkMode}>

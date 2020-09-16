@@ -12,7 +12,7 @@ interface IAircraft {
   result: {
     aircraftTypes: IAircraftType[];
   };
-  error: Error | null;
+  error: any;
   isLoading: boolean;
   isSuccess: boolean;
 }

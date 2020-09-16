@@ -46,7 +46,7 @@ interface IFlight {
     terminal: number | null;
     transferPositions: any;
   };
-  error: Error | null;
+  error: any;
   isLoading: boolean;
   isSuccess: boolean;
   isFetching: boolean;

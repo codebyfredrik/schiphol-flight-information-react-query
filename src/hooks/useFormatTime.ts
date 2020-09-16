@@ -1,7 +1,14 @@
 // import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-const useFormatTime = (rawTimestamp, format) => {
+const useFormatTime = (
+  rawTimestamp: string,
+  format: string
+): {
+  rawTimestamp: string;
+  momentTimestamp: moment.Moment | null;
+  formattedTimestamp: string | null;
+} => {
   let formattedTimestamp = null,
     momentTimestamp = null;
 
