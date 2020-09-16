@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
 
 export interface ITimeProps {
-  time: string | null;
+  time: string;
   estimated?: string | null;
 }
 

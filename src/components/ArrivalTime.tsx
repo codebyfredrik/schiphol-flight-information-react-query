@@ -25,8 +25,8 @@ const ArrivalTime = ({
   actualLandingTime,
   ...restProps
 }: IArrivalTimeProps): JSX.Element => {
-  let estimatedTime: string | null = null;
-  let actualTime: string | null = null;
+  let estimatedTime: string = '';
+  let actualTime: string = '';
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualLandingTime) actualTime = actualLandingTime;
