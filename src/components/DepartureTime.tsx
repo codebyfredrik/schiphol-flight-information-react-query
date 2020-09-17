@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Time } from './../components/Time';
-import { ScheduleTime } from './../styles/index';
+import { Time } from './Time';
+import { ScheduleTime } from '../styles/index';
+
+interface IDepartureTimeProps {
+  scheduleDateTime: string;
+  actualOffBlockTime: string;
+}
 
 const StyledDepartureTime = styled.div`
   display: inline-block;
@@ -16,11 +21,7 @@ const DepartureTime = ({
   scheduleDateTime,
   actualOffBlockTime,
   ...restProps
-}) => {
-  // let actualTime = null;
-
-  // if (actualOffBlockTime) actualTime = actualOffBlockTime;
-
+}: IDepartureTimeProps): JSX.Element => {
   return (
     <StyledDepartureTime {...restProps}>
       <ScheduleTime time={scheduleDateTime} estimated={actualOffBlockTime} />
