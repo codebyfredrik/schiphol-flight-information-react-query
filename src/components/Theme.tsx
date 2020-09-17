@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { darken } from 'polished';
 import { bp } from '../styles/constants';
 
 interface IThemeProps {
   isDarkMode: boolean;
-  children: any;
+  children: ReactNode;
 }
 
 const lightTheme = {
@@ -51,7 +51,7 @@ const darkTheme = {
   pageHeading: '#B0B3B8',
 };
 
-const Theme = ({ isDarkMode, children }: IThemeProps) => {
+const Theme = ({ isDarkMode, children }: IThemeProps): JSX.Element => {
   const themeObject: DefaultTheme = {
     colors: isDarkMode ? darkTheme : lightTheme,
     breakpoints: bp,

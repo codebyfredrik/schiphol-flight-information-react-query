@@ -1,7 +1,6 @@
-// import original module declarations
 import 'styled-components';
 
-// and extend them!
+// Extend original module declarations
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
