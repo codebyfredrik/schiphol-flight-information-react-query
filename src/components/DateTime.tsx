@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
-import PropTypes from 'prop-types';
+
+interface IDateTimeProps {
+  date: string;
+  format: string;
+}
 
 const StyledDateTime = styled.span`
   color: ${({ theme }) => theme.colors.text};
@@ -11,16 +15,16 @@ const StyledDateTime = styled.span`
   }
 `;
 
-const DateTime = ({ date, format, ...restProps }) => {
+const DateTime = ({
+  date,
+  format,
+  ...restProps
+}: IDateTimeProps): JSX.Element => {
   const { formattedTimestamp } = useFormatTime(date, format);
 
   return (
     <StyledDateTime {...restProps}>{`${formattedTimestamp}`}</StyledDateTime>
   );
-};
-
-DateTime.propTypes = {
-  date: PropTypes.string,
 };
 
 export { DateTime };
