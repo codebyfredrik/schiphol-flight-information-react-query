@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export interface ITagProps {
   label: string;
+  isDarkMode?: boolean;
+  backgroundColor: string;
 }
 
 const StyledTag = styled.span`

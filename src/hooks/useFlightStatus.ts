@@ -1,12 +1,15 @@
-import { departureStatus } from './../data/departureStatus';
-import { arrivalStatus } from './../data/arrivalStatus';
+import { departureStatus } from '../data/departureStatus';
+import { arrivalStatus } from '../data/arrivalStatus';
 
-const useFlightStatus = (publicFlightState, flightDirection) => {
-  let flightStatus = [];
-  let tempArray = [];
+const useFlightStatus = (
+  publicFlightState: any,
+  flightDirection: any
+): { flightStatus: any } => {
+  let flightStatus: any = [];
+  let tempArray: any = [];
   const excludedArrivalStatus = new Set(['EXP', 'FIR', 'SCH']);
   const excludedDepartureStatus = new Set(['SCH']);
-  let publicState = new Set(publicFlightState.flightStates);
+  let publicState: any = new Set(publicFlightState.flightStates);
 
   if (flightDirection === 'A') {
     tempArray = new Set(

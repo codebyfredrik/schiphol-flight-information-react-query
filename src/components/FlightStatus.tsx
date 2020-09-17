@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { useFlightStatus } from './../hooks/index';
+import { useFlightStatus } from '../hooks/index';
 import { Tag } from './Tag';
+
+interface IFlightStatus {
+  publicFlightState: any;
+  flightDirection: string;
+  isDarkMode: boolean;
+}
 
 const StyledFlightStatus = styled(Tag)`
   font-size: 12px;
@@ -19,10 +25,10 @@ const FlightStatus = ({
   flightDirection,
   isDarkMode,
   ...restProps
-}) => {
+}: IFlightStatus) => {
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
 
-  return flightStatus.map((item) => (
+  return flightStatus.map((item: any) => (
     <StyledFlightStatus
       key={item.status}
       backgroundColor={item.backgroundColor}
