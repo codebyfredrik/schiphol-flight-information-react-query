@@ -1,7 +1,12 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { darken } from 'polished';
 import { bp } from '../styles/constants';
+
+interface IThemeProps {
+  isDarkMode: boolean;
+  children: any;
+}
 
 const lightTheme = {
   body: 'rgb(240,240,240)',
@@ -46,8 +51,8 @@ const darkTheme = {
   pageHeading: '#B0B3B8',
 };
 
-const Theme = ({ isDarkMode, children }) => {
-  const themeObject = {
+const Theme = ({ isDarkMode, children }: IThemeProps) => {
+  const themeObject: DefaultTheme = {
     colors: isDarkMode ? darkTheme : lightTheme,
     breakpoints: bp,
   };
