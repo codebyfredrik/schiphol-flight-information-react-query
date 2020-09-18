@@ -1,17 +1,34 @@
 import React from 'react';
 
-const consecutive = (array) => {
+type CheckinDesk = {
+  desks: any;
+  position: string;
+};
+
+type CheckIn = {
+  endTime: string;
+  rows: {
+    rows: CheckinDesk[];
+  };
+  startTime: string;
+};
+
+interface ICheckinDesk {
+  checkinLocations: {
+    checkinAllocations: CheckIn[];
+    remark: any;
+  };
+}
+
+const consecutive = (array: any) => {
   let i = 2,
     d,
     isInSequence = null;
   while (i < array.length) {
     d = array[i - 1].position - array[i - 2].position;
-    // console.log('d', d);
     if (Math.abs(d) === 1 && d === array[i].position - array[i - 1].position) {
-      // console.log('Abs', Math.abs(d));
       isInSequence = true;
     } else {
-      // console.log('isInSequence', isInSequence);
       isInSequence = false;
     }
     i++;
@@ -19,15 +36,11 @@ const consecutive = (array) => {
   return { isInSequence };
 };
 
-const CheckinDesk = ({ checkinLocations }) => {
-  console.log('Checkin', checkinLocations);
+const CheckinDesk = ({ checkinLocations }: ICheckinDesk): JSX.Element => {
   const { checkinAllocations } = checkinLocations;
   const { rows } = checkinAllocations[0];
 
   const { isInSequence } = consecutive(rows.rows);
-
-  // console.log('Rows.rows', rows.rows);
-  // console.log('isInSequence', isInSequence);
 
   if (isInSequence) {
     return (
@@ -39,7 +52,7 @@ const CheckinDesk = ({ checkinLocations }) => {
 
   return (
     <div>
-      {rows.rows.map((item, index) => {
+      {rows.rows.map((item: CheckinDesk, index: number) => {
         if (index < rows.rows.length - 1) {
           return <span key={item.position}>{item.position}, </span>;
         } else {
