@@ -33,12 +33,4 @@ const LinkSolid = ({
   );
 };
 
-// LinkSolid.propTypes = {
-//   height: PropTypes.number,
-//   width: PropTypes.number,
-//   fillColor: PropTypes.string,
-//   className: PropTypes.string,
-//   onClick: PropTypes.func,
-// };
-
 export { LinkSolid };
