@@ -20,6 +20,7 @@ const consecutive = (array) => {
 };
 
 const CheckinDesk = ({ checkinLocations }) => {
+  console.log('Checkin', checkinLocations);
   const { checkinAllocations } = checkinLocations;
   const { rows } = checkinAllocations[0];
 

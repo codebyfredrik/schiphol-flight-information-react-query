@@ -1,4 +1,11 @@
-export const departureStatus = [
+export interface IDepartureStatus {
+  statusCode: string;
+  status: string;
+  description: string;
+  backgroundColor: string;
+}
+
+export const departureStatus: IDepartureStatus[] = [
   {
     statusCode: 'SCH',
     status: 'Flight Scheduled',
