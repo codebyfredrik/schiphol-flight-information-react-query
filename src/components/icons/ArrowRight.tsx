@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { ISvgIcon } from './interfaces';
 
 const StyledArrowRight = styled.svg`
   display: inline-block;
@@ -20,7 +20,12 @@ const StyledArrowRight = styled.svg`
   }
 `;
 
-const ArrowRight = ({ height, width, fillColor, ...restProps }) => {
+const ArrowRight = ({
+  height,
+  width,
+  fillColor,
+  ...restProps
+}: ISvgIcon): JSX.Element => {
   return (
     <StyledArrowRight
       aria-hidden="true"
@@ -40,14 +45,6 @@ const ArrowRight = ({ height, width, fillColor, ...restProps }) => {
       ></path>
     </StyledArrowRight>
   );
-};
-
-ArrowRight.propTypes = {
-  height: PropTypes.number,
-  width: PropTypes.number,
-  fillColor: PropTypes.string,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 export { ArrowRight };

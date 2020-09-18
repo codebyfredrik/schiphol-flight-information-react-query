@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { ISvgIcon } from './interfaces';
 
 const StyledLinkSolid = styled.svg`
   display: inline-block;
 `;
 
-const LinkSolid = ({ height, width, fillColor, className, onClick }) => {
+const LinkSolid = ({
+  height,
+  width,
+  fillColor,
+  ...restProps
+}: ISvgIcon): JSX.Element => {
   return (
     <StyledLinkSolid
-      onClick={onClick}
-      className={className}
       aria-hidden="true"
       height={height}
       width={width}
@@ -20,6 +23,7 @@ const LinkSolid = ({ height, width, fillColor, className, onClick }) => {
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
+      {...restProps}
     >
       <path
         fill={fillColor}
@@ -29,12 +33,12 @@ const LinkSolid = ({ height, width, fillColor, className, onClick }) => {
   );
 };
 
-LinkSolid.propTypes = {
-  height: PropTypes.number,
-  width: PropTypes.number,
-  fillColor: PropTypes.string,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-};
+// LinkSolid.propTypes = {
+//   height: PropTypes.number,
+//   width: PropTypes.number,
+//   fillColor: PropTypes.string,
+//   className: PropTypes.string,
+//   onClick: PropTypes.func,
+// };
 
 export { LinkSolid };
