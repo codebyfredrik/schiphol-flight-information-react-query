@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface IFlightNumberProps {
+interface IFlightNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
   flightName: string;
 }
 

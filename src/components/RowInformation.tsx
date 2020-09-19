@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DisplayDate } from './DisplayDate';
 import { UpdateIndicator } from './UpdateIndicator';
 
-interface IRowInformationProps {
+interface IRowInformationProps extends React.HTMLAttributes<HTMLLIElement> {
   date: string;
   isFetching: boolean;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
 
-interface ILastUpdatedProps {
+interface ILastUpdatedProps extends React.HTMLAttributes<HTMLSpanElement> {
   timestamp: string;
 }
 

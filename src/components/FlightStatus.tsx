@@ -4,7 +4,7 @@ import { darken } from 'polished';
 import { useFlightStatus } from '../hooks/index';
 import { Tag } from './Tag';
 
-interface IFlightStatus {
+interface IFlightStatus extends React.HTMLAttributes<HTMLSpanElement> {
   publicFlightState: any;
   flightDirection: string;
   isDarkMode: boolean;

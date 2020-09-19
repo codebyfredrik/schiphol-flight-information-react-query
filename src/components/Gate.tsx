@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
-interface IGateProps {
+interface IGateProps extends React.HTMLAttributes<HTMLSpanElement> {
   gate: string;
 }
 
@@ -27,9 +26,5 @@ const StyledGate = styled.span`
 const Gate = ({ gate, ...restProps }: IGateProps): JSX.Element => {
   return <StyledGate {...restProps}>{gate}</StyledGate>;
 };
-
-// Gate.propTypes = {
-//   gate: PropTypes.string,
-// };
 
 export { Gate };

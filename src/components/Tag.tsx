@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export interface ITagProps {
+export interface ITagProps extends React.HTMLAttributes<HTMLSpanElement> {
   label: string;
   isDarkMode?: boolean;
   backgroundColor: string;

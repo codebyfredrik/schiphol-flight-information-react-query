@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Time } from './Time';
 import { ScheduleTime } from '../styles/index';
 
-interface IArrivalTimeProps {
+interface IArrivalTimeProps extends React.HTMLAttributes<HTMLDivElement> {
   scheduleDateTime: string;
   estimatedLandingTime: string;
   actualLandingTime: string;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { useFormatTime } from '../hooks/index';
 
-interface IDisplayDateProps {
+interface IDisplayDateProps extends React.HTMLAttributes<HTMLDivElement> {
   date: string;
 }
 

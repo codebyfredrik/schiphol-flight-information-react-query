@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+interface IUpdateIndicator extends React.HTMLAttributes<HTMLDivElement> {}
+
 const StyledUpdateIndicator = styled.div`
   display: inline-block;
 `;
@@ -35,7 +37,7 @@ const Dot = styled.span`
   }
 `;
 
-const UpdateIndicator = ({ ...restProps }): JSX.Element => {
+const UpdateIndicator = ({ ...restProps }: IUpdateIndicator): JSX.Element => {
   return (
     <StyledUpdateIndicator {...restProps}>
       <Dot className="one" />

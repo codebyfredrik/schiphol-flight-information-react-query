@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Time } from './Time';
 import { ScheduleTime } from '../styles/index';
 
-interface IDepartureTimeProps {
+interface IDepartureTimeProps extends React.HTMLAttributes<HTMLDivElement> {
   scheduleDateTime: string;
   actualOffBlockTime: string;
 }

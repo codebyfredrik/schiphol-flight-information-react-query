@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
 
-export interface ITimeProps {
+export interface ITimeProps extends React.HTMLAttributes<HTMLSpanElement> {
   time: string;
   estimated?: string | null;
 }

@@ -1,3 +1,3 @@
-export interface ISvgIcon extends React.SVGAttributes<Element> {
+export interface ISvgIcon extends React.SVGAttributes<SVGSVGElement> {
   fillColor: string;
 }

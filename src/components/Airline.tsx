@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAirline } from '../hooks/index';
 
-interface IAirlineProps {
+interface IAirlineProps extends React.HTMLAttributes<HTMLSpanElement> {
   prefixICAO: string;
 }
 

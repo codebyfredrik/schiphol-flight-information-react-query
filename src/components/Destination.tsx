@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDestination } from '../hooks/index';
 
-export interface IDestinationProps {
+export interface IDestinationProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
   route: {
     destinations: string[];
     eu: string;

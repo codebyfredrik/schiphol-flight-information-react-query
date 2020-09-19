@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFlightDirection } from '../hooks/index';
 
-interface IFlightDirectionTagProps {
+interface IFlightDirectionTagProps
+  extends React.HTMLAttributes<HTMLSpanElement> {
   flightDirection: string;
 }
 
