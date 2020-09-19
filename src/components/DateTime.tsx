@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormatTime } from '../hooks/index';
 
-interface IDateTimeProps {
+interface IDateTimeProps extends React.HTMLAttributes<HTMLSpanElement> {
   date: string;
   format: string;
 }

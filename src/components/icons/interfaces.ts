@@ -1,5 +1,3 @@
-export interface ISvgIcon {
-  height: number;
-  width: number;
+export interface ISvgIcon extends React.SVGAttributes<Element> {
   fillColor: string;
 }
