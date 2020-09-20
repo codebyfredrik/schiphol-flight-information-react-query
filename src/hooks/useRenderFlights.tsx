@@ -1,14 +1,18 @@
 import React from 'react';
-import { Flight } from './../components/Flight';
-import { RowInformation } from './../components/RowInformation';
+import { Flight } from '../components/Flight';
+import { RowInformation } from '../components/RowInformation';
 
-const useRenderFlights = (resolvedData, isDarkMode, isFetching) => {
-  const renderFlights = () => {
-    let currentDate = null;
+const useRenderFlights = (
+  resolvedData: any,
+  isDarkMode: boolean,
+  isFetching: boolean
+) => {
+  const renderFlights = (): void => {
+    let currentDate: string | null = null;
 
     const result = resolvedData.data.flights
-      .filter((item) => item.flightName === item.mainFlight)
-      .map((item) => {
+      .filter((item: any) => item.flightName === item.mainFlight)
+      .map((item: any) => {
         if (item.scheduleDate !== currentDate) {
           currentDate = item.scheduleDate;
           return (
@@ -24,7 +28,7 @@ const useRenderFlights = (resolvedData, isDarkMode, isFetching) => {
           return <Flight key={item.id} flight={item} isDarkMode={isDarkMode} />;
         }
       });
-    // console.log(result);
+
     if (result.length !== 0) {
       return result;
     }

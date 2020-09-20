@@ -1,9 +1,21 @@
 import { useEffect } from 'react';
 import { usePaginatedQuery, queryCache } from 'react-query';
-import axios from './../helpers/axios';
+import axios from '../helpers/axios';
 import moment from 'moment';
 
-const query = async (key, { page = 0, flightDirection = '' }) => {
+interface IFlights {
+  isError: boolean;
+  isFetching: boolean;
+  isLoading: boolean;
+  isSuccess: boolean;
+  error: any;
+  resolvedData: any;
+}
+
+const query = async (
+  key: string,
+  { page = 0, flightDirection = '' }: { page: number; flightDirection: string }
+) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   let url;
 
@@ -16,7 +28,7 @@ const query = async (key, { page = 0, flightDirection = '' }) => {
   return data;
 };
 
-const useFlights = (page, flightDirection) => {
+const useFlights = (page: number, flightDirection: string): IFlights => {
   const {
     isError,
     isFetching,
