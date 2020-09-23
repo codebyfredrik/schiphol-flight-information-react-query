@@ -69,7 +69,7 @@ const SubTitle = styled.h3<IHeaderProps>`
   display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
   font-size: 1rem;
   line-height: 1rem;
-  margin-top: ${(props) => (props.sticky ? '0rem' : '0rem')};
+  text-transform: uppercase;
   margin-right: ${(props) => (props.sticky ? '-0.25rem' : '0rem')};
   letter-spacing: 0.25rem;
   font-weight: 600;
@@ -77,9 +77,9 @@ const SubTitle = styled.h3<IHeaderProps>`
   color: ${({ theme }) => theme.colors.subTitle};
 
   @media screen and (min-width: 520px) {
-    margin-top: ${(props) => (props.sticky ? '0.15rem' : '0.25rem')};
-    font-size: ${(props) => (props.sticky ? '1rem' : '1.25rem')};
-    line-height: ${(props) => (props.sticky ? '1rem' : '1.25rem')};
+    margin-top: ${(props) => (props.sticky ? '0rem' : '0.25rem')};
+    font-size: ${(props) => (props.sticky ? '0.75rem' : '1.25rem')};
+    line-height: ${(props) => (props.sticky ? '0.5rem' : '1.25rem')};
   }
 
   @media screen and (min-width: 768px) {
