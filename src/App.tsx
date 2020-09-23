@@ -11,19 +11,24 @@ import {
   FlightDepartureView,
   FlightArrivalView,
 } from './views/index';
+import { StickyWrapper as StickyHeader } from './components/StickyWrapper';
+import { useStickyHeader } from './hooks/useStickyHeader';
 
 const App = () => {
   const [page, setPage] = useState<number>(0);
   const [flightDirection, setFlightDirection] = useState<string>('');
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const { toggleDarkMode, isDarkMode } = useDarkMode();
+  const [isSticky, ref] = useStickyHeader(125, 1);
 
   return (
     <Theme isDarkMode={isDarkMode}>
       <>
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
-        <Header />
+        <StickyHeader ref={ref}>
+          <Header sticky={isSticky} />
+        </StickyHeader>
         {overlayIsVisible && (
           <Overlay
             setFlightDirection={setFlightDirection}
