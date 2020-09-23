@@ -32,32 +32,34 @@ const StyledHeader = styled.header<IHeaderProps>`
 `;
 
 const Content = styled.div<IHeaderProps>`
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 1000px;
   margin: auto;
-  padding: ${(props) => (props.sticky ? '0.5rem 1rem' : '1.5rem 1rem')};
+  padding: ${(props) => (props.sticky ? '0.6rem 1rem' : '1.5rem 1rem')};
   height: ${(props) => (props.sticky ? '40px' : '125px')};
 
   @media screen and (min-width: 380px) {
     flex-direction: ${(props) => (props.sticky ? 'row' : 'column')};
-    justify-content: ${(props) => (props.sticky ? 'space-between' : 'center')};
+    justify-content: ${(props) => (props.sticky ? 'space-between' : '')};
   }
 `;
 
 const Title = styled.h1<IHeaderProps>`
+  /* border: 1px solid red; */
   display: inline-block;
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: ${(props) => (props.sticky ? '1.2rem' : '1.5rem')};
   font-weight: 600;
-  line-height: ${(props) => (props.sticky ? '1.2rem' : '1.5rem')};
+  line-height: ${(props) => (props.sticky ? '1rem' : '1.1rem')};
   color: ${({ theme }) => theme.colors.yellow};
 
   @media screen and (min-width: 520px) {
     font-size: ${(props) => (props.sticky ? '1.2rem' : '2.5rem')};
-    line-height: ${(props) => (props.sticky ? '1.2rem' : '2.5rem')};
+    line-height: ${(props) => (props.sticky ? '0.8rem' : '1.8rem')};
   }
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -66,9 +68,10 @@ const Title = styled.h1<IHeaderProps>`
 `;
 
 const SubTitle = styled.h3<IHeaderProps>`
+  /* border: 1px solid green; */
   display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
   font-size: 1rem;
-  line-height: 1rem;
+  line-height: 0.7rem;
   text-transform: uppercase;
   margin-right: ${(props) => (props.sticky ? '-0.25rem' : '0rem')};
   letter-spacing: 0.25rem;
@@ -79,7 +82,7 @@ const SubTitle = styled.h3<IHeaderProps>`
   @media screen and (min-width: 520px) {
     margin-top: ${(props) => (props.sticky ? '0rem' : '0.25rem')};
     font-size: ${(props) => (props.sticky ? '0.75rem' : '1.25rem')};
-    line-height: ${(props) => (props.sticky ? '0.5rem' : '1.25rem')};
+    line-height: ${(props) => (props.sticky ? '0.5rem' : '1rem')};
   }
 
   @media screen and (min-width: 768px) {
