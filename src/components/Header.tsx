@@ -20,6 +20,7 @@ const StyledHeader = styled.header<IHeaderProps>`
   background: linear-gradient(to right, #073590, #0d49c0);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
   height: ${(props) => (props.sticky ? '40px' : '125px')};
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   ${(props) =>
     props.sticky === true &&
     css`
@@ -69,7 +70,7 @@ const SubTitle = styled.h3<IHeaderProps>`
   display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
   font-size: 1rem;
   line-height: 0.7rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin-right: ${(props) => (props.sticky ? '-0.25rem' : '0rem')};
   letter-spacing: 0.25rem;
   font-weight: 600;
