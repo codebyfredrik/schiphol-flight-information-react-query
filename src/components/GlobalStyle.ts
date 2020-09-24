@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    background-color: ${({ theme }) => theme.colors.body};
+    /* background-color: ${({ theme }) => theme.colors.body}; */
 
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: background-color var(--transition-time) ease-in;
@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-  --transition-time: 0ms;
+  --transition-time: 150ms;
   --min-tap-target-height: 48px;
   --container-margin: 1.5rem;
     

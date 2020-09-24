@@ -32,7 +32,6 @@ const StyledHeader = styled.header<IHeaderProps>`
 `;
 
 const Content = styled.div<IHeaderProps>`
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +47,6 @@ const Content = styled.div<IHeaderProps>`
 `;
 
 const Title = styled.h1<IHeaderProps>`
-  /* border: 1px solid red; */
   display: inline-block;
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
@@ -68,7 +66,6 @@ const Title = styled.h1<IHeaderProps>`
 `;
 
 const SubTitle = styled.h3<IHeaderProps>`
-  /* border: 1px solid green; */
   display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
   font-size: 1rem;
   line-height: 0.7rem;

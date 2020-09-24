@@ -72,7 +72,22 @@ const SubHeading = styled.h4`
   font-weight: 600;
 `;
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.colors.body};
+  z-index: -1;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: background-color var(--transition-time) ease-in;
+  }
+`;
+
 export {
+  Background,
   ContentHeader,
   Content,
   ScheduleTime,
