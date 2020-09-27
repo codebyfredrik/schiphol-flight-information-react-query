@@ -20,7 +20,10 @@ const StyledHeader = styled.header<IHeaderProps>`
   background: linear-gradient(to right, #073590, #0d49c0);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
   height: ${(props) => (props.sticky ? '40px' : '125px')};
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.2),
+    0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.1),
+    0 16px 16px rgba(0, 0, 0, 0.05);
   ${(props) =>
     props.sticky === true &&
     css`
