@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
-import { Gate } from './../components/index';
-import { FlightFrom } from './../components/FlightFrom';
-import { City } from './../components/City';
-import { FlightNumber } from './../components/FlightNumber';
+import { Gate } from '../components/Gate';
+import { FlightFrom } from '../components/FlightFrom';
+import { City } from '../components/City';
+import { FlightNumber } from '../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
-import { ArrivalTime } from './../components/ArrivalTime';
-import { FlightStatus } from './../components/FlightStatus';
-import { Content } from './../styles/Styles';
-import { LastUpdated } from './../components/LastUpdated';
+import { ArrivalTime } from '../components/ArrivalTime';
+import { FlightStatus } from '../components/FlightStatus';
+import { Content } from '../styles/Styles';
+import { LastUpdated } from '../components/LastUpdated';
 import { queryCache } from 'react-query';
-import { query } from './../helpers/query';
-import { Redo, ArrowRight } from './../components/icons/index';
-import { AircraftDetails } from './../components/AircraftDetails';
+import { query } from '../helpers/query';
+import { Redo, ArrowRight } from '../components/icons/index';
+import { AircraftDetails } from '../components/AircraftDetails';
 
 const StyledCity = styled(City)`
   display: block;
@@ -180,8 +180,10 @@ const FlightDetails = styled.div`
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
+  console.log('ID', id);
+  console.log(typeof id);
   const { result: flight, isLoading } = useFlight(id);
-  console.log(flight);
+  // console.log(flight);
   return (
     <>
       {isLoading ? (

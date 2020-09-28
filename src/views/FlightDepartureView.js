@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
-import { Gate } from './../components/index';
+import { Gate } from './../components/Gate';
 import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
 import { FlightNumber } from './../components/FlightNumber';
@@ -10,7 +10,7 @@ import { DateTime } from '../components/DateTime';
 import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
 import { Content } from './../styles/Styles';
-import { CheckinDesk } from './../components/CheckinDesk';
+import { CheckinDesk } from '../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
@@ -180,7 +180,8 @@ const FlightDetails = styled.div`
 const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
-  console.log(flight);
+  // console.log(flight);
+  // console.log(flight.checkinAllocations);
   return (
     <>
       {isLoading ? (
