@@ -42,4 +42,4 @@ Finally, to be able to handle CORS issues between the frontend and the flight in
 
 ### Where can you see it in action?
 
-URL to live site: https://elegant-galileo-8daf23.netlify.app/
+URL to live site: https://unruffled-ramanujan-2d5cd4.netlify.app/
