@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useFlights, useRenderFlights } from '../hooks/index';
 import { Button } from './../styles/Styles';
 import { Content } from './../styles/Styles';
+import { Sun } from './../components/icons/index';
 
 const Flights = styled.ul`
   display: grid;
@@ -99,6 +100,7 @@ const FlightsView = ({
   return (
     <>
       <StyledContent {...restProps}>
+        {/* <Sun /> */}
         <FlexContainer>
           <StyledButton type="button" onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme
