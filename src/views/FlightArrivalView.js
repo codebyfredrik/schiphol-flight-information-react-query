@@ -181,10 +181,7 @@ const FlightDetails = styled.div`
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
-  console.log('ID', id);
-  console.log(typeof id);
   const { result: flight, isLoading } = useFlight(id);
-  // console.log(flight);
   return (
     <>
       {isLoading ? (
