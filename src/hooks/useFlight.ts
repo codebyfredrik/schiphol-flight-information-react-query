@@ -57,7 +57,6 @@ const useFlight = (id: string): IFlight => {
     `/flights/${id}`,
     query
   );
-  console.log(result);
   return { result, error, isLoading, isSuccess, isFetching };
 };
 
