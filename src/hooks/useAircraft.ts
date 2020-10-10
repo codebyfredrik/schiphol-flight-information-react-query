@@ -26,8 +26,7 @@ const useAircraft = (iataSub: string): IAircraft => {
       cacheTime: Infinity,
     }
   );
-  console.log(typeof iataSub);
-  console.log(result);
+
   return { result, error, isLoading, isSuccess };
 };
 
