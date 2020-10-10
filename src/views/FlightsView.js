@@ -90,10 +90,8 @@ const FlightsView = ({
   );
 
   if (resolvedData) {
-    /* Logging for troubleshooting */
-    // console.log(`Frontend Page Fetched: ${page}`);
-    // console.log(`API Last Page: ${resolvedData.lastPage - 1}`);
-    // console.log(` `);
+    /* LOGGING FOR TROUBLESHOOTING */
+    // console.log(resolvedData);
   }
 
   return (
