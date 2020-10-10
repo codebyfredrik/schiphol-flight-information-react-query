@@ -1,13 +1,12 @@
 import moment from 'moment';
 
-const useFormatTime = (
-  rawTimestamp: string,
-  format: string
-): {
+interface IFormatTime {
   rawTimestamp: string;
   momentTimestamp: moment.Moment | null;
   formattedTimestamp: string | null;
-} => {
+}
+
+const useFormatTime = (rawTimestamp: string, format: string): IFormatTime => {
   let formattedTimestamp = null;
   let momentTimestamp = null;
 
