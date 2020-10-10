@@ -220,7 +220,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
-  // const onMouseEnter = () => console.log('hej');
+
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
@@ -238,11 +238,9 @@ const Flight = ({ flight, isDarkMode }) => {
         variants={{
           hidden: {
             opacity: 0,
-            // y: 5,
           },
           visible: {
             opacity: 1,
-            // y: 0,
             transition: {
               delay: 0.1,
             },
