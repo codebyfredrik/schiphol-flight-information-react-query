@@ -322,6 +322,7 @@ const Flight = ({ flight, isDarkMode }) => {
 
 Flight.propTypes = {
   flight: PropTypes.object,
+  isDarkMode: PropTypes.bool,
 };
 
 export { Flight, FlightStatus };
