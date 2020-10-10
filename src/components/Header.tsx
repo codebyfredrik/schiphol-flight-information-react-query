@@ -73,7 +73,6 @@ const SubTitle = styled.h3<IHeaderProps>`
   display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
   font-size: 1rem;
   line-height: 0.7rem;
-  /* text-transform: uppercase; */
   margin-right: ${(props) => (props.sticky ? '-0.25rem' : '0rem')};
   letter-spacing: 0.25rem;
   font-weight: 600;
