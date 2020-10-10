@@ -8,8 +8,8 @@ const useFormatTime = (
   momentTimestamp: moment.Moment | null;
   formattedTimestamp: string | null;
 } => {
-  let formattedTimestamp = null,
-    momentTimestamp = null;
+  let formattedTimestamp = null;
+  let momentTimestamp = null;
 
   if (rawTimestamp) {
     momentTimestamp = moment(rawTimestamp);
