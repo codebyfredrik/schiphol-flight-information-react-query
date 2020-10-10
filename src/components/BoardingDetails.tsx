@@ -14,10 +14,6 @@ const BoardingDetails = ({
   expectedTimeGateOpen,
   ...restProps
 }: IBoardingDetailsProps): JSX.Element => {
-  console.log('expectedTimeBoarding', expectedTimeBoarding);
-  console.log('expectedTimeGateClosing', expectedTimeGateClosing);
-  console.log('expectedTimeGateOpen', expectedTimeGateOpen);
-
   return (
     <Box {...restProps}>
       <HeadingDetails>Boarding details</HeadingDetails>
