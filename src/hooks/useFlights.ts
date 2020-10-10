@@ -51,8 +51,6 @@ const useFlights = (page: number, flightDirection: string): IFlights => {
         ['flights', { page: page + 1, flightDirection }],
         query
       );
-      /* Logging for troubleshooting */
-      // console.log(`Cache Page Fetched: ${page + 1}`);
     }
   }, [
     resolvedData,
