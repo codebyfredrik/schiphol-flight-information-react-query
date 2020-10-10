@@ -238,9 +238,11 @@ const Flight = ({ flight, isDarkMode }) => {
         variants={{
           hidden: {
             opacity: 0,
+            // y: 5,
           },
           visible: {
             opacity: 1,
+            // y: 0,
             transition: {
               delay: 0.1,
             },
