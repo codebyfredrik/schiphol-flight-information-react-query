@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useToggle, useDarkMode } from './hooks/index';
 import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
-import { Background } from './styles/Styles';
+import { Background } from './styles/styles';
 import { GlobalStyle } from './components/GlobalStyle';
 import { Header } from './components/Header';
 import { Overlay } from './components/Overlay';

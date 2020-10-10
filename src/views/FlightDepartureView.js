@@ -9,7 +9,7 @@ import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
-import { Content } from './../styles/Styles';
+import { Content } from '../styles/styles';
 import { CheckinDesk } from '../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';

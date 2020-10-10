@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFlights, useRenderFlights } from '../hooks/index';
-import { Button } from './../styles/Styles';
-import { Content } from './../styles/Styles';
+import { Button } from '../styles/styles';
+import { Content } from '../styles/styles';
 
 const Flights = styled.ul`
   display: grid;

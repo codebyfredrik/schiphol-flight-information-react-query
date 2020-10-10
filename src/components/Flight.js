@@ -18,7 +18,7 @@ import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
-import { ScheduleTime } from './../styles/Styles';
+import { ScheduleTime } from '../styles/styles';
 import { ArrowRight } from './../components/icons/index';
 
 const StyledFlight = styled(motion.li)`
