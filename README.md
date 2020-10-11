@@ -10,7 +10,7 @@ In this project the frontend is consuming real-time data from the official fligh
 
 #### React Query
 
-One of many features of React Query used in this project is caching. Instead of refetching the same information over and over again specific information, that rarely change for instance, can be cached the entire duration of the session. By doing so transfer of unneccesary data is prevented and at the same time the number of API requests are kept to a minimum. All these things together results in a much better user experience.
+One of many features of React Query used in this project is caching. Instead of refetching the same information over and over again specific information, that rarely change for instance, can be cached for the entire duration of the session. By doing so transfer of unneccesary data is prevented and at the same time the number of API requests are kept to a minimum. All these things together results in a much better user experience.
 
 In this implemetation the API endpoints are using the following caching strategies:
 
