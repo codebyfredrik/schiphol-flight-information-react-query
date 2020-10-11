@@ -179,7 +179,7 @@ const FlightDetails = styled.div`
   margin: 2rem 0;
 `;
 
-const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
+const FlightArrivalView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
   return (

@@ -178,7 +178,7 @@ const FlightDetails = styled.div`
   margin: 2rem 0;
 `;
 
-const FlightDepartureView = ({ isDarkMode, toggleDarkMode }) => {
+const FlightDepartureView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
 

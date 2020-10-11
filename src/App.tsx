@@ -53,16 +53,10 @@ const App = () => {
               />
             </Route>
             <Route exact path="/departures/:date/flights/:id">
-              <FlightDepartureView
-                isDarkMode={isDarkMode}
-                toggleDarkMode={toggleDarkMode}
-              />
+              <FlightDepartureView isDarkMode={isDarkMode} />
             </Route>
             <Route exact path="/arrivals/:date/flights/:id">
-              <FlightArrivalView
-                isDarkMode={isDarkMode}
-                toggleDarkMode={toggleDarkMode}
-              />
+              <FlightArrivalView isDarkMode={isDarkMode} />
             </Route>
           </Switch>
         </div>
