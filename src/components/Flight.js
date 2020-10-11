@@ -18,7 +18,7 @@ import { Time } from './Time';
 import { FlightNumber } from './FlightNumber';
 import { Tag } from './Tag';
 import { Gate } from './Gate';
-import { ScheduleTime } from './../styles/Styles';
+import { ScheduleTime } from '../styles/styles';
 import { ArrowRight } from './../components/icons/index';
 
 const StyledFlight = styled(motion.li)`
@@ -220,7 +220,7 @@ const Flight = ({ flight, isDarkMode }) => {
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   let estimatedTime = null,
     actualTime = null;
-  // const onMouseEnter = () => console.log('hej');
+
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
@@ -238,11 +238,9 @@ const Flight = ({ flight, isDarkMode }) => {
         variants={{
           hidden: {
             opacity: 0,
-            // y: 5,
           },
           visible: {
             opacity: 1,
-            // y: 0,
             transition: {
               delay: 0.1,
             },
@@ -324,6 +322,7 @@ const Flight = ({ flight, isDarkMode }) => {
 
 Flight.propTypes = {
   flight: PropTypes.object,
+  isDarkMode: PropTypes.bool,
 };
 
 export { Flight, FlightStatus };

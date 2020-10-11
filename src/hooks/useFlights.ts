@@ -3,6 +3,11 @@ import { usePaginatedQuery, queryCache } from 'react-query';
 import axios from '../helpers/axios';
 import moment from 'moment';
 
+interface IFlightsProps {
+  page: number;
+  flightDirection: string;
+}
+
 interface IFlights {
   isError: boolean;
   isFetching: boolean;
@@ -14,7 +19,7 @@ interface IFlights {
 
 const query = async (
   key: string,
-  { page = 0, flightDirection = '' }: { page: number; flightDirection: string }
+  { page = 0, flightDirection = '' }: IFlightsProps
 ) => {
   const dateTimeString = moment().format('YYYY-MM-DDTHH:mm:ss');
   let url;
@@ -51,8 +56,6 @@ const useFlights = (page: number, flightDirection: string): IFlights => {
         ['flights', { page: page + 1, flightDirection }],
         query
       );
-      /* Logging for troubleshooting */
-      // console.log(`Cache Page Fetched: ${page + 1}`);
     }
   }, [
     resolvedData,

@@ -9,7 +9,7 @@ import { FlightNumber } from '../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { ArrivalTime } from '../components/ArrivalTime';
 import { FlightStatus } from '../components/FlightStatus';
-import { Content } from '../styles/Styles';
+import { Content } from '../styles/styles';
 import { LastUpdated } from '../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
@@ -19,12 +19,13 @@ import { AircraftDetails } from '../components/AircraftDetails';
 const StyledCity = styled(City)`
   display: block;
   font-size: 3.6rem;
-  font-weight: 600; */
+  font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
   background-size: cover;
   background-repeat: no-repeat;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -180,10 +181,7 @@ const FlightDetails = styled.div`
 
 const FlightArrivalView = ({ isDarkMode, toggleDarkMode }) => {
   const { id } = useParams();
-  console.log('ID', id);
-  console.log(typeof id);
   const { result: flight, isLoading } = useFlight(id);
-  // console.log(flight);
   return (
     <>
       {isLoading ? (

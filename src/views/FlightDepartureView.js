@@ -9,7 +9,7 @@ import { FlightNumber } from './../components/FlightNumber';
 import { DateTime } from '../components/DateTime';
 import { DepartureTime } from './../components/DepartureTime';
 import { FlightStatus } from './../components/FlightStatus';
-import { Content } from './../styles/Styles';
+import { Content } from '../styles/styles';
 import { CheckinDesk } from '../components/CheckinDesk';
 import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
@@ -24,8 +24,9 @@ const StyledCity = styled(City)`
   font-weight: 900;
   color: #210e71;
   background: linear-gradient(to bottom, #0d49c0, #073590);
-  background-size: cover
+  background-size: cover;
   background-repeat: no-repeat;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;

@@ -21,9 +21,10 @@ interface ICheckinDesk {
 }
 
 const consecutive = (array: any) => {
-  let i = 2,
-    d,
-    isInSequence = null;
+  let i = 2;
+  let d = null;
+  let isInSequence = null;
+
   while (i < array.length) {
     d = array[i - 1].position - array[i - 2].position;
     if (Math.abs(d) === 1 && d === array[i].position - array[i - 1].position) {
