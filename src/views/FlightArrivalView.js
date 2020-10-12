@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { queryCache } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
 import { Gate } from '../components/Gate';
@@ -11,7 +12,6 @@ import { ArrivalTime } from '../components/ArrivalTime';
 import { FlightStatus } from '../components/FlightStatus';
 import { Content } from '../styles/styles';
 import { LastUpdated } from '../components/LastUpdated';
-import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { Redo, ArrowRight } from '../components/icons/index';
 import { AircraftDetails } from '../components/AircraftDetails';
