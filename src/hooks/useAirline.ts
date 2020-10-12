@@ -5,7 +5,7 @@ interface IAirline {
   result: {
     iata: string;
     icao: string;
-    nvlss: number;
+    nvls: number;
     publicName: string;
   };
   error: any;
