@@ -33,6 +33,7 @@ Finally, to be able to handle CORS issues between the frontend and the flight in
 ### Technologies used
 
 - JavaScript ES6+
+- TypeScript
 - React
 - [React Query](https://github.com/tannerlinsley/react-query)
 - Axios
