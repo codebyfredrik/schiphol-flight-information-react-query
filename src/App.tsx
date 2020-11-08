@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import { useToggle, useDarkMode } from './hooks/index';
 import { Theme } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
@@ -14,6 +14,7 @@ import {
 } from './views/index';
 import { StickyWrapper as StickyHeader } from './components/StickyWrapper';
 import { useStickyHeader } from './hooks/useStickyHeader';
+import { ScrollToTop } from './components/ScrollToTop';
 
 const App = () => {
   const [page, setPage] = useState<number>(0);
@@ -42,22 +43,24 @@ const App = () => {
         )}
         <div>
           <Switch>
-            <Route exact path="/">
-              <FlightsView
-                page={page}
-                setPage={setPage}
-                flightDirection={flightDirection}
-                isDarkMode={isDarkMode}
-                toggleDarkMode={toggleDarkMode}
-                setOverlayIsVisible={setOverlayIsVisible}
-              />
-            </Route>
-            <Route exact path="/departures/:date/flights/:id">
-              <FlightDepartureView isDarkMode={isDarkMode} />
-            </Route>
-            <Route exact path="/arrivals/:date/flights/:id">
-              <FlightArrivalView isDarkMode={isDarkMode} />
-            </Route>
+            <ScrollToTop>
+              <Route exact path="/">
+                <FlightsView
+                  page={page}
+                  setPage={setPage}
+                  flightDirection={flightDirection}
+                  isDarkMode={isDarkMode}
+                  toggleDarkMode={toggleDarkMode}
+                  setOverlayIsVisible={setOverlayIsVisible}
+                />
+              </Route>
+              <Route exact path="/departures/:date/flights/:id">
+                <FlightDepartureView isDarkMode={isDarkMode} />
+              </Route>
+              <Route exact path="/arrivals/:date/flights/:id">
+                <FlightArrivalView isDarkMode={isDarkMode} />
+              </Route>
+            </ScrollToTop>
           </Switch>
         </div>
       </>
