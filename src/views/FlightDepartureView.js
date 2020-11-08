@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
 import { Gate } from './../components/Gate';
@@ -190,6 +191,17 @@ const FlightDepartureView = ({ isDarkMode }) => {
         </Content>
       ) : (
         <>
+          {flight?.flightName ? (
+            <Helmet>
+              <title>
+                Departure information for flight {flight?.flightName}
+              </title>
+            </Helmet>
+          ) : (
+            <Helmet>
+              <title>Departure information</title>
+            </Helmet>
+          )}
           <HeaderContainer>
             <Content>
               <HeaderInformation>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import { useFlights, useRenderFlights } from '../hooks/index';
 import { Button } from '../styles/styles';
 import { Content } from '../styles/styles';
@@ -97,6 +98,9 @@ const FlightsView = ({
   return (
     <>
       <StyledContent {...restProps}>
+        <Helmet>
+          <title>Arrival and departure flights</title>
+        </Helmet>
         <FlexContainer>
           <StyledButton type="button" onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme
