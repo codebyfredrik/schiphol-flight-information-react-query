@@ -187,7 +187,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
     <>
       {isLoading ? (
         <Content>
-          <Loading>Loading...</Loading>
+          <Loading>Loading flight...</Loading>
         </Content>
       ) : (
         <>
