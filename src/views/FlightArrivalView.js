@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import { queryCache } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
 import { useFlight } from '../hooks/index';
@@ -190,6 +191,15 @@ const FlightArrivalView = ({ isDarkMode }) => {
         </Content>
       ) : (
         <>
+          {flight?.flightName ? (
+            <Helmet>
+              <title>Arrival information for flight {flight?.flightName}</title>
+            </Helmet>
+          ) : (
+            <Helmet>
+              <title>Arrival information</title>
+            </Helmet>
+          )}
           <HeaderContainer>
             <Content>
               <HeaderInformation>
