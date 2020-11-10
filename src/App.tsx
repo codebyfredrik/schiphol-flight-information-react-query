@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Switch, Route} from 'react-router-dom';
 import { useToggle, useDarkMode } from './hooks/index';
-import { Theme } from './components/Theme';
+import { ThemeProvider } from './components/Theme';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { Background } from './styles/styles';
 import { GlobalStyle } from './components/GlobalStyle';
@@ -24,7 +24,7 @@ const App = () => {
   const [isSticky, ref] = useStickyHeader(125, 1);
 
   return (
-    <Theme isDarkMode={isDarkMode}>
+    <ThemeProvider isDarkMode={isDarkMode}>
       <>
         <Background />
         <ReactQueryDevtools initialIsOpen={false} />
@@ -64,7 +64,7 @@ const App = () => {
           </Switch>
         </div>
       </>
-    </Theme>
+    </ThemeProvider>
   );
 };
 
