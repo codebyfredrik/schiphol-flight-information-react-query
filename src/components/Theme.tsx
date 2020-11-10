@@ -3,7 +3,7 @@ import { ThemeProvider as Theme, DefaultTheme } from 'styled-components';
 import { darken } from 'polished';
 import { bp } from '../styles/constants';
 
-interface IThemeProps {
+interface IThemeProviderProps {
   isDarkMode: boolean;
   children: ReactNode;
 }
@@ -51,7 +51,7 @@ const darkTheme = {
   pageHeading: '#B0B3B8',
 };
 
-const ThemeProvider = ({ isDarkMode, children }: IThemeProps): JSX.Element => {
+const ThemeProvider = ({ isDarkMode, children }: IThemeProviderProps): JSX.Element => {
   const value: DefaultTheme = {
     colors: isDarkMode ? darkTheme : lightTheme,
     breakpoints: bp,
