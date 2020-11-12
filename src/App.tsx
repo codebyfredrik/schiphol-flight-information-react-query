@@ -15,10 +15,12 @@ import {
 import { StickyWrapper as StickyHeader } from './components/StickyWrapper';
 import { useStickyHeader } from './hooks/useStickyHeader';
 import { ScrollToTop } from './components/ScrollToTop';
+import {useStickyState} from './hooks/index'
 
 const App = () => {
   const [page, setPage] = useState<number>(0);
-  const [flightDirection, setFlightDirection] = useState<string>('');
+  // const [flightDirection, setFlightDirection] = useState<string>('');
+  const [flightDirection, setFlightDirection] = useStickyState('', 'flight-direction')
   const [overlayIsVisible, setOverlayIsVisible] = useToggle();
   const { toggleDarkMode, isDarkMode } = useDarkMode();
   const [isSticky, ref] = useStickyHeader(125, 1);
