@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, waitForElement } from '@testing-library/react';
-import { renderWithTheme } from './../utils/helpers/index';
+import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { Airline } from './Airline';
@@ -23,11 +23,11 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done
 afterAll(() => server.close());
 
-describe('Destination', () => {
-  it('Renders <Destination /> component correctly', async () => {
+describe('Airline', () => {
+  it('Renders <Airline /> component correctly', async () => {
     const prefixICAO = 'KL';
 
-    renderWithTheme(<Airline prefixICAO={prefixICAO} />);
+    render(<Airline prefixICAO={prefixICAO} />);
 
     expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
 

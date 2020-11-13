@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, waitForElement } from '@testing-library/react';
-import { renderWithTheme } from './../utils/helpers/index';
+import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { Destination } from './Destination';
@@ -27,7 +27,7 @@ describe('Destination', () => {
   it('Renders <Destination /> component correctly', async () => {
     const route = { destinations: ['GVA'] };
 
-    renderWithTheme(<Destination route={route} />);
+    render(<Destination route={route} />);
 
     expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
 
