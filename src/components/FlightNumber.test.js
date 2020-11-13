@@ -9,9 +9,9 @@ describe('FlightNumber', () => {
   it('Renders <FlightNumber /> component', () => {
     renderWithTheme(<FlightNumber flightName="KL0654" />);
 
-    const element = screen.getByText(/kl0654/i);
+    const flightNumber = screen.getByText(/kl0654/i);
 
-    expect(element).toBeInTheDocument();
-    expect(element).toHaveTextContent('KL0654');
+    expect(flightNumber).toBeInTheDocument();
+    expect(flightNumber).toHaveTextContent('KL0654');
   });
 });

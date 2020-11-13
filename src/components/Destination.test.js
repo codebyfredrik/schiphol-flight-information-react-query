@@ -29,7 +29,7 @@ describe('Destination', () => {
 
     renderWithTheme(<Destination route={route} />);
 
-    expect(screen.getByText(/Loading/i)).toHaveTextContent('Loading...');
+    expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
 
     const resolvedElement = await waitForElement(() =>
       screen.getByText(/geneva/i)
