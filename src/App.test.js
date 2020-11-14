@@ -1,5 +1,6 @@
 import React from 'react';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { render } from './utils/helpers/index';
 import { App } from './App';
 
@@ -21,13 +22,13 @@ describe('<App />', () => {
     expect(subTitle).toHaveTextContent('Flight Information');
 
     expect(themeButton).toHaveTextContent('Dark theme');
-    fireEvent.click(themeButton);
+    userEvent.click(themeButton);
     expect(themeButton).toHaveTextContent('Light theme');
-    fireEvent.click(themeButton);
+    userEvent.click(themeButton);
     expect(themeButton).toHaveTextContent('Dark theme');
 
     expect(filterButton).toHaveTextContent('Filter');
-    fireEvent.click(filterButton);
+    userEvent.click(filterButton);
 
     expect(earlierFlightsButton).toHaveTextContent('Earlier flights');
     expect(laterFlightsButton).toHaveTextContent('Later flights');
