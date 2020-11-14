@@ -24,7 +24,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('<Airline />', () => {
-  it('Rendered successfully', async () => {
+  it('Renders successfully', async () => {
     const prefixICAO = 'KL';
 
     render(<Airline prefixICAO={prefixICAO} />);

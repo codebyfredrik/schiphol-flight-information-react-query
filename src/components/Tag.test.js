@@ -4,7 +4,7 @@ import { render } from './../utils/helpers/index';
 import { Tag } from './Tag';
 
 describe('<Tag />', () => {
-  test('Rendered successfully', () => {
+  test('Renders successfully', () => {
     render(<Tag label="Airborne" />);
 
     const element = screen.getByText(/airborne/i);

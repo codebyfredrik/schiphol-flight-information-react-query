@@ -24,7 +24,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('<FlightFrom />', () => {
-  it('Rendered successfully with airline and flight prop', async () => {
+  it('Renders successfully with airline and flight prop', async () => {
     const prefixICAO = 'KL';
     const flightName = 'KL1942';
     const direction = 'to';
@@ -42,7 +42,7 @@ describe('<FlightFrom />', () => {
     );
     expect(resolvedElement).toHaveTextContent('KLM (KL1942) flight to');
   });
-  it('Rendered successfully without airline and flight prop', async () => {
+  it('Renders successfully without airline and flight prop', async () => {
     const prefixICAO = '';
     const flightName = '';
     const direction = 'from';

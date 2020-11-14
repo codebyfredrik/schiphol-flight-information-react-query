@@ -4,7 +4,7 @@ import { render } from './../utils/helpers/index';
 import { FlightNumber } from './FlightNumber';
 
 describe('<FlightNumber />', () => {
-  it('Rendered successfully', () => {
+  it('Renders successfully', () => {
     render(<FlightNumber flightName="KL0654" />);
 
     const flightNumber = screen.getByText(/kl0654/i);

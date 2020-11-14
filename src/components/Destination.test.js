@@ -23,8 +23,8 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done
 afterAll(() => server.close());
 
-describe('Destination', () => {
-  it('Renders <Destination /> component correctly', async () => {
+describe('<Destination />', () => {
+  it('Renders successfully', async () => {
     const route = { destinations: ['GVA'] };
 
     render(<Destination route={route} />);

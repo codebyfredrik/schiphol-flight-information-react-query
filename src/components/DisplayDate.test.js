@@ -4,7 +4,7 @@ import { render } from './../utils/helpers/index';
 import { DisplayDate } from './DisplayDate';
 
 describe('<DisplayDate />', () => {
-  test('Rendered successfully', () => {
+  test('Renders successfully', () => {
     render(<DisplayDate date="2020-11-14T12:25:00.000+01:00" />);
 
     const date = screen.getByText(/november/i);

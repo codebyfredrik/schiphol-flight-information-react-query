@@ -4,7 +4,7 @@ import { render } from './../utils/helpers/index';
 import { Gate } from './Gate';
 
 describe('<Gate />', () => {
-  test('Rendered successfully', () => {
+  test('Renders successfully', () => {
     render(<Gate gate="D59" />);
 
     const element = screen.getByText(/d59/i);
