@@ -23,8 +23,8 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done
 afterAll(() => server.close());
 
-describe('FlightFrom', () => {
-  it('Renders <FlightFrom /> component correctly', async () => {
+describe('Renders <FlightFrom /> component', () => {
+  it('KLM (KL1942) flight to', async () => {
     const prefixICAO = 'KL';
     const flightName = 'KL1942';
     const direction = 'to';
@@ -42,7 +42,7 @@ describe('FlightFrom', () => {
     );
     expect(resolvedElement).toHaveTextContent('KLM (KL1942) flight to');
   });
-  it('Renders <FlightFrom /> component correctly', async () => {
+  it('KLM (KL1942) flight from', async () => {
     const prefixICAO = 'KL';
     const flightName = 'KL1942';
     const direction = 'from';
@@ -59,5 +59,23 @@ describe('FlightFrom', () => {
       screen.getByText(/kl1942/i)
     );
     expect(resolvedElement).toHaveTextContent('KLM (KL1942) flight from');
+  });
+  it('Flight from', async () => {
+    const prefixICAO = '';
+    const flightName = 'KL1942';
+    const direction = 'from';
+
+    render(
+      <FlightFrom
+        prefixICAO={prefixICAO}
+        flightName={flightName}
+        direction={direction}
+      />
+    );
+
+    const resolvedElement = await waitForElement(() =>
+      screen.getByText(/flight from/i)
+    );
+    expect(resolvedElement).toHaveTextContent('Flight from');
   });
 });
