@@ -28,7 +28,6 @@ describe('<App />', () => {
     expect(themeButton).toHaveTextContent('Dark theme');
 
     expect(filterButton).toHaveTextContent('Filter');
-    userEvent.click(filterButton);
 
     expect(earlierFlightsButton).toHaveTextContent('Earlier flights');
     expect(laterFlightsButton).toHaveTextContent('Later flights');
