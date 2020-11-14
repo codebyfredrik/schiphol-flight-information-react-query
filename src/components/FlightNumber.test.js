@@ -1,12 +1,10 @@
 import React from 'react';
-import { screen, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { FlightNumber } from './FlightNumber';
 
-// afterEach(cleanup);
-
-describe('FlightNumber', () => {
-  it('Renders <FlightNumber /> component', () => {
+describe('<FlightNumber />', () => {
+  it('Rendered successfully', () => {
     render(<FlightNumber flightName="KL0654" />);
 
     const flightNumber = screen.getByText(/kl0654/i);

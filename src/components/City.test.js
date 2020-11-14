@@ -24,7 +24,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('<City />', () => {
-  it('Renders successfully', async () => {
+  it('Rendered successfully', async () => {
     const route = { destinations: ['GVA'] };
     render(<City route={route} />);
 

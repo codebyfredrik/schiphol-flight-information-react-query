@@ -1,12 +1,10 @@
 import React from 'react';
-import { screen, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { Tag } from './Tag';
 
-afterEach(cleanup);
-
-describe('Tag', () => {
-  test('Renders <Tag /> component', () => {
+describe('<Tag />', () => {
+  test('Rendered successfully', () => {
     render(<Tag label="Airborne" />);
 
     const element = screen.getByText(/airborne/i);

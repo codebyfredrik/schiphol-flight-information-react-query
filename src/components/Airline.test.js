@@ -23,8 +23,8 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done
 afterAll(() => server.close());
 
-describe('Airline', () => {
-  it('Renders <Airline /> component correctly', async () => {
+describe('<Airline />', () => {
+  it('Rendered successfully', async () => {
     const prefixICAO = 'KL';
 
     render(<Airline prefixICAO={prefixICAO} />);
