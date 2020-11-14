@@ -20,11 +20,11 @@ return (
   </MemoryRouter>)
 }
 
+const customRender = (ui: any, options: any) => render(ui, {wrapper: Wrapper, ...options})
+
 // const renderWithTheme = (component: ReactNode) => {
 //   return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
 // };
-
-const customRender = (ui: any, options: any) => render(ui, {wrapper: Wrapper, ...options})
 
 export * from '@testing-library/react'
 export { customRender as render}

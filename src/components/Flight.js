@@ -56,19 +56,19 @@ const Container = styled.div`
   }
 `;
 
-const EstimatedArrivalTime = styled(Time)`
+const EstimatedArrivalTime = styled((props) => <Time {...props} />)`
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
-const ActualArrivalTime = styled(Time)`
+const ActualArrivalTime = styled((props) => <Time {...props} />)`
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
 `;
 
-const ActualDepartureTime = styled(Time)`
+const ActualDepartureTime = styled((props) => <Time {...props} />)`
   @media screen and (min-width: 490px) {
     margin-left: 0.5rem;
   }
