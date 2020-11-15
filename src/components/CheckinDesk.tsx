@@ -37,6 +37,7 @@ const consecutive = (array: any) => {
   return { isInSequence };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 const CheckinDesk = ({ checkinLocations }: ICheckinDesk): JSX.Element => {
   const { checkinAllocations } = checkinLocations;
   const { rows } = checkinAllocations[0];
