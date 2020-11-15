@@ -1,18 +1,11 @@
 import React from 'react';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
-import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import { handlers } from '../test/server-handlers';
 import { City } from './City';
 
-const server = setupServer(
-  rest.get(
-    `${process.env.REACT_APP_API_BASE_URL}/destinations/GVA`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({ city: 'Geneva', iata: 'GVA' }));
-    }
-  )
-);
+const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

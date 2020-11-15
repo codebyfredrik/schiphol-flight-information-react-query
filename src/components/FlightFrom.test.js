@@ -1,18 +1,11 @@
 import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
-import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import { handlers } from '../test/server-handlers';
 import { FlightFrom } from './FlightFrom';
 
-const server = setupServer(
-  rest.get(
-    `${process.env.REACT_APP_API_BASE_URL}/airlines/KL`,
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({ publicName: 'KLM' }));
-    }
-  )
-);
+const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

@@ -6,9 +6,6 @@ import { Gate } from './Gate';
 describe('<Gate />', () => {
   test('Renders successfully', () => {
     render(<Gate gate="D59" />);
-
-    const element = screen.getByText(/d59/i);
-
-    expect(element).toHaveTextContent('D59');
+    expect(screen.getByText(/d59/i)).toHaveTextContent('D59');
   });
 });
