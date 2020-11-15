@@ -9,7 +9,6 @@ describe('<Tag />', () => {
 
     const element = screen.getByText(/airborne/i);
 
-    expect(element).toBeInTheDocument();
     expect(element).toHaveTextContent('Airborne');
   });
 });

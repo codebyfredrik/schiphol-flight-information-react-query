@@ -25,7 +25,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('<Airline />', () => {
-  it('Renders successfully with prefixICAO prop', async () => {
+  test('Renders successfully with prefixICAO prop', async () => {
     const prefixICAO = 'KL';
 
     render(<Airline prefixICAO={prefixICAO} />);
@@ -34,13 +34,4 @@ describe('<Airline />', () => {
     await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
     expect(screen.getByText(/klm/i)).toBeInTheDocument();
   });
-  // it('Renders without prefixICAO prop', async () => {
-  //   render(<Airline prefixICAO="fkösdklfös" />);
-
-  //   await waitForElementToBeRemoved(() =>
-  //     screen.getByText(/loading/i)
-  //   ).catch((err) => console.log(err));
-
-  //   expect(screen.getByText(/error/i)).toHaveTextContent('Error');
-  // });
 });

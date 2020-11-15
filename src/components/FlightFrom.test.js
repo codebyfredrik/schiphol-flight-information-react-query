@@ -14,13 +14,8 @@ const server = setupServer(
   )
 );
 
-// Enable API mocking before tests
 beforeAll(() => server.listen());
-
-// Reset any runtime request handlers that may be added during the tests
 afterEach(() => server.resetHandlers());
-
-// Disable API mocking after the tests are done
 afterAll(() => server.close());
 
 describe('<FlightFrom />', () => {

@@ -9,7 +9,6 @@ describe('<Gate />', () => {
 
     const element = screen.getByText(/d59/i);
 
-    expect(element).toBeInTheDocument();
     expect(element).toHaveTextContent('D59');
   });
 });
