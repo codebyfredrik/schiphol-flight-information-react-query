@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, waitForElement } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -37,9 +37,7 @@ describe('<FlightFrom />', () => {
       />
     );
 
-    const resolvedElement = await waitForElement(() =>
-      screen.getByText(/kl1942/i)
-    );
+    const resolvedElement = await waitFor(() => screen.getByText(/kl1942/i));
     expect(resolvedElement).toHaveTextContent('KLM (KL1942) flight to');
   });
   it('Renders successfully without airline and flight prop', async () => {
@@ -55,7 +53,7 @@ describe('<FlightFrom />', () => {
       />
     );
 
-    const resolvedElement = await waitForElement(() =>
+    const resolvedElement = await waitFor(() =>
       screen.getByText(/flight from/i)
     );
     expect(resolvedElement).toHaveTextContent('Flight from');

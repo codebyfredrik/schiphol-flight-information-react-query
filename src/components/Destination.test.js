@@ -1,5 +1,9 @@
 import React from 'react';
-import { screen, waitForElement } from '@testing-library/react';
+import {
+  screen,
+  waitForElement,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -29,11 +33,13 @@ describe('<Destination />', () => {
 
     render(<Destination route={route} />);
 
-    expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
+    // expect().toHaveTextContent('Loading...');
 
-    const resolvedElement = await waitForElement(() =>
-      screen.getByText(/geneva/i)
-    );
-    expect(resolvedElement).toHaveTextContent('Geneva (GVA)');
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+
+    // const resolvedElement = await waitForElement(() =>
+
+    // );
+    expect(screen.getByText(/geneva/i)).toHaveTextContent('Geneva (GVA)');
   });
 });
