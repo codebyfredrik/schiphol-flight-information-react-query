@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  screen,
-  waitForElement,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -13,8 +9,7 @@ const server = setupServer(
   rest.get(
     `${process.env.REACT_APP_API_BASE_URL}/airlines/:prefixICAO`,
     (req, res, ctx) => {
-      const { prefixICAO } = req.params;
-      if (!prefixICAO) {
+      if (!req.params.prefixICAO) {
         return res(
           ctx.status(400),
           ctx.json({ message: 'prefixICAO required' })
@@ -40,12 +35,12 @@ describe('<Airline />', () => {
     expect(screen.getByText(/klm/i)).toBeInTheDocument();
   });
   // it('Renders without prefixICAO prop', async () => {
-  //   render(<Airline prefixICAO="" />);
+  //   render(<Airline prefixICAO="fkösdklfös" />);
 
-  //   // expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
+  //   await waitForElementToBeRemoved(() =>
+  //     screen.getByText(/loading/i)
+  //   ).catch((err) => console.log(err));
 
-  //   await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
-
-  //   screen.debug();
+  //   expect(screen.getByText(/error/i)).toHaveTextContent('Error');
   // });
 });
