@@ -3,7 +3,7 @@ import { screen, waitForElement } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { Destination } from './Destination';
+import { City } from './City';
 
 const server = setupServer(
   rest.get(
@@ -23,17 +23,17 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done
 afterAll(() => server.close());
 
-describe('<Destination />', () => {
+describe('<City />', () => {
   it('Renders successfully', async () => {
-    const route = { destinations: ['GVA'] };
+    const route = { destinations: ['GVA'], eu: 'N', visa: false };
+    render(<City route={route} />);
 
-    render(<Destination route={route} />);
-
-    expect(screen.getByText(/loading/i)).toHaveTextContent('Loading...');
+    const loading = screen.getByText(/loading/i);
+    expect(loading).toHaveTextContent('Loading...');
 
     const resolvedElement = await waitForElement(() =>
       screen.getByText(/geneva/i)
     );
-    expect(resolvedElement).toHaveTextContent('Geneva (GVA)');
+    expect(resolvedElement).toHaveTextContent('Geneva');
   });
 });
