@@ -27,7 +27,7 @@ const FlightStatus = ({
   ...restProps
 }: IFlightStatus) => {
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
-
+  
   return flightStatus.map((item: any) => (
     <StyledFlightStatus
       key={item.status}
