@@ -1,13 +1,17 @@
 import * as React from 'react'
+import {animated, useSpring} from 'react-spring'
 
-const Boop = ({rotation = 0, timing = 0, children}: {rotation: number; timing: number; children: any}): JSX.Element => {
+const Boop = ({x = 0, y = 0, rotation = 0, scale = 1, timing = 0, children}: {x: number; y: number, rotation: number; scale: number, timing: number; children: any}): JSX.Element => {
   const [isBooped, setIsBooped] = React.useState<boolean>(false);
 
-  const style = {
+  const style = useSpring({
     display: 'inline-block',
-    transform: isBooped ? `rotate(${rotation}deg)` : `rotate(0deg)`,
-    transition: `transform: ${timing}ms`
-  }
+    transform: isBooped ? `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})` : `translate(0px, 0px) rotate(0deg) scale(1)`,
+    config: {
+      tension: 300,
+      friction: 10,
+    },
+  })
 
   React.useEffect(() => {
     if(!isBooped) {
@@ -27,7 +31,7 @@ const Boop = ({rotation = 0, timing = 0, children}: {rotation: number; timing: n
     setIsBooped(true)
   }
 
-return (<span onMouseEnter={trigger} style={style}>{children}</span>)
+return (<animated.span onMouseEnter={trigger} style={style}>{children}</animated.span>)
 }
 
 export {Boop}

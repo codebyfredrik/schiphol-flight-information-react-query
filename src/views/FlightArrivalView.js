@@ -16,6 +16,7 @@ import { LastUpdated } from '../components/LastUpdated';
 import { query } from '../helpers/query';
 import { Redo, ArrowRight } from '../components/icons/index';
 import { AircraftDetails } from '../components/AircraftDetails';
+import { Boop } from '../components/Boop';
 
 const StyledCity = styled(City)`
   display: block;
@@ -215,13 +216,15 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   direction="from"
                 />
                 <StyledLink to="/">
-                  <span>All flights</span>
-                  <StyledArrowRight
-                    height={12}
-                    width={12}
-                    fillColor="#0d49c0"
-                    aria-label="Display all flights"
-                  />
+                  <Boop scale={1.3} timing={150}>
+                    <span>All flights</span>
+                    <StyledArrowRight
+                      height={12}
+                      width={12}
+                      fillColor="#0d49c0"
+                      aria-label="Display all flights"
+                    />
+                  </Boop>
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
@@ -239,13 +242,15 @@ const FlightArrivalView = ({ isDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
-                    <StyledRedo
-                      height={12}
-                      width={12}
-                      fillColor="#0d49c0"
-                      aria-label="Update flight information"
-                    />
-                    <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    <Boop rotation={10} scale={1.2} timing={150}>
+                      <StyledRedo
+                        height={12}
+                        width={12}
+                        fillColor="#0d49c0"
+                        aria-label="Update flight information"
+                      />
+                      <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    </Boop>
                   </StyledButton>
                 )}
               </WrapperLastUpdated>

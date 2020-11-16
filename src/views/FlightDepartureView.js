@@ -18,6 +18,7 @@ import { query } from './../helpers/query';
 import { Redo, ArrowRight } from './../components/icons/index';
 import { AircraftDetails } from './../components/AircraftDetails';
 import { BoardingDetails } from './../components/BoardingDetails';
+import { Boop } from '../components/Boop';
 
 const StyledCity = styled(City)`
   display: block;
@@ -216,12 +217,14 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   direction="to"
                 />
                 <StyledLink to="/">
-                  <span>All flights</span>
-                  <StyledArrowRight
-                    height={12}
-                    width={12}
-                    fillColor="#0d49c0"
-                  />
+                  <Boop scale={1.3} timing={150}>
+                    <span>All flights</span>
+                    <StyledArrowRight
+                      height={12}
+                      width={12}
+                      fillColor="#0d49c0"
+                    />
+                  </Boop>
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
@@ -239,8 +242,10 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
-                    <StyledRedo height={12} width={12} fillColor="#0d49c0" />
-                    <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    <Boop rotation={10} scale={1.2} timing={150}>
+                      <StyledRedo height={12} width={12} fillColor="#0d49c0" />
+                      <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    </Boop>
                   </StyledButton>
                 )}
               </WrapperLastUpdated>
