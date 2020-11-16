@@ -218,12 +218,14 @@ const Flight = ({ flight, isDarkMode }) => {
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
   let text = useFlightDirection(flightDirection);
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
-  let estimatedTime = null,
-    actualTime = null;
+  const prefixAirline = prefixICAO ?? flightName.slice(0, 2);
+  let estimatedTime = null;
+  let actualTime = null;
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
+  console.log(flightName, prefixICAO, flightName.slice(0, 2));
 
   return (
     <StyledLink
@@ -283,7 +285,7 @@ const Flight = ({ flight, isDarkMode }) => {
               <Destination route={route} />
               <FlightInfoWrapper>
                 <FlightID flightName={flightName} />
-                <Airline prefixICAO={prefixICAO} />
+                <Airline prefixICAO={prefixAirline} />
               </FlightInfoWrapper>
             </FlightWrapper>
             <FlightStatusWrapper>
