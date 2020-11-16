@@ -20,10 +20,9 @@ const FlightFrom = ({
   ...restProps
 }: IFlightFromProps): JSX.Element => {
   const { result: airline } = useAirline(prefixICAO);
-
   return (
     <>
-      {airline ? (
+      {airline && flightName && direction ? (
         <StyledFlightFrom
           {...restProps}
         >{`${airline.publicName} (${flightName}) flight ${direction}`}</StyledFlightFrom>
