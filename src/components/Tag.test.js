@@ -6,10 +6,6 @@ import { Tag } from './Tag';
 describe('<Tag />', () => {
   test('Renders successfully', () => {
     render(<Tag label="Airborne" />);
-
-    const element = screen.getByText(/airborne/i);
-
-    expect(element).toBeInTheDocument();
-    expect(element).toHaveTextContent('Airborne');
+    expect(screen.getByText(/airborne/i)).toHaveTextContent('Airborne');
   });
 });

@@ -182,6 +182,11 @@ const FlightDetails = styled.div`
 const FlightDepartureView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
+  let prefixAirlineCode = '';
+
+  if (flight) {
+    prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
+  }
 
   return (
     <>
@@ -205,15 +210,11 @@ const FlightDepartureView = ({ isDarkMode }) => {
           <HeaderContainer>
             <Content>
               <HeaderInformation>
-                {flight?.prefixICAO && flight?.flightName ? (
-                  <StyledFlightFrom
-                    prefixICAO={flight.prefixICAO}
-                    flightName={flight.flightName}
-                    direction="to"
-                  />
-                ) : (
-                  <span>Error</span>
-                )}
+                <StyledFlightFrom
+                  prefixICAO={prefixAirlineCode}
+                  flightName={flight.flightName}
+                  direction="to"
+                />
                 <StyledLink to="/">
                   <span>All flights</span>
                   <StyledArrowRight
