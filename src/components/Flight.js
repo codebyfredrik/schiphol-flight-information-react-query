@@ -225,7 +225,7 @@ const Flight = ({ flight, isDarkMode }) => {
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
-  console.log(flightName, prefixICAO, flightName.slice(0, 2));
+  // console.log(flightName, prefixICAO, flightName.slice(0, 2));
 
   return (
     <StyledLink
@@ -240,12 +240,14 @@ const Flight = ({ flight, isDarkMode }) => {
         variants={{
           hidden: {
             opacity: 0,
+            y: -5,
           },
           visible: {
             opacity: 1,
             transition: {
               delay: 0.1,
             },
+            y: 0,
           },
         }}
       >
