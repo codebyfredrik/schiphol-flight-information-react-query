@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from './../utils/helpers/index';
 import { setupServer } from 'msw/node';
@@ -12,7 +11,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('<City />', () => {
-  it('Renders successfully', async () => {
+  test('Renders successfully', async () => {
     const route = { destinations: ['GVA'], eu: 'N', visa: false };
     render(<City route={route} />);
 
