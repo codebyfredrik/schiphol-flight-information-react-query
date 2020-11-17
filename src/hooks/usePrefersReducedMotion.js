@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 const QUERY = '(prefers-reduced-motion: no-preference)';
 const isRenderingOnServer = typeof window === 'undefined';
 const getInitialState = () => {

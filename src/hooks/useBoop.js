@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
+import { usePrefersReducedMotion } from './index';
 
 function useBoop({
   x = 0,
@@ -12,6 +13,7 @@ function useBoop({
     friction: 10,
   },
 }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [isBooped, setIsBooped] = React.useState(false);
   const style = useSpring({
     display: 'inline-block',
@@ -42,7 +44,9 @@ function useBoop({
     setIsBooped(true);
   }, []);
 
-  return [style, trigger];
+  let applicableStyle = prefersReducedMotion ? {} : style;
+
+  return [applicableStyle, trigger];
 }
 
 export { useBoop };
