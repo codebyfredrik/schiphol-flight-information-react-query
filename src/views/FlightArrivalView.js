@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { queryCache } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
-import { useFlight } from '../hooks/index';
+import { useFlight, useBoop } from '../hooks/index';
 import { Gate } from '../components/Gate';
 import { FlightFrom } from '../components/FlightFrom';
 import { City } from '../components/City';
@@ -184,6 +184,7 @@ const FlightDetails = styled.div`
 const FlightArrivalView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
+  const [style, trigger] = useBoop({ x: 5 });
   let prefixAirlineCode = '';
 
   if (flight) {
@@ -215,16 +216,15 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   flightName={flight.flightName}
                   direction="from"
                 />
-                <StyledLink to="/">
-                  <Boop scale={1.3} timing={150}>
-                    <span>All flights</span>
-                    <StyledArrowRight
-                      height={12}
-                      width={12}
-                      fillColor="#0d49c0"
-                      aria-label="Display all flights"
-                    />
-                  </Boop>
+                <StyledLink to="/" onMouseEnter={trigger}>
+                  <span>All flights</span>
+                  <StyledArrowRight
+                    height={12}
+                    width={12}
+                    fillColor="#0d49c0"
+                    style={style}
+                    aria-label="Display all flights"
+                  />
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}

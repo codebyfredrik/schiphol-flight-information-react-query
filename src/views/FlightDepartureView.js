@@ -218,15 +218,14 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   direction="to"
                 />
                 <StyledLink to="/" onMouseEnter={trigger}>
-                  {/* <Boop x={-5} timing={150}> */}
                   <span>All flights</span>
                   <StyledArrowRight
                     height={12}
                     width={12}
                     fillColor="#0d49c0"
                     style={style}
+                    aria-label="Display all flights"
                   />
-                  {/* </Boop> */}
                 </StyledLink>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
@@ -244,7 +243,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
-                    <Boop rotation={3} scale={1.1} timing={150}>
+                    <Boop rotation={3} scale={1.2} timing={150}>
                       <StyledRedo height={12} width={12} fillColor="#0d49c0" />
                       <LastUpdated timestamp={flight.lastUpdatedAt} />
                     </Boop>
