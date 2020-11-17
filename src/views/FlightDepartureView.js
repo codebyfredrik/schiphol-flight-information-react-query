@@ -183,7 +183,8 @@ const FlightDetails = styled.div`
 const FlightDepartureView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
-  const [style, trigger] = useBoop({ x: 5 });
+  const [styleArrow, triggerArrow] = useBoop({ x: 5 });
+  const [styleRedo, triggerRedo] = useBoop({ rotation: -90 });
   let prefixAirlineCode = '';
 
   if (flight) {
@@ -217,13 +218,13 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   flightName={flight.flightName}
                   direction="to"
                 />
-                <StyledLink to="/" onMouseEnter={trigger}>
+                <StyledLink to="/" onMouseEnter={triggerArrow}>
                   <span>All flights</span>
                   <StyledArrowRight
                     height={12}
                     width={12}
                     fillColor="#0d49c0"
-                    style={style}
+                    style={styleArrow}
                     aria-label="Display all flights"
                   />
                 </StyledLink>
@@ -242,11 +243,15 @@ const FlightDepartureView = ({ isDarkMode }) => {
                     onClick={() => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
+                    onMouseEnter={triggerRedo}
                   >
-                    <Boop rotation={3} scale={1.2} timing={150}>
-                      <StyledRedo height={12} width={12} fillColor="#0d49c0" />
-                      <LastUpdated timestamp={flight.lastUpdatedAt} />
-                    </Boop>
+                    <StyledRedo
+                      height={12}
+                      width={12}
+                      fillColor="#0d49c0"
+                      style={styleRedo}
+                    />
+                    <LastUpdated timestamp={flight.lastUpdatedAt} />
                   </StyledButton>
                 )}
               </WrapperLastUpdated>

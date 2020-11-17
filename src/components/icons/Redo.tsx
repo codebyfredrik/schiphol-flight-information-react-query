@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ISvgIcon } from './interfaces';
+import {animated} from 'react-spring'
 
-const StyledRedo = styled.svg`
+const StyledRedo = styled(animated.svg)`
   display: inline-block;
 `;
 
