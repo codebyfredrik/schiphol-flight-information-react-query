@@ -12,3 +12,5 @@ export { useKeyPress } from './useKeyPress';
 export { useFlightDirection } from './useFlightDirection';
 export { useFlight } from './useFlight';
 export { useAircraft } from './useAircraft';
+export {useBoop} from './useBoop'
+export {usePrefersReducedMotion} from './usePrefersReducedMotion'

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
-import { useFlight } from '../hooks/index';
+import { useFlight, useBoop } from '../hooks/index';
 import { Gate } from './../components/Gate';
 import { FlightFrom } from './../components/FlightFrom';
 import { City } from './../components/City';
@@ -18,6 +18,7 @@ import { query } from './../helpers/query';
 import { Redo, ArrowRight } from './../components/icons/index';
 import { AircraftDetails } from './../components/AircraftDetails';
 import { BoardingDetails } from './../components/BoardingDetails';
+import { Boop } from '../components/Boop';
 
 const StyledCity = styled(City)`
   display: block;
@@ -182,6 +183,7 @@ const FlightDetails = styled.div`
 const FlightDepartureView = ({ isDarkMode }) => {
   const { id } = useParams();
   const { result: flight, isLoading } = useFlight(id);
+  const [style, trigger] = useBoop({ x: 5 });
   let prefixAirlineCode = '';
 
   if (flight) {
@@ -215,12 +217,14 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   flightName={flight.flightName}
                   direction="to"
                 />
-                <StyledLink to="/">
+                <StyledLink to="/" onMouseEnter={trigger}>
                   <span>All flights</span>
                   <StyledArrowRight
                     height={12}
                     width={12}
                     fillColor="#0d49c0"
+                    style={style}
+                    aria-label="Display all flights"
                   />
                 </StyledLink>
               </HeaderInformation>
@@ -239,8 +243,10 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       queryCache.prefetchQuery(`/flights/${id}`, query);
                     }}
                   >
-                    <StyledRedo height={12} width={12} fillColor="#0d49c0" />
-                    <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    <Boop rotation={3} scale={1.2} timing={150}>
+                      <StyledRedo height={12} width={12} fillColor="#0d49c0" />
+                      <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    </Boop>
                   </StyledButton>
                 )}
               </WrapperLastUpdated>

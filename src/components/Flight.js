@@ -10,6 +10,7 @@ import {
   useFlightStatus,
   useFlightDirection,
   useFormatTime,
+  useBoop,
 } from './../hooks/index';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
@@ -216,6 +217,7 @@ const Flight = ({ flight, isDarkMode }) => {
     gate,
   } = flight;
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
+  const [style, trigger] = useBoop({ x: 5 });
   let text = useFlightDirection(flightDirection);
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   const prefixAirline = prefixICAO ?? flightName.slice(0, 2);
@@ -234,6 +236,7 @@ const Flight = ({ flight, isDarkMode }) => {
       <StyledFlight
         onMouseEnter={() => {
           queryCache.prefetchQuery(`/flights/${id}`, query);
+          trigger();
         }}
         initial="hidden"
         animate="visible"
@@ -310,6 +313,7 @@ const Flight = ({ flight, isDarkMode }) => {
                 height={12}
                 width={12}
                 fillColor="#0d49c0"
+                style={style}
                 aria-label="Display flight details"
               />
             </LinkWrapper>
