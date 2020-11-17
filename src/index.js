@@ -5,15 +5,27 @@ import { ReactQueryConfigProvider } from 'react-query';
 import { App } from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Router>
+//       <ReactQueryConfigProvider config={{}}>
+//         <App />
+//       </ReactQueryConfigProvider>
+//     </Router>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+// Experimental version of React with concurrent mode enabled
+const root = document.getElementById('root');
+ReactDOM.unstable_createRoot(root).render(
   <React.StrictMode>
     <Router>
       <ReactQueryConfigProvider config={{}}>
         <App />
       </ReactQueryConfigProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
