@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ISvgIcon } from './interfaces';
+import {animated} from 'react-spring'
 
-const StyledArrowRight = styled.svg`
+const StyledArrowRight = styled(animated.svg)`
   display: inline-block;
 
   &:hover {
