@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import {ShiftBy} from './ShiftBy'
 
 interface IHeaderProps {
   sticky: boolean;
@@ -103,7 +104,7 @@ const Header = ({ sticky }: IHeaderProps): JSX.Element => {
     <StyledHeader sticky={sticky}>
       <Content sticky={sticky}>
         <StyledLink to="/">
-          <Title sticky={sticky}>Amsterdam Schipol Airport</Title>
+          <ShiftBy x={2}><Title sticky={sticky}>Amsterdam Schipol Airport</Title></ShiftBy>
         </StyledLink>
         <StyledLink to="/">
           <SubTitle sticky={sticky}>Flight Information</SubTitle>

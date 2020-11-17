@@ -18,7 +18,7 @@ import { query } from './../helpers/query';
 import { Redo, ArrowRight } from './../components/icons/index';
 import { AircraftDetails } from './../components/AircraftDetails';
 import { BoardingDetails } from './../components/BoardingDetails';
-import { Boop } from '../components/Boop';
+import { ShiftBy } from '../components/ShiftBy';
 
 const StyledCity = styled(City)`
   display: block;
@@ -231,11 +231,13 @@ const FlightDepartureView = ({ isDarkMode }) => {
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
-                <StyledFlightStatus
-                  publicFlightState={flight.publicFlightState}
-                  flightDirection={flight.flightDirection}
-                  isDarkMode={isDarkMode}
-                />
+                <ShiftBy x={1}>
+                  <StyledFlightStatus
+                    publicFlightState={flight.publicFlightState}
+                    flightDirection={flight.flightDirection}
+                    isDarkMode={isDarkMode}
+                  />
+                </ShiftBy>
               )}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
