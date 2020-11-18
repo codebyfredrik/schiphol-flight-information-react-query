@@ -218,16 +218,18 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   flightName={flight.flightName}
                   direction="to"
                 />
-                <StyledLink to="/" onMouseEnter={triggerArrow}>
-                  <span>All flights</span>
-                  <StyledArrowRight
-                    height={12}
-                    width={12}
-                    fillColor="#0d49c0"
-                    style={styleArrow}
-                    aria-label="Display all flights"
-                  />
-                </StyledLink>
+                <div>
+                  <StyledLink to="/" onMouseEnter={triggerArrow}>
+                    <span>All flights</span>
+                    <StyledArrowRight
+                      height={12}
+                      width={12}
+                      fillColor="#0d49c0"
+                      style={styleArrow}
+                      aria-label="Display all flights"
+                    />
+                  </StyledLink>
+                </div>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
