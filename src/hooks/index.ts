@@ -7,10 +7,11 @@ export { useFormatTime } from './useFormatTime';
 export { useLockBodyScroll } from './useLockBodyScroll';
 export { useRenderFlights } from './useRenderFlights';
 export { useStickyState } from './useStickyState';
+export { useStickyHeader } from './useStickyHeader'
 export { useToggle } from './useToggle';
 export { useKeyPress } from './useKeyPress';
 export { useFlightDirection } from './useFlightDirection';
 export { useFlight } from './useFlight';
 export { useAircraft } from './useAircraft';
-export {useBoop} from './useBoop'
-export {usePrefersReducedMotion} from './usePrefersReducedMotion'
+export { useBoop } from './useBoop'
+export { usePrefersReducedMotion } from './usePrefersReducedMotion'
