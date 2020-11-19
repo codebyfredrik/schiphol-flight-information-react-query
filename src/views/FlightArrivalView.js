@@ -225,6 +225,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                     position="bottom"
                     arrow="true"
                     animation="scale"
+                    inertia="true"
                   >
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
@@ -257,6 +258,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                     position="top"
                     arrow="true"
                     animation="scale"
+                    inertia="true"
                   >
                     <StyledButton
                       onClick={() => {

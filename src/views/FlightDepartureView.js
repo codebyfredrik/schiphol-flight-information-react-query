@@ -226,6 +226,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                     position="bottom"
                     arrow="true"
                     animation="scale"
+                    inertia="true"
                   >
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
@@ -255,9 +256,10 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   <Tooltip
                     title="💡 Click to update flight details"
                     theme="light"
-                    position="bottom"
+                    position="top"
                     arrow="true"
                     animation="scale"
+                    inertia="true"
                   >
                     <StyledButton
                       onClick={() => {
