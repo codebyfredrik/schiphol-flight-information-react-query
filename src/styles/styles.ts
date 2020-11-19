@@ -38,9 +38,14 @@ const ScheduleTime = styled(Time)<ITimeProps>`
 `;
 
 const Content = styled.div`
+border: 1px solid transparent;
   max-width: 1000px;
   margin: auto;
   padding: 0 1rem;
+  /* padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 1rem;
+  padding-left: 1rem; */
 `;
 
 const ContentHeader = styled.div`
