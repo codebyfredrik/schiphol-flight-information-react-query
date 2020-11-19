@@ -64,8 +64,7 @@ const Error = styled.span`
 `;
 
 const StyledContent = styled(Content)`
-  /* margin-top: 2rem; */
-  margin: 2rem 0;
+  margin-top: 2rem;
 `;
 
 const FlightsView = ({
