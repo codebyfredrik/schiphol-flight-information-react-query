@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { queryCache } from 'react-query';
@@ -17,6 +17,7 @@ import { query } from '../helpers/query';
 import { Redo, ArrowRight } from '../components/icons/index';
 import { AircraftDetails } from '../components/AircraftDetails';
 import { ShiftBy } from '../components/ShiftBy';
+import { Tooltip } from '../components/Tooltip';
 
 const StyledCity = styled(City)`
   display: block;
@@ -218,16 +219,25 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   direction="from"
                 />
                 <div>
-                  <StyledLink to="/" onMouseEnter={triggerArrow}>
-                    <span>All flights</span>
-                    <StyledArrowRight
-                      height={12}
-                      width={12}
-                      fillColor="#0d49c0"
-                      style={styleArrow}
-                      aria-label="Display all flights"
-                    />
-                  </StyledLink>
+                  <Tooltip
+                    title="💡 Click to display all flights"
+                    theme="light"
+                    position="bottom"
+                    arrow="true"
+                    animation="scale"
+                    inertia="true"
+                  >
+                    <StyledLink to="/" onMouseEnter={triggerArrow}>
+                      <span>All flights</span>
+                      <StyledArrowRight
+                        height={12}
+                        width={12}
+                        fillColor="#0d49c0"
+                        style={styleArrow}
+                        aria-label="Display all flights"
+                      />
+                    </StyledLink>
+                  </Tooltip>
                 </div>
               </HeaderInformation>
               {flight?.route && <StyledCity route={flight.route} />}
@@ -242,20 +252,30 @@ const FlightArrivalView = ({ isDarkMode }) => {
               )}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
-                  <StyledButton
-                    onClick={() => {
-                      queryCache.prefetchQuery(`/flights/${id}`, query);
-                    }}
-                    onMouseEnter={triggerRedo}
+                  <Tooltip
+                    title="💡 Click to update flight details"
+                    theme="light"
+                    position="top"
+                    arrow="true"
+                    animation="scale"
+                    inertia="true"
                   >
-                    <StyledRedo
-                      height={12}
-                      width={12}
-                      fillColor="#0d49c0"
-                      style={styleRedo}
-                    />
-                    <LastUpdated timestamp={flight.lastUpdatedAt} />
-                  </StyledButton>
+                    <StyledButton
+                      onClick={() => {
+                        queryCache.prefetchQuery(`/flights/${id}`, query);
+                        triggerRedo();
+                      }}
+                      onMouseEnter={triggerRedo}
+                    >
+                      <StyledRedo
+                        height={12}
+                        width={12}
+                        fillColor="#0d49c0"
+                        style={styleRedo}
+                      />
+                      <LastUpdated timestamp={flight.lastUpdatedAt} />
+                    </StyledButton>
+                  </Tooltip>
                 )}
               </WrapperLastUpdated>
             </Content>
