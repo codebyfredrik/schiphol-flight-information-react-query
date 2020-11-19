@@ -2,24 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
-import { useFlight, useBoop } from '../hooks/index';
-import { Gate } from './../components/Gate';
-import { FlightFrom } from './../components/FlightFrom';
-import { City } from './../components/City';
-import { FlightNumber } from './../components/FlightNumber';
-import { DateTime } from '../components/DateTime';
-import { DepartureTime } from './../components/DepartureTime';
-import { FlightStatus } from './../components/FlightStatus';
-import { Content } from '../styles/styles';
-import { CheckinDesk } from '../components/CheckinDesk';
-import { LastUpdated } from './../components/LastUpdated';
 import { queryCache } from 'react-query';
 import { query } from './../helpers/query';
+import { useFlight, useBoop } from '../hooks/index';
+import { Content } from '../styles/styles';
 import { Redo, ArrowRight } from './../components/icons/index';
-import { AircraftDetails } from './../components/AircraftDetails';
-import { BoardingDetails } from './../components/BoardingDetails';
-import { ShiftBy } from '../components/ShiftBy';
-import { Tooltip } from '../components/Tooltip';
+import {
+  Gate,
+  FlightFrom,
+  City,
+  FlightNumber,
+  DateTime,
+  DepartureTime,
+  FlightStatus,
+  CheckinDesk,
+  LastUpdated,
+  AircraftDetails,
+  BoardingDetails,
+  ShiftBy,
+  Tooltip,
+} from '../components/index';
 
 const StyledCity = styled(City)`
   display: block;

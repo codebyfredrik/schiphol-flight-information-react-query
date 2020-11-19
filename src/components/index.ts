@@ -1,1 +1,15 @@
 export { Gate } from './Gate';
+export { FlightFrom } from './FlightFrom'
+export { City } from './City'
+export { FlightNumber } from './FlightNumber'
+export { DateTime } from './DateTime'
+export { DepartureTime } from './DepartureTime'
+export { ArrivalTime} from './ArrivalTime'
+export { FlightStatus } from './FlightStatus'
+export { CheckinDesk } from './CheckinDesk'
+export { LastUpdated } from './LastUpdated'
+export { AircraftDetails } from './AircraftDetails'
+export { BoardingDetails } from './BoardingDetails'
+export { ShiftBy } from './ShiftBy'
+export { Tooltip } from './Tooltip'
+

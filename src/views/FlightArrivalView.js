@@ -1,23 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { queryCache } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
-import { useFlight, useBoop } from '../hooks/index';
-import { Gate } from '../components/Gate';
-import { FlightFrom } from '../components/FlightFrom';
-import { City } from '../components/City';
-import { FlightNumber } from '../components/FlightNumber';
-import { DateTime } from '../components/DateTime';
-import { ArrivalTime } from '../components/ArrivalTime';
-import { FlightStatus } from '../components/FlightStatus';
-import { Content } from '../styles/styles';
-import { LastUpdated } from '../components/LastUpdated';
+import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
+import { useFlight, useBoop } from '../hooks/index';
+import { Content } from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
-import { AircraftDetails } from '../components/AircraftDetails';
-import { ShiftBy } from '../components/ShiftBy';
-import { Tooltip } from '../components/Tooltip';
+import {
+  Gate,
+  FlightFrom,
+  City,
+  FlightNumber,
+  DateTime,
+  ArrivalTime,
+  FlightStatus,
+  LastUpdated,
+  AircraftDetails,
+  ShiftBy,
+  Tooltip,
+} from '../components/index';
 
 const StyledCity = styled(City)`
   display: block;
