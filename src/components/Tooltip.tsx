@@ -7,7 +7,7 @@ interface ITooltipProps {
 }
 
 const Tooltip = ({ children, ...restProps }: ITooltipProps ): JSX.Element => {
-  return <ToolTip {...restProps} style={{color: 'red'}}>{children}</ToolTip>;
+  return <ToolTip {...restProps}>{children}</ToolTip>;
 };
 
 export { Tooltip };
