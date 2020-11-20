@@ -1,17 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { ReactQueryConfigProvider } from 'react-query';
 import { App } from './App';
+import { AppProviders } from './context/index';
 import * as serviceWorker from './serviceWorker';
 
+// Standard version of React
 // ReactDOM.render(
 //   <React.StrictMode>
-//     <Router>
-//       <ReactQueryConfigProvider config={{}}>
-//         <App />
-//       </ReactQueryConfigProvider>
-//     </Router>
+//     <AppProviders
+//       <App />
+//     </AppProviders>
 //   </React.StrictMode>,
 //   document.getElementById('root')
 // );
@@ -20,11 +18,9 @@ import * as serviceWorker from './serviceWorker';
 const root = document.getElementById('root');
 ReactDOM.unstable_createRoot(root).render(
   <React.StrictMode>
-    <Router>
-      <ReactQueryConfigProvider config={{}}>
-        <App />
-      </ReactQueryConfigProvider>
-    </Router>
+    <AppProviders>
+      <App />
+    </AppProviders>
   </React.StrictMode>
 );
 
