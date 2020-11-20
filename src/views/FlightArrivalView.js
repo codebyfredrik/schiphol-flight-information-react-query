@@ -186,13 +186,17 @@ const FlightDetails = styled.div`
 
 const FlightArrivalView = ({ isDarkMode }) => {
   const { id } = useParams();
-  const { result: flight, isLoading } = useFlight(id);
+  const { result: flight, isLoading, error } = useFlight(id);
   const [styleArrow, triggerArrow] = useBoop({ x: 5 });
   const [styleRedo, triggerRedo] = useBoop({ rotation: -90 });
   let prefixAirlineCode = '';
 
   if (flight) {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
+  }
+
+  if (error) {
+    console.log(error);
   }
 
   return (
