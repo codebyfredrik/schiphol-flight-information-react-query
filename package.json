@@ -25,6 +25,7 @@
     "react-spring": "^8.0.27",
     "react-tippy": "^1.4.0",
     "styled-components": "^5.2.1",
+    "styled-system": "^5.1.5",
     "typescript": "^3.9.7"
   },
   "scripts": {
@@ -53,6 +54,7 @@
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "@types/react-router-dom": "^5.1.5",
+    "@types/styled-system": "^5.1.10",
     "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }
