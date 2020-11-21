@@ -16,14 +16,14 @@ const StyledAirline = styled.span`
 `;
 
 const Airline = ({ prefixICAO, ...restProps }: IAirlineProps): JSX.Element => {
-  const { result, error, isSuccess, isLoading } = useAirline(prefixICAO);
+  const { result, isError, isSuccess, isLoading } = useAirline(prefixICAO);
 
   return (
     <>
       {isLoading ? (
         <StyledAirline {...restProps}>Loading...</StyledAirline>
-      ) : error ? (
-        <StyledAirline {...restProps}>Error</StyledAirline>
+      ) : isError ? (
+        <StyledAirline {...restProps}></StyledAirline>
       ) : isSuccess ? (
         <StyledAirline {...restProps}>{result.publicName}</StyledAirline>
       ) : null}

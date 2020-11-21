@@ -11,10 +11,11 @@ interface IAirline {
   error: any;
   isLoading: boolean;
   isSuccess: boolean;
+  isError: boolean;
 }
 
 const useAirline = (prefix: string): IAirline => {
-  const { data: result, error, isLoading, isSuccess } = useQuery(
+  const { data: result, error, isError, isLoading, isSuccess } = useQuery(
     `/airlines/${prefix}`,
     query,
     {
@@ -23,7 +24,7 @@ const useAirline = (prefix: string): IAirline => {
     }
   );
 
-  return { result, error, isLoading, isSuccess };
+  return { result, error, isError, isLoading, isSuccess };
 };
 
 export { useAirline };
