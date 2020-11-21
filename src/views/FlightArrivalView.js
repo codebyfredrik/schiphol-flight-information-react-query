@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { useFlight, useBoop } from '../hooks/index';
-import { Content } from '../styles/styles';
+import { Content, ErrorContent } from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
@@ -19,6 +19,7 @@ import {
   AircraftDetails,
   ShiftBy,
   Tooltip,
+  Error,
 } from '../components/index';
 
 const StyledCity = styled(City)`
@@ -184,9 +185,19 @@ const FlightDetails = styled.div`
   margin: 2rem 0;
 `;
 
+// const ErrorWrapper = styled.div`
+//   display: flex;
+//   height: 100%;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: var(--container-margin);
+// `;
+
 const FlightArrivalView = ({ isDarkMode }) => {
   const { id } = useParams();
-  const { result: flight, isLoading } = useFlight(id);
+  const { result: flight, isError, isLoading, isSuccess, error } = useFlight(
+    id
+  );
   const [styleArrow, triggerArrow] = useBoop({ x: 5 });
   const [styleRedo, triggerRedo] = useBoop({ rotation: -90 });
   let prefixAirlineCode = '';
@@ -201,7 +212,11 @@ const FlightArrivalView = ({ isDarkMode }) => {
         <Content>
           <Loading>Loading flight...</Loading>
         </Content>
-      ) : (
+      ) : isError ? (
+        <ErrorContent>
+          <Error message={error.message.toLowerCase()} />
+        </ErrorContent>
+      ) : isSuccess ? (
         <>
           {flight?.flightName ? (
             <Helmet>
@@ -371,7 +386,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
             )}
           </Content>
         </>
-      )}
+      ) : null}
     </>
   );
 };

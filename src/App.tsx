@@ -9,6 +9,7 @@ import {
   FlightsView,
   FlightDepartureView,
   FlightArrivalView,
+  NotFoundView
 } from './views/index';
 
 const App = () => {
@@ -37,8 +38,8 @@ const App = () => {
           />
         )}
         <div>
-          <Switch>
             <ScrollToTop>
+            <Switch>
               <Route exact path="/">
                 <FlightsView
                   page={page}
@@ -49,14 +50,15 @@ const App = () => {
                   setOverlayIsVisible={setOverlayIsVisible}
                 />
               </Route>
-              <Route exact path="/departures/:date/flights/:id">
+              <Route path="/departures/:date/flights/:id">
                 <FlightDepartureView isDarkMode={isDarkMode} />
               </Route>
-              <Route exact path="/arrivals/:date/flights/:id">
+              <Route path="/arrivals/:date/flights/:id">
                 <FlightArrivalView isDarkMode={isDarkMode} />
               </Route>
+              <Route component={NotFoundView} />
+              </Switch>
             </ScrollToTop> 
-          </Switch>
         </div>
       </>
     </ThemeProvider>

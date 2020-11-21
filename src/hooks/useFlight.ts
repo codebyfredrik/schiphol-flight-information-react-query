@@ -47,17 +47,18 @@ interface IFlight {
     transferPositions: any;
   };
   error: any;
+  isError: boolean;
   isLoading: boolean;
   isSuccess: boolean;
   isFetching: boolean;
 }
 
 const useFlight = (id: string): IFlight => {
-  const { data: result, error, isLoading, isSuccess, isFetching } = useQuery(
+  const { data: result, error, isError, isLoading, isSuccess, isFetching } = useQuery(
     `/flights/${id}`,
-    query
+    query, { retry: 0}
   );
-  return { result, error, isLoading, isSuccess, isFetching };
+  return { result, error, isError, isLoading, isSuccess, isFetching };
 };
 
 export { useFlight };
