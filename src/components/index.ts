@@ -17,4 +17,5 @@ export { Header } from './Header'
 export { Overlay } from './Overlay'
 export { StickyWrapper } from './StickyWrapper'
 export { ScrollToTop } from './ScrollToTop'
+export { Error } from './Error'
 

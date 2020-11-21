@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {
     overflow-y: scroll;
+    overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
   }
   body {

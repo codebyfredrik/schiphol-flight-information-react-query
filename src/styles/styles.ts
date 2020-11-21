@@ -44,6 +44,11 @@ const Content = styled.div`
   padding: 0 1rem;
 `;
 
+const ErrorContent = styled(Content)`
+  height: 100%;
+  margin-top: var(--container-margin);
+`;
+
 const ContentHeader = styled.div`
   background-color: white;
   padding: 2rem 0;
@@ -87,15 +92,18 @@ const Background = styled.div`
   }
 `;
 
+
+
 export {
   Background,
   ContentHeader,
   Content,
+  ErrorContent,
   ScheduleTime,
   Heading,
   Button,
   Box,
   Text,
   HeadingDetails,
-  SubHeading,
+  SubHeading
 };
