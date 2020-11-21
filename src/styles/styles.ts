@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { space } from 'styled-system'
 import { Time, ITimeProps } from '../components/Time';
 
 const Button = styled.button`
@@ -26,6 +27,10 @@ const Button = styled.button`
     }
   }
 `;
+
+const Emoji = styled.span`
+  ${space}
+`
 
 const Heading = styled.h3`
   color: ${({ theme }) => theme.colors.pageHeading};
@@ -105,5 +110,6 @@ export {
   Box,
   Text,
   HeadingDetails,
-  SubHeading
+  SubHeading,
+  Emoji
 };
