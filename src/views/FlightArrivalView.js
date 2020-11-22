@@ -262,7 +262,10 @@ const FlightArrivalView = ({ isDarkMode }) => {
               )}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
-                  <Tooltip title="💡 Click to update flight details">
+                  <Tooltip
+                    title="💡 Click to update flight details"
+                    position="top"
+                  >
                     <StyledButton
                       onClick={() => {
                         queryCache.prefetchQuery(`/flights/${id}`, query);
