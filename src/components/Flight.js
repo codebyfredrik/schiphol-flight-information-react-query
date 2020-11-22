@@ -11,6 +11,7 @@ import {
   useFlightDirection,
   useFormatTime,
   useBoop,
+  useHasMounted,
 } from './../hooks/index';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
@@ -219,10 +220,13 @@ const Flight = ({ flight, isDarkMode }) => {
   let estimatedTime = null;
   let actualTime = null;
   const [style, trigger] = useBoop({ x: 5 });
+  const hasMounted = useHasMounted();
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
+
+  if (!hasMounted) return null;
 
   return (
     <StyledLink
