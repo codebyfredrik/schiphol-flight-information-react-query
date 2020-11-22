@@ -11,6 +11,7 @@ import {
   useFlightDirection,
   useFormatTime,
   useBoop,
+  useHasMounted,
 } from './../hooks/index';
 import { Airline } from './Airline';
 import { Destination } from './Destination';
@@ -183,9 +184,9 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
-const StyledArrowRight = styled(ArrowRight)`
-  margin-left: 5px;
-`;
+// const StyledArrowRight = styled(ArrowRight)`
+//   margin-left: 5px;
+// `;
 
 const LinkWrapper = styled.div`
   text-align: right;
@@ -216,13 +217,18 @@ const Flight = ({ flight, isDarkMode }) => {
     route,
     gate,
   } = flight;
+  const hasMounted = useHasMounted();
   const { flightStatus } = useFlightStatus(publicFlightState, flightDirection);
-  const [style, trigger] = useBoop({ x: 5 });
   let text = useFlightDirection(flightDirection);
   const { formattedTimestamp } = useFormatTime(scheduleDateTime, 'YYYYMMDD');
   const prefixAirline = prefixICAO ?? flightName.slice(0, 2);
   let estimatedTime = null;
   let actualTime = null;
+  const [style, trigger] = useBoop({ x: 5 });
+
+  if (!hasMounted) {
+    return null;
+  }
 
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
@@ -309,7 +315,8 @@ const Flight = ({ flight, isDarkMode }) => {
             {gate && <Gate gate={gate} />}
             <LinkWrapper>
               <LinkText>Details</LinkText>
-              <StyledArrowRight
+              <ArrowRight
+                ml="5px"
                 height={12}
                 width={12}
                 fillColor="#0d49c0"
