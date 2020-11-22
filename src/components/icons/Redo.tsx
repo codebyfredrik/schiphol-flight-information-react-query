@@ -18,10 +18,8 @@ const Redo = ({
 }: ISvgIcon): JSX.Element | null => {
   const hasMounted = useHasMounted()
 
-  if(!hasMounted) {
-    return null
-  }
-
+  if(!hasMounted) return null;
+  
   return (
     <StyledRedo
       aria-hidden="true"

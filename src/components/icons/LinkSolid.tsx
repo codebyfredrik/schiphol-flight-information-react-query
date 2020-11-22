@@ -1,17 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ISvgIcon } from './interfaces';
+import { animated } from 'react-spring'
+import { space } from 'styled-system'
+import { useHasMounted } from '../../hooks/index'
 
-const StyledLinkSolid = styled.svg`
+const StyledLinkSolid = styled(animated.svg)`
   display: inline-block;
+  ${space}
 `;
 
 const LinkSolid = ({
-  height,
-  width,
-  fillColor,
-  ...restProps
-}: ISvgIcon): JSX.Element => {
+  height = 12,
+  width = 12,
+  fillColor = "#000",
+  ...delegated
+}: ISvgIcon): JSX.Element | null => {
+  const hasMounted = useHasMounted()
+
+  if(!hasMounted) return null;
+  
   return (
     <StyledLinkSolid
       aria-hidden="true"
@@ -23,7 +31,7 @@ const LinkSolid = ({
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      {...restProps}
+      {...delegated}
     >
       <path
         fill={fillColor}
