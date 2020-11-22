@@ -25,9 +25,9 @@ const StyledArrowRight = styled(animated.svg)`
 `;
 
 const ArrowRight = ({
-  height,
-  width,
-  fillColor,
+  height = 12,
+  width = 12,
+  fillColor = "#000",
   ...delegated
 }: ISvgIcon): JSX.Element | null => {
   const hasMounted = useHasMounted()

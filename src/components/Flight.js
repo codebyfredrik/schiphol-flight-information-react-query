@@ -184,10 +184,6 @@ const FlightWrapper = styled.div`
   flex: 1 1 0px;
 `;
 
-// const StyledArrowRight = styled(ArrowRight)`
-//   margin-left: 5px;
-// `;
-
 const LinkWrapper = styled.div`
   text-align: right;
   display: inline-block;
@@ -226,14 +222,13 @@ const Flight = ({ flight, isDarkMode }) => {
   let actualTime = null;
   const [style, trigger] = useBoop({ x: 5 });
 
-  if (!hasMounted) {
-    return null;
-  }
-
   if (estimatedLandingTime) estimatedTime = estimatedLandingTime;
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
-  // console.log(flightName, prefixICAO, flightName.slice(0, 2));
+
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <StyledLink
