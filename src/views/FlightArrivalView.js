@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
-import { useFlight, useBoop } from '../hooks/index';
+import { useFlight, useBoop, useHasMounted } from '../hooks/index';
 import { Content, ErrorContent } from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
@@ -173,27 +173,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledRedo = styled(Redo)`
-  margin-right: 5px;
-`;
-
-const StyledArrowRight = styled(ArrowRight)`
-  margin-left: 5px;
-`;
-
 const FlightDetails = styled.div`
   margin: 2rem 0;
 `;
 
-// const ErrorWrapper = styled.div`
-//   display: flex;
-//   height: 100%;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: var(--container-margin);
-// `;
-
 const FlightArrivalView = ({ isDarkMode }) => {
+  const hasMounted = useHasMounted();
   const { id } = useParams();
   const { result: flight, isError, isLoading, isSuccess, error } = useFlight(
     id
@@ -204,6 +189,10 @@ const FlightArrivalView = ({ isDarkMode }) => {
 
   if (flight) {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
+  }
+
+  if (!hasMounted) {
+    return null;
   }
 
   return (
@@ -239,7 +228,8 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   <Tooltip title="💡 Click to display all flights">
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
-                      <StyledArrowRight
+                      <ArrowRight
+                        ml="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"
@@ -273,7 +263,8 @@ const FlightArrivalView = ({ isDarkMode }) => {
                       }}
                       onMouseEnter={triggerRedo}
                     >
-                      <StyledRedo
+                      <Redo
+                        mr="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"
