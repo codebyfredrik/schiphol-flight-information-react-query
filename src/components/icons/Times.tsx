@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ISvgIcon } from './interfaces';
+import { animated } from 'react-spring'
+import { space } from 'styled-system'
+import { useHasMounted } from '../../hooks/index'
 
-const StyledTimes = styled.svg`
+const StyledTimes = styled(animated.svg)`
   display: inline-block;
+  ${space}
 
   &:hover {
     cursor: pointer;
@@ -21,11 +25,15 @@ const StyledTimes = styled.svg`
 `;
 
 const Times = ({
-  height,
-  width,
-  fillColor,
-  ...restProps
-}: ISvgIcon): JSX.Element => {
+  height = 12,
+  width = 12,
+  fillColor = "#000",
+  ...delegated
+}: ISvgIcon): JSX.Element | null => {
+  const hasMounted = useHasMounted()
+
+  if(!hasMounted) return null;
+  
   return (
     <StyledTimes
       aria-hidden="true"
@@ -37,7 +45,7 @@ const Times = ({
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 352 512"
-      {...restProps}
+      {...delegated}
     >
       <path
         fill={fillColor}

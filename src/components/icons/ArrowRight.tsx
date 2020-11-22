@@ -32,10 +32,8 @@ const ArrowRight = ({
 }: ISvgIcon): JSX.Element | null => {
   const hasMounted = useHasMounted()
 
-  if(!hasMounted) {
-    return null
-  }
-
+  if(!hasMounted) return null;
+  
   return (
     <StyledArrowRight
       aria-hidden="true"
