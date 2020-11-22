@@ -236,14 +236,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   direction="from"
                 />
                 <div>
-                  <Tooltip
-                    title="💡 Click to display all flights"
-                    theme="light"
-                    position="bottom"
-                    arrow="true"
-                    animation="scale"
-                    inertia="true"
-                  >
+                  <Tooltip title="💡 Click to display all flights">
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
                       <StyledArrowRight
@@ -269,14 +262,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
               )}
               <WrapperLastUpdated>
                 {flight?.lastUpdatedAt && (
-                  <Tooltip
-                    title="💡 Click to update flight details"
-                    theme="light"
-                    position="top"
-                    arrow="true"
-                    animation="scale"
-                    inertia="true"
-                  >
+                  <Tooltip title="💡 Click to update flight details">
                     <StyledButton
                       onClick={() => {
                         queryCache.prefetchQuery(`/flights/${id}`, query);
