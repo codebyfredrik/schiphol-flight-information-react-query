@@ -191,9 +191,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
-  if (!hasMounted) {
-    return null;
-  }
+  if (!hasMounted) return null;
 
   return (
     <>
