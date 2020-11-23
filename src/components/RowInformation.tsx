@@ -28,7 +28,7 @@ const RowInformation = ({
   date,
   isFetching,
   ...restProps
-}: IRowInformationProps): JSX.Element => {
+}: IRowInformationProps): JSX.Element=> {
   return (
     <StyledRowInformation {...restProps}>
       <DisplayDate date={date} />
