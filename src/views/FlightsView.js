@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
-import { useFlights, useRenderFlights } from '../hooks/index';
+import { useFlights, useRenderFlights, useHasMounted } from '../hooks/index';
 import { Button } from '../styles/styles';
 import { Content } from '../styles/styles';
 
@@ -84,6 +84,7 @@ const FlightsView = ({
     error,
     resolvedData,
   } = useFlights(page, flightDirection);
+  const hasMounted = useHasMounted();
   const { renderFlights } = useRenderFlights(
     resolvedData,
     isDarkMode,
@@ -94,6 +95,8 @@ const FlightsView = ({
     /* LOGGING FOR TROUBLESHOOTING */
     // console.log(resolvedData);
   }
+
+  if (!hasMounted) return null;
 
   return (
     <>
