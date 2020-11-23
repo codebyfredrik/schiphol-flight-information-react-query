@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
 import { useFlights, useRenderFlights, useHasMounted } from '../hooks/index';
-import { Button } from '../styles/styles';
-import { Content } from '../styles/styles';
+import { Button, Content } from '../styles/styles';
 
 const Flights = styled.ul`
   display: grid;
