@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
-import { query } from './../helpers/query';
-import { useFlight, useBoop } from '../hooks/index';
-import { Content } from '../styles/styles';
-import { Redo, ArrowRight } from './../components/icons/index';
+import { query } from '../helpers/query';
+import { useFlight, useBoop, useHasMounted } from '../hooks/index';
+import { Content, ErrorContent } from '../styles/styles';
+import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
   FlightFrom,
@@ -21,6 +21,7 @@ import {
   BoardingDetails,
   ShiftBy,
   Tooltip,
+  Error,
 } from '../components/index';
 
 const StyledCity = styled(City)`
@@ -184,8 +185,11 @@ const FlightDetails = styled.div`
 `;
 
 const FlightDepartureView = ({ isDarkMode }) => {
+  const hasMounted = useHasMounted();
   const { id } = useParams();
-  const { result: flight, isLoading } = useFlight(id);
+  const { result: flight, isLoading, isError, isSuccess, error } = useFlight(
+    id
+  );
   const [styleArrow, triggerArrow] = useBoop({ x: 5 });
   const [styleRedo, triggerRedo] = useBoop({ rotation: -90 });
   let prefixAirlineCode = '';
@@ -194,13 +198,19 @@ const FlightDepartureView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
+  if (!hasMounted) return null;
+
   return (
     <>
       {isLoading ? (
         <Content>
           <Loading>Loading flight...</Loading>
         </Content>
-      ) : (
+      ) : isError ? (
+        <ErrorContent>
+          <Error message={error.message.toLowerCase()} />
+        </ErrorContent>
+      ) : isSuccess ? (
         <>
           {flight?.flightName ? (
             <Helmet>
@@ -222,14 +232,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   direction="to"
                 />
                 <div>
-                  <Tooltip
-                    title="💡 Click to display all flights"
-                    theme="light"
-                    position="bottom"
-                    arrow="true"
-                    animation="scale"
-                    inertia="true"
-                  >
+                  <Tooltip title="💡 Click to display all flights">
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
                       <StyledArrowRight
@@ -257,11 +260,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                 {flight?.lastUpdatedAt && (
                   <Tooltip
                     title="💡 Click to update flight details"
-                    theme="light"
                     position="top"
-                    arrow="true"
-                    animation="scale"
-                    inertia="true"
                   >
                     <StyledButton
                       onClick={() => {
@@ -386,7 +385,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
             </FlightDetails>
           </Content>
         </>
-      )}
+      ) : null}
     </>
   );
 };
