@@ -5,13 +5,18 @@ import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { useFlight, useBoop, useHasMounted } from '../hooks/index';
-import { Content, ErrorContent } from '../styles/styles';
+import {
+  Content,
+  ErrorContent,
+  Loading,
+  StyledFlightNumber,
+  Title,
+} from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
   FlightFrom,
   City,
-  FlightNumber,
   DateTime,
   DepartureTime,
   FlightStatus,
@@ -73,23 +78,10 @@ const Item = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  font-size: 1.75rem;
-  margin: 1.5rem 0 1.5rem 0;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 const Heading = styled.span`
   display: block;
   font-size: 0.875rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
-const StyledFlightNumber = styled(FlightNumber)`
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -147,17 +139,6 @@ const WrapperLastUpdated = styled.div`
   margin-top: 1rem;
 `;
 
-const Loading = styled.span`
-  display: inline-block;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  margin-top: var(--container-margin);
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
-`;
-
 const StyledButton = styled.button`
   border: none;
   outline: none;
@@ -167,14 +148,6 @@ const StyledButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-`;
-
-const StyledRedo = styled(Redo)`
-  margin-right: 5px;
-`;
-
-const StyledArrowRight = styled(ArrowRight)`
-  margin-left: 5px;
 `;
 
 const FlightDetails = styled.div`
@@ -235,7 +208,8 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   <Tooltip title="💡 Click to display all flights">
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
-                      <StyledArrowRight
+                      <ArrowRight
+                        ml="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"
@@ -269,7 +243,8 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       }}
                       onMouseEnter={triggerRedo}
                     >
-                      <StyledRedo
+                      <Redo
+                        mr="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"

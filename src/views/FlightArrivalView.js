@@ -5,13 +5,18 @@ import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { useFlight, useBoop, useHasMounted } from '../hooks/index';
-import { Content, ErrorContent } from '../styles/styles';
+import {
+  Content,
+  ErrorContent,
+  Loading,
+  StyledFlightNumber,
+  Title,
+} from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
   FlightFrom,
   City,
-  FlightNumber,
   DateTime,
   ArrivalTime,
   FlightStatus,
@@ -76,24 +81,11 @@ const Item = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 1.5rem 0 1.5rem 0;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 const Heading = styled.span`
   display: block;
   font-size: 0.875rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.colors.text};
-`;
-
-const StyledFlightNumber = styled(FlightNumber)`
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 500;
 `;
 
 const Text = styled.span`
@@ -149,17 +141,6 @@ const WrapperLastUpdated = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 1rem;
-`;
-
-const Loading = styled.span`
-  display: inline-block;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  margin-top: var(--container-margin);
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
 `;
 
 const StyledButton = styled.button`
