@@ -11,6 +11,8 @@ import {
   Loading,
   StyledFlightNumber,
   Title,
+  FlightInformation,
+  Item,
 } from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
@@ -45,40 +47,6 @@ const StyledCity = styled(City)`
 
 const StyledArrivalTime = styled(ArrivalTime)`
   font-weight: 500;
-`;
-
-const FlightInformationArrival = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-
-  @media screen and (min-width: 1080px) {
-    grid-template-columns: repeat(7, minmax(100px, 1fr));
-    grid-template-rows: auto;
-  }
-`;
-
-const Item = styled.div`
-  display: inline-block;
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-  padding-bottom: 1rem;
-
-  &:nth-last-of-type(2),
-  &:nth-last-of-type(1) {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  @media screen and (min-width: 1080px) {
-    border-bottom: 0;
-    border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-    padding-bottom: 0rem;
-
-    &:nth-last-of-type(2),
-    &:nth-last-of-type(1) {
-      border-right: 0;
-    }
-  }
 `;
 
 const Heading = styled.span`
@@ -259,7 +227,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
           <Content>
             <div>
               <Title>Flight information</Title>
-              <FlightInformationArrival>
+              <FlightInformation>
                 <Item>
                   <Heading>Date</Heading>
                   {flight?.scheduleDateTime ? (
@@ -333,7 +301,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                     <Text>N/A</Text>
                   )}
                 </Item>
-              </FlightInformationArrival>
+              </FlightInformation>
             </div>
             {flight?.aircraftType && flight?.aircraftRegistration && (
               <FlightDetails>
