@@ -17,11 +17,11 @@ import {
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
-  FlightFrom,
-  City,
-  DateTime,
-  ArrivalTime,
-  FlightStatus,
+  FlightFrom as StyledFlightFrom,
+  City as StyledCity,
+  DateTime as StyledDateTime,
+  ArrivalTime as StyledArrivalTime,
+  FlightStatus as StyledFlightStatus,
   LastUpdated,
   AircraftDetails,
   ShiftBy,
@@ -29,7 +29,7 @@ import {
   Error,
 } from '../components/index';
 
-const StyledCity = styled(City)`
+const City = styled(StyledCity)`
   display: block;
   font-size: 3.6rem;
   font-weight: 600;
@@ -45,7 +45,7 @@ const StyledCity = styled(City)`
   -moz-text-fill-color: transparent;
 `;
 
-const StyledArrivalTime = styled(ArrivalTime)`
+const ArrivalTime = styled(StyledArrivalTime)`
   font-weight: 500;
 `;
 
@@ -63,13 +63,13 @@ const Text = styled.span`
   font-weight: 500;
 `;
 
-const StyledDateTime = styled(DateTime)`
+const DateTime = styled(StyledDateTime)`
   display: block;
   font-size: 1.125rem;
   font-weight: 500;
 `;
 
-const StyledFlightStatus = styled(FlightStatus)`
+const FlightStatus = styled(StyledFlightStatus)`
   margin-top: 1rem;
   font-size: 16px;
   height: 22px;
@@ -77,7 +77,7 @@ const StyledFlightStatus = styled(FlightStatus)`
   color: ${(props) => (props.isDarkMode ? '#B0B3B8' : 'white')};
 `;
 
-const StyledFlightFrom = styled(FlightFrom)`
+const FlightFrom = styled(StyledFlightFrom)`
   flex: 1 1 1rem;
   margin-bottom: 1rem;
 `;
@@ -166,7 +166,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
           <HeaderContainer>
             <Content>
               <HeaderInformation>
-                <StyledFlightFrom
+                <FlightFrom
                   prefixICAO={prefixAirlineCode}
                   flightName={flight.flightName}
                   direction="from"
@@ -187,10 +187,10 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   </Tooltip>
                 </div>
               </HeaderInformation>
-              {flight?.route && <StyledCity route={flight.route} />}
+              {flight?.route && <City route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
                 <ShiftBy x={1}>
-                  <StyledFlightStatus
+                  <FlightStatus
                     publicFlightState={flight.publicFlightState}
                     flightDirection={flight.flightDirection}
                     isDarkMode={isDarkMode}
@@ -231,10 +231,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 <Item>
                   <Heading>Date</Heading>
                   {flight?.scheduleDateTime ? (
-                    <StyledDateTime
-                      date={flight.scheduleDateTime}
-                      format="MMM D"
-                    />
+                    <DateTime date={flight.scheduleDateTime} format="MMM D" />
                   ) : (
                     <Text>N/A</Text>
                   )}
@@ -242,7 +239,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 <Item>
                   <Heading>Arrival time</Heading>
                   {flight ? (
-                    <StyledArrivalTime
+                    <ArrivalTime
                       scheduleDateTime={flight.scheduleDateTime}
                       estimatedLandingTime={flight.estimatedLandingTime}
                       actualLandingTime={flight.actualLandingTime}
