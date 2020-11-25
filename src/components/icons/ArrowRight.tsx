@@ -8,20 +8,6 @@ import { useHasMounted } from '../../hooks/index'
 const StyledArrowRight = styled(animated.svg)`
   display: inline-block;
   ${space}
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  path {
-    @media screen and (prefers-reduced-motion: no-preference) {
-      transition: fill 150ms ease-in;
-    }
-
-    &:hover {
-      /* fill: ${({ theme }) => theme.colors.yellow}; */
-    }
-  }
 `;
 
 const ArrowRight = ({
@@ -40,7 +26,6 @@ const ArrowRight = ({
       height={height}
       width={width}
       focusable="false"
-      data-prefix="fas"
       data-icon="arrow-right"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
