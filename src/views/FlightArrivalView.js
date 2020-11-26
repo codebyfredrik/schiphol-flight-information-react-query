@@ -150,7 +150,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
         <ErrorContent>
           <Error message={error.message.toLowerCase()} />
         </ErrorContent>
-      ) : isSuccess ? (
+      ) : isSuccess && hasMounted ? (
         <>
           {flight?.flightName ? (
             <Helmet>
@@ -170,21 +170,19 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   direction="from"
                 />
                 <div>
-                  {hasMounted ? (
-                    <Tooltip title="💡 Click to display all flights">
-                      <StyledLink to="/" onMouseEnter={triggerArrow}>
-                        <span>All flights</span>
-                        <ArrowRight
-                          ml="5px"
-                          height={12}
-                          width={12}
-                          fillColor="#0d49c0"
-                          style={styleArrow}
-                          aria-label="Display all flights"
-                        />
-                      </StyledLink>
-                    </Tooltip>
-                  ) : null}
+                  <Tooltip title="💡 Click to display all flights">
+                    <StyledLink to="/" onMouseEnter={triggerArrow}>
+                      <span>All flights</span>
+                      <ArrowRight
+                        ml="5px"
+                        height={12}
+                        width={12}
+                        fillColor="#0d49c0"
+                        style={styleArrow}
+                        aria-label="Display all flights"
+                      />
+                    </StyledLink>
+                  </Tooltip>
                 </div>
               </HeaderInformation>
               {flight?.route && <City route={flight.route} />}
@@ -198,7 +196,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 </ShiftBy>
               )}
               <WrapperLastUpdated>
-                {Boolean(flight?.lastUpdatedAt && hasMounted) ? (
+                {flight?.lastUpdatedAt ? (
                   <Tooltip
                     title="💡 Click to update flight details"
                     position="top"
