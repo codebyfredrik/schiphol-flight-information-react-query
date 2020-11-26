@@ -55,14 +55,14 @@ const FlightsView = ({
     error,
     resolvedData,
   } = useFlights(page, flightDirection);
-  const hasMounted = useHasMounted();
+  // const hasMounted = useHasMounted();
   const { renderFlights } = useRenderFlights(
     resolvedData,
     isDarkMode,
     isFetching
   );
 
-  if (!hasMounted) return null;
+  // if (!hasMounted) return null;
 
   return (
     <>

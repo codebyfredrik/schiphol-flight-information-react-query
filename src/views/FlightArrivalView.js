@@ -140,7 +140,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
-  if (!hasMounted) return null;
+  // if (!hasMounted) return null;
 
   return (
     <>
@@ -172,19 +172,21 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   direction="from"
                 />
                 <div>
-                  <Tooltip title="💡 Click to display all flights">
-                    <StyledLink to="/" onMouseEnter={triggerArrow}>
-                      <span>All flights</span>
-                      <ArrowRight
-                        ml="5px"
-                        height={12}
-                        width={12}
-                        fillColor="#0d49c0"
-                        style={styleArrow}
-                        aria-label="Display all flights"
-                      />
-                    </StyledLink>
-                  </Tooltip>
+                  {hasMounted ? (
+                    <Tooltip title="💡 Click to display all flights">
+                      <StyledLink to="/" onMouseEnter={triggerArrow}>
+                        <span>All flights</span>
+                        <ArrowRight
+                          ml="5px"
+                          height={12}
+                          width={12}
+                          fillColor="#0d49c0"
+                          style={styleArrow}
+                          aria-label="Display all flights"
+                        />
+                      </StyledLink>
+                    </Tooltip>
+                  ) : null}
                 </div>
               </HeaderInformation>
               {flight?.route && <City route={flight.route} />}
@@ -198,7 +200,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 </ShiftBy>
               )}
               <WrapperLastUpdated>
-                {flight?.lastUpdatedAt && (
+                {flight?.lastUpdatedAt && hasMounted && (
                   <Tooltip
                     title="💡 Click to update flight details"
                     position="top"
