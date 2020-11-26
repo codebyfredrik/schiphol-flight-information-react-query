@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
-import { useFlights, useRenderFlights, useHasMounted } from '../hooks/index';
+import { useFlights, useRenderFlights } from '../hooks/index';
 import { Button, Content, Loading } from '../styles/styles';
 
 const Flights = styled.ul`
@@ -11,7 +11,7 @@ const Flights = styled.ul`
   margin: 2rem 0;
 `;
 
-const FlexContainer = styled.div`
+const ButtonWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -55,14 +55,11 @@ const FlightsView = ({
     error,
     resolvedData,
   } = useFlights(page, flightDirection);
-  // const hasMounted = useHasMounted();
   const { renderFlights } = useRenderFlights(
     resolvedData,
     isDarkMode,
     isFetching
   );
-
-  // if (!hasMounted) return null;
 
   return (
     <>
@@ -70,7 +67,7 @@ const FlightsView = ({
         <Helmet>
           <title>Arrival and departure flights</title>
         </Helmet>
-        <FlexContainer>
+        <ButtonWrapper>
           <Button onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme
           </Button>
@@ -96,7 +93,7 @@ const FlightsView = ({
           >
             Later flights
           </Button>
-        </FlexContainer>
+        </ButtonWrapper>
         {isLoading ? (
           <Loading>Loading flights...</Loading>
         ) : isError ? (

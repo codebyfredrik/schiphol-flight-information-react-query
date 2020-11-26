@@ -140,8 +140,6 @@ const FlightArrivalView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
-  // if (!hasMounted) return null;
-
   return (
     <>
       {isLoading ? (
@@ -200,7 +198,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 </ShiftBy>
               )}
               <WrapperLastUpdated>
-                {flight?.lastUpdatedAt && hasMounted && (
+                {Boolean(flight?.lastUpdatedAt && hasMounted) ? (
                   <Tooltip
                     title="💡 Click to update flight details"
                     position="top"
@@ -222,7 +220,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                       <LastUpdated timestamp={flight.lastUpdatedAt} />
                     </StyledButton>
                   </Tooltip>
-                )}
+                ) : null}
               </WrapperLastUpdated>
             </Content>
           </HeaderContainer>
