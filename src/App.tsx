@@ -26,7 +26,7 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={false} />
         <GlobalStyle />
         <StickyHeader ref={ref}>
-          <Header sticky={isSticky} />
+          <Header isSticky={isSticky} />
         </StickyHeader>
         {overlayIsVisible && (
           <Overlay

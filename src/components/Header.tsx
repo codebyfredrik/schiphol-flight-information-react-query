@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import {ShiftBy} from './ShiftBy'
+import { ShiftBy } from './ShiftBy'
 
 interface IHeaderProps {
-  sticky: boolean;
+  isSticky: boolean;
 }
 
 const fadeIn = keyframes`
@@ -20,12 +20,12 @@ const StyledHeader = styled.header<IHeaderProps>`
   width: 100%;
   background: linear-gradient(to right, #073590, #0d49c0);
   border-bottom: 2px solid ${({ theme }) => theme.colors.yellow};
-  height: ${(props) => (props.sticky ? '40px' : '125px')};
+  height: ${(props) => (props.isSticky ? '40px' : '125px')};
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.2),
     0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.1),
     0 16px 16px rgba(0, 0, 0, 0.05);
   ${(props) =>
-    props.sticky === true &&
+    props.isSticky === true &&
     css`
       position: fixed;
       top: 0;
@@ -41,12 +41,12 @@ const Content = styled.div<IHeaderProps>`
   justify-content: center;
   max-width: 1000px;
   margin: auto;
-  padding: ${(props) => (props.sticky ? '0.6rem 1rem' : '1.5rem 1rem')};
-  height: ${(props) => (props.sticky ? '40px' : '125px')};
+  padding: ${(props) => (props.isSticky ? '0.6rem 1rem' : '1.5rem 1rem')};
+  height: ${(props) => (props.isSticky ? '40px' : '125px')};
 
   @media screen and (min-width: 380px) {
-    flex-direction: ${(props) => (props.sticky ? 'row' : 'column')};
-    justify-content: ${(props) => (props.sticky ? 'space-between' : '')};
+    flex-direction: ${(props) => (props.isSticky ? 'row' : 'column')};
+    justify-content: ${(props) => (props.isSticky ? 'space-between' : '')};
   }
 `;
 
@@ -54,14 +54,14 @@ const Title = styled.h1<IHeaderProps>`
   display: inline-block;
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: ${(props) => (props.sticky ? '1.2rem' : '1.5rem')};
+  font-size: ${(props) => (props.isSticky ? '1.2rem' : '1.5rem')};
   font-weight: 600;
-  line-height: ${(props) => (props.sticky ? '1rem' : '1.1rem')};
+  line-height: ${(props) => (props.isSticky ? '1rem' : '1.1rem')};
   color: ${({ theme }) => theme.colors.yellow};
 
   @media screen and (min-width: 520px) {
-    font-size: ${(props) => (props.sticky ? '1.2rem' : '2.5rem')};
-    line-height: ${(props) => (props.sticky ? '0.8rem' : '1.8rem')};
+    font-size: ${(props) => (props.isSticky ? '1.2rem' : '2.5rem')};
+    line-height: ${(props) => (props.isSticky ? '0.8rem' : '1.8rem')};
   }
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -70,23 +70,23 @@ const Title = styled.h1<IHeaderProps>`
 `;
 
 const SubTitle = styled.h3<IHeaderProps>`
-  display: ${(props) => (props.sticky ? 'none' : 'inline-block')};
+  display: ${(props) => (props.isSticky ? 'none' : 'inline-block')};
   font-size: 1rem;
   line-height: 0.7rem;
-  margin-right: ${(props) => (props.sticky ? '-0.25rem' : '0rem')};
+  margin-right: ${(props) => (props.isSticky ? '-0.25rem' : '0rem')};
   letter-spacing: 0.25rem;
   font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   color: ${({ theme }) => theme.colors.subTitle};
 
   @media screen and (min-width: 520px) {
-    margin-top: ${(props) => (props.sticky ? '0rem' : '0.25rem')};
-    font-size: ${(props) => (props.sticky ? '0.75rem' : '1.25rem')};
-    line-height: ${(props) => (props.sticky ? '0.5rem' : '1rem')};
+    margin-top: ${(props) => (props.isSticky ? '0rem' : '0.25rem')};
+    font-size: ${(props) => (props.isSticky ? '0.75rem' : '1.25rem')};
+    line-height: ${(props) => (props.isSticky ? '0.5rem' : '1rem')};
   }
 
   @media screen and (min-width: 768px) {
-    display: ${(props) => (props.sticky ? 'inline-block' : '')};
+    display: ${(props) => (props.isSticky ? 'inline-block' : '')};
   }
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -99,15 +99,15 @@ const StyledLink = styled(Link)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const Header = ({ sticky }: IHeaderProps): JSX.Element => {
+const Header = ({ isSticky }: IHeaderProps): JSX.Element => {
   return (
-    <StyledHeader sticky={sticky}>
-      <Content sticky={sticky}>
+    <StyledHeader isSticky={isSticky}>
+      <Content isSticky={isSticky}>
         <StyledLink to="/">
-          <ShiftBy x={2}><Title sticky={sticky}>Amsterdam Schipol Airport</Title></ShiftBy>
+          <ShiftBy x={2}><Title isSticky={isSticky}>Amsterdam Schipol Airport</Title></ShiftBy>
         </StyledLink>
         <StyledLink to="/">
-          <SubTitle sticky={sticky}>Flight Information</SubTitle>
+          <SubTitle isSticky={isSticky}>Flight Information</SubTitle>
         </StyledLink>
       </Content>
     </StyledHeader>

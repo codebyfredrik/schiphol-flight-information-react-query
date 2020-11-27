@@ -40,7 +40,6 @@ const Times = ({
       height={height}
       width={width}
       focusable="false"
-      data-prefix="fas"
       data-icon="times"
       role="img"
       xmlns="http://www.w3.org/2000/svg"

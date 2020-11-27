@@ -226,7 +226,7 @@ const Flight = ({ flight, isDarkMode }) => {
   if (actualOffBlockTime) estimatedTime = actualOffBlockTime;
   if (actualLandingTime) actualTime = actualLandingTime;
 
-  if (!hasMounted) return null;
+  // if (!hasMounted) return null;
 
   return (
     <StyledLink
@@ -307,15 +307,19 @@ const Flight = ({ flight, isDarkMode }) => {
           <RightContainer>
             {gate && <Gate gate={gate} />}
             <LinkWrapper>
-              <LinkText>Details</LinkText>
-              <ArrowRight
-                ml="5px"
-                height={12}
-                width={12}
-                fillColor="#0d49c0"
-                style={style}
-                aria-label="Display flight details"
-              />
+              {hasMounted ? (
+                <>
+                  <LinkText>Details</LinkText>
+                  <ArrowRight
+                    ml="5px"
+                    height={12}
+                    width={12}
+                    fillColor="#0d49c0"
+                    style={style}
+                    aria-label="Display flight details"
+                  />
+                </>
+              ) : null}
             </LinkWrapper>
           </RightContainer>
         </Container>

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
-import { useFlights, useRenderFlights, useHasMounted } from '../hooks/index';
-import { Button, Content } from '../styles/styles';
+import { useFlights, useRenderFlights } from '../hooks/index';
+import { Button, Content, Loading } from '../styles/styles';
 
 const Flights = styled.ul`
   display: grid;
@@ -11,7 +11,7 @@ const Flights = styled.ul`
   margin: 2rem 0;
 `;
 
-const FlexContainer = styled.div`
+const ButtonWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -31,39 +31,11 @@ const Spacer = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.text};
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.5;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.bgButton};
-    }
-  }
-`;
-
-const Loading = styled.span`
-  display: inline-block;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  margin-top: var(--container-margin);
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
-`;
-
-const Error = styled.span`
+const StyledError = styled.span`
   display: inline-block;
   font-weight: bold;
   color: #ff0800;
   margin-top: var(--container-margin);
-`;
-
-const StyledContent = styled(Content)`
-  margin-top: 2rem;
 `;
 
 const FlightsView = ({
@@ -83,44 +55,31 @@ const FlightsView = ({
     error,
     resolvedData,
   } = useFlights(page, flightDirection);
-  const hasMounted = useHasMounted();
   const { renderFlights } = useRenderFlights(
     resolvedData,
     isDarkMode,
     isFetching
   );
 
-  if (resolvedData) {
-    /* LOGGING FOR TROUBLESHOOTING */
-    // console.log(resolvedData);
-  }
-
-  if (!hasMounted) return null;
-
   return (
     <>
-      <StyledContent {...restProps}>
+      <Content {...restProps} my="2rem">
         <Helmet>
           <title>Arrival and departure flights</title>
         </Helmet>
-        <FlexContainer>
-          <StyledButton type="button" onClick={toggleDarkMode}>
+        <ButtonWrapper>
+          <Button onClick={toggleDarkMode}>
             {isDarkMode ? 'Light ' : 'Dark '} theme
-          </StyledButton>
-          <StyledButton type="button" onClick={setOverlayIsVisible}>
-            Filter
-          </StyledButton>
+          </Button>
+          <Button onClick={setOverlayIsVisible}>Filter</Button>
           <Spacer />
-          <StyledButton
-            type="button"
+          <Button
             onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-            data-testid="previous-page"
             disabled={page === 0 || isFetching}
           >
             Earlier flights
-          </StyledButton>
-          <StyledButton
-            type="button"
+          </Button>
+          <Button
             onClick={() =>
               setPage((prevState) => {
                 return isSuccess && page === +resolvedData.lastPage - 1
@@ -133,16 +92,16 @@ const FlightsView = ({
             }
           >
             Later flights
-          </StyledButton>
-        </FlexContainer>
+          </Button>
+        </ButtonWrapper>
         {isLoading ? (
           <Loading>Loading flights...</Loading>
         ) : isError ? (
-          <Error>Error: {error.message}</Error>
-        ) : (
+          <StyledError>Error: {error.message}</StyledError>
+        ) : isSuccess ? (
           <Flights>{renderFlights()}</Flights>
-        )}
-      </StyledContent>
+        ) : null}
+      </Content>
     </>
   );
 };

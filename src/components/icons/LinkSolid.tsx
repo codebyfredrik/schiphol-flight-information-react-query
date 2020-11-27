@@ -26,7 +26,6 @@ const LinkSolid = ({
       height={height}
       width={width}
       focusable="false"
-      data-prefix="fas"
       data-icon="link"
       role="img"
       xmlns="http://www.w3.org/2000/svg"

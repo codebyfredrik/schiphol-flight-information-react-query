@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { space } from 'styled-system'
 import { Time, ITimeProps } from '../components/Time';
+import { FlightNumber } from '../components/FlightNumber'
 
-const Button = styled.button`
+const Button = styled.button.attrs((props) => ({
+  type: props.type || 'button',
+}))`
   height: var(--min-tap-target-height);
   box-shadow: 0 1px 1px ${({ theme }) => theme.colors.borderShadow};
   padding: 0.4rem 0.7rem;
@@ -14,6 +17,15 @@ const Button = styled.button`
   letter-spacing: 1px;
   outline: none;
 
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+
+    /* &:hover {
+      background-color: ${({ theme }) => theme.colors.bgButton};
+    } */
+  }
+
   @media screen and (prefers-reduced-motion: no-preference) {
     transition: color var(--transition-time) ease-in,
       background-color var(--transition-time) ease-in,
@@ -21,10 +33,21 @@ const Button = styled.button`
   }
 
   @media (hover: hover) and (pointer: fine) {
-    &:hover {
+    &:enabled:hover {
       background-color: ${({ theme }) => theme.colors.bgButtonHover};
       cursor: pointer;
     }
+  }
+`;
+
+const Loading = styled.span`
+  display: inline-block;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.text};
+  margin-top: var(--container-margin);
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    transition: color var(--transition-time) ease-in;
   }
 `;
 
@@ -47,6 +70,21 @@ const Content = styled.div`
   max-width: 1000px;
   margin: auto;
   padding: 0 1rem;
+  ${space};
+`;
+
+const StyledFlightNumber = styled(FlightNumber)`
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const Title = styled.h2`
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 1.5rem 0;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const ErrorContent = styled(Content)`
@@ -97,7 +135,39 @@ const Background = styled.div`
   }
 `;
 
+const FlightInformation = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
 
+  @media screen and (min-width: 1080px) {
+    grid-template-columns: repeat(7, minmax(100px, 1fr));
+    grid-template-rows: auto;
+  }
+`;
+
+const Item = styled.div`
+  display: inline-block;
+  border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
+  padding-bottom: 1rem;
+
+  &:nth-last-of-type(2),
+  &:nth-last-of-type(1) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  @media screen and (min-width: 1080px) {
+    border-bottom: 0;
+    border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
+    padding-bottom: 0rem;
+
+    &:nth-last-of-type(2),
+    &:nth-last-of-type(1) {
+      border-right: 0;
+    }
+  }
+`;
 
 export {
   Background,
@@ -111,5 +181,10 @@ export {
   Text,
   HeadingDetails,
   SubHeading,
-  Emoji
+  Emoji,
+  Loading,
+  StyledFlightNumber,
+  Title,
+  FlightInformation,
+  Item
 };

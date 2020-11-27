@@ -5,16 +5,23 @@ import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { useFlight, useBoop, useHasMounted } from '../hooks/index';
-import { Content, ErrorContent } from '../styles/styles';
+import {
+  Content,
+  ErrorContent,
+  Loading,
+  StyledFlightNumber,
+  Title,
+  FlightInformation,
+  Item,
+} from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
-  FlightFrom,
-  City,
-  FlightNumber,
-  DateTime,
-  ArrivalTime,
-  FlightStatus,
+  FlightFrom as StyledFlightFrom,
+  City as StyledCity,
+  DateTime as StyledDateTime,
+  ArrivalTime as StyledArrivalTime,
+  FlightStatus as StyledFlightStatus,
   LastUpdated,
   AircraftDetails,
   ShiftBy,
@@ -22,7 +29,7 @@ import {
   Error,
 } from '../components/index';
 
-const StyledCity = styled(City)`
+const City = styled(StyledCity)`
   display: block;
   font-size: 3.6rem;
   font-weight: 600;
@@ -38,49 +45,8 @@ const StyledCity = styled(City)`
   -moz-text-fill-color: transparent;
 `;
 
-const StyledArrivalTime = styled(ArrivalTime)`
+const ArrivalTime = styled(StyledArrivalTime)`
   font-weight: 500;
-`;
-
-const FlightInformationArrival = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-
-  @media screen and (min-width: 1080px) {
-    grid-template-columns: repeat(7, minmax(100px, 1fr));
-    grid-template-rows: auto;
-  }
-`;
-
-const Item = styled.div`
-  display: inline-block;
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-  padding-bottom: 1rem;
-
-  &:nth-last-of-type(2),
-  &:nth-last-of-type(1) {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  @media screen and (min-width: 1080px) {
-    border-bottom: 0;
-    border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-    padding-bottom: 0rem;
-
-    &:nth-last-of-type(2),
-    &:nth-last-of-type(1) {
-      border-right: 0;
-    }
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 1.5rem 0 1.5rem 0;
-  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Heading = styled.span`
@@ -90,12 +56,6 @@ const Heading = styled.span`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-const StyledFlightNumber = styled(FlightNumber)`
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 500;
-`;
-
 const Text = styled.span`
   color: ${({ theme }) => theme.colors.text};
   display: block;
@@ -103,13 +63,13 @@ const Text = styled.span`
   font-weight: 500;
 `;
 
-const StyledDateTime = styled(DateTime)`
+const DateTime = styled(StyledDateTime)`
   display: block;
   font-size: 1.125rem;
   font-weight: 500;
 `;
 
-const StyledFlightStatus = styled(FlightStatus)`
+const FlightStatus = styled(StyledFlightStatus)`
   margin-top: 1rem;
   font-size: 16px;
   height: 22px;
@@ -117,7 +77,7 @@ const StyledFlightStatus = styled(FlightStatus)`
   color: ${(props) => (props.isDarkMode ? '#B0B3B8' : 'white')};
 `;
 
-const StyledFlightFrom = styled(FlightFrom)`
+const FlightFrom = styled(StyledFlightFrom)`
   flex: 1 1 1rem;
   margin-bottom: 1rem;
 `;
@@ -151,17 +111,6 @@ const WrapperLastUpdated = styled.div`
   margin-top: 1rem;
 `;
 
-const Loading = styled.span`
-  display: inline-block;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  margin-top: var(--container-margin);
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
-`;
-
 const StyledButton = styled.button`
   border: none;
   outline: none;
@@ -191,8 +140,6 @@ const FlightArrivalView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
-  if (!hasMounted) return null;
-
   return (
     <>
       {isLoading ? (
@@ -203,7 +150,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
         <ErrorContent>
           <Error message={error.message.toLowerCase()} />
         </ErrorContent>
-      ) : isSuccess ? (
+      ) : isSuccess && hasMounted ? (
         <>
           {flight?.flightName ? (
             <Helmet>
@@ -217,7 +164,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
           <HeaderContainer>
             <Content>
               <HeaderInformation>
-                <StyledFlightFrom
+                <FlightFrom
                   prefixICAO={prefixAirlineCode}
                   flightName={flight.flightName}
                   direction="from"
@@ -238,10 +185,10 @@ const FlightArrivalView = ({ isDarkMode }) => {
                   </Tooltip>
                 </div>
               </HeaderInformation>
-              {flight?.route && <StyledCity route={flight.route} />}
+              {flight?.route && <City route={flight.route} />}
               {flight?.publicFlightState && flight?.flightDirection && (
                 <ShiftBy x={1}>
-                  <StyledFlightStatus
+                  <FlightStatus
                     publicFlightState={flight.publicFlightState}
                     flightDirection={flight.flightDirection}
                     isDarkMode={isDarkMode}
@@ -249,7 +196,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 </ShiftBy>
               )}
               <WrapperLastUpdated>
-                {flight?.lastUpdatedAt && (
+                {flight?.lastUpdatedAt ? (
                   <Tooltip
                     title="💡 Click to update flight details"
                     position="top"
@@ -271,21 +218,18 @@ const FlightArrivalView = ({ isDarkMode }) => {
                       <LastUpdated timestamp={flight.lastUpdatedAt} />
                     </StyledButton>
                   </Tooltip>
-                )}
+                ) : null}
               </WrapperLastUpdated>
             </Content>
           </HeaderContainer>
           <Content>
             <div>
               <Title>Flight information</Title>
-              <FlightInformationArrival>
+              <FlightInformation>
                 <Item>
                   <Heading>Date</Heading>
                   {flight?.scheduleDateTime ? (
-                    <StyledDateTime
-                      date={flight.scheduleDateTime}
-                      format="MMM D"
-                    />
+                    <DateTime date={flight.scheduleDateTime} format="MMM D" />
                   ) : (
                     <Text>N/A</Text>
                   )}
@@ -293,7 +237,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                 <Item>
                   <Heading>Arrival time</Heading>
                   {flight ? (
-                    <StyledArrivalTime
+                    <ArrivalTime
                       scheduleDateTime={flight.scheduleDateTime}
                       estimatedLandingTime={flight.estimatedLandingTime}
                       actualLandingTime={flight.actualLandingTime}
@@ -352,7 +296,7 @@ const FlightArrivalView = ({ isDarkMode }) => {
                     <Text>N/A</Text>
                   )}
                 </Item>
-              </FlightInformationArrival>
+              </FlightInformation>
             </div>
             {flight?.aircraftType && flight?.aircraftRegistration && (
               <FlightDetails>

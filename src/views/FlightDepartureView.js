@@ -5,13 +5,20 @@ import { useParams, Link } from 'react-router-dom';
 import { queryCache } from 'react-query';
 import { query } from '../helpers/query';
 import { useFlight, useBoop, useHasMounted } from '../hooks/index';
-import { Content, ErrorContent } from '../styles/styles';
+import {
+  Content,
+  ErrorContent,
+  Loading,
+  StyledFlightNumber,
+  Title,
+  FlightInformation,
+  Item,
+} from '../styles/styles';
 import { Redo, ArrowRight } from '../components/icons/index';
 import {
   Gate,
   FlightFrom,
   City,
-  FlightNumber,
   DateTime,
   DepartureTime,
   FlightStatus,
@@ -39,57 +46,10 @@ const StyledCity = styled(City)`
   -moz-text-fill-color: transparent;
 `;
 
-const FlightInformationArrival = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-
-  @media screen and (min-width: 1080px) {
-    grid-template-columns: repeat(7, minmax(100px, 1fr));
-    grid-template-rows: auto;
-  }
-`;
-
-const Item = styled.div`
-  display: inline-block;
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-  padding-bottom: 1rem;
-
-  &:nth-last-of-type(2),
-  &:nth-last-of-type(1) {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  @media screen and (min-width: 1080px) {
-    border-bottom: 0;
-    border-right: 1px dashed ${({ theme }) => theme.colors.borderDashed};
-    padding-bottom: 0rem;
-
-    &:nth-last-of-type(2),
-    &:nth-last-of-type(1) {
-      border-right: 0;
-    }
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 1.75rem;
-  margin: 1.5rem 0 1.5rem 0;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 const Heading = styled.span`
   display: block;
   font-size: 0.875rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
-const StyledFlightNumber = styled(FlightNumber)`
-  display: block;
-  font-size: 1.125rem;
-  font-weight: 500;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -147,17 +107,6 @@ const WrapperLastUpdated = styled.div`
   margin-top: 1rem;
 `;
 
-const Loading = styled.span`
-  display: inline-block;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
-  margin-top: var(--container-margin);
-
-  @media screen and (prefers-reduced-motion: no-preference) {
-    transition: color var(--transition-time) ease-in;
-  }
-`;
-
 const StyledButton = styled.button`
   border: none;
   outline: none;
@@ -167,14 +116,6 @@ const StyledButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-`;
-
-const StyledRedo = styled(Redo)`
-  margin-right: 5px;
-`;
-
-const StyledArrowRight = styled(ArrowRight)`
-  margin-left: 5px;
 `;
 
 const FlightDetails = styled.div`
@@ -198,8 +139,6 @@ const FlightDepartureView = ({ isDarkMode }) => {
     prefixAirlineCode = flight.prefixICAO ?? flight.flightName.slice(0, 2);
   }
 
-  if (!hasMounted) return null;
-
   return (
     <>
       {isLoading ? (
@@ -210,7 +149,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
         <ErrorContent>
           <Error message={error.message.toLowerCase()} />
         </ErrorContent>
-      ) : isSuccess ? (
+      ) : isSuccess && hasMounted ? (
         <>
           {flight?.flightName ? (
             <Helmet>
@@ -235,7 +174,8 @@ const FlightDepartureView = ({ isDarkMode }) => {
                   <Tooltip title="💡 Click to display all flights">
                     <StyledLink to="/" onMouseEnter={triggerArrow}>
                       <span>All flights</span>
-                      <StyledArrowRight
+                      <ArrowRight
+                        ml="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"
@@ -257,7 +197,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                 </ShiftBy>
               )}
               <WrapperLastUpdated>
-                {flight?.lastUpdatedAt && (
+                {flight?.lastUpdatedAt ? (
                   <Tooltip
                     title="💡 Click to update flight details"
                     position="top"
@@ -269,7 +209,8 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       }}
                       onMouseEnter={triggerRedo}
                     >
-                      <StyledRedo
+                      <Redo
+                        mr="5px"
                         height={12}
                         width={12}
                         fillColor="#0d49c0"
@@ -278,14 +219,14 @@ const FlightDepartureView = ({ isDarkMode }) => {
                       <LastUpdated timestamp={flight.lastUpdatedAt} />
                     </StyledButton>
                   </Tooltip>
-                )}
+                ) : null}
               </WrapperLastUpdated>
             </Content>
           </HeaderContainer>
           <Content>
             <div>
               <Title>Flight information</Title>
-              <FlightInformationArrival>
+              <FlightInformation>
                 <Item>
                   <Heading>Date</Heading>
                   {flight?.scheduleDateTime ? (
@@ -364,7 +305,7 @@ const FlightDepartureView = ({ isDarkMode }) => {
                     <Text>N/A</Text>
                   )}
                 </Item>
-              </FlightInformationArrival>
+              </FlightInformation>
             </div>
             <FlightDetails>
               {flight?.expectedTimeBoarding &&
